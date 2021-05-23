@@ -58,3 +58,8 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Ignore these Folders
+art-assets/
+Library/
+TextMesh Pro/
+Scenes/
