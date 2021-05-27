@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Preload.unity
+    guid: 9fefae3a4dd6ff8448caa803a12587fb
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: c144a3cfdf7060e4d8cafa1e47ba9b8d
+  - enabled: 1
+    path: Assets/Scenes/GlitchyStart.unity
+    guid: 98ddfe710e5e9cd41a39fd4df3787f1e
+  - enabled: 1
     path: Assets/Scenes/RelicHunt.unity
     guid: 98283c1e740970b4eb49c1e589c1669f
   m_configObjects: {}

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Windows;
 using UnityEngine.UI;
 using System;
+using System.Linq;
 
 public class SlotSave : MonoBehaviour
 {
@@ -38,6 +39,11 @@ public class SlotSave : MonoBehaviour
         //gets persistant path
         persistentPath = Application.persistentDataPath;
 
+        Slot1Butt.gameObject.SetActive(false);
+        Slot2Butt.gameObject.SetActive(false);
+        Slot3Butt.gameObject.SetActive(false);
+        BackButt.gameObject.SetActive(false);
+
         //if the files exist change the bool
         if (File.Exists(persistentPath + "/Slot1Data.txt")) slot1Exists = true;
         if (File.Exists(persistentPath + "/Slot2Data.txt")) slot2Exists = true;
@@ -63,6 +69,8 @@ public class SlotSave : MonoBehaviour
         BackButt.gameObject.SetActive(true);
         NewButt.gameObject.SetActive(false);
         ContinueButt.gameObject.SetActive(false);
+        OptionsButt.gameObject.SetActive(false);
+        ExitButt.gameObject.SetActive(false);
         if (!File.Exists(persistentPath + "/Slot1Data.txt")) Slot1Butt.gameObject.SetActive(true);
         if (!File.Exists(persistentPath + "/Slot2Data.txt")) Slot2Butt.gameObject.SetActive(true);
         if (!File.Exists(persistentPath + "/Slot3Data.txt")) Slot3Butt.gameObject.SetActive(true);
@@ -93,69 +101,168 @@ public class SlotSave : MonoBehaviour
         if (File.Exists(persistentPath + "/Slot1Data.txt"))
         {
             string grabFilePath = persistentPath + "/Slot1Data.txt";
-            NoDestroy.fileLoaded = "Slot1Data.txt";
-            string loadGameHere = System.IO.File.ReadAllLines(grabFilePath)[3];
-            SceneManager.LoadScene(loadGameHere);
+
+            //check for editing file?
+            DateTime dateModified = System.IO.File.GetLastWriteTime(grabFilePath);
+            string modified = dateModified.ToString("O").Substring(0, 18);
+            if(modified != System.IO.File.ReadAllLines(grabFilePath)[System.IO.File.ReadAllLines(grabFilePath).Length - 1].Substring(0, 18)) 
+            {
+
+                print("file was tampered with");
+                NoDestroy.HasBeenTamperedWith = true;
+                return;
+            }
+            else 
+            {
+                //load scene if good
+                NoDestroy.fileLoaded = "Slot1Data.txt";
+                string loadGameHere = System.IO.File.ReadAllLines(grabFilePath)[4];
+                SceneManager.LoadScene(loadGameHere);
+            }
         }
         //if the file does not exist changes the static variable and loads the scene
         //also creates and writes to the text file
         else if (!File.Exists(persistentPath + "/Slot1Data.txt"))
         {
             //write file
-            System.IO.File.WriteAllText(persistentPath + "/Slot1Data.txt", "Slot 1 Data\n1\n4.5\n10\nGlitchyStart\nPSpawnGO\n1\n0\n0\n");
+            System.IO.File.WriteAllText(persistentPath + "/Slot1Data.txt", "Slot1Data\n1\n4.5\n10\nGlitchyStart\nPSpawnGO\n1\n0\n0");
+            
+            string grabFilePath = persistentPath + "/Slot1Data.txt";
+            string newString = "";
+            //loop re-create text file string as was before, ready to append to
+            for (int i = 0; i < System.IO.File.ReadAllLines(grabFilePath).Length; i++)
+            {
+                print(System.IO.File.ReadAllLines(grabFilePath)[i]);
+                newString = newString + System.IO.File.ReadAllLines(grabFilePath)[i] + "\n";
+            }
             //get datetime and datemodified of file
             DateTime dateCreated = System.IO.File.GetCreationTime(persistentPath + "/Slot1Data.txt");
             DateTime dateModified = System.IO.File.GetLastWriteTime(persistentPath + "/Slot1Data.txt");
             //adds to file the datetime and datemodified
+            string created = dateCreated.ToString("O").Substring(0,18);
+            string modified = dateModified.ToString("O").Substring(0,18);
+            //This deletes the old file and replaces it with the updated new file
+            System.IO.File.Delete(grabFilePath);
+            System.IO.File.WriteAllText(grabFilePath, newString + created + "\n" + modified);
 
             //last steps
             Slot1Butt.gameObject.SetActive(false);
             NoDestroy.fileLoaded = "Slot1Data.txt";
-            IsJustStarted = true;
+            IsJustStarted = true; //triggers intial glitch!!
         }
     }
 
     //function for clicking slot 2
     public void CreateSlot2()
     {
-        //if the file exists changes the static variable and loads the scene
         if (File.Exists(persistentPath + "/Slot2Data.txt"))
         {
             string grabFilePath = persistentPath + "/Slot2Data.txt";
-            NoDestroy.fileLoaded = "Slot2Data.txt";
-            string loadGameHere = System.IO.File.ReadAllLines(grabFilePath)[3];
-            SceneManager.LoadScene(loadGameHere);
+
+            //check for editing file?
+            DateTime dateModified = System.IO.File.GetLastWriteTime(grabFilePath);
+            string modified = dateModified.ToString("O").Substring(0, 18);
+            if (modified != System.IO.File.ReadAllLines(grabFilePath)[System.IO.File.ReadAllLines(grabFilePath).Length - 1].Substring(0, 18))
+            {
+
+                print("file was tampered with");
+                NoDestroy.HasBeenTamperedWith = true;
+                return;
+            }
+            else
+            {
+                //load scene if good
+                NoDestroy.fileLoaded = "Slot2Data.txt";
+                string loadGameHere = System.IO.File.ReadAllLines(grabFilePath)[4];
+                SceneManager.LoadScene(loadGameHere);
+            }
         }
         //if the file does not exist changes the static variable and loads the scene
         //also creates and writes to the text file
         else if (!File.Exists(persistentPath + "/Slot2Data.txt"))
         {
-            System.IO.File.WriteAllText(persistentPath + "/Slot2Data.txt", "Slot 2 Data\n1\n4.5\n10\nGlitchyStart\nPSpawnGO\n1\n0\n0\nDate File Created\nDate File Modiefied");
+            //write file
+            System.IO.File.WriteAllText(persistentPath + "/Slot2Data.txt", "Slot2Data\n1\n4.5\n10\nGlitchyStart\nPSpawnGO\n1\n0\n0");
+
+            string grabFilePath = persistentPath + "/Slot2Data.txt";
+            string newString = "";
+            //loop re-create text file string as was before, ready to append to
+            for (int i = 0; i < System.IO.File.ReadAllLines(grabFilePath).Length; i++)
+            {
+                print(System.IO.File.ReadAllLines(grabFilePath)[i]);
+                newString = newString + System.IO.File.ReadAllLines(grabFilePath)[i] + "\n";
+            }
+            //get datetime and datemodified of file
+            DateTime dateCreated = System.IO.File.GetCreationTime(persistentPath + "/Slot2Data.txt");
+            DateTime dateModified = System.IO.File.GetLastWriteTime(persistentPath + "/Slot2Data.txt");
+            //adds to file the datetime and datemodified
+            string created = dateCreated.ToString("O").Substring(0, 18);
+            string modified = dateModified.ToString("O").Substring(0, 18);
+            //This deletes the old file and replaces it with the updated new file
+            System.IO.File.Delete(grabFilePath);
+            System.IO.File.WriteAllText(grabFilePath, newString + created + "\n" + modified);
+
+            //last steps
             Slot2Butt.gameObject.SetActive(false);
             NoDestroy.fileLoaded = "Slot2Data.txt";
-            IsJustStarted = true;
+            IsJustStarted = true; //triggers intial glitch!!
         }
     }
 
     //function for clicking slot 3
     public void CreateSlot3()
     {
-        //if the file exists changes the static variable and loads the scene
         if (File.Exists(persistentPath + "/Slot3Data.txt"))
         {
             string grabFilePath = persistentPath + "/Slot3Data.txt";
-            NoDestroy.fileLoaded = "Slot3Data.txt";
-            string loadGameHere = System.IO.File.ReadAllLines(grabFilePath)[3];
-            SceneManager.LoadScene(loadGameHere);
+
+            //check for editing file?
+            DateTime dateModified = System.IO.File.GetLastWriteTime(grabFilePath);
+            string modified = dateModified.ToString("O").Substring(0, 18);
+            if (modified != System.IO.File.ReadAllLines(grabFilePath)[System.IO.File.ReadAllLines(grabFilePath).Length - 1].Substring(0, 18))
+            {
+
+                print("file was tampered with");
+                NoDestroy.HasBeenTamperedWith = true;
+                return;
+            }
+            else
+            {
+                //load scene if good
+                NoDestroy.fileLoaded = "Slot3Data.txt";
+                string loadGameHere = System.IO.File.ReadAllLines(grabFilePath)[4];
+                SceneManager.LoadScene(loadGameHere);
+            }
         }
         //if the file does not exist changes the static variable and loads the scene
         //also creates and writes to the text file
         else if (!File.Exists(persistentPath + "/Slot3Data.txt"))
         {
-            System.IO.File.WriteAllText(persistentPath + "/Slot3Data.txt", "Slot 3 Data\n1\n4.5\n10\nGlitchyStart\nPSpawnGO\n1\n0\n0\nDate File Created\nDate File Modiefied");
+            //write file
+            System.IO.File.WriteAllText(persistentPath + "/Slot3Data.txt", "Slot3Data\n1\n4.5\n10\nGlitchyStart\nPSpawnGO\n1\n0\n0");
+
+            string grabFilePath = persistentPath + "/Slot3Data.txt";
+            string newString = "";
+            //loop re-create text file string as was before, ready to append to
+            for (int i = 0; i < System.IO.File.ReadAllLines(grabFilePath).Length; i++)
+            {
+                print(System.IO.File.ReadAllLines(grabFilePath)[i]);
+                newString = newString + System.IO.File.ReadAllLines(grabFilePath)[i] + "\n";
+            }
+            //get datetime and datemodified of file
+            DateTime dateCreated = System.IO.File.GetCreationTime(persistentPath + "/Slot3Data.txt");
+            DateTime dateModified = System.IO.File.GetLastWriteTime(persistentPath + "/Slot3Data.txt");
+            //adds to file the datetime and datemodified
+            string created = dateCreated.ToString("O").Substring(0, 18);
+            string modified = dateModified.ToString("O").Substring(0, 18);
+            //This deletes the old file and replaces it with the updated new file
+            System.IO.File.Delete(grabFilePath);
+            System.IO.File.WriteAllText(grabFilePath, newString + created + "\n" + modified);
+
+            //last steps
             Slot3Butt.gameObject.SetActive(false);
             NoDestroy.fileLoaded = "Slot3Data.txt";
-            IsJustStarted = true;
+            IsJustStarted = true; //triggers intial glitch!!
         }
     }
 
@@ -175,7 +282,7 @@ public class SlotSave : MonoBehaviour
     }
 }
 
-/* for future ref (WILL NOT BE USED IN THIS SCRIPT) (EXAMPLE OF EDITING SAVE FILE THROUGH GAME) 
+/* for future ref (WILL NOT BE USED IN THIS SCRIPT) (EXAMPLE OF EDITING SAVE FILE THROUGH GAME)(ON SPECIFIC LINE) 
     public void ChangeToCube()
     {
         //grabs the persistant path and file of the selected slot
