@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
     public Image heart1;
     public Image heart2;
     public Button retryButt;
+    public GameObject flashLight;
 
     CameraRotationFirstPerson camScript;
     CharacterMovementFirstPerson pMoveScript;
@@ -24,6 +25,15 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
+        flashLight = GameObject.Find("Flashlight");
+        if (SceneManager.GetActiveScene().name != "RelicHunt") 
+        {
+            flashLight.SetActive(false);
+            this.enabled = false;
+            return;
+        }
+        flashLight.SetActive(true);
+
         heart.enabled = true;
         heart1.enabled = true;
         heart2.enabled = true;

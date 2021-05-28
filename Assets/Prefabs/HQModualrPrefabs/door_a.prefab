@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8971325852968054663}
   - component: {fileID: 3961401064180268078}
   - component: {fileID: 7538217752297407757}
+  - component: {fileID: 5232037788265124069}
   m_Layer: 0
   m_Name: door_a
   m_TagString: Untagged
@@ -64,6 +65,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -88,6 +90,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &65732618189504254
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -140,8 +143,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thisDoor: {fileID: 1455428178319344}
   isOpen: 0
+  isShutting: 0
   Player: {fileID: 0}
   doorStartRot: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5232037788265124069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455428178319344}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df5ee31c6d91f9a4294eddaabc916861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1564424182846518
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,6 +213,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -221,6 +238,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1774370644955350
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,6 +294,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -300,6 +319,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &6553628186137210116
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,12 +28,16 @@ public class DoorOpen : MonoBehaviour
 
     private string side = "";
 
+    LockedDoor doorLocked;
+
     // Start is called before the first frame update
     void Awake()
     {
         Player = GameObject.Find("FPSController");
 
         seeDoorScript = Player.GetComponentInChildren<LookAtDoor>();
+
+        doorLocked = GetComponent<LockedDoor>();
     }
 
     private void Start()
@@ -49,6 +53,7 @@ public class DoorOpen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (doorLocked.IsLocked) return;
         playerInput();
         whichSide();
         doorMove();
