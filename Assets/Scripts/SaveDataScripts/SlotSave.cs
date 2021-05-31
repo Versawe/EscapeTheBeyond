@@ -6,6 +6,7 @@ using UnityEngine.Windows;
 using UnityEngine.UI;
 using System;
 using System.Linq;
+using UnityEngine.Rendering;
 
 public class SlotSave : MonoBehaviour
 {
@@ -26,7 +27,14 @@ public class SlotSave : MonoBehaviour
     public bool slot2Exists = false;
     public bool slot3Exists = false;
 
-    private bool IsJustStarted = false;
+    public bool IsJustStarted = false;
+
+    public GameObject skyAndFog;
+    public GameObject staticScreen;
+    public GameObject skyAndFogCrazy;
+
+    private float staticTimer = 4;
+    public GameObject MainUI;
 
     //no destroy object
     GameObject controller;
@@ -34,6 +42,37 @@ public class SlotSave : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //gets sky and fog volumes
+        if(GameObject.Find("Sky and Fog Volume")) 
+        {
+            skyAndFog = GameObject.Find("Sky and Fog Volume");
+        }
+        else
+        {
+            skyAndFog = null;
+        }
+        if (GameObject.Find("Sky and Fog Volume 2"))
+        {
+            staticScreen = GameObject.Find("Sky and Fog Volume 2");
+            staticScreen.SetActive(false);
+        }
+        else
+        {
+            staticScreen = null;
+        }
+        if (GameObject.Find("Sky and Fog Volume 3"))
+        {
+            skyAndFogCrazy = GameObject.Find("Sky and Fog Volume 3");
+            skyAndFogCrazy.SetActive(false);
+        }
+        else
+        {
+            skyAndFogCrazy = null;
+        }
+
+        //grabs main UI
+        MainUI = GameObject.Find("MainMenuPanel");
+
         //grab no destroy object
         controller = GameObject.Find("NoDestroyOBJ");
         //gets persistant path
@@ -56,6 +95,45 @@ public class SlotSave : MonoBehaviour
         //if there are no more save slots available the new game button will not appear
         if (!slot1Exists || !slot2Exists || !slot3Exists) NewButt.gameObject.SetActive(true);
         else NewButt.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (IsJustStarted) 
+        {
+            staticTimer -= 1 * Time.deltaTime;
+        }
+        if(IsJustStarted && staticTimer >= 0) 
+        {
+            //sets main menu ui to starting state
+            //turns on
+            ContinueButt.gameObject.SetActive(true);
+            NewButt.gameObject.SetActive(true);
+            OptionsButt.gameObject.SetActive(true);
+            ExitButt.gameObject.SetActive(true);
+            
+
+            //turns off
+            Slot1Butt.gameObject.SetActive(false);
+            Slot2Butt.gameObject.SetActive(false);
+            Slot3Butt.gameObject.SetActive(false);
+            BackButt.gameObject.SetActive(false);
+
+            //turns off all UI in Panel
+            MainUI.SetActive(false);
+
+            //changes Postprocessing to glithy one
+            skyAndFog.SetActive(false);
+            staticScreen.SetActive(true);
+        }
+        if (staticTimer <= 0)
+        {
+            IsJustStarted = false;
+            skyAndFogCrazy.SetActive(true);
+            staticScreen.SetActive(false);
+            MainUI.SetActive(true);
+            staticTimer = 4;
+        }
     }
 
     //This function activates if you click new game button

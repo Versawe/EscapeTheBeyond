@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.SceneManagement;
 
 //this script is attached to the DontDestroyOnBuild GameObject
@@ -36,10 +37,11 @@ public class NoDestroy : MonoBehaviour
 
         //get current scene
         Scene currScene = SceneManager.GetActiveScene();
-        
+
         if (currScene.name == "Preload") 
         {
             SceneManager.LoadScene("MainMenu");
         }
+        
     }
 }
