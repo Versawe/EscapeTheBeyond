@@ -63,6 +63,6 @@ public class PlayerHealth : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene("test");
+        SceneManager.LoadScene("RelicHunt");
     }
 }
