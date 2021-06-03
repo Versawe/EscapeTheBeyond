@@ -24,8 +24,6 @@ public class NoDestroy : MonoBehaviour
     public static string currSceneName;
     public static string pSpawnGOName;
     public static int puzzleOneLoginAttempts;
-    public static int puzzleTwoRelicsCollected;
-    public static int puzzleThreeQuestionsCorrect;
     public static string dateFileCreated;
     public static string dateFileModified;
 

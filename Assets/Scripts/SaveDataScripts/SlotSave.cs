@@ -42,33 +42,7 @@ public class SlotSave : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //gets sky and fog volumes
-        if(GameObject.Find("Sky and Fog Volume")) 
-        {
-            skyAndFog = GameObject.Find("Sky and Fog Volume");
-        }
-        else
-        {
-            skyAndFog = null;
-        }
-        if (GameObject.Find("Sky and Fog Volume 2"))
-        {
-            staticScreen = GameObject.Find("Sky and Fog Volume 2");
-            staticScreen.SetActive(false);
-        }
-        else
-        {
-            staticScreen = null;
-        }
-        if (GameObject.Find("Sky and Fog Volume 3"))
-        {
-            skyAndFogCrazy = GameObject.Find("Sky and Fog Volume 3");
-            skyAndFogCrazy.SetActive(false);
-        }
-        else
-        {
-            skyAndFogCrazy = null;
-        }
+        CheckForPostProcessingOBJs();
 
         //grabs main UI
         MainUI = GameObject.Find("MainMenuPanel");
@@ -99,11 +73,48 @@ public class SlotSave : MonoBehaviour
 
     private void Update()
     {
-        if (IsJustStarted) 
+        if (!IsJustStarted) return;
+        StaticScreenTimer();
+    }
+
+    private void CheckForPostProcessingOBJs()
+    {
+        //gets sky and fog volumes
+        if (GameObject.Find("Sky and Fog Volume"))
+        {
+            skyAndFog = GameObject.Find("Sky and Fog Volume");
+        }
+        else
+        {
+            skyAndFog = null;
+        }
+        if (GameObject.Find("Sky and Fog Volume 2"))
+        {
+            staticScreen = GameObject.Find("Sky and Fog Volume 2");
+            staticScreen.SetActive(false);
+        }
+        else
+        {
+            staticScreen = null;
+        }
+        if (GameObject.Find("Sky and Fog Volume 3"))
+        {
+            skyAndFogCrazy = GameObject.Find("Sky and Fog Volume 3");
+            skyAndFogCrazy.SetActive(false);
+        }
+        else
+        {
+            skyAndFogCrazy = null;
+        }
+    }
+
+    private void StaticScreenTimer()
+    {
+        if (IsJustStarted)
         {
             staticTimer -= 1 * Time.deltaTime;
         }
-        if(IsJustStarted && staticTimer >= 0) 
+        if (IsJustStarted && staticTimer >= 0)
         {
             //sets main menu ui to starting state
             //turns on
@@ -111,7 +122,7 @@ public class SlotSave : MonoBehaviour
             NewButt.gameObject.SetActive(true);
             OptionsButt.gameObject.SetActive(true);
             ExitButt.gameObject.SetActive(true);
-            
+
 
             //turns off
             Slot1Butt.gameObject.SetActive(false);
@@ -203,7 +214,7 @@ public class SlotSave : MonoBehaviour
         else if (!File.Exists(persistentPath + "/Slot1Data.txt"))
         {
             //write file
-            System.IO.File.WriteAllText(persistentPath + "/Slot1Data.txt", "Slot1Data\n1\n4.5\n10\nGlitchyStart\nPSpawnGO\n1\n0\n0");
+            System.IO.File.WriteAllText(persistentPath + "/Slot1Data.txt", "Slot1Data\n1\n4.5\n10\nGlitchyStart\nPSpawnGO\n1");
             
             string grabFilePath = persistentPath + "/Slot1Data.txt";
             string newString = "";
@@ -260,7 +271,7 @@ public class SlotSave : MonoBehaviour
         else if (!File.Exists(persistentPath + "/Slot2Data.txt"))
         {
             //write file
-            System.IO.File.WriteAllText(persistentPath + "/Slot2Data.txt", "Slot2Data\n1\n4.5\n10\nGlitchyStart\nPSpawnGO\n1\n0\n0");
+            System.IO.File.WriteAllText(persistentPath + "/Slot2Data.txt", "Slot2Data\n1\n4.5\n10\nGlitchyStart\nPSpawnGO\n1");
 
             string grabFilePath = persistentPath + "/Slot2Data.txt";
             string newString = "";
@@ -317,7 +328,7 @@ public class SlotSave : MonoBehaviour
         else if (!File.Exists(persistentPath + "/Slot3Data.txt"))
         {
             //write file
-            System.IO.File.WriteAllText(persistentPath + "/Slot3Data.txt", "Slot3Data\n1\n4.5\n10\nGlitchyStart\nPSpawnGO\n1\n0\n0");
+            System.IO.File.WriteAllText(persistentPath + "/Slot3Data.txt", "Slot3Data\n1\n4.5\n10\nGlitchyStart\nPSpawnGO\n1");
 
             string grabFilePath = persistentPath + "/Slot3Data.txt";
             string newString = "";

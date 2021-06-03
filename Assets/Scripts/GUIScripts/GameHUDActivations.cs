@@ -11,9 +11,11 @@ public class GameHUDActivations : MonoBehaviour
     public GameObject pausePanel;
     public GameObject RelicPanel;
     public GameObject HealthPanel;
+    public GameObject OptionsPanel;
     public TextMeshProUGUI relicsCollectedDisplay;
 
     public bool isPaused = false;
+    private bool optionsOn = false;
 
     public float relicCollected = 0;
 
@@ -60,7 +62,7 @@ public class GameHUDActivations : MonoBehaviour
             isPaused = false;
         }
 
-        if (isPaused)
+        if (isPaused && !optionsOn)
         {
             UnityEngine.Cursor.lockState = CursorLockMode.None;
             pausePanel.SetActive(true);
@@ -72,5 +74,18 @@ public class GameHUDActivations : MonoBehaviour
             pausePanel.SetActive(false);
             Time.timeScale = 1f;
         }
+    }
+
+    public void GameOptionsTrigger()
+    {
+        optionsOn = true;
+        pausePanel.gameObject.SetActive(false);
+        OptionsPanel.gameObject.SetActive(true);
+    }
+
+    public void BackButtonTrigger()
+    {
+        pausePanel.gameObject.SetActive(true);
+        OptionsPanel.gameObject.SetActive(false);
     }
 }
