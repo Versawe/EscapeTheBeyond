@@ -21,10 +21,10 @@ public class GameHUDActivations : MonoBehaviour
 
     Scene currScene;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         currScene = SceneManager.GetActiveScene();
-  
+        GUIAppearPerScene();
     }
 
     // Update is called once per frame
@@ -72,6 +72,8 @@ public class GameHUDActivations : MonoBehaviour
         {
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             pausePanel.SetActive(false);
+            optionsOn = false;
+            OptionsPanel.SetActive(false);
             Time.timeScale = 1f;
         }
     }

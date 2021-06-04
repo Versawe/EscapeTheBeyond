@@ -8,10 +8,10 @@ public class PlayerHealth : MonoBehaviour
 {
     public int health = 3;
 
-    public Image heart;
-    public Image heart1;
-    public Image heart2;
-    public Button retryButt;
+    public GameObject heart;
+    public GameObject heart1;
+    public GameObject heart2;
+    //public Button retryButt; // Replace with a Game Over Screen
     public GameObject flashLight;
 
     CameraRotationFirstPerson camScript;
@@ -26,6 +26,10 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         flashLight = GameObject.Find("Flashlight");
+        heart = GameObject.Find("Heart1");
+        heart1 = GameObject.Find("Heart2");
+        heart2 = GameObject.Find("Heart3");
+
         if (SceneManager.GetActiveScene().name != "RelicHunt") 
         {
             flashLight.SetActive(false);
@@ -34,29 +38,29 @@ public class PlayerHealth : MonoBehaviour
         }
         flashLight.SetActive(true);
 
-        heart.enabled = true;
-        heart1.enabled = true;
-        heart2.enabled = true;
-        retryButt.gameObject.SetActive(false);
+        heart.SetActive(true);
+        heart1.SetActive(true);
+        heart2.SetActive(true);
+        //retryButt.gameObject.SetActive(false);
     }
 
     private void Update()
     {
         if (health == 2) 
         {
-            heart2.enabled = false;
+            heart2.SetActive(false);
         }
         if (health == 1)
         {
-            heart1.enabled = false;
+            heart1.SetActive(false);
         }
         if(health < 1)
         {
-            heart.enabled = false;
+            heart.SetActive(false);
             camScript.enabled = false;
             pMoveScript.enabled = false;
             pMoveScript.gameObject.GetComponent<ScareCam>().enabled = true;
-            retryButt.gameObject.SetActive(true);
+            //retryButt.gameObject.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
         }
     }
