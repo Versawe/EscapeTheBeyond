@@ -20,11 +20,20 @@ public class GameHUDActivations : MonoBehaviour
     public float relicCollected = 0;
 
     Scene currScene;
+
+    GeneratePWD genPWD;
     // Start is called before the first frame update
     void Awake()
     {
         currScene = SceneManager.GetActiveScene();
         GUIAppearPerScene();
+        genPWD = GetComponent<GeneratePWD>();
+    }
+
+    private void Start()
+    {
+        string pwd;
+        pwd = genPWD.GeneratePWDFunction(18);
     }
 
     // Update is called once per frame
