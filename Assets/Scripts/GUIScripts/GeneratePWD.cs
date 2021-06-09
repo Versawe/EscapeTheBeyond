@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GeneratePWD : MonoBehaviour
 {
-    private string stringOptions = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890!@#$%^&*()-_+=";
+    private string stringOptions = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890!@#$%^&*()-_+= ";
 
     public string GeneratePWDFunction(int pwdLength)
     {
@@ -20,7 +20,6 @@ public class GeneratePWD : MonoBehaviour
         }
 
         GUIUtility.systemCopyBuffer = doorPWD;
-        return doorPWD;   
+        return doorPWD;
     }
-
 }
