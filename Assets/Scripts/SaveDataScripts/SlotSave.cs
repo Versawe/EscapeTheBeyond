@@ -73,6 +73,7 @@ public class SlotSave : MonoBehaviour
 
     private void Update()
     {
+        if (slot1Exists && slot2Exists && slot3Exists) NewButt.gameObject.SetActive(false);
         if (!IsJustStarted) return;
         StaticScreenTimer();
     }
@@ -215,29 +216,27 @@ public class SlotSave : MonoBehaviour
         //also creates and writes to the text file
         else if (!File.Exists(persistentPath + "/Slot1Data.txt"))
         {
-            //write file
-            System.IO.File.WriteAllText(persistentPath + "/Slot1Data.txt", "Slot1Data\n1\n4.5\n10\nGlitchyStart\nPSpawnGO\n1");
-            
-            string grabFilePath = persistentPath + "/Slot1Data.txt";
-            string newString = "";
-            //loop re-create text file string as was before, ready to append to
-            for (int i = 0; i < System.IO.File.ReadAllLines(grabFilePath).Length; i++)
-            {
-                //print(System.IO.File.ReadAllLines(grabFilePath)[i]);
-                newString = newString + System.IO.File.ReadAllLines(grabFilePath)[i] + "\n";
-            }
+            //is created first so we can grab the date
+            System.IO.File.WriteAllText(persistentPath + "/Slot1Data.txt", "First");
             //get datetime and datemodified of file
             DateTime dateCreated = System.IO.File.GetCreationTime(persistentPath + "/Slot1Data.txt");
             DateTime dateModified = System.IO.File.GetLastWriteTime(persistentPath + "/Slot1Data.txt");
+
+            System.IO.File.Delete(persistentPath + "/Slot1Data.txt");
             //adds to file the datetime and datemodified
-            string created = dateCreated.ToString("O").Substring(0,18);
-            string modified = dateModified.ToString("O").Substring(0,18);
-            //This deletes the old file and replaces it with the updated new file
-            System.IO.File.Delete(grabFilePath);
-            System.IO.File.WriteAllText(grabFilePath, newString + created + "\n" + modified);
+            string created = dateCreated.ToString("O").Substring(0, 18);
+            string modified = dateModified.ToString("O").Substring(0, 18);
+
+            //write file
+            System.IO.File.WriteAllText(persistentPath + "/Slot1Data.txt", "Slot1Data\n1\n4.5\n10\nGlitchyStart\nPSpawnGO\n1\n" + created + "\n" + modified);
+
+            //This creates Txt file and updates datetimes to match
+            System.IO.File.SetCreationTime(persistentPath, dateCreated);
+            System.IO.File.SetLastWriteTime(persistentPath, dateModified);
 
             //last steps
             Slot1Butt.gameObject.SetActive(false);
+            slot1Exists = true;
             NoDestroy.fileLoaded = "Slot1Data.txt";
             IsJustStarted = true; //triggers intial glitch!!
         }
@@ -272,29 +271,26 @@ public class SlotSave : MonoBehaviour
         //also creates and writes to the text file
         else if (!File.Exists(persistentPath + "/Slot2Data.txt"))
         {
-            //write file
-            System.IO.File.WriteAllText(persistentPath + "/Slot2Data.txt", "Slot2Data\n1\n4.5\n10\nGlitchyStart\nPSpawnGO\n1");
-
-            string grabFilePath = persistentPath + "/Slot2Data.txt";
-            string newString = "";
-            //loop re-create text file string as was before, ready to append to
-            for (int i = 0; i < System.IO.File.ReadAllLines(grabFilePath).Length; i++)
-            {
-                //print(System.IO.File.ReadAllLines(grabFilePath)[i]);
-                newString = newString + System.IO.File.ReadAllLines(grabFilePath)[i] + "\n";
-            }
+            System.IO.File.WriteAllText(persistentPath + "/Slot2Data.txt", "First");
             //get datetime and datemodified of file
             DateTime dateCreated = System.IO.File.GetCreationTime(persistentPath + "/Slot2Data.txt");
             DateTime dateModified = System.IO.File.GetLastWriteTime(persistentPath + "/Slot2Data.txt");
+
+            System.IO.File.Delete(persistentPath + "/Slot2Data.txt");
             //adds to file the datetime and datemodified
             string created = dateCreated.ToString("O").Substring(0, 18);
             string modified = dateModified.ToString("O").Substring(0, 18);
-            //This deletes the old file and replaces it with the updated new file
-            System.IO.File.Delete(grabFilePath);
-            System.IO.File.WriteAllText(grabFilePath, newString + created + "\n" + modified);
+
+            //write file
+            System.IO.File.WriteAllText(persistentPath + "/Slot2Data.txt", "Slot2Data\n1\n4.5\n10\nGlitchyStart\nPSpawnGO\n1\n" + created + "\n" + modified);
+
+            //This creates Txt file and updates datetimes to match
+            System.IO.File.SetCreationTime(persistentPath, dateCreated);
+            System.IO.File.SetLastWriteTime(persistentPath, dateModified);
 
             //last steps
             Slot2Butt.gameObject.SetActive(false);
+            slot2Exists = true;
             NoDestroy.fileLoaded = "Slot2Data.txt";
             IsJustStarted = true; //triggers intial glitch!!
         }
@@ -329,29 +325,26 @@ public class SlotSave : MonoBehaviour
         //also creates and writes to the text file
         else if (!File.Exists(persistentPath + "/Slot3Data.txt"))
         {
-            //write file
-            System.IO.File.WriteAllText(persistentPath + "/Slot3Data.txt", "Slot3Data\n1\n4.5\n10\nGlitchyStart\nPSpawnGO\n1");
-
-            string grabFilePath = persistentPath + "/Slot3Data.txt";
-            string newString = "";
-            //loop re-create text file string as was before, ready to append to
-            for (int i = 0; i < System.IO.File.ReadAllLines(grabFilePath).Length; i++)
-            {
-                //print(System.IO.File.ReadAllLines(grabFilePath)[i]);
-                newString = newString + System.IO.File.ReadAllLines(grabFilePath)[i] + "\n";
-            }
+            System.IO.File.WriteAllText(persistentPath + "/Slot3Data.txt", "First");
             //get datetime and datemodified of file
             DateTime dateCreated = System.IO.File.GetCreationTime(persistentPath + "/Slot3Data.txt");
             DateTime dateModified = System.IO.File.GetLastWriteTime(persistentPath + "/Slot3Data.txt");
+
+            System.IO.File.Delete(persistentPath + "/Slot3Data.txt");
             //adds to file the datetime and datemodified
             string created = dateCreated.ToString("O").Substring(0, 18);
             string modified = dateModified.ToString("O").Substring(0, 18);
-            //This deletes the old file and replaces it with the updated new file
-            System.IO.File.Delete(grabFilePath);
-            System.IO.File.WriteAllText(grabFilePath, newString + created + "\n" + modified);
+
+            //write file
+            System.IO.File.WriteAllText(persistentPath + "/Slot3Data.txt", "Slot3Data\n1\n4.5\n10\nGlitchyStart\nPSpawnGO\n1\n" + created + "\n" + modified);
+
+            //This creates Txt file and updates datetimes to match
+            System.IO.File.SetCreationTime(persistentPath, dateCreated);
+            System.IO.File.SetLastWriteTime(persistentPath, dateModified);
 
             //last steps
             Slot3Butt.gameObject.SetActive(false);
+            slot3Exists = true;
             NoDestroy.fileLoaded = "Slot3Data.txt";
             IsJustStarted = true; //triggers intial glitch!!
         }
