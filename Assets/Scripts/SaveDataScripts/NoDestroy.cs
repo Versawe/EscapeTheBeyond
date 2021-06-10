@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.Windows;
 using UnityEngine.Assertions.Must;
 using UnityEngine.SceneManagement;
+using System;
+using System.IO;
+using System.Linq;
 
 //this script is attached to the DontDestroyOnBuild GameObject
 //the gameobject and this script is used just to transfer static variables
@@ -35,7 +38,6 @@ public class NoDestroy : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        
         //makes the object this script is attached to non-destroyable on load
         DontDestroyOnLoad(gameObject);
 
@@ -48,20 +50,25 @@ public class NoDestroy : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode) // runs on every scene load
     {
         //get current scene
         actualScene = SceneManager.GetActiveScene();
 
-        if (actualScene.name == "Preload")
+        if (actualScene.name == "Preload") // instanlty preloads to Main menu
         {
             SceneManager.LoadScene("MainMenu");
         }
-        if (actualScene.name == "MainMenu")
+        else if (actualScene.name == "MainMenu") // resets variables in here if in main menu
         {
             ResetVarsWhenMainMenu();
         }
+        else // currSceneName var always updates correctly
+        {
+            currSceneName = actualScene.name;
+        }
 
+        //Below grabs persistanPath and automatically loads text rows from save data file into this script
         persistantPath = Application.persistentDataPath + "/" + fileLoaded;
         if (fileLoaded == "") return;
         else if (fileLoaded != "")
@@ -85,31 +92,32 @@ public class NoDestroy : MonoBehaviour
             if (i == 7) dateFileCreated = System.IO.File.ReadAllLines(persistantPath)[i];
             if (i == 8) dateFileModified = System.IO.File.ReadAllLines(persistantPath)[i];
         }
-
-        print(fileName);
-        print(fileName.GetType());
-        print(gameProgression);
-        print(gameProgression.GetType());
-        print(pSensitivity);
-        print(pSensitivity.GetType());
-        print(gameVolume);
-        print(gameVolume.GetType());
-        print(currSceneName);
-        print(currSceneName.GetType());
-        print(pSpawnGOName);
-        print(pSpawnGOName.GetType());
-        print(puzzleOneLoginAttempts);
-        print(puzzleOneLoginAttempts.GetType());
-        print(dateFileCreated);
-        print(dateFileCreated.GetType());
-        print(dateFileModified);
-        print(dateFileModified.GetType());
     }
 
-    /*public void SaveToFile()
+    public void SaveToFile()
     {
+        if (!System.IO.File.Exists(persistantPath)) return; //exits out if the file does not exist
 
-    }*/
+        string newString = "";
+
+        //Re-creates new file for a saving function
+        newString = fileName + "\n" + gameProgression.ToString() + "\n" + pSensitivity.ToString() + "\n" + 
+            gameVolume.ToString() + "\n" + currSceneName + "\n" + pSpawnGOName + "\n" + puzzleOneLoginAttempts.ToString();
+
+        //updates date modified and created, so saving is not considered tampering
+        DateTime dateCreated = System.IO.File.GetCreationTime(persistantPath);
+        DateTime dateModified = System.IO.File.GetLastWriteTime(persistantPath);
+        dateFileCreated = dateCreated.ToString("O").Substring(0, 18);
+        dateFileModified = dateModified.ToString("O").Substring(0, 18);
+
+        //This deletes the old file and replaces it with the updated new file
+        System.IO.File.Delete(persistantPath);
+        System.IO.File.WriteAllText(persistantPath, newString + "\n" + dateFileCreated + "\n" + dateFileModified);
+
+        //This helps us know that the game changed the save data file, not the player in the explorer
+        System.IO.File.SetCreationTime(persistantPath, dateCreated);
+        System.IO.File.SetLastWriteTime(persistantPath, dateModified);
+    }
 
     public void ResetVarsWhenMainMenu()
     {

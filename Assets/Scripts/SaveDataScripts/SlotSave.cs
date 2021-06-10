@@ -198,6 +198,8 @@ public class SlotSave : MonoBehaviour
             {
 
                 print("file was tampered with");
+                print(modified);
+                print(System.IO.File.ReadAllLines(grabFilePath)[System.IO.File.ReadAllLines(grabFilePath).Length - 1].Substring(0, 18));
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
