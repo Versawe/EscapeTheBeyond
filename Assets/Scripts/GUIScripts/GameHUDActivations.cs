@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -12,6 +11,9 @@ public class GameHUDActivations : MonoBehaviour
     public GameObject RelicPanel;
     public GameObject HealthPanel;
     public GameObject OptionsPanel;
+    public Slider SensitivitySlider;
+    public Slider VolumeSlider;
+
     public TextMeshProUGUI relicsCollectedDisplay;
 
     public bool isPaused = false;
@@ -20,6 +22,7 @@ public class GameHUDActivations : MonoBehaviour
     public float relicCollected = 0;
 
     Scene currScene;
+    NoDestroy GameControllerScript;
 
     GeneratePWD genPWD;
     private string doorPwd;
@@ -29,6 +32,8 @@ public class GameHUDActivations : MonoBehaviour
         currScene = SceneManager.GetActiveScene();
         GUIAppearPerScene();
         genPWD = GetComponent<GeneratePWD>();
+        if (GameObject.Find("NoDestroyOBJ")) GameControllerScript = GameObject.Find("NoDestroyOBJ").GetComponent<NoDestroy>();
+        else GameControllerScript = null;
     }
 
     // Update is called once per frame
@@ -68,13 +73,13 @@ public class GameHUDActivations : MonoBehaviour
 
         if (isPaused && !optionsOn)
         {
-            UnityEngine.Cursor.lockState = CursorLockMode.None;
+            Cursor.lockState = CursorLockMode.None;
             pausePanel.SetActive(true);
             Time.timeScale = 0;
         }
         else if (!isPaused)
         {
-            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.Locked;
             pausePanel.SetActive(false);
             optionsOn = false;
             OptionsPanel.SetActive(false);
@@ -87,11 +92,22 @@ public class GameHUDActivations : MonoBehaviour
         optionsOn = true;
         pausePanel.gameObject.SetActive(false);
         OptionsPanel.gameObject.SetActive(true);
+        SensitivitySlider.value = NoDestroy.pSensitivity;
+        VolumeSlider.value = NoDestroy.gameVolume;
     }
 
     public void BackButtonTrigger()
     {
         pausePanel.gameObject.SetActive(true);
         OptionsPanel.gameObject.SetActive(false);
+    }
+
+    public void ExitToMenu()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
+        GameControllerScript.SaveToFile();
+        NoDestroy.fileLoaded = "";
+        SceneManager.LoadScene("MainMenu");
     }
 }

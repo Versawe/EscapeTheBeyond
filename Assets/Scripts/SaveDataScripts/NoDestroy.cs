@@ -1,13 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using UnityEngine;
-using UnityEngine.Windows;
-using UnityEngine.Assertions.Must;
-using UnityEngine.SceneManagement;
 using System;
-using System.IO;
-using System.Linq;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //this script is attached to the DontDestroyOnBuild GameObject
 //the gameobject and this script is used just to transfer static variables
@@ -46,7 +39,6 @@ public class NoDestroy : MonoBehaviour
 
     void OnEnable()
     {
-        Debug.Log("OnEnable called");
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -62,6 +54,7 @@ public class NoDestroy : MonoBehaviour
         else if (actualScene.name == "MainMenu") // resets variables in here if in main menu
         {
             ResetVarsWhenMainMenu();
+            Cursor.lockState = CursorLockMode.None;
         }
         else // currSceneName var always updates correctly
         {
@@ -76,6 +69,18 @@ public class NoDestroy : MonoBehaviour
             if (actualScene.name != "Preload" || actualScene.name != "MainMenu") LoadFromFile();
         }
 
+    }
+
+    void Update()
+    {
+        if (actualScene.name == "Preload" || actualScene.name == "MainMenu") return;
+
+        if(actualScene.name == "GlitchyStart") PuzzleOneTriggers();
+    }
+
+    private void PuzzleOneTriggers()
+    {
+        
     }
 
     public void LoadFromFile()
