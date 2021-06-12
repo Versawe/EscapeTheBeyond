@@ -13,6 +13,8 @@ public class GameHUDActivations : MonoBehaviour
     public GameObject OptionsPanel;
     public Slider SensitivitySlider;
     public Slider VolumeSlider;
+    public TextMeshProUGUI SliderDisplay1;
+    public TextMeshProUGUI SliderDisplay2;
 
     public TextMeshProUGUI relicsCollectedDisplay;
 
@@ -41,6 +43,18 @@ public class GameHUDActivations : MonoBehaviour
     {
         PauseGame();
         GUIAppearPerScene();
+        TrackingSlideBars();
+    }
+
+    private void TrackingSlideBars()
+    {
+        if (optionsOn)
+        {
+            NoDestroy.pSensitivity = SensitivitySlider.value;
+            NoDestroy.gameVolume = VolumeSlider.value;
+            SliderDisplay2.text = NoDestroy.pSensitivity.ToString();
+            SliderDisplay1.text = NoDestroy.gameVolume.ToString();
+        }
     }
 
     private void GUIAppearPerScene()
@@ -94,6 +108,8 @@ public class GameHUDActivations : MonoBehaviour
         OptionsPanel.gameObject.SetActive(true);
         SensitivitySlider.value = NoDestroy.pSensitivity;
         VolumeSlider.value = NoDestroy.gameVolume;
+        SliderDisplay2.text = NoDestroy.pSensitivity.ToString();
+        SliderDisplay1.text = NoDestroy.gameVolume.ToString();
     }
 
     public void BackButtonTrigger()

@@ -10,8 +10,9 @@ public class CameraRotationFirstPerson : MonoBehaviour
     float mx;
     float my;
 
-    private float yawSensitivity = 4.5f;
-    private float pitchSensitivity = 2.5f;
+    private float yawSensitivity = 5f;
+    private float pitchSensitivity = 3.5f;
+    //private float pitchSensitivity = 5f;
 
     private float yaw = 0.0f;
     private float pitch = 0.0f;
@@ -23,11 +24,23 @@ public class CameraRotationFirstPerson : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         player = GameObject.Find("Player");
-
         Cursor.lockState = CursorLockMode.Confined;
 
+        //at start set the player's sensitivity
+        yawSensitivity = NoDestroy.pSensitivity;
+    }
+
+    void Update()
+    {
+        SensitivityChanges(); //update in game
+    }
+
+    private void SensitivityChanges()
+    {
+        yawSensitivity = NoDestroy.pSensitivity;
+        pitchSensitivity = yawSensitivity - 1.5f;
+        //pitchSensitivity = yawSensitivity;
     }
 
     // Update is called once per frame

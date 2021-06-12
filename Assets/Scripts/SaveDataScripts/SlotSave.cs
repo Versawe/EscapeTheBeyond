@@ -224,7 +224,7 @@ public class SlotSave : MonoBehaviour
             string modified = dateModified.ToString("O").Substring(0, 18);
 
             //write file
-            System.IO.File.WriteAllText(persistentPath + "/Slot1Data.txt", "Slot1Data\n1\n4.5\n5\nGlitchyStart\nPSpawnGO\n2\n" + created + "\n" + modified);
+            System.IO.File.WriteAllText(persistentPath + "/Slot1Data.txt", "Slot1Data\n1\n5\n5\nGlitchyStart\nPSpawnGO\n2\n" + created + "\n" + modified);
 
             //This creates Txt file and updates datetimes to match
             System.IO.File.SetCreationTime(persistentPath, dateCreated);
@@ -278,7 +278,7 @@ public class SlotSave : MonoBehaviour
             string modified = dateModified.ToString("O").Substring(0, 18);
 
             //write file
-            System.IO.File.WriteAllText(persistentPath + "/Slot2Data.txt", "Slot2Data\n1\n4.5\n5\nGlitchyStart\nPSpawnGO\n2\n" + created + "\n" + modified);
+            System.IO.File.WriteAllText(persistentPath + "/Slot2Data.txt", "Slot2Data\n1\n5\n5\nGlitchyStart\nPSpawnGO\n2\n" + created + "\n" + modified);
 
             //This creates Txt file and updates datetimes to match
             System.IO.File.SetCreationTime(persistentPath, dateCreated);
@@ -332,7 +332,7 @@ public class SlotSave : MonoBehaviour
             string modified = dateModified.ToString("O").Substring(0, 18);
 
             //write file
-            System.IO.File.WriteAllText(persistentPath + "/Slot3Data.txt", "Slot3Data\n1\n4.5\n5\nGlitchyStart\nPSpawnGO\n2\n" + created + "\n" + modified);
+            System.IO.File.WriteAllText(persistentPath + "/Slot3Data.txt", "Slot3Data\n1\n5\n5\nGlitchyStart\nPSpawnGO\n2\n" + created + "\n" + modified);
 
             //This creates Txt file and updates datetimes to match
             System.IO.File.SetCreationTime(persistentPath, dateCreated);

@@ -85,18 +85,15 @@ public class NoDestroy : MonoBehaviour
 
     public void LoadFromFile()
     {
-        for (int i = 0; i < System.IO.File.ReadAllLines(persistantPath).Length; i++)
-        {
-            if(i == 0) fileName = System.IO.File.ReadAllLines(persistantPath)[i];
-            if(i == 1) gameProgression = int.Parse(System.IO.File.ReadAllLines(persistantPath)[i]);
-            if (i == 2) pSensitivity = float.Parse(System.IO.File.ReadAllLines(persistantPath)[i]);
-            if(i == 3) gameVolume = float.Parse(System.IO.File.ReadAllLines(persistantPath)[i]);
-            if(i == 4) currSceneName = System.IO.File.ReadAllLines(persistantPath)[i];
-            if(i == 5) pSpawnGOName = System.IO.File.ReadAllLines(persistantPath)[i];
-            if (i == 6) puzzleOneLoginAttempts = int.Parse(System.IO.File.ReadAllLines(persistantPath)[i]);
-            if (i == 7) dateFileCreated = System.IO.File.ReadAllLines(persistantPath)[i];
-            if (i == 8) dateFileModified = System.IO.File.ReadAllLines(persistantPath)[i];
-        }
+        fileName = System.IO.File.ReadAllLines(persistantPath)[0];
+        gameProgression = int.Parse(System.IO.File.ReadAllLines(persistantPath)[1]);
+        pSensitivity = float.Parse(System.IO.File.ReadAllLines(persistantPath)[2]);
+        gameVolume = float.Parse(System.IO.File.ReadAllLines(persistantPath)[3]);
+        currSceneName = System.IO.File.ReadAllLines(persistantPath)[4];
+        pSpawnGOName = System.IO.File.ReadAllLines(persistantPath)[5];
+        puzzleOneLoginAttempts = int.Parse(System.IO.File.ReadAllLines(persistantPath)[6]);
+        dateFileCreated = System.IO.File.ReadAllLines(persistantPath)[7];
+        dateFileModified = System.IO.File.ReadAllLines(persistantPath)[8];
     }
 
     public void SaveToFile()
