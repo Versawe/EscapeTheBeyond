@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Windows;
 using UnityEngine.UI;
+using TMPro;
 
 public class SlotSave : MonoBehaviour
 {
@@ -31,6 +32,14 @@ public class SlotSave : MonoBehaviour
 
     private float staticTimer = 4;
     public GameObject MainUI;
+
+    private bool isOptions = false;
+    public GameObject OptionsPanel;
+    public GameObject MainPanel;
+    public Slider SensitivitySlider;
+    public Slider VolumeSlider;
+    public TextMeshProUGUI SliderDisplay1;
+    public TextMeshProUGUI SliderDisplay2;
 
     //no destroy object
     GameObject controller;
@@ -69,6 +78,7 @@ public class SlotSave : MonoBehaviour
 
     private void Update()
     {
+        if (isOptions) TrackingSlideBars();
         if (slot1Exists && slot2Exists && slot3Exists) NewButt.gameObject.SetActive(false);
         if (!IsJustStarted) return;
         StaticScreenTimer();
@@ -165,19 +175,91 @@ public class SlotSave : MonoBehaviour
     //triggers if you click the back button
     public void BackTrigger()
     {
-        //updates gui
-        BackButt.gameObject.SetActive(false);
-        Slot1Butt.gameObject.SetActive(false);
-        Slot2Butt.gameObject.SetActive(false);
-        Slot3Butt.gameObject.SetActive(false);
-        //clears static vairable (may not be needed)
-        NoDestroy.fileLoaded = "";
+        if (!isOptions)
+        {
+            //updates gui
+            BackButt.gameObject.SetActive(false);
+            Slot1Butt.gameObject.SetActive(false);
+            Slot2Butt.gameObject.SetActive(false);
+            Slot3Butt.gameObject.SetActive(false);
+            //clears static vairable (may not be needed)
+            NoDestroy.fileLoaded = "";
 
-        // makes sure when clicking back button that continue button or new game button should appear accodingly
-        if (File.Exists(persistentPath + "/Slot1Data.txt") || File.Exists(persistentPath + "/Slot2Data.txt") || File.Exists(persistentPath + "/Slot3Data.txt")) ContinueButt.gameObject.SetActive(true);
-        if (!File.Exists(persistentPath + "/Slot1Data.txt") || !File.Exists(persistentPath + "/Slot2Data.txt") || !File.Exists(persistentPath + "/Slot3Data.txt")) NewButt.gameObject.SetActive(true);
-        OptionsButt.gameObject.SetActive(true);
-        ExitButt.gameObject.SetActive(true);
+            // makes sure when clicking back button that continue button or new game button should appear accodingly
+            if (File.Exists(persistentPath + "/Slot1Data.txt") || File.Exists(persistentPath + "/Slot2Data.txt") || File.Exists(persistentPath + "/Slot3Data.txt")) ContinueButt.gameObject.SetActive(true);
+            if (!File.Exists(persistentPath + "/Slot1Data.txt") || !File.Exists(persistentPath + "/Slot2Data.txt") || !File.Exists(persistentPath + "/Slot3Data.txt")) NewButt.gameObject.SetActive(true);
+            OptionsButt.gameObject.SetActive(true);
+            ExitButt.gameObject.SetActive(true);
+        }
+        else
+        {
+            
+            OptionsPanel.SetActive(false);
+            MainPanel.SetActive(true);
+            isOptions = false;
+        }
+        
+    }
+
+    //triggers when you select the options button
+    public void SelectOptions()
+    {
+        isOptions = true;
+        OptionsPanel.SetActive(true);
+        MainPanel.SetActive(false);
+    }
+
+    public void ApplyOptionChanges() // applies changes in to files through main menu
+    {
+        if (File.Exists(persistentPath + "/Slot1Data.txt"))
+        {
+            string newString = "";
+            for(int i = 0; i < System.IO.File.ReadAllLines(persistentPath + "/Slot1Data.txt").Length; i++)
+            {
+                if (i == 2) newString = newString + SensitivitySlider.value.ToString() + "\n";
+                else if (i == 3) newString = newString + VolumeSlider.value.ToString() + "\n";
+                else newString = newString + System.IO.File.ReadAllLines(persistentPath)[i];
+
+                //updates date modified and created, so saving is not considered tampering
+                DateTime dateCreated = System.IO.File.GetCreationTime(persistentPath);
+                DateTime dateModified = System.IO.File.GetLastWriteTime(persistentPath);
+                string dateFileCreated = dateCreated.ToString("O").Substring(0, 18);
+                string dateFileModified = dateModified.ToString("O").Substring(0, 18);
+
+                //This deletes the old file and replaces it with the updated new file
+                System.IO.File.Delete(persistentPath);
+                System.IO.File.WriteAllText(persistentPath, newString + "\n" + dateFileCreated + "\n" + dateFileModified);
+
+                //This helps us know that the game changed the save data file, not the player in the explorer
+                System.IO.File.SetCreationTime(persistentPath, dateCreated);
+                System.IO.File.SetLastWriteTime(persistentPath, dateModified);
+            }
+        }
+        if (File.Exists(persistentPath + "/Slot2Data.txt"))
+        {
+            for (int i = 0; i < System.IO.File.ReadAllLines(persistentPath + "/Slot2Data.txt").Length; i++)
+            {
+                if (i == 2) System.IO.File.ReadAllLines(persistentPath + "/Slot2Data.txt")[i] = SensitivitySlider.value.ToString();
+                if (i == 3) System.IO.File.ReadAllLines(persistentPath + "/Slot2Data.txt")[i] = VolumeSlider.value.ToString();
+            }
+        }
+        if (File.Exists(persistentPath + "/Slot3Data.txt"))
+        {
+            for (int i = 0; i < System.IO.File.ReadAllLines(persistentPath + "/Slot3Data.txt").Length; i++)
+            {
+                if (i == 2) System.IO.File.ReadAllLines(persistentPath + "/Slot3Data.txt")[i] = SensitivitySlider.value.ToString();
+                if (i == 3) System.IO.File.ReadAllLines(persistentPath + "/Slot3Data.txt")[i] = VolumeSlider.value.ToString();
+            }
+        }
+        OptionsPanel.SetActive(false);
+        MainPanel.SetActive(true);
+        isOptions = false;
+    }
+
+    private void TrackingSlideBars()
+    {
+        SliderDisplay2.text = SensitivitySlider.value.ToString();
+        SliderDisplay1.text = VolumeSlider.value.ToString();
     }
 
     //function for clicking slot 1
