@@ -25,6 +25,7 @@ public class SlotSave : MonoBehaviour
     public bool slot3Exists = false;
 
     public bool IsJustStarted = false;
+    private bool NoNewButtonSpawn = false;
 
     public GameObject skyAndFog;
     public GameObject staticScreen;
@@ -147,9 +148,11 @@ public class SlotSave : MonoBehaviour
         if (staticTimer <= 0)
         {
             IsJustStarted = false;
+            NoNewButtonSpawn = true;
             skyAndFogCrazy.SetActive(true);
             staticScreen.SetActive(false);
             MainUI.SetActive(true);
+            NewButt.gameObject.SetActive(false);
             staticTimer = 4;
         }
     }
@@ -187,7 +190,7 @@ public class SlotSave : MonoBehaviour
 
             // makes sure when clicking back button that continue button or new game button should appear accodingly
             if (File.Exists(persistentPath + "/Slot1Data.txt") || File.Exists(persistentPath + "/Slot2Data.txt") || File.Exists(persistentPath + "/Slot3Data.txt")) ContinueButt.gameObject.SetActive(true);
-            if (!File.Exists(persistentPath + "/Slot1Data.txt") || !File.Exists(persistentPath + "/Slot2Data.txt") || !File.Exists(persistentPath + "/Slot3Data.txt")) NewButt.gameObject.SetActive(true);
+            if (!File.Exists(persistentPath + "/Slot1Data.txt") || !File.Exists(persistentPath + "/Slot2Data.txt") || !File.Exists(persistentPath + "/Slot3Data.txt") && !NoNewButtonSpawn) NewButt.gameObject.SetActive(true);
             OptionsButt.gameObject.SetActive(true);
             ExitButt.gameObject.SetActive(true);
         }
@@ -209,48 +212,81 @@ public class SlotSave : MonoBehaviour
         MainPanel.SetActive(false);
     }
 
-    public void ApplyOptionChanges() // applies changes in to files through main menu
+    public void ApplyOptionChanges() // applys changes to files through main menu
     {
         if (File.Exists(persistentPath + "/Slot1Data.txt"))
         {
+            string thispath = persistentPath + "/Slot1Data.txt";
             string newString = "";
-            for(int i = 0; i < System.IO.File.ReadAllLines(persistentPath + "/Slot1Data.txt").Length; i++)
+            for(int i = 0; i < System.IO.File.ReadAllLines(thispath).Length; i++)
             {
                 if (i == 2) newString = newString + SensitivitySlider.value.ToString() + "\n";
                 else if (i == 3) newString = newString + VolumeSlider.value.ToString() + "\n";
-                else newString = newString + System.IO.File.ReadAllLines(persistentPath)[i];
-
-                //updates date modified and created, so saving is not considered tampering
-                DateTime dateCreated = System.IO.File.GetCreationTime(persistentPath);
-                DateTime dateModified = System.IO.File.GetLastWriteTime(persistentPath);
-                string dateFileCreated = dateCreated.ToString("O").Substring(0, 18);
-                string dateFileModified = dateModified.ToString("O").Substring(0, 18);
-
-                //This deletes the old file and replaces it with the updated new file
-                System.IO.File.Delete(persistentPath);
-                System.IO.File.WriteAllText(persistentPath, newString + "\n" + dateFileCreated + "\n" + dateFileModified);
-
-                //This helps us know that the game changed the save data file, not the player in the explorer
-                System.IO.File.SetCreationTime(persistentPath, dateCreated);
-                System.IO.File.SetLastWriteTime(persistentPath, dateModified);
+                else newString = newString + System.IO.File.ReadAllLines(thispath)[i] + "\n";
             }
+            //updates date modified and created, so saving is not considered tampering
+            DateTime dateCreated = System.IO.File.GetCreationTime(thispath);
+            DateTime dateModified = System.IO.File.GetLastWriteTime(thispath);
+            string dateFileCreated = dateCreated.ToString("O").Substring(0, 18);
+            string dateFileModified = dateModified.ToString("O").Substring(0, 18);
+
+            //This deletes the old file and replaces it with the updated new file
+            System.IO.File.Delete(thispath);
+            System.IO.File.WriteAllText(thispath, newString);
+
+            //This helps us know that the game changed the save data file, not the player in the explorer
+            System.IO.File.SetCreationTime(thispath, dateCreated);
+            System.IO.File.SetLastWriteTime(thispath, dateModified);
         }
         if (File.Exists(persistentPath + "/Slot2Data.txt"))
         {
-            for (int i = 0; i < System.IO.File.ReadAllLines(persistentPath + "/Slot2Data.txt").Length; i++)
+            string thispath = persistentPath + "/Slot2Data.txt";
+            string newString = "";
+            for (int i = 0; i < System.IO.File.ReadAllLines(thispath).Length; i++)
             {
-                if (i == 2) System.IO.File.ReadAllLines(persistentPath + "/Slot2Data.txt")[i] = SensitivitySlider.value.ToString();
-                if (i == 3) System.IO.File.ReadAllLines(persistentPath + "/Slot2Data.txt")[i] = VolumeSlider.value.ToString();
+                if (i == 2) newString = newString + SensitivitySlider.value.ToString() + "\n";
+                else if (i == 3) newString = newString + VolumeSlider.value.ToString() + "\n";
+                else newString = newString + System.IO.File.ReadAllLines(thispath)[i] + "\n";
             }
+            //updates date modified and created, so saving is not considered tampering
+            DateTime dateCreated = System.IO.File.GetCreationTime(thispath);
+            DateTime dateModified = System.IO.File.GetLastWriteTime(thispath);
+            string dateFileCreated = dateCreated.ToString("O").Substring(0, 18);
+            string dateFileModified = dateModified.ToString("O").Substring(0, 18);
+
+            //This deletes the old file and replaces it with the updated new file
+            System.IO.File.Delete(thispath);
+            System.IO.File.WriteAllText(thispath, newString);
+
+            //This helps us know that the game changed the save data file, not the player in the explorer
+            System.IO.File.SetCreationTime(thispath, dateCreated);
+            System.IO.File.SetLastWriteTime(thispath, dateModified);
         }
         if (File.Exists(persistentPath + "/Slot3Data.txt"))
         {
-            for (int i = 0; i < System.IO.File.ReadAllLines(persistentPath + "/Slot3Data.txt").Length; i++)
+            string thispath = persistentPath + "/Slot3Data.txt";
+            string newString = "";
+            for (int i = 0; i < System.IO.File.ReadAllLines(thispath).Length; i++)
             {
-                if (i == 2) System.IO.File.ReadAllLines(persistentPath + "/Slot3Data.txt")[i] = SensitivitySlider.value.ToString();
-                if (i == 3) System.IO.File.ReadAllLines(persistentPath + "/Slot3Data.txt")[i] = VolumeSlider.value.ToString();
+                if (i == 2) newString = newString + SensitivitySlider.value.ToString() + "\n";
+                else if (i == 3) newString = newString + VolumeSlider.value.ToString() + "\n";
+                else newString = newString + System.IO.File.ReadAllLines(thispath)[i] + "\n";
             }
+            //updates date modified and created, so saving is not considered tampering
+            DateTime dateCreated = System.IO.File.GetCreationTime(thispath);
+            DateTime dateModified = System.IO.File.GetLastWriteTime(thispath);
+            string dateFileCreated = dateCreated.ToString("O").Substring(0, 18);
+            string dateFileModified = dateModified.ToString("O").Substring(0, 18);
+
+            //This deletes the old file and replaces it with the updated new file
+            System.IO.File.Delete(thispath);
+            System.IO.File.WriteAllText(thispath, newString);
+
+            //This helps us know that the game changed the save data file, not the player in the explorer
+            System.IO.File.SetCreationTime(thispath, dateCreated);
+            System.IO.File.SetLastWriteTime(thispath, dateModified);
         }
+
         OptionsPanel.SetActive(false);
         MainPanel.SetActive(true);
         isOptions = false;
