@@ -13,6 +13,7 @@ public class SlotSave : MonoBehaviour
     public Button Slot1Butt;
     public Button Slot2Butt;
     public Button Slot3Butt;
+    public Button DeleteButton;
 
     public Button ContinueButt;
     public Button NewButt;
@@ -42,6 +43,9 @@ public class SlotSave : MonoBehaviour
     public TextMeshProUGUI SliderDisplay1;
     public TextMeshProUGUI SliderDisplay2;
 
+    public bool IsDeleting = false;
+    public TextMeshProUGUI DeleteButtonText;
+
     //no destroy object
     GameObject controller;
 
@@ -62,6 +66,7 @@ public class SlotSave : MonoBehaviour
         Slot2Butt.gameObject.SetActive(false);
         Slot3Butt.gameObject.SetActive(false);
         BackButt.gameObject.SetActive(false);
+        DeleteButton.gameObject.SetActive(false);
 
         //if the files exist change the bool
         if (File.Exists(persistentPath + "/Slot1Data.txt")) slot1Exists = true;
@@ -81,8 +86,16 @@ public class SlotSave : MonoBehaviour
     {
         if (isOptions) TrackingSlideBars();
         if (slot1Exists && slot2Exists && slot3Exists) NewButt.gameObject.SetActive(false);
+
+        //should keep player from glitching out menu on multiple file creations
+        if (NoNewButtonSpawn)
+        {
+            DeleteButton.gameObject.SetActive(false);
+        }
+
         if (!IsJustStarted) return;
         StaticScreenTimer();
+
     }
 
     private void CheckForPostProcessingOBJs()
@@ -127,7 +140,7 @@ public class SlotSave : MonoBehaviour
             //sets main menu ui to starting state
             //turns on
             ContinueButt.gameObject.SetActive(true);
-            NewButt.gameObject.SetActive(true);
+            if(!NoNewButtonSpawn) NewButt.gameObject.SetActive(true);
             OptionsButt.gameObject.SetActive(true);
             ExitButt.gameObject.SetActive(true);
 
@@ -185,12 +198,13 @@ public class SlotSave : MonoBehaviour
             Slot1Butt.gameObject.SetActive(false);
             Slot2Butt.gameObject.SetActive(false);
             Slot3Butt.gameObject.SetActive(false);
+            DeleteButton.gameObject.SetActive(false);
             //clears static vairable (may not be needed)
             NoDestroy.fileLoaded = "";
 
             // makes sure when clicking back button that continue button or new game button should appear accodingly
             if (File.Exists(persistentPath + "/Slot1Data.txt") || File.Exists(persistentPath + "/Slot2Data.txt") || File.Exists(persistentPath + "/Slot3Data.txt")) ContinueButt.gameObject.SetActive(true);
-            if (!File.Exists(persistentPath + "/Slot1Data.txt") || !File.Exists(persistentPath + "/Slot2Data.txt") || !File.Exists(persistentPath + "/Slot3Data.txt") && !NoNewButtonSpawn) NewButt.gameObject.SetActive(true);
+            if (!File.Exists(persistentPath + "/Slot1Data.txt") && !NoNewButtonSpawn || !File.Exists(persistentPath + "/Slot2Data.txt") && !NoNewButtonSpawn || !File.Exists(persistentPath + "/Slot3Data.txt") && !NoNewButtonSpawn) NewButt.gameObject.SetActive(true);
             OptionsButt.gameObject.SetActive(true);
             ExitButt.gameObject.SetActive(true);
         }
@@ -201,7 +215,23 @@ public class SlotSave : MonoBehaviour
             MainPanel.SetActive(true);
             isOptions = false;
         }
-        
+        DeleteButtonText.text = "Delete File";
+        IsDeleting = false;
+    }
+
+    public void DeleteSelected()
+    {
+        DeleteButtonText.text = "Delete File";
+        if (!IsDeleting)
+        {
+            DeleteButtonText.text = "Cancel Deletion";
+            IsDeleting = true;
+            return;
+        }else if (IsDeleting)
+        {
+            DeleteButtonText.text = "Delete File";
+            IsDeleting = false;
+        }
     }
 
     //triggers when you select the options button
@@ -306,6 +336,16 @@ public class SlotSave : MonoBehaviour
         {
             string grabFilePath = persistentPath + "/Slot1Data.txt";
 
+            if (IsDeleting) // if user is trying to delete
+            {
+                File.Delete(grabFilePath);
+                slot1Exists = false;
+                Slot1Butt.gameObject.SetActive(false);
+                DeleteButtonText.text = "Delete File";
+                IsDeleting = false;
+                return;
+            }
+
             //check for editing file?
             DateTime dateModified = System.IO.File.GetLastWriteTime(grabFilePath);
             string modified = dateModified.ToString("O").Substring(0, 18);
@@ -363,6 +403,16 @@ public class SlotSave : MonoBehaviour
         {
             string grabFilePath = persistentPath + "/Slot2Data.txt";
 
+            if (IsDeleting) // if user is trying to delete
+            {
+                File.Delete(grabFilePath);
+                slot2Exists = false;
+                Slot2Butt.gameObject.SetActive(false);
+                DeleteButtonText.text = "Delete File";
+                IsDeleting = false;
+                return;
+            }
+
             //check for editing file?
             DateTime dateModified = System.IO.File.GetLastWriteTime(grabFilePath);
             string modified = dateModified.ToString("O").Substring(0, 18);
@@ -417,6 +467,16 @@ public class SlotSave : MonoBehaviour
         {
             string grabFilePath = persistentPath + "/Slot3Data.txt";
 
+            if (IsDeleting) // if user is trying to delete
+            {
+                File.Delete(grabFilePath);
+                slot3Exists = false;
+                Slot3Butt.gameObject.SetActive(false);
+                DeleteButtonText.text = "Delete File";
+                IsDeleting = false;
+                return;
+            }
+
             //check for editing file?
             DateTime dateModified = System.IO.File.GetLastWriteTime(grabFilePath);
             string modified = dateModified.ToString("O").Substring(0, 18);
@@ -470,6 +530,7 @@ public class SlotSave : MonoBehaviour
         if (!File.Exists(persistentPath + "/Slot1Data.txt") && !File.Exists(persistentPath + "/Slot2Data.txt") && !File.Exists(persistentPath + "/Slot3Data.txt")) return;
 
         BackButt.gameObject.SetActive(true);
+        DeleteButton.gameObject.SetActive(true);
         NewButt.gameObject.SetActive(false);
         ContinueButt.gameObject.SetActive(false);
         OptionsButt.gameObject.SetActive(false);
