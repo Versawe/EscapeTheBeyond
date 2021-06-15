@@ -26,6 +26,9 @@ public class NoDestroy : MonoBehaviour
 
     Scene actualScene;
 
+    GeneratePWD genPWD;
+    private string clipboardPasscode;
+
     string persistantPath;
 
     // Start is called before the first frame update
@@ -33,7 +36,7 @@ public class NoDestroy : MonoBehaviour
     {
         //makes the object this script is attached to non-destroyable on load
         DontDestroyOnLoad(gameObject);
-
+        genPWD = GetComponent<GeneratePWD>();
         fileLoaded = "";
     }
 
@@ -69,18 +72,16 @@ public class NoDestroy : MonoBehaviour
             if (actualScene.name != "Preload" || actualScene.name != "MainMenu") LoadFromFile();
         }
 
+        if(actualScene.name == "GlitchyStart" && puzzleOneLoginAttempts == 3)
+        {
+            
+        }
+
     }
 
     void Update()
     {
         if (actualScene.name == "Preload" || actualScene.name == "MainMenu") return;
-
-        if(actualScene.name == "GlitchyStart") PuzzleOneTriggers();
-    }
-
-    private void PuzzleOneTriggers()
-    {
-        
     }
 
     public void LoadFromFile()

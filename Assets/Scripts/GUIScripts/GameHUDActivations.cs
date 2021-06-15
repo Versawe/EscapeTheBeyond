@@ -18,6 +18,8 @@ public class GameHUDActivations : MonoBehaviour
 
     public TextMeshProUGUI relicsCollectedDisplay;
 
+    public GameObject TextHint;
+
     public bool isPaused = false;
     private bool optionsOn = false;
 
@@ -26,16 +28,22 @@ public class GameHUDActivations : MonoBehaviour
     Scene currScene;
     NoDestroy GameControllerScript;
 
-    GeneratePWD genPWD;
+    
     private string doorPwd;
     // Start is called before the first frame update
     void Awake()
     {
         currScene = SceneManager.GetActiveScene();
         GUIAppearPerScene();
-        genPWD = GetComponent<GeneratePWD>();
         if (GameObject.Find("NoDestroyOBJ")) GameControllerScript = GameObject.Find("NoDestroyOBJ").GetComponent<NoDestroy>();
         else GameControllerScript = null;
+
+        if (GameObject.Find("2 out 3"))
+        {
+            TextHint = GameObject.Find("2 out 3");
+            if (NoDestroy.puzzleOneLoginAttempts == 2) TextHint.SetActive(true);
+            else TextHint.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -122,6 +130,9 @@ public class GameHUDActivations : MonoBehaviour
     {
         isPaused = false;
         Time.timeScale = 1f;
+
+        if (NoDestroy.puzzleOneLoginAttempts == 2) NoDestroy.puzzleOneLoginAttempts = 3;
+
         GameControllerScript.SaveToFile();
         NoDestroy.fileLoaded = "";
         SceneManager.LoadScene("MainMenu");
