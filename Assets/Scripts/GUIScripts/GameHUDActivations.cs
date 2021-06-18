@@ -28,22 +28,27 @@ public class GameHUDActivations : MonoBehaviour
     Scene currScene;
     NoDestroy GameControllerScript;
 
-    
+    GeneratePWD genPWD;
     private string doorPwd;
+
+    public TMP_InputField formBar;
+
     // Start is called before the first frame update
     void Awake()
     {
         currScene = SceneManager.GetActiveScene();
+        genPWD = GetComponent<GeneratePWD>();
         GUIAppearPerScene();
         if (GameObject.Find("NoDestroyOBJ")) GameControllerScript = GameObject.Find("NoDestroyOBJ").GetComponent<NoDestroy>();
         else GameControllerScript = null;
 
-        if (GameObject.Find("2 out 3"))
-        {
-            TextHint = GameObject.Find("2 out 3");
-            if (NoDestroy.puzzleOneLoginAttempts == 2) TextHint.SetActive(true);
-            else TextHint.SetActive(false);
-        }
+        if (GameObject.Find("Hint")) TextHint = GameObject.Find("Hint");
+        else TextHint = null;
+    }
+
+    private void Start()
+    {
+        if (NoDestroy.puzzleOneLoginAttempts == 3 && NoDestroy.gameProgression == 1) doorPwd = genPWD.GeneratePWDFunction(15);
     }
 
     // Update is called once per frame
@@ -52,6 +57,12 @@ public class GameHUDActivations : MonoBehaviour
         PauseGame();
         GUIAppearPerScene();
         TrackingSlideBars();
+
+        if (NoDestroy.puzzleOneLoginAttempts != 2)
+        {
+            TextHint.SetActive(false);
+        } 
+        else TextHint.SetActive(true);
     }
 
     private void TrackingSlideBars()
@@ -136,5 +147,20 @@ public class GameHUDActivations : MonoBehaviour
         GameControllerScript.SaveToFile();
         NoDestroy.fileLoaded = "";
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void EnterPasscode()
+    {
+        string formGuess = formBar.text;
+
+        if(formGuess == doorPwd)
+        {
+            print("passcodeCorrect");
+        }
+        else
+        {
+            print("passcodeIncorrect");
+        } 
+        formBar.text = "";
     }
 }

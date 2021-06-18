@@ -26,8 +26,7 @@ public class NoDestroy : MonoBehaviour
 
     Scene actualScene;
 
-    GeneratePWD genPWD;
-    private string clipboardPasscode;
+    public string clipboardPasscode;
 
     string persistantPath;
 
@@ -36,7 +35,7 @@ public class NoDestroy : MonoBehaviour
     {
         //makes the object this script is attached to non-destroyable on load
         DontDestroyOnLoad(gameObject);
-        genPWD = GetComponent<GeneratePWD>();
+        
         fileLoaded = "";
     }
 
@@ -70,11 +69,6 @@ public class NoDestroy : MonoBehaviour
         else if (fileLoaded != "")
         {
             if (actualScene.name != "Preload" || actualScene.name != "MainMenu") LoadFromFile();
-        }
-
-        if(actualScene.name == "GlitchyStart" && puzzleOneLoginAttempts == 3)
-        {
-            
         }
 
     }

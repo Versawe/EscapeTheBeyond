@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6400407112755121758}
   - component: {fileID: 6400407112755121759}
-  - component: {fileID: 2615044146051439567}
   m_Layer: 0
   m_Name: NoDestroyOBJ
   m_TagString: Untagged
@@ -44,15 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334e5bbd2de05aa43b50b369718abc0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2615044146051439567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6400407112755121744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8de5876f2e7f6004e9a4380d651f96b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  clipboardPasscode: 

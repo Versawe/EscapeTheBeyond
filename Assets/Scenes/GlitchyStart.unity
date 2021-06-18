@@ -2807,12 +2807,12 @@ GameObject:
   - component: {fileID: 1734606623}
   - component: {fileID: 1734606622}
   m_Layer: 0
-  m_Name: 2 out 3
+  m_Name: Hint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1734606622
 MonoBehaviour:
   m_ObjectHideFlags: 0
