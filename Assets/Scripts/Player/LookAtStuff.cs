@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class LookAtDoor : MonoBehaviour
+public class LookAtStuff : MonoBehaviour
 {
     //Raycast variables
     private Ray pSight;
@@ -16,6 +16,9 @@ public class LookAtDoor : MonoBehaviour
     GUIEvent guiEventScript; //used to see if object being looked at is an interactve obeject that starts a gui event
     GameObject InteractText;
     GameHUDActivations HUDScript;
+    CharacterMovementFirstPerson CharMove;
+    CameraRotationFirstPerson CamRotate;
+    public bool IsActivated = false;
 
     private void Start()
     {
@@ -24,6 +27,12 @@ public class LookAtDoor : MonoBehaviour
 
         if (GameObject.Find("GameHUD") != null) HUDScript = GameObject.Find("GameHUD").GetComponent<GameHUDActivations>();
         else HUDScript = null;
+
+        if (GetComponentInParent<CharacterMovementFirstPerson>()) CharMove = GetComponentInParent<CharacterMovementFirstPerson>();
+        else CharMove = null;
+
+        if (GetComponent<CameraRotationFirstPerson>()) CamRotate = GetComponent<CameraRotationFirstPerson>();
+        else CamRotate = null;
 
         if (GameObject.Find("InteractiveText"))
         {
@@ -141,11 +150,46 @@ public class LookAtDoor : MonoBehaviour
                 guiEventScript = null;
                 InteractText.SetActive(false);
             }
+
+            InteractiveInput();
         }
         else
         {
             guiEventScript = null;
             InteractText.SetActive(false);
+        }
+    }
+
+    private void InteractiveInput()
+    {
+        //toggles when e was pressed and unpressed
+        bool activate = Input.GetKeyDown("e");
+        if (activate && !IsActivated)
+        {
+            IsActivated = true;
+        }
+        else if (activate && IsActivated)
+        {
+            IsActivated = false;
+        }
+
+        //what happens when successfully activated or deactivated
+        if (IsActivated)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            CharMove.enabled = false;
+            CamRotate.enabled = false;
+            HUDScript.PasscodePanel.SetActive(true);
+            HUDScript.isPaused = false;
+            InteractText.SetActive(false);
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            CharMove.enabled = true;
+            CamRotate.enabled = true;
+            HUDScript.PasscodePanel.SetActive(false);
+            InteractText.SetActive(true);
         }
     }
 }

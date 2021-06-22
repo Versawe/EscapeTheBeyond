@@ -17,7 +17,7 @@ public class DoorOpen : MonoBehaviour
     private float swingSpeed = 0.001f;
 
     public GameObject Player;
-    LookAtDoor seeDoorScript;
+    LookAtStuff seeDoorScript;
     public Quaternion doorStartRot;
 
     Quaternion doorXOpen1;
@@ -35,7 +35,7 @@ public class DoorOpen : MonoBehaviour
     {
         Player = GameObject.Find("FPSController");
 
-        seeDoorScript = Player.GetComponentInChildren<LookAtDoor>();
+        seeDoorScript = Player.GetComponentInChildren<LookAtStuff>();
 
         doorLocked = GetComponent<LockedDoor>();
     }

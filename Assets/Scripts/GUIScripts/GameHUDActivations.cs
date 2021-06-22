@@ -7,31 +7,33 @@ using TMPro;
 
 public class GameHUDActivations : MonoBehaviour
 {
+    //UI Object references
     public GameObject pausePanel;
     public GameObject RelicPanel;
     public GameObject HealthPanel;
     public GameObject OptionsPanel;
+    public GameObject PasscodePanel;
     public Slider SensitivitySlider;
     public Slider VolumeSlider;
     public TextMeshProUGUI SliderDisplay1;
     public TextMeshProUGUI SliderDisplay2;
-
     public TextMeshProUGUI relicsCollectedDisplay;
 
-    public GameObject TextHint;
+    public GameObject TextHint; //the 2/3 text display in game during puzzle 1 
 
+    //variables for UI to interact with
     public bool isPaused = false;
     private bool optionsOn = false;
-
     public float relicCollected = 0;
 
+    //how script tracks 
     Scene currScene;
     NoDestroy GameControllerScript;
 
     GeneratePWD genPWD;
     private string doorPwd;
-
     public TMP_InputField formBar;
+    LookAtStuff pLookAtScript;
 
     // Start is called before the first frame update
     void Awake()
@@ -39,11 +41,15 @@ public class GameHUDActivations : MonoBehaviour
         currScene = SceneManager.GetActiveScene();
         genPWD = GetComponent<GeneratePWD>();
         GUIAppearPerScene();
+
         if (GameObject.Find("NoDestroyOBJ")) GameControllerScript = GameObject.Find("NoDestroyOBJ").GetComponent<NoDestroy>();
         else GameControllerScript = null;
 
         if (GameObject.Find("Hint")) TextHint = GameObject.Find("Hint");
         else TextHint = null;
+
+        if (GameObject.Find("FPSController")) pLookAtScript = GameObject.Find("FPSController").GetComponentInChildren<LookAtStuff>();
+        else pLookAtScript = null;
     }
 
     private void Start()
@@ -63,6 +69,8 @@ public class GameHUDActivations : MonoBehaviour
             TextHint.SetActive(false);
         } 
         else TextHint.SetActive(true);
+
+        print(Cursor.lockState);
     }
 
     private void TrackingSlideBars()
@@ -95,7 +103,7 @@ public class GameHUDActivations : MonoBehaviour
     {
         bool escClick = Input.GetKeyDown("escape");
 
-        if (escClick && !isPaused)
+        if (escClick && !isPaused && !pLookAtScript.IsActivated)
         {
             isPaused = true;
         }
@@ -110,7 +118,7 @@ public class GameHUDActivations : MonoBehaviour
             pausePanel.SetActive(true);
             Time.timeScale = 0;
         }
-        else if (!isPaused)
+        else if (!isPaused && !pLookAtScript.IsActivated)
         {
             Cursor.lockState = CursorLockMode.Locked;
             pausePanel.SetActive(false);

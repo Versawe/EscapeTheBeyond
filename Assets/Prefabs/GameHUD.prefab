@@ -1593,6 +1593,7 @@ MonoBehaviour:
   RelicPanel: {fileID: 1936826534465415872}
   HealthPanel: {fileID: 1936826534011666425}
   OptionsPanel: {fileID: 3265243759179261622}
+  PasscodePanel: {fileID: 5591011682071762512}
   SensitivitySlider: {fileID: 354383509210165298}
   VolumeSlider: {fileID: 2617037562705144335}
   SliderDisplay1: {fileID: 9059418484978680074}

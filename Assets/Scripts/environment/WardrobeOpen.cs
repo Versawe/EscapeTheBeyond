@@ -20,7 +20,7 @@ public class WardrobeOpen : MonoBehaviour
 
     //private float doorRotationValue = 90;
     public GameObject Player;
-    LookAtDoor seeDoorScript;
+    LookAtStuff seeDoorScript;
 
     Quaternion doorLeftOpen;
     Quaternion doorRightOpen;
@@ -33,7 +33,7 @@ public class WardrobeOpen : MonoBehaviour
     {
         Player = GameObject.Find("FPSController");
 
-        seeDoorScript = Player.GetComponentInChildren<LookAtDoor>();
+        seeDoorScript = Player.GetComponentInChildren<LookAtStuff>();
     }
 
     private void Start()
