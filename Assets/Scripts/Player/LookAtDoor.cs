@@ -1,38 +1,57 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LookAtDoor : MonoBehaviour
 {
-
+    //Raycast variables
     private Ray pSight;
     RaycastHit pSeeDoor;
-
     private float sightDistance = 2f;
-    public string lookingAtName;
+    public string lookingAtName; //IMPORTANT VAR (used in other scripts)
 
-    PlayerHiding hideScript;
+    PlayerHiding hideScript; //used to check if player is hiding in wardrobe and always setting lookingAtName to that wardrobe
 
+    GUIEvent guiEventScript; //used to see if object being looked at is an interactve obeject that starts a gui event
+    GameObject InteractText;
+    GameHUDActivations HUDScript;
 
     private void Start()
     {
         if (GameObject.Find("HidingCheck") != null) hideScript = GameObject.Find("HidingCheck").GetComponent<PlayerHiding>();
         else hideScript = null;
+
+        if (GameObject.Find("GameHUD") != null) HUDScript = GameObject.Find("GameHUD").GetComponent<GameHUDActivations>();
+        else HUDScript = null;
+
+        if (GameObject.Find("InteractiveText"))
+        {
+            InteractText = GameObject.Find("InteractiveText");
+            InteractText.SetActive(false);
+        }
+        else InteractText = null;
+
+        //null from start
+        guiEventScript = null;
     }
     // Update is called once per frame
     void Update()
     {
-        //set orgin and direction of raycast
-        //origin is camera location, direction is forward vector, so where the camera is facing
-        pSight.origin = transform.position;
-        pSight.direction = transform.forward;
+        //updates location and direction of raycast to where camera is looking
+        UpdateRaycast();
+        //sets looking at name variable depending on what player is looking at
+        PlayerLookingAt();
 
-        //draws in editor for reference
-        Debug.DrawRay(pSight.origin, pSight.direction, Color.green);
+        //checks if the object is interactive
+        if(NoDestroy.puzzleOneLoginAttempts > 2) ActivateGUIEvent(lookingAtName);
+    }
 
+    private void PlayerLookingAt()
+    {
         // statement to determine if you are in a wardrobe, or not. This helps set the lookingAtName to a wardrobe you are in
         //this was added so you do not need to look at the wardrobe to open and close it when inside it (better for gameplay)
-        if(hideScript != null) // this if & else was used for when the player is not in the RelicHunt Scene
+        if (hideScript != null) // this if & else was used for when the player is not in the RelicHunt Scene
         {
             if (hideScript.inBounds && hideScript.wardrobeHiding != null)
             {
@@ -55,10 +74,14 @@ public class LookAtDoor : MonoBehaviour
                     {
                         lookingAtName = pSeeDoor.collider.gameObject.transform.parent.name;
                     }
-                    else //if not looking at any interactive thing
+                    else //if not looking at any interactive thing for insurance
                     {
                         lookingAtName = "";
                     }
+                }
+                else //if not hitting anything at all
+                {
+                    lookingAtName = "";
                 }
             }
         }
@@ -79,14 +102,50 @@ public class LookAtDoor : MonoBehaviour
                 {
                     lookingAtName = pSeeDoor.collider.gameObject.transform.parent.name;
                 }
-                else //if not looking at any interactive thing
+                else //if not looking at any interactive thing for insurance
                 {
                     lookingAtName = "";
                 }
             }
+            else //if not hitting anything at all
+            {
+                lookingAtName = "";
+            }
         }
-        
 
-        //print(lookingAtName);
+        //draws in editor for reference
+        Debug.DrawRay(pSight.origin, pSight.direction, Color.green);
+    }
+
+    private void UpdateRaycast()
+    {
+        //set orgin and direction of raycast
+        //origin is camera location, direction is forward vector, so where the camera is facing
+        pSight.origin = transform.position;
+        pSight.direction = transform.forward;
+    }
+
+    private void ActivateGUIEvent(string GUIEventName)
+    {
+        if (GameObject.Find(GUIEventName) && lookingAtName != "" && !HUDScript.isPaused)
+        {
+            GameObject GUIEventOBJ = GameObject.Find(GUIEventName);
+
+            if (GUIEventOBJ.GetComponent<GUIEvent>())
+            {
+                guiEventScript = GUIEventOBJ.GetComponent<GUIEvent>();
+                InteractText.SetActive(true);
+            }
+            else
+            {
+                guiEventScript = null;
+                InteractText.SetActive(false);
+            }
+        }
+        else
+        {
+            guiEventScript = null;
+            InteractText.SetActive(false);
+        }
     }
 }

@@ -408,7 +408,7 @@ MonoBehaviour:
   heart: {fileID: 0}
   heart1: {fileID: 0}
   heart2: {fileID: 0}
-  retryButt: {fileID: 0}
+  flashLight: {fileID: 0}
 --- !u!1 &8857587766103082422
 GameObject:
   m_ObjectHideFlags: 0

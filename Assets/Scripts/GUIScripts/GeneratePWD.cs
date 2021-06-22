@@ -12,7 +12,7 @@ public class GeneratePWD : MonoBehaviour
         char pick;
 
         //Randomly Generates a password
-        for (int i = 0; i < pwdLength; i++)
+        for (int i = 0; i <= pwdLength; i++)
         {
             float random = UnityEngine.Random.Range(0, stringOptions.Length);
             pick = stringOptions[(int)random];
