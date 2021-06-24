@@ -626,6 +626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookingAtName: 
+  IsActivated: 0
 --- !u!1 &8857587766411565277
 GameObject:
   m_ObjectHideFlags: 0

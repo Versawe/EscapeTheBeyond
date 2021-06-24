@@ -7,9 +7,6 @@ public class CameraRotationFirstPerson : MonoBehaviour
 {
     private Camera cam;
 
-    float mx;
-    float my;
-
     private float yawSensitivity = 5f;
     private float pitchSensitivity = 3.5f;
     //private float pitchSensitivity = 5f;
@@ -25,10 +22,15 @@ public class CameraRotationFirstPerson : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
 
         //at start set the player's sensitivity
         yawSensitivity = NoDestroy.pSensitivity;
+
+        //starting rotation per level
+        if (NoDestroy.gameProgression == 2) yaw = -90;
+        else yaw = 90;
     }
 
     void Update()
@@ -54,8 +56,8 @@ public class CameraRotationFirstPerson : MonoBehaviour
     {
         if (Time.timeScale == 0) return;
         //saves axis movement of x and y mouse movement
-        mx = Input.GetAxis("Mouse X");
-        my = Input.GetAxis("Mouse Y");
+        float mx = Input.GetAxis("Mouse X");
+        float my = Input.GetAxis("Mouse Y");
 
         // yaw and pitch values change determined on 
         // mousex and mousey movement and applied sensitivity to both

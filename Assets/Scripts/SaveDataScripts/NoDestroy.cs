@@ -26,8 +26,6 @@ public class NoDestroy : MonoBehaviour
 
     Scene actualScene;
 
-    public string clipboardPasscode;
-
     string persistantPath;
 
     // Start is called before the first frame update

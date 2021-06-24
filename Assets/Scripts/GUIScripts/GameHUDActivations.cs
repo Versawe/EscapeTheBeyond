@@ -64,13 +64,16 @@ public class GameHUDActivations : MonoBehaviour
         GUIAppearPerScene();
         TrackingSlideBars();
 
-        if (NoDestroy.puzzleOneLoginAttempts != 2)
+        if (TextHint == null) return;
+        else
         {
-            TextHint.SetActive(false);
-        } 
-        else TextHint.SetActive(true);
+            if (NoDestroy.puzzleOneLoginAttempts != 2 && TextHint != null)
+            {
+                TextHint.SetActive(false);
+            }
+            else TextHint.SetActive(true);
+        }
 
-        print(Cursor.lockState);
     }
 
     private void TrackingSlideBars()
@@ -161,13 +164,18 @@ public class GameHUDActivations : MonoBehaviour
     {
         string formGuess = formBar.text;
 
-        if(formGuess == doorPwd)
+        if(formGuess == doorPwd) // passcode correct
         {
-            print("passcodeCorrect");
+            NoDestroy.gameProgression += 1;
+            NoDestroy.currSceneName = "RelicHunt";
+            GameControllerScript.SaveToFile();
+
+            SceneManager.LoadScene(NoDestroy.currSceneName);
         }
-        else
+        else // passcode incorrect
         {
-            print("passcodeIncorrect");
+            Cursor.lockState = CursorLockMode.Locked;
+            pLookAtScript.IsActivated = false;
         } 
         formBar.text = "";
     }
