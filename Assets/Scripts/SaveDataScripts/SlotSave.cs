@@ -349,12 +349,27 @@ public class SlotSave : MonoBehaviour
             //check for editing file?
             DateTime dateModified = System.IO.File.GetLastWriteTime(grabFilePath);
             string modified = dateModified.ToString("O").Substring(0, 18);
-            if(modified != System.IO.File.ReadAllLines(grabFilePath)[System.IO.File.ReadAllLines(grabFilePath).Length - 1].Substring(0, 18)) 
+            if (System.IO.File.ReadAllLines(grabFilePath).Length != 9)
+            {
+                print("file was tampered with");
+                print("error 1");
+                NoDestroy.HasBeenTamperedWith = true;
+                return;
+            }
+            else if (System.IO.File.ReadAllLines(grabFilePath)[System.IO.File.ReadAllLines(grabFilePath).Length - 1].Length != 18)
+            {
+                print("file was tampered with");
+                print("error 2");
+                NoDestroy.HasBeenTamperedWith = true;
+                return;
+            }
+            else if(modified != System.IO.File.ReadAllLines(grabFilePath)[System.IO.File.ReadAllLines(grabFilePath).Length - 1].Substring(0, 18))
             {
 
                 print("file was tampered with");
-                print(modified);
-                print(System.IO.File.ReadAllLines(grabFilePath)[System.IO.File.ReadAllLines(grabFilePath).Length - 1].Substring(0, 18));
+                print("error 3");
+                //print(modified);
+                //print(System.IO.File.ReadAllLines(grabFilePath)[System.IO.File.ReadAllLines(grabFilePath).Length - 1].Substring(0, 18));
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
@@ -382,7 +397,7 @@ public class SlotSave : MonoBehaviour
             string modified = dateModified.ToString("O").Substring(0, 18);
 
             //write file
-            System.IO.File.WriteAllText(persistentPath + "/Slot1Data.txt", "Slot1Data\n1\n5\n5\nGlitchyStart\nPSpawnGO\n2\n" + created + "\n" + modified);
+            System.IO.File.WriteAllText(persistentPath + "/Slot1Data.txt", "Slot1Data\n1\n5\n5\nGlitchyStart\nBLOOD\n2\n" + created + "\n" + modified);
 
             //This creates Txt file and updates datetimes to match
             System.IO.File.SetCreationTime(persistentPath, dateCreated);
@@ -416,10 +431,25 @@ public class SlotSave : MonoBehaviour
             //check for editing file?
             DateTime dateModified = System.IO.File.GetLastWriteTime(grabFilePath);
             string modified = dateModified.ToString("O").Substring(0, 18);
-            if (modified != System.IO.File.ReadAllLines(grabFilePath)[System.IO.File.ReadAllLines(grabFilePath).Length - 1].Substring(0, 18))
+            if (System.IO.File.ReadAllLines(grabFilePath).Length != 9)
+            {
+                print("file was tampered with");
+                print("error 1");
+                NoDestroy.HasBeenTamperedWith = true;
+                return;
+            }
+            else if (System.IO.File.ReadAllLines(grabFilePath)[System.IO.File.ReadAllLines(grabFilePath).Length - 1].Length != 18)
+            {
+                print("file was tampered with");
+                print("error 2");
+                NoDestroy.HasBeenTamperedWith = true;
+                return;
+            }
+            else if (modified != System.IO.File.ReadAllLines(grabFilePath)[System.IO.File.ReadAllLines(grabFilePath).Length - 1].Substring(0, 18))
             {
 
                 print("file was tampered with");
+                print("error 3");
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
@@ -446,7 +476,7 @@ public class SlotSave : MonoBehaviour
             string modified = dateModified.ToString("O").Substring(0, 18);
 
             //write file
-            System.IO.File.WriteAllText(persistentPath + "/Slot2Data.txt", "Slot2Data\n1\n5\n5\nGlitchyStart\nPSpawnGO\n2\n" + created + "\n" + modified);
+            System.IO.File.WriteAllText(persistentPath + "/Slot2Data.txt", "Slot2Data\n1\n5\n5\nGlitchyStart\nStill time to leave.\n2\n" + created + "\n" + modified);
 
             //This creates Txt file and updates datetimes to match
             System.IO.File.SetCreationTime(persistentPath, dateCreated);
@@ -480,10 +510,25 @@ public class SlotSave : MonoBehaviour
             //check for editing file?
             DateTime dateModified = System.IO.File.GetLastWriteTime(grabFilePath);
             string modified = dateModified.ToString("O").Substring(0, 18);
-            if (modified != System.IO.File.ReadAllLines(grabFilePath)[System.IO.File.ReadAllLines(grabFilePath).Length - 1].Substring(0, 18))
+            if (System.IO.File.ReadAllLines(grabFilePath).Length != 9)
+            {
+                print("file was tampered with");
+                print("error 1");
+                NoDestroy.HasBeenTamperedWith = true;
+                return;
+            }
+            else if (System.IO.File.ReadAllLines(grabFilePath)[System.IO.File.ReadAllLines(grabFilePath).Length - 1].Length != 18)
+            {
+                print("file was tampered with");
+                print("error 2");
+                NoDestroy.HasBeenTamperedWith = true;
+                return;
+            }
+            else if (modified != System.IO.File.ReadAllLines(grabFilePath)[System.IO.File.ReadAllLines(grabFilePath).Length - 1].Substring(0, 18))
             {
 
                 print("file was tampered with");
+                print("error 3");
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
@@ -510,7 +555,7 @@ public class SlotSave : MonoBehaviour
             string modified = dateModified.ToString("O").Substring(0, 18);
 
             //write file
-            System.IO.File.WriteAllText(persistentPath + "/Slot3Data.txt", "Slot3Data\n1\n5\n5\nGlitchyStart\nPSpawnGO\n2\n" + created + "\n" + modified);
+            System.IO.File.WriteAllText(persistentPath + "/Slot3Data.txt", "Slot3Data\n1\n5\n5\nGlitchyStart\nLeave or Pay\n2\n" + created + "\n" + modified);
 
             //This creates Txt file and updates datetimes to match
             System.IO.File.SetCreationTime(persistentPath, dateCreated);

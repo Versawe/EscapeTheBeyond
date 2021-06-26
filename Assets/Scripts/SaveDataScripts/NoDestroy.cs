@@ -11,7 +11,7 @@ public class NoDestroy : MonoBehaviour
     public static string fileLoaded = "";
 
     //bool to check for tampered save data
-    public static bool HasBeenTamperedWith = false;
+    public static bool HasBeenTamperedWith = false; //used only in SlotSave.cs (probably won't need because i could load prank level from that script)
 
     //Save Data Variables (IN ORDER ON TXT FILE)
     public static string fileName;
