@@ -1484,6 +1484,7 @@ GameObject:
   - component: {fileID: 1936826534852777489}
   - component: {fileID: 1936826534852777493}
   - component: {fileID: 3501572544454198763}
+  - component: {fileID: 6452293807546970560}
   m_Layer: 5
   m_Name: GameHUD
   m_TagString: Untagged
@@ -1615,6 +1616,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de5876f2e7f6004e9a4380d651f96b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6452293807546970560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936826534852777490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14bf07e2c9f12e4428bf39ddd3bf2efd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  QuestionsTextFile: {fileID: 4900000, guid: 636fd86908dab024bb5f5fb2ae736214, type: 3}
+  AnswersTextFile: {fileID: 4900000, guid: 15ea5a1d14e2d2a429f5d888a357a7d6, type: 3}
 --- !u!1 &1936826534936033306
 GameObject:
   m_ObjectHideFlags: 0

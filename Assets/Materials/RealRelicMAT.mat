@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RelicMAT
+  m_Name: RealRelicMAT
   m_Shader: {fileID: 4800000, guid: 6e4ae4064600d784cac1e41a9e6f2e59, type: 3}
-  m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT _ENABLE_FOG_ON_TRANSPARENT _MATERIAL_FEATURE_SPECULAR_COLOR
-    _NORMALMAP _NORMALMAP_TANGENT_SPACE _REFRACTION_SPHERE _SPECULARCOLORMAP _SURFACE_TYPE_TRANSPARENT
+  m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT _ENABLE_FOG_ON_TRANSPARENT _MASKMAP
+    _NORMALMAP _NORMALMAP_TANGENT_SPACE _REFRACTION_PLANE _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,9 +20,9 @@ Material:
   disabledShaderPasses:
   - TransparentDepthPrepass
   - TransparentDepthPostpass
-  - MOTIONVECTORS
-  - RayTracingPrepass
   - TransparentBackface
+  - RayTracingPrepass
+  - MOTIONVECTORS
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -71,7 +71,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: b2d28dcca1df6b9428320efffd871a5b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -83,7 +83,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularColorMap:
-        m_Texture: {fileID: 2800000, guid: b2d28dcca1df6b9428320efffd871a5b, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SubsurfaceMaskMap:
@@ -119,9 +119,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AORemapMax: 1
+    - _AORemapMax: 0.9921916
     - _AORemapMin: 0
-    - _ATDistance: 0.005
+    - _ATDistance: 1
     - _AddPrecomputedVelocity: 0
     - _AlbedoAffectEmissive: 0
     - _AlphaCutoff: 0.5
@@ -129,12 +129,12 @@ Material:
     - _AlphaCutoffPostpass: 0.5
     - _AlphaCutoffPrepass: 0.5
     - _AlphaCutoffShadow: 0.5
-    - _AlphaDstBlend: 10
+    - _AlphaDstBlend: 1
     - _AlphaSrcBlend: 1
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
     - _Anisotropy: 0
-    - _BlendMode: 0
+    - _BlendMode: 1
     - _CoatMask: 0
     - _CullMode: 2
     - _CullModeForward: 2
@@ -150,10 +150,10 @@ Material:
     - _DisplacementMode: 0
     - _DoubleSidedEnable: 0
     - _DoubleSidedNormalMode: 1
-    - _DstBlend: 10
+    - _DstBlend: 1
     - _EmissiveColorMode: 1
     - _EmissiveExposureWeight: 1
-    - _EmissiveIntensity: 2.55
+    - _EmissiveIntensity: 1
     - _EmissiveIntensityUnit: 0
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
@@ -171,9 +171,9 @@ Material:
     - _InvTilingScale: 1
     - _Ior: 2.5
     - _IridescenceMask: 1
-    - _IridescenceThickness: 0.61
+    - _IridescenceThickness: 1
     - _LinkDetailsWithBase: 1
-    - _MaterialID: 4
+    - _MaterialID: 1
     - _Metallic: 0
     - _MetallicRemapMax: 1
     - _MetallicRemapMin: 0
@@ -188,7 +188,7 @@ Material:
     - _RayTracing: 0
     - _ReceivesSSR: 1
     - _ReceivesSSRTransparent: 0
-    - _RefractionModel: 2
+    - _RefractionModel: 1
     - _Smoothness: 0.5
     - _SmoothnessRemapMax: 1
     - _SmoothnessRemapMin: 0
@@ -209,7 +209,7 @@ Material:
     - _SurfaceType: 1
     - _TexWorldScale: 1
     - _TexWorldScaleEmissive: 1
-    - _Thickness: 0.2
+    - _Thickness: 1
     - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
@@ -228,24 +228,24 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissiveColor: {r: 3.4044502, g: 3.4044502, b: 3.4044502, a: 2.55}
-    - _EmissiveColorLDR: {r: 1, g: 0, b: 0, a: 1}
+    - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
-    - _TransmittanceColor: {r: 0.94187236, g: 1, b: 0, a: 1}
+    - _TransmittanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &4594247175507633499
+--- !u!114 &4239877103883986400
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
