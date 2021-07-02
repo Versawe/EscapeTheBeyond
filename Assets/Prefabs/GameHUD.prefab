@@ -2332,6 +2332,9 @@ MonoBehaviour:
   AnswersTextFile: {fileID: 4900000, guid: 15ea5a1d14e2d2a429f5d888a357a7d6, type: 3}
   QuestionsSplit: []
   AnswersSplit: []
+  QuestionText: {fileID: 1702331413765851579}
+  MCPanel: {fileID: 3037594436712525862}
+  TEPanel: {fileID: 8274915104153100600}
 --- !u!1 &1936826534936033306
 GameObject:
   m_ObjectHideFlags: 0

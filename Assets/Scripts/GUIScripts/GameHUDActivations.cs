@@ -35,11 +35,17 @@ public class GameHUDActivations : MonoBehaviour
     public TMP_InputField formBar;
     LookAtStuff pLookAtScript;
 
+    QandA Puzzle3Script;
+
     // Start is called before the first frame update
     void Awake()
     {
         currScene = SceneManager.GetActiveScene();
         genPWD = GetComponent<GeneratePWD>();
+
+        Puzzle3Script = GetComponent<QandA>();
+        Puzzle3Script.enabled = false;
+
         GUIAppearPerScene();
 
         if (GameObject.Find("NoDestroyOBJ")) GameControllerScript = GameObject.Find("NoDestroyOBJ").GetComponent<NoDestroy>();
