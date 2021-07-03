@@ -44,7 +44,6 @@ public class GameHUDActivations : MonoBehaviour
         genPWD = GetComponent<GeneratePWD>();
 
         Puzzle3Script = GetComponent<QandA>();
-        Puzzle3Script.enabled = false;
 
         GUIAppearPerScene();
 
