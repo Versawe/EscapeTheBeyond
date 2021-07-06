@@ -101,4 +101,26 @@ public class QandA : MonoBehaviour
         //print(currentA);
     }
 
+    private List<string> AddReorderLists(List<string> List1, List<string> List2) 
+    {
+        List<string> aList = new List<string>();
+        List<string> randomList = new List<string>();
+
+        foreach (string s in List1) 
+        {
+            aList.Add(s);
+        }
+        foreach (string s in List2) 
+        {
+            aList.Add(s);
+        }
+        for (int i = 0; i < 4; i++) 
+        {
+            int randomIndex = Random.Range(0, aList.Count);
+            randomList.Add(aList[randomIndex]);
+            aList.RemoveAt(randomIndex);
+        }
+        return randomList;
+    }
+
 }
