@@ -22,7 +22,7 @@ What is the name of the antagonist in Friday the 13th?@
 What is the vampire’s name in the German film Nosferatu?@
 Would you like to die?@
 Is this real?@
-Have you done something you regret?@
-Are you a murderer?@
+What have you done that you regret?@
+Who have you killed?@
 Where are we?@
 Tell me a truth, I’ll bite off your head, or Tell me a lie, and your guts I will shred.@

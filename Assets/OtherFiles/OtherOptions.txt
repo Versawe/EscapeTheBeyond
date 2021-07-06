@@ -10,7 +10,7 @@ none@
 none@
 Beetlejuice,Madman,Candyman@
 The Rake,Slender Man,Bunny Man@
-Satan,Satanas,Hel@
+Satan,Satanas,Hela@
 Werewolves,Bears,Baba Yaga@
 Stephen King,Edgar Allen Poe,Dean Koontz@
 Azathoth,Nyarlathotep,Yog-Sothoth@
@@ -19,10 +19,10 @@ Vishanti,Grimoire,The Occido Lumen@
 Chatterer,Butterball,Angelique@
 John Wayne Gacy,Jeffery Dahmer,Eddie Caputo@
 Jason Voorhees,Freddy Krueger,Deadite@
-Count Orlok@
-No@
-No@
-Yes@
-Yes@
-Simulation@
-You are going to shred my guts@
+Count Dracula,Kurt Barlow,Viago@
+Yes,Maybe,Do not answer@
+Yes,Maybe,Do not answer@
+Killing Spree,Adultery,Suicide@
+Wife,Father,A girl@
+Hell,Purgatory,IKEA@
+none@

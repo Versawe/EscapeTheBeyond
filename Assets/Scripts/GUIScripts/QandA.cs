@@ -11,10 +11,17 @@ public class QandA : MonoBehaviour
     //reads text files and puts them into public string lists with matching indexes
     public TextAsset QuestionsTextFile;
     public TextAsset AnswersTextFile;
+    public TextAsset QTypeTextFile;
+    public TextAsset OtherOptionsTextFile;
     public string[] QuestionsSplit;
     public string[] AnswersSplit;
+    public string[] QTypeSplit;
+    public string[] OtherOptionsSplit;
     private List<string> QuestionsList = new List<string>();
     private List<string> AnswersList = new List<string>();
+    private List<string> QTypeList = new List<string>();
+    private List<string> OtherOptionsList = new List<string>();
+    private List<string> MCChoices = new List<string>();
 
     public TextMeshProUGUI QuestionText;
     public GameObject MCPanel;
@@ -22,6 +29,7 @@ public class QandA : MonoBehaviour
 
     private string currentQ;
     private string currentA;
+    private string questionType;
     private string playerA;
 
     // Start is called before the first frame update
@@ -55,7 +63,7 @@ public class QandA : MonoBehaviour
         }
     }
 
-    private void RandomQuestion(List<string> list) //made to call for when a random Q&A needs to be generated
+    public void RandomQuestion(List<string> list) //made to call for when a random Q&A needs to be generated
     {
         float rand = Random.Range(0, list.Count); //generates random number between 0 and current length of the list (list is always changing)
 
