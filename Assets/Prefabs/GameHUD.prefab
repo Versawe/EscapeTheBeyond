@@ -1646,7 +1646,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -183.4129, y: 39.7841}
+  m_AnchoredPosition: {x: -183.41284, y: 39.784058}
   m_SizeDelta: {x: 366.8259, y: 79.568}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1936826534465415877
@@ -2330,11 +2330,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QuestionsTextFile: {fileID: 4900000, guid: 636fd86908dab024bb5f5fb2ae736214, type: 3}
   AnswersTextFile: {fileID: 4900000, guid: 15ea5a1d14e2d2a429f5d888a357a7d6, type: 3}
+  QTypeTextFile: {fileID: 4900000, guid: 1daa36cc336cb91469bdd855808405c4, type: 3}
+  OtherOptionsTextFile: {fileID: 4900000, guid: 83d0ea995a7ecae4dbd59b680a8397ad,
+    type: 3}
   QuestionsSplit: []
   AnswersSplit: []
+  QTypeSplit: []
+  OtherOptionsSplit: []
   QuestionText: {fileID: 1702331413765851579}
   MCPanel: {fileID: 3037594436712525862}
   TEPanel: {fileID: 8274915104153100600}
+  textA: {fileID: 4318000225046362479}
+  textB: {fileID: 3379868120696794953}
+  textC: {fileID: 8260178813321775251}
+  textD: {fileID: 8793955132470657111}
 --- !u!1 &1936826534936033306
 GameObject:
   m_ObjectHideFlags: 0
@@ -3441,7 +3450,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.30164823, y: -163.40173}
+  m_AnchoredPosition: {x: -0.3017578, y: -152.57611}
   m_SizeDelta: {x: 1120.5, y: 367.9781}
   m_Pivot: {x: 0.50000006, y: -0.4440701}
 --- !u!222 &8235306324468896727

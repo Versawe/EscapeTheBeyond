@@ -26,6 +26,10 @@ public class QandA : MonoBehaviour
     public TextMeshProUGUI QuestionText;
     public GameObject MCPanel;
     public GameObject TEPanel;
+    public TextMeshProUGUI textA;
+    public TextMeshProUGUI textB;
+    public TextMeshProUGUI textC;
+    public TextMeshProUGUI textD;
 
     private string currentQ;
     private string currentA;
@@ -48,6 +52,14 @@ public class QandA : MonoBehaviour
         {
             AnswersList.Add(AnswersSplit[i]);
         }
+        for (int i = 0; i < QTypeSplit.Length - 1; i++)
+        {
+            QTypeList.Add(QTypeSplit[i]);
+        }
+        for (int i = 0; i < OtherOptionsSplit.Length - 1; i++)
+        {
+            OtherOptionsList.Add(OtherOptionsSplit[i]);
+        }
     }
 
     private void Update()
@@ -67,11 +79,23 @@ public class QandA : MonoBehaviour
     {
         float rand = Random.Range(0, list.Count); //generates random number between 0 and current length of the list (list is always changing)
 
+        //grabs random number from 0th ele to list.Count
         currentQ = QuestionsList[(int) rand];
         currentA = AnswersList[(int) rand];
+        questionType = QTypeList[(int) rand];
 
+        //check if Multiple choice or text entry
+
+        //orient a mixture of the answer and the options to be placed in A,B,C, and D button's text (Exclude if text entry question)
+
+        //Display GUI elements correctly
+
+        //at end remove i from each list so no repeats and lists will sync back up, and clear mcChoices
         QuestionsList.RemoveAt((int)rand);
         AnswersList.RemoveAt((int)rand);
+        QTypeList.RemoveAt((int)rand);
+        OtherOptionsList.RemoveAt((int)rand);
+        MCChoices.Clear();
 
         //print(currentQ);
         //print(currentA);
