@@ -34,14 +34,17 @@ public class QandA : MonoBehaviour
     private string currentQ;
     private string currentA;
     private string questionType;
+    private string otherOptions;
     private string playerA;
 
     // Start is called before the first frame update
     void Start()
     {
         //Creates an array from both of the text files
-        QuestionsSplit = QuestionsTextFile.text.Split('@');
-        AnswersSplit = AnswersTextFile.text.Split('@');
+        QuestionsSplit = QuestionsTextFile.text.Split('\n');
+        AnswersSplit = AnswersTextFile.text.Split('\n');
+        QTypeSplit = QTypeTextFile.text.Split('\n');
+        OtherOptionsSplit = OtherOptionsTextFile.text.Split('\n');
 
         //creates lists from the arrays
         for(int i = 0; i < QuestionsSplit.Length - 1; i++) 
@@ -83,12 +86,37 @@ public class QandA : MonoBehaviour
         currentQ = QuestionsList[(int) rand];
         currentA = AnswersList[(int) rand];
         questionType = QTypeList[(int) rand];
-
+        otherOptions = OtherOptionsList[(int)rand];
+        print("counter");
         //check if Multiple choice or text entry
+        if(questionType[0] == 'M')
+        {
+            //show correct ui
+            TEPanel.SetActive(false);
+            MCPanel.SetActive(true);
 
-        //orient a mixture of the answer and the options to be placed in A,B,C, and D button's text (Exclude if text entry question)
-
-        //Display GUI elements correctly
+            //get the options and answer in a new list in a random order
+            string[] otherArray = otherOptions.Split(',');
+            List<string> newList = new List<string>();
+            foreach (string ele in otherArray)
+            {
+                newList.Add(ele);
+            }
+            MCChoices = AddReorderLists(currentA, newList);
+            textA.text = MCChoices[0];
+            textB.text = MCChoices[1];
+            textC.text = MCChoices[2];
+            textD.text = MCChoices[3];
+        }
+        else if(questionType[0] == 'F')
+        {
+            //show correct ui
+            TEPanel.SetActive(true);
+            MCPanel.SetActive(false);
+        }
+        //display correct question
+        QuestionText.gameObject.SetActive(true);
+        QuestionText.text = currentQ;
 
         //at end remove i from each list so no repeats and lists will sync back up, and clear mcChoices
         QuestionsList.RemoveAt((int)rand);
@@ -96,20 +124,15 @@ public class QandA : MonoBehaviour
         QTypeList.RemoveAt((int)rand);
         OtherOptionsList.RemoveAt((int)rand);
         MCChoices.Clear();
-
-        //print(currentQ);
-        //print(currentA);
     }
 
-    private List<string> AddReorderLists(List<string> List1, List<string> List2) 
+    private List<string> AddReorderLists(string answer, List<string> List2) 
     {
         List<string> aList = new List<string>();
         List<string> randomList = new List<string>();
 
-        foreach (string s in List1) 
-        {
-            aList.Add(s);
-        }
+        aList.Add(answer);
+
         foreach (string s in List2) 
         {
             aList.Add(s);

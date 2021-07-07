@@ -1,28 +1,36 @@
-none@
-none@
-none@
-none@
-none@
-none@
-none@
-none@
-none@
-none@
-Beetlejuice,Madman,Candyman@
-The Rake,Slender Man,Bunny Man@
-Satan,Satanas,Hela@
-Werewolves,Bears,Baba Yaga@
-Stephen King,Edgar Allen Poe,Dean Koontz@
-Azathoth,Nyarlathotep,Yog-Sothoth@
-Ghroth,Ubbo-Sathla,Azathoth@
-Vishanti,Grimoire,The Occido Lumen@
-Chatterer,Butterball,Angelique@
-John Wayne Gacy,Jeffery Dahmer,Eddie Caputo@
-Jason Voorhees,Freddy Krueger,Deadite@
-Count Dracula,Kurt Barlow,Viago@
-Yes,Maybe,Do not answer@
-Yes,Maybe,Do not answer@
-Killing Spree,Adultery,Suicide@
-Wife,Father,A girl@
-Hell,Purgatory,IKEA@
-none@
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+Beetlejuice,Madman,Candyman
+The Rake,Slender Man,Bunny Man
+Satan,Satanas,Hela
+Werewolves,Bears,Baba Yaga
+Stephen King,Edgar Allen Poe,Dean Koontz
+Azathoth,Nyarlathotep,Yog-Sothoth
+Ghroth,Ubbo-Sathla,Azathoth
+Vishanti,Grimoire,The Occido Lumen
+Chatterer,Butterball,Angelique
+John Wayne Gacy,Jeffery Dahmer,Eddie Caputo
+Jason Voorhees,Freddy Krueger,Deadite
+Count Dracula,Kurt Barlow,Viago
+Yes,Maybe,Do not answer
+Yes,Maybe,Do not answer
+Killing Spree,Adultery,Suicide
+Wife,Father,A girl
+Hell,Purgatory,IKEA
+none
+Hex,Jinx,Voodoo
+Abigail,Annabella,Isabella
+112 Ocean Ave,29 Grace Ct,36 Riverside Ave
+Incubus,Cambions,Familiars
+none
+H.P. Lovecraft,Edgar Allen Poe,Bret Easton Ellis
+The Pig,Amanda Young,Billy
+Jigsaw,Texas Chainsaw Massacre,The Collection
