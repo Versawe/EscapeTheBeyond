@@ -1,13 +1,13 @@
-^(A|a)( )(Coffin|coffin)$|^(Coffin|coffin)$
-^(A|a)( )(Fire|fire)$|^(Fire|fire)$
-^(A|a)( )(Map|map)$|^(Map|map)$
-^(Darkness|darkness)$|^(Dark|dark)$|^(The|the)( )(Dark|dark)$
-^(Skull|skull)$|^(A|a)( )(Skull|skull)$
-^(Envelope|envelope)$|^(An|an)( )(Envelope|envelope)$
-^(Your|your|My|my)( )(Word|word)$|^(Word|word)$
-^(Sand|sand)$
-^(A|a)( )(Kiss|kiss)$|^(Kiss|kiss)$
-^(Sleep|sleep)$
+^(a)( )(coffin)$|^(coffin)$
+^(a)( )(fire)$|^(fire)$
+^(a)( )(map)$|^(map)$
+^(darkness)$|^(dark)$|^(the)( )(dark)$|^(the)( )(darkness)$
+^(skull)$|^(a)( )(skull)$
+^(envelope)$|^(an)( )(envelope)$
+^(your|my)( )(word)$|^(word)$
+^(sand)$
+^(a)( )(kiss)$|^(kiss)$
+^(sleep)$
 Bloody Mary
 The Mothman
 Zozo
@@ -25,12 +25,12 @@ No
 Homicide
 A boy
 Simulation
-^(You|you)( )(Are|are)( )(Going|going)( )(To|to)( )(Shred|shred)( )(My|my)( )(Guts|guts)$|^(You're|you're)( )(Going|going)( )(To|to)( )(Shred|shred)( )(My|my)( )(Guts|guts)$|^(You'll|you'll)( )(Shred|shred)( )(My|my)( )(Guts|guts)$|^(You|you)( )(Will|will)( )(Shred|shred)( )(My|my)( )(Guts|guts)$
+^(you)( )(are)( )(going)( )(to)( )(shred)( )(my)( )(guts)$|^(you're)( )(going)( )(to)( )(shred)( )(my)( )(guts)$|^(you'll)( )(shred)( )(my)( )(guts)$|^(you)( )(will)( )(shred)( )(my)( )(guts)$
 Ju-on
 Annabelle
 108 Ocean Ave
 Succubus
-^(Jack|jack)$
+^(jack)$
 William Shakespeare
 John Kramer
 The Collector

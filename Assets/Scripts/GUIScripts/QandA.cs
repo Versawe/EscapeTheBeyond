@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -37,17 +38,19 @@ public class QandA : MonoBehaviour
     private string otherOptions; 
     private string playerA;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         //Creates an array from both of the text files
         QuestionsSplit = QuestionsTextFile.text.Split('\n');
         AnswersSplit = AnswersTextFile.text.Split('\n');
         QTypeSplit = QTypeTextFile.text.Split('\n');
         OtherOptionsSplit = OtherOptionsTextFile.text.Split('\n');
-
+        MCChoices.Clear();
+    }
+    void OnEnable()
+    {
         //creates lists from the arrays
-        for(int i = 0; i < QuestionsSplit.Length - 1; i++) 
+        for (int i = 0; i < QuestionsSplit.Length - 1; i++) 
         {
             QuestionsList.Add(QuestionsSplit[i]);
         }
@@ -63,6 +66,19 @@ public class QandA : MonoBehaviour
         {
             OtherOptionsList.Add(OtherOptionsSplit[i]);
         }
+
+        RandomQuestion(QuestionsList);
+    }
+
+    private void OnDisable()
+    {
+        QuestionsList.Clear();
+        AnswersList.Clear();
+        QTypeList.Clear();
+        OtherOptionsList.Clear();
+        QuestionText.gameObject.SetActive(false);
+        MCPanel.SetActive(false);
+        TEPanel.SetActive(false);
     }
 
     private void Update()
@@ -76,6 +92,7 @@ public class QandA : MonoBehaviour
         {
             print("out");
         }
+        
     }
 
     public void RandomQuestion(List<string> list) //made to call for when a random Q&A needs to be generated
@@ -146,4 +163,10 @@ public class QandA : MonoBehaviour
         return randomList;
     }
 
+    private bool DoesRegexMatch(string regexString, string checkMatch)
+    {
+        Regex reg = new Regex(regexString, RegexOptions.IgnoreCase);
+        if (reg.IsMatch(checkMatch)) return true;
+        else return false;
+    }
 }

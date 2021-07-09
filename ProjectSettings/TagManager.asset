@@ -17,6 +17,7 @@ TagManager:
   - MoveTo
   - RotateTo
   - aiSpawn
+  - mirror
   layers:
   - Default
   - TransparentFX

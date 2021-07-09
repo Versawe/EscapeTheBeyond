@@ -35,7 +35,7 @@ public class GameHUDActivations : MonoBehaviour
     public TMP_InputField formBar;
     LookAtStuff pLookAtScript;
 
-    QandA Puzzle3Script;
+    public QandA Puzzle3Script;
 
     // Start is called before the first frame update
     void Awake()

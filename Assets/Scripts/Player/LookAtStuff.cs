@@ -79,6 +79,10 @@ public class LookAtStuff : MonoBehaviour
                     {
                         lookingAtName = pSeeDoor.collider.gameObject.name;
                     }
+                    else if (pSeeDoor.collider.tag == "mirror") //excluded from relic hunt scene for now
+                    {
+                        lookingAtName = pSeeDoor.collider.gameObject.name;
+                    }
                     else if (pSeeDoor.collider.tag == "warDoor")
                     {
                         lookingAtName = pSeeDoor.collider.gameObject.transform.parent.name;
@@ -176,12 +180,24 @@ public class LookAtStuff : MonoBehaviour
         //what happens when successfully activated or deactivated
         if (IsActivated)
         {
-            Cursor.lockState = CursorLockMode.None;
-            CharMove.enabled = false;
-            CamRotate.enabled = false;
-            HUDScript.PasscodePanel.SetActive(true);
-            HUDScript.isPaused = false;
-            InteractText.SetActive(false);
+            if (lookingAtName == "Main_mirror") 
+            {
+                Cursor.lockState = CursorLockMode.None;
+                CharMove.enabled = false;
+                CamRotate.enabled = false;
+                HUDScript.isPaused = false;
+                InteractText.SetActive(false);
+                HUDScript.Puzzle3Script.enabled = true;
+            }
+            else 
+            {
+                Cursor.lockState = CursorLockMode.None;
+                CharMove.enabled = false;
+                CamRotate.enabled = false;
+                HUDScript.PasscodePanel.SetActive(true);
+                HUDScript.isPaused = false;
+                InteractText.SetActive(false);
+            }
         }
         else
         {
@@ -189,6 +205,7 @@ public class LookAtStuff : MonoBehaviour
             CharMove.enabled = true;
             CamRotate.enabled = true;
             HUDScript.PasscodePanel.SetActive(false);
+            HUDScript.Puzzle3Script.enabled = false;
             InteractText.SetActive(true);
         }
     }
