@@ -16,7 +16,7 @@ public class QandA : MonoBehaviour
     public string[] QuestionsSplit;
     public string[] AnswersSplit;
     public string[] QTypeSplit;
-    public string[] OtherOptionsSplit;
+    public string[] OtherOptionsSplit; //also contains regex
     private List<string> QuestionsList = new List<string>();
     private List<string> AnswersList = new List<string>();
     private List<string> QTypeList = new List<string>();
@@ -32,9 +32,9 @@ public class QandA : MonoBehaviour
     public TextMeshProUGUI textD;
 
     private string currentQ;
-    private string currentA;
+    private string currentA; //for form questions this will contain Regex that will be compared to playerA
     private string questionType;
-    private string otherOptions;
+    private string otherOptions; 
     private string playerA;
 
     // Start is called before the first frame update
@@ -87,7 +87,7 @@ public class QandA : MonoBehaviour
         currentA = AnswersList[(int) rand];
         questionType = QTypeList[(int) rand];
         otherOptions = OtherOptionsList[(int)rand];
-        print("counter");
+        
         //check if Multiple choice or text entry
         if(questionType[0] == 'M')
         {

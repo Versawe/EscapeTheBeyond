@@ -1,13 +1,13 @@
-A coffin
-Fire
-A Map
-Darkness
-A Skull
-An envelope
-Your word
-Sand
-A Kiss
-Sleep
+^(A|a)( )(Coffin|coffin)$|^(Coffin|coffin)$
+^(A|a)( )(Fire|fire)$|^(Fire|fire)$
+^(A|a)( )(Map|map)$|^(Map|map)$
+^(Darkness|darkness)$|^(Dark|dark)$|^(The|the)( )(Dark|dark)$
+^(Skull|skull)$|^(A|a)( )(Skull|skull)$
+^(Envelope|envelope)$|^(An|an)( )(Envelope|envelope)$
+^(Your|your|My|my)( )(Word|word)$|^(Word|word)$
+^(Sand|sand)$
+^(A|a)( )(Kiss|kiss)$|^(Kiss|kiss)$
+^(Sleep|sleep)$
 Bloody Mary
 The Mothman
 Zozo
@@ -25,12 +25,12 @@ No
 Homicide
 A boy
 Simulation
-You are going to shred my guts
+^(You|you)( )(Are|are)( )(Going|going)( )(To|to)( )(Shred|shred)( )(My|my)( )(Guts|guts)$|^(You're|you're)( )(Going|going)( )(To|to)( )(Shred|shred)( )(My|my)( )(Guts|guts)$|^(You'll|you'll)( )(Shred|shred)( )(My|my)( )(Guts|guts)$|^(You|you)( )(Will|will)( )(Shred|shred)( )(My|my)( )(Guts|guts)$
 Ju-on
 Annabelle
 108 Ocean Ave
 Succubus
-Jack
+^(Jack|jack)$
 William Shakespeare
 John Kramer
 The Collector
