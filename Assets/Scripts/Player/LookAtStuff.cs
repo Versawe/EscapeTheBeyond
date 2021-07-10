@@ -20,6 +20,9 @@ public class LookAtStuff : MonoBehaviour
     CameraRotationFirstPerson CamRotate;
     public bool IsActivated = false;
 
+    Vector3 lockedOnMirror;
+    Quaternion lookAtMirror;
+
     private void Start()
     {
         if (GameObject.Find("HidingCheck") != null) hideScript = GameObject.Find("HidingCheck").GetComponent<PlayerHiding>();
@@ -58,6 +61,7 @@ public class LookAtStuff : MonoBehaviour
 
     private void PlayerLookingAt()
     {
+        if (IsActivated) return;
         // statement to determine if you are in a wardrobe, or not. This helps set the lookingAtName to a wardrobe you are in
         //this was added so you do not need to look at the wardrobe to open and close it when inside it (better for gameplay)
         if (hideScript != null) // this if & else was used for when the player is not in the RelicHunt Scene
@@ -140,10 +144,10 @@ public class LookAtStuff : MonoBehaviour
 
     private void ActivateGUIEvent(string GUIEventName)
     {
-        if (GameObject.Find(GUIEventName) && lookingAtName != "" && !HUDScript.isPaused)
+        if (GameObject.Find(GUIEventName) && !HUDScript.isPaused)
         {
             GameObject GUIEventOBJ = GameObject.Find(GUIEventName);
-
+            lookingAtName = GUIEventName;
             if (GUIEventOBJ.GetComponent<GUIEvent>())
             {
                 guiEventScript = GUIEventOBJ.GetComponent<GUIEvent>();
@@ -155,6 +159,9 @@ public class LookAtStuff : MonoBehaviour
                 InteractText.SetActive(false);
             }
 
+            lockedOnMirror = new Vector3(GUIEventOBJ.transform.position.x - 2, transform.parent.localPosition.y, GUIEventOBJ.transform.position.z);
+            Vector3 dir = GUIEventOBJ.transform.position - transform.position;
+            lookAtMirror = Quaternion.LookRotation(dir, Vector3.up);
             InteractiveInput();
         }
         else
@@ -180,7 +187,7 @@ public class LookAtStuff : MonoBehaviour
         //what happens when successfully activated or deactivated
         if (IsActivated)
         {
-            if (lookingAtName == "Main_mirror") 
+            if (lookingAtName == "Main_mirror") //if you are looking at the mirror for puzzle 3
             {
                 Cursor.lockState = CursorLockMode.None;
                 CharMove.enabled = false;
@@ -188,8 +195,11 @@ public class LookAtStuff : MonoBehaviour
                 HUDScript.isPaused = false;
                 InteractText.SetActive(false);
                 HUDScript.Puzzle3Script.enabled = true;
+
+                transform.parent.position = lockedOnMirror;
+                transform.rotation = lookAtMirror;
             }
-            else 
+            else //if you are looking at the door with the code
             {
                 Cursor.lockState = CursorLockMode.None;
                 CharMove.enabled = false;
@@ -201,7 +211,7 @@ public class LookAtStuff : MonoBehaviour
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.Locked; //exiting out of isactivated
             CharMove.enabled = true;
             CamRotate.enabled = true;
             HUDScript.PasscodePanel.SetActive(false);

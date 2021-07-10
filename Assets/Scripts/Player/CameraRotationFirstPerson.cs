@@ -6,6 +6,7 @@ using UnityEngine;
 public class CameraRotationFirstPerson : MonoBehaviour
 {
     private Camera cam;
+    LookAtStuff lookScript;
 
     private float yawSensitivity = 5f;
     private float pitchSensitivity = 3.5f;
@@ -22,8 +23,7 @@ public class CameraRotationFirstPerson : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.lockState = CursorLockMode.None;
+        lookScript = GetComponent<LookAtStuff>();
 
         //at start set the player's sensitivity
         yawSensitivity = NoDestroy.pSensitivity;
@@ -31,6 +31,13 @@ public class CameraRotationFirstPerson : MonoBehaviour
         //starting rotation per level
         if (NoDestroy.gameProgression == 2) yaw = -90;
         else yaw = 90;
+    }
+
+    private void OnDisable()
+    {
+        if (lookScript.lookingAtName != "Main_mirror") return;
+        yaw = 90;
+        pitch = 13;
     }
 
     void Update()

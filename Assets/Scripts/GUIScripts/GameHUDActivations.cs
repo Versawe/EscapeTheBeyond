@@ -118,6 +118,7 @@ public class GameHUDActivations : MonoBehaviour
         else if (escClick && isPaused)
         {
             isPaused = false;
+            Cursor.lockState = CursorLockMode.Locked; // Don't really need it in EDITOR esc auto unlocks cursor. Unpausing should work on build
         }
 
         if (isPaused && !optionsOn)
