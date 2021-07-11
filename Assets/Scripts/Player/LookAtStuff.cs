@@ -159,7 +159,7 @@ public class LookAtStuff : MonoBehaviour
                 InteractText.SetActive(false);
             }
 
-            lockedOnMirror = new Vector3(GUIEventOBJ.transform.position.x - 2, transform.parent.localPosition.y, GUIEventOBJ.transform.position.z);
+            lockedOnMirror = new Vector3(GUIEventOBJ.transform.position.x - 2, GUIEventOBJ.transform.position.y - 0.35f, GUIEventOBJ.transform.position.z);
             Vector3 dir = GUIEventOBJ.transform.position - transform.position;
             lookAtMirror = Quaternion.LookRotation(dir, Vector3.up);
             InteractiveInput();
@@ -196,8 +196,10 @@ public class LookAtStuff : MonoBehaviour
                 InteractText.SetActive(false);
                 HUDScript.Puzzle3Script.enabled = true;
 
-                transform.parent.position = lockedOnMirror;
-                transform.rotation = lookAtMirror;
+                Vector3 SlideVect = Vector3.MoveTowards(transform.parent.position, lockedOnMirror, 8f * Time.deltaTime);
+                transform.parent.position = SlideVect;
+                Quaternion EaseRotation = Quaternion.RotateTowards(transform.rotation, lookAtMirror, 180f * Time.deltaTime);
+                transform.rotation = EaseRotation;
             }
             else //if you are looking at the door with the code
             {

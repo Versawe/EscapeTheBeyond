@@ -27,6 +27,7 @@ public class QandA : MonoBehaviour
     public TextMeshProUGUI QuestionText;
     public GameObject MCPanel;
     public GameObject TEPanel;
+    public GameObject StrikesPanel;
     public TextMeshProUGUI textA;
     public TextMeshProUGUI textB;
     public TextMeshProUGUI textC;
@@ -79,6 +80,7 @@ public class QandA : MonoBehaviour
         QuestionText.gameObject.SetActive(false);
         MCPanel.SetActive(false);
         TEPanel.SetActive(false);
+        StrikesPanel.SetActive(false);
     }
 
     private void Update()
@@ -134,6 +136,7 @@ public class QandA : MonoBehaviour
         //display correct question
         QuestionText.gameObject.SetActive(true);
         QuestionText.text = currentQ;
+        StrikesPanel.SetActive(true);
 
         //at end remove i from each list so no repeats and lists will sync back up, and clear mcChoices
         QuestionsList.RemoveAt((int)rand);

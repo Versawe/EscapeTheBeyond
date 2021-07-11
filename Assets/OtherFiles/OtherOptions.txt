@@ -34,3 +34,5 @@ none
 H.P. Lovecraft,Edgar Allen Poe,Bret Easton Ellis
 The Pig,Amanda Young,Billy
 Jigsaw,Texas Chainsaw Massacre,The Collection
+David Gordon Green,John Carpenter,Rick Rosenthal
+Michael Myers,Jason Voorhees,Freddy Krueger
