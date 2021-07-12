@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 //this script is attached to the DontDestroyOnBuild GameObject
 //the gameobject and this script is used just to transfer static variables
 //this tells the in-game scene what the file game is

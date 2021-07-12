@@ -9,15 +9,10 @@ using System.Linq;
 
 public class QandA : MonoBehaviour
 {
-    //reads text files and puts them into public string lists with matching indexes
-    public TextAsset QuestionsTextFile;
-    public TextAsset AnswersTextFile;
-    public TextAsset QTypeTextFile;
-    public TextAsset OtherOptionsTextFile;
-    public string[] QuestionsSplit;
-    public string[] AnswersSplit;
-    public string[] QTypeSplit;
-    public string[] OtherOptionsSplit; //also contains regex
+    //reads the text file and puts them into public string lists with matching indexes
+    public TextAsset DatabaseTextFile;
+    
+    public string[] DataBaseSplit;
     private List<string> QuestionsList = new List<string>();
     private List<string> AnswersList = new List<string>();
     private List<string> QTypeList = new List<string>();
@@ -41,31 +36,20 @@ public class QandA : MonoBehaviour
 
     private void Awake()
     {
-        //Creates an array from both of the text files
-        QuestionsSplit = QuestionsTextFile.text.Split('\n');
-        AnswersSplit = AnswersTextFile.text.Split('\n');
-        QTypeSplit = QTypeTextFile.text.Split('\n');
-        OtherOptionsSplit = OtherOptionsTextFile.text.Split('\n');
+        //Creates an array from the text file
+        DataBaseSplit = DatabaseTextFile.text.Split('\n');    
         MCChoices.Clear();
     }
     void OnEnable()
     {
-        //creates lists from the arrays
-        for (int i = 0; i < QuestionsSplit.Length - 1; i++) 
+        for (int i = 0; i < DataBaseSplit.Length - 1; i++)
         {
-            QuestionsList.Add(QuestionsSplit[i]);
-        }
-        for (int i = 0; i < AnswersSplit.Length - 1; i++)
-        {
-            AnswersList.Add(AnswersSplit[i]);
-        }
-        for (int i = 0; i < QTypeSplit.Length - 1; i++)
-        {
-            QTypeList.Add(QTypeSplit[i]);
-        }
-        for (int i = 0; i < OtherOptionsSplit.Length - 1; i++)
-        {
-            OtherOptionsList.Add(OtherOptionsSplit[i]);
+            string[] newSplit;
+            newSplit = DataBaseSplit[i].Split('@');
+            QuestionsList.Add(newSplit[0]);
+            AnswersList.Add(newSplit[1]);
+            QTypeList.Add(newSplit[2]);
+            OtherOptionsList.Add(newSplit[3]);
         }
 
         RandomQuestion(QuestionsList);
