@@ -649,7 +649,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6024370866194360509}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6452293807546970560}
+        m_TargetAssemblyTypeName: QandA, Assembly-CSharp
+        m_MethodName: AnswerQuestion
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7673960579271534986}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &996552131290993471
 GameObject:
   m_ObjectHideFlags: 0
@@ -1038,7 +1050,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8497648636065269529}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6452293807546970560}
+        m_TargetAssemblyTypeName: QandA, Assembly-CSharp
+        m_MethodName: AnswerQuestion
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7593644161879553282}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1652657294829384114
 GameObject:
   m_ObjectHideFlags: 0
@@ -2329,21 +2353,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14bf07e2c9f12e4428bf39ddd3bf2efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuestionsTextFile: {fileID: 4900000, guid: 636fd86908dab024bb5f5fb2ae736214, type: 3}
-  AnswersTextFile: {fileID: 4900000, guid: 15ea5a1d14e2d2a429f5d888a357a7d6, type: 3}
-  QTypeTextFile: {fileID: 4900000, guid: 1daa36cc336cb91469bdd855808405c4, type: 3}
-  OtherOptionsTextFile: {fileID: 4900000, guid: 83d0ea995a7ecae4dbd59b680a8397ad,
-    type: 3}
   DatabaseTextFile: {fileID: 4900000, guid: d840102ebe1e553459b1289a0879e022, type: 3}
-  QuestionsSplit: []
-  AnswersSplit: []
-  QTypeSplit: []
-  OtherOptionsSplit: []
   DataBaseSplit: []
   QuestionText: {fileID: 1702331413765851579}
   MCPanel: {fileID: 3037594436712525862}
   TEPanel: {fileID: 8274915104153100600}
   StrikesPanel: {fileID: 3426141843627399426}
+  ButtA: {fileID: 7593644161879553282}
+  ButtB: {fileID: 2965856470330568262}
+  ButtC: {fileID: 7673960579271534986}
+  ButtD: {fileID: 7966371210157249567}
   textA: {fileID: 4318000225046362479}
   textB: {fileID: 3379868120696794953}
   textC: {fileID: 8260178813321775251}
@@ -3415,7 +3434,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6757901466798561702}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6452293807546970560}
+        m_TargetAssemblyTypeName: QandA, Assembly-CSharp
+        m_MethodName: AnswerQuestion
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2965856470330568262}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3037594436712525862
 GameObject:
   m_ObjectHideFlags: 0
@@ -5467,7 +5498,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8223579009574983182}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6452293807546970560}
+        m_TargetAssemblyTypeName: QandA, Assembly-CSharp
+        m_MethodName: AnswerQuestion
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7966371210157249567}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5818749824952103398
 GameObject:
   m_ObjectHideFlags: 0

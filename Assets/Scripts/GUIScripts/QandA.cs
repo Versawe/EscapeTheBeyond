@@ -23,6 +23,11 @@ public class QandA : MonoBehaviour
     public GameObject MCPanel;
     public GameObject TEPanel;
     public GameObject StrikesPanel;
+
+    public Button ButtA;
+    public Button ButtB;
+    public Button ButtC;
+    public Button ButtD;
     public TextMeshProUGUI textA;
     public TextMeshProUGUI textB;
     public TextMeshProUGUI textC;
@@ -155,5 +160,26 @@ public class QandA : MonoBehaviour
         Regex reg = new Regex(regexString, RegexOptions.IgnoreCase);
         if (reg.IsMatch(checkMatch)) return true;
         else return false;
+    }
+
+    public void AnswerQuestion(Button buttonClicked)
+    {
+        if(questionType[0] == 'M') 
+        {
+            
+        }
+        else if (questionType[0] == 'M')
+        {
+
+        }
+        else //this should never happen
+        {
+            print("Error line 176 of QandA.cs");
+        }
+    }
+
+    private void WrongQuestion() 
+    {
+        
     }
 }

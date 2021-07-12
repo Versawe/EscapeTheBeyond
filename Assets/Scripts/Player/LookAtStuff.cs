@@ -56,7 +56,8 @@ public class LookAtStuff : MonoBehaviour
         PlayerLookingAt();
 
         //checks if the object is interactive
-        if(NoDestroy.puzzleOneLoginAttempts > 2 && NoDestroy.gameProgression == 1) ActivateGUIEvent(lookingAtName);
+        if(NoDestroy.puzzleOneLoginAttempts > 2 && NoDestroy.gameProgression == 1 && lookingAtName != "") ActivateGUIEvent(lookingAtName);
+        else InteractText.SetActive(false);
     }
 
     private void PlayerLookingAt()
