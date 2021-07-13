@@ -54,6 +54,11 @@ public class DoorOpen : MonoBehaviour
     void Update()
     {
         if (doorLocked.IsLocked) return;
+        else if(doorLocked.IsLocked && doorLocked.Puzzle2Trigger) 
+        {
+            //trigger AI and Relic spawn!!!
+            return;
+        }
         playerInput();
         whichSide();
         doorMove();
