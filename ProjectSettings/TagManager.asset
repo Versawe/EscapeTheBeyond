@@ -18,6 +18,7 @@ TagManager:
   - RotateTo
   - aiSpawn
   - mirror
+  - relicSpawn
   layers:
   - Default
   - TransparentFX
