@@ -22,6 +22,7 @@ public class LookAtStuff : MonoBehaviour
 
     Vector3 lockedOnMirror;
     Quaternion lookAtMirror;
+    private bool IsInForms = false;
 
     private void Start()
     {
@@ -55,8 +56,16 @@ public class LookAtStuff : MonoBehaviour
         //sets looking at name variable depending on what player is looking at
         PlayerLookingAt();
 
+        if (IsActivated) HUDScript.isPaused = false; //whenever you are in a gui event, you cannot pause
+
+        //allow you to click enter instead of just clicking button, user's choice
+        if (IsInForms && Input.GetKeyDown(KeyCode.Return) && HUDScript.formBar.text != "")
+        {
+            HUDScript.EnterPasscode();
+        }
+
         //checks if the object is interactive
-        if(NoDestroy.puzzleOneLoginAttempts > 2 && NoDestroy.gameProgression == 1 && lookingAtName != "") ActivateGUIEvent(lookingAtName);
+        if (NoDestroy.puzzleOneLoginAttempts > 2 && NoDestroy.gameProgression == 1 && lookingAtName != "") ActivateGUIEvent(lookingAtName);
         else InteractText.SetActive(false);
     }
 
@@ -180,7 +189,7 @@ public class LookAtStuff : MonoBehaviour
         {
             IsActivated = true;
         }
-        else if (activate && IsActivated)
+        else if (activate && IsActivated && lookingAtName != "Main_mirror")
         {
             IsActivated = false;
         }
@@ -208,6 +217,8 @@ public class LookAtStuff : MonoBehaviour
                 CharMove.enabled = false;
                 CamRotate.enabled = false;
                 HUDScript.PasscodePanel.SetActive(true);
+                IsInForms = true;
+                HUDScript.formBar.ActivateInputField();
                 HUDScript.isPaused = false;
                 InteractText.SetActive(false);
             }
@@ -217,6 +228,8 @@ public class LookAtStuff : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked; //exiting out of isactivated
             CharMove.enabled = true;
             CamRotate.enabled = true;
+            HUDScript.formBar.text = "";
+            IsInForms = false;
             HUDScript.PasscodePanel.SetActive(false);
             HUDScript.Puzzle3Script.enabled = false;
             InteractText.SetActive(true);

@@ -2022,7 +2022,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2355,10 +2355,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DatabaseTextFile: {fileID: 4900000, guid: d840102ebe1e553459b1289a0879e022, type: 3}
   DataBaseSplit: []
+  QuestionsList: []
   QuestionText: {fileID: 1702331413765851579}
   MCPanel: {fileID: 3037594436712525862}
   TEPanel: {fileID: 8274915104153100600}
   StrikesPanel: {fileID: 3426141843627399426}
+  StrikesText: {fileID: 8355008711024492811}
+  EnterButt: {fileID: 2093317361811791327}
   ButtA: {fileID: 7593644161879553282}
   ButtB: {fileID: 2965856470330568262}
   ButtC: {fileID: 7673960579271534986}
@@ -2367,6 +2370,7 @@ MonoBehaviour:
   textB: {fileID: 3379868120696794953}
   textC: {fileID: 8260178813321775251}
   textD: {fileID: 8793955132470657111}
+  formInput: {fileID: 1632674544787210802}
 --- !u!1 &1936826534936033306
 GameObject:
   m_ObjectHideFlags: 0
@@ -3279,7 +3283,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -3729,7 +3733,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3828066613643955873}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6452293807546970560}
+        m_TargetAssemblyTypeName: QandA, Assembly-CSharp
+        m_MethodName: AnswerQuestion
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2093317361811791327}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3426141843627399426
 GameObject:
   m_ObjectHideFlags: 0

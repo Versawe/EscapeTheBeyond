@@ -69,6 +69,14 @@ public class GameHUDActivations : MonoBehaviour
         GUIAppearPerScene();
         TrackingSlideBars();
 
+        //when you cycle through all the questions from the Q&A.cs script (this will never be used in game due to winning or losing)
+        if (pLookAtScript.IsActivated && Puzzle3Script.QuestionsList.Count <= 0 && pLookAtScript.lookingAtName == "Main_mirror")
+        {
+            pLookAtScript.IsActivated = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        } 
+
+        //if TextHint GO does or does not exist
         if (TextHint == null) return;
         else
         {

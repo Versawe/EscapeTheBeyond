@@ -13,7 +13,7 @@ public class QandA : MonoBehaviour
     public TextAsset DatabaseTextFile;
     
     public string[] DataBaseSplit;
-    private List<string> QuestionsList = new List<string>();
+    public List<string> QuestionsList = new List<string>();
     private List<string> AnswersList = new List<string>();
     private List<string> QTypeList = new List<string>();
     private List<string> OtherOptionsList = new List<string>();
@@ -23,7 +23,10 @@ public class QandA : MonoBehaviour
     public GameObject MCPanel;
     public GameObject TEPanel;
     public GameObject StrikesPanel;
+    public TextMeshProUGUI StrikesText;
+    private float strikeCount = 0;
 
+    public Button EnterButt;
     public Button ButtA;
     public Button ButtB;
     public Button ButtC;
@@ -32,6 +35,9 @@ public class QandA : MonoBehaviour
     public TextMeshProUGUI textB;
     public TextMeshProUGUI textC;
     public TextMeshProUGUI textD;
+    public TMP_InputField formInput;
+    GameObject myEventSystem;
+    private bool IsInForms = false;
 
     private string currentQ;
     private string currentA; //for form questions this will contain Regex that will be compared to playerA
@@ -39,14 +45,20 @@ public class QandA : MonoBehaviour
     private string otherOptions; 
     private string playerA;
 
+    private float wrongTimer = 2;
+    private bool WasWrongGuess = false;
+
     private void Awake()
     {
         //Creates an array from the text file
         DataBaseSplit = DatabaseTextFile.text.Split('\n');    
         MCChoices.Clear();
+
+        myEventSystem = GameObject.Find("EventSystem");
     }
     void OnEnable()
     {
+        //each enable script will resplit the databasesplit array by the '@' delimeter and put the texts in their respective Lists
         for (int i = 0; i < DataBaseSplit.Length - 1; i++)
         {
             string[] newSplit;
@@ -56,12 +68,13 @@ public class QandA : MonoBehaviour
             QTypeList.Add(newSplit[2]);
             OtherOptionsList.Add(newSplit[3]);
         }
-
+        //Starts off Questions
         RandomQuestion(QuestionsList);
     }
 
     private void OnDisable()
     {
+        //resets all Lists so questions can repeat on next attempt & deactivates GUI's
         QuestionsList.Clear();
         AnswersList.Clear();
         QTypeList.Clear();
@@ -74,21 +87,33 @@ public class QandA : MonoBehaviour
 
     private void Update()
     {
-        //setup for testing when function is called
-        if (Input.GetKeyUp("r") && QuestionsList.Count > 0) 
+        //to be able to click enter instead of clicking form question buttons
+        if (IsInForms && Input.GetKeyDown(KeyCode.Return) && formInput.text != "")
         {
+            AnswerQuestion(EnterButt);
+        }
+        //delay timer after wrong guess (will be used for jumpscares)
+        if (WasWrongGuess)
+        {
+            wrongTimer -= 1 * Time.deltaTime;
+        }
+        if (wrongTimer <= 0)
+        {
+            print("Wrong answer");
+            strikeCount++;
+            WasWrongGuess = false;
             RandomQuestion(QuestionsList);
+            wrongTimer = 2;
         }
-        else if(Input.GetKeyUp("r") && QuestionsList.Count <= 0) // not needed
-        {
-            print("out");
-        }
-        
+
+        //sets the number of strikes to the gui display for players
+        StrikesText.text = strikeCount.ToString();
     }
 
     public void RandomQuestion(List<string> list) //made to call for when a random Q&A needs to be generated
     {
         float rand = Random.Range(0, list.Count); //generates random number between 0 and current length of the list (list is always changing)
+        formInput.text = "";
 
         //grabs random number from 0th ele to list.Count
         currentQ = QuestionsList[(int) rand];
@@ -118,9 +143,11 @@ public class QandA : MonoBehaviour
         }
         else if(questionType[0] == 'F')
         {
+            IsInForms = true;
             //show correct ui
             TEPanel.SetActive(true);
             MCPanel.SetActive(false);
+            formInput.ActivateInputField();
         }
         //display correct question
         QuestionText.gameObject.SetActive(true);
@@ -135,7 +162,8 @@ public class QandA : MonoBehaviour
         MCChoices.Clear();
     }
 
-    private List<string> AddReorderLists(string answer, List<string> List2) 
+    //this function reorders the multiple choice options and answer to randomly display options
+    private List<string> AddReorderLists(string answer, List<string> List2)
     {
         List<string> aList = new List<string>();
         List<string> randomList = new List<string>();
@@ -155,6 +183,7 @@ public class QandA : MonoBehaviour
         return randomList;
     }
 
+    //this is used for regular expression checks on form answers
     private bool DoesRegexMatch(string regexString, string checkMatch)
     {
         Regex reg = new Regex(regexString, RegexOptions.IgnoreCase);
@@ -162,24 +191,45 @@ public class QandA : MonoBehaviour
         else return false;
     }
 
+    //attached to all buttons and used to determine if player's answer is corrrect
     public void AnswerQuestion(Button buttonClicked)
     {
-        if(questionType[0] == 'M') 
+        if(questionType[0] == 'M') // check answer for multiple choice questions
         {
-            
+            playerA = buttonClicked.GetComponentInChildren<TextMeshProUGUI>().text;
+            if (playerA == currentA)
+            {
+                print("correct answer");
+                MCPanel.SetActive(false);
+                RandomQuestion(QuestionsList);
+            }
+            else
+            {
+                MCPanel.SetActive(false);
+                WasWrongGuess = true;
+            }
         }
-        else if (questionType[0] == 'M')
+        else if (questionType[0] == 'F') // check answer for form questions
         {
-
+            IsInForms = false;
+            playerA = formInput.text;
+            if (DoesRegexMatch(currentA, playerA))
+            {
+                print("correct answer");
+                TEPanel.SetActive(false);
+                RandomQuestion(QuestionsList);
+            }
+            else
+            {
+                TEPanel.SetActive(false);
+                WasWrongGuess = true;
+            }
+            formInput.text = "";
         }
         else //this should never happen
         {
             print("Error line 176 of QandA.cs");
         }
-    }
-
-    private void WrongQuestion() 
-    {
-        
+        //myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
     }
 }
