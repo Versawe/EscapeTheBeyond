@@ -19,6 +19,7 @@ TagManager:
   - aiSpawn
   - mirror
   - relicSpawn
+  - relic
   layers:
   - Default
   - TransparentFX

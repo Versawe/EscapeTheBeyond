@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5965868080557875434}
+  - component: {fileID: 8984513035921826597}
+  - component: {fileID: 4849368375266317107}
   m_Layer: 2
   m_Name: RelicSpawnPoint
   m_TagString: relicSpawn
@@ -30,3 +32,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8984513035921826597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6433833241964910141}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d860c266458552b40ae91dbb57d4e842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  despawn: 1
+--- !u!114 &4849368375266317107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6433833241964910141}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48cd2f88237ec1740a1097298961d3dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RelicOBJ: {fileID: 6099563720968966037, guid: 48e20767cae941d46b2a3ed2d5b66457,
+    type: 3}

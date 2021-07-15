@@ -13,7 +13,7 @@ public class RelicHuntScript : MonoBehaviour
     void OnEnable()
     {
         RipperAI = GameObject.Find("ripperAI");
-        RipperAI.SetActive(false);
+        if(RipperAI != null) RipperAI.SetActive(false);
         RelicHub = GameObject.Find("RelicSpawnLocations");
 
         foreach(GameObject HubChild in GameObject.FindGameObjectsWithTag("relicSpawn")) 
@@ -23,13 +23,14 @@ public class RelicHuntScript : MonoBehaviour
 
         ChosenList = CreateNewList(RelicList);
 
-        foreach(GameObject point in GameObject.FindGameObjectsWithTag("relicSpawn")) 
-        {
-            point.SetActive(false);
-        }
         foreach (GameObject point in ChosenList)
         {
             point.SetActive(true);
+            point.GetComponent<RelicSpawnLocation>().enabled = true;
+        }
+        foreach (GameObject point in RelicList)
+        {
+            if (!point.GetComponent<RelicSpawnLocation>().isActiveAndEnabled) point.GetComponent<DestroyOBJ>().enabled = true;
         }
     }
 
@@ -47,10 +48,10 @@ public class RelicHuntScript : MonoBehaviour
         {
             int randomIndex = Random.Range(0, thisList.Count);
             randomList.Add(thisList[randomIndex]);
-            print(thisList[randomIndex].name);
+            //print(thisList[randomIndex].name);
             thisList.RemoveAt(randomIndex);
         }
-        print(randomList.Count);
+        //print(randomList.Count);
         return randomList;
     }
 }

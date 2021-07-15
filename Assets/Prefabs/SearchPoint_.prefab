@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6275464296261472702}
   - component: {fileID: 4508238625312307043}
   - component: {fileID: 3309173652946789977}
-  - component: {fileID: 540849204466666960}
+  - component: {fileID: 788469892036230231}
   m_Layer: 2
   m_Name: SearchPoint_
   m_TagString: searchPoint
@@ -113,7 +113,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &540849204466666960
+--- !u!114 &788469892036230231
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d860c266458552b40ae91dbb57d4e842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  despawn: 20

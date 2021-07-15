@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroySP : MonoBehaviour
+public class DestroyOBJ : MonoBehaviour
 {
-    private float despawn = 20;
+    public float despawn = 20;
 
 
     private void FixedUpdate()
