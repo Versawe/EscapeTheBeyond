@@ -18,9 +18,18 @@ public class FindPoints : MonoBehaviour
     private float pointRadius;
     public GameObject targetCopy;
 
+    private void Awake()
+    {
+
+        foreach (GameObject search in GameObject.FindGameObjectsWithTag("searchPointAdvanced"))
+        {
+            pointList.Add(search);
+        }
+    }
+
     private void OnEnable()
     {
-        Monster.GetComponent<RipperAIMain>().aiState = "Search";
+        Monster.GetComponent<AIMain>().aiState = "Search";
         co = destroyDoors();
         nm = GetComponent<NavMeshAgent>();
         
@@ -62,7 +71,7 @@ public class FindPoints : MonoBehaviour
         StopCoroutine(co);
         searchDone = false;
         pointTargets.Clear();
-        Monster.GetComponent<RipperAIMain>().aiState = "Patrol";
+        Monster.GetComponent<AIMain>().aiState = "Patrol";
     }
 
     private IEnumerator destroyDoors()

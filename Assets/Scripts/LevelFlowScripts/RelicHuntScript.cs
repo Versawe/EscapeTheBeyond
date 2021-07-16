@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class RelicHuntScript : MonoBehaviour
 {
+    public List<GameObject> AiSpawns = new List<GameObject>();
+    public GameObject RipperAIPrefab;
     GameObject RelicHub;
     List<GameObject> RelicList = new List<GameObject>();
     List<GameObject> ChosenList = new List<GameObject>();
     GameObject RipperAI;
-    //bool IsHuntStart = false;
+    public bool IsHuntStart = false;
 
     void OnEnable()
     {
-        RipperAI = GameObject.Find("ripperAI");
-        if(RipperAI != null) RipperAI.SetActive(false);
-        RelicHub = GameObject.Find("RelicSpawnLocations");
+        foreach (GameObject spawns in GameObject.FindGameObjectsWithTag("aiSpawn"))
+        {
+            AiSpawns.Add(spawns);
+        }
+
+        IsHuntStart = true;
+        RipperAI = Instantiate(RipperAIPrefab, AiSpawns[0].transform.position, AiSpawns[0].transform.rotation);
 
         foreach(GameObject HubChild in GameObject.FindGameObjectsWithTag("relicSpawn")) 
         {

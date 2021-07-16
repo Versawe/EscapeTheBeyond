@@ -11,13 +11,13 @@ public class TextLookAtCamera : MonoBehaviour
     public GameObject playerCamera;
     public GameObject ripper;
 
-    RipperAIMain AIscript;
+    AIMain AIscript;
 
     // Start is called before the first frame update
     void Start()
     {
         playerCamera = GameObject.Find("FirstPersonCharacter");
-        AIscript = GetComponentInParent<RipperAIMain>();
+        AIscript = GetComponentInParent<AIMain>();
         mr = GetComponent<MeshRenderer>();
         mr.enabled = true;
     }

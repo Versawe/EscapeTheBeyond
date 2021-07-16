@@ -53,12 +53,7 @@ public class DoorOpen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (doorLocked.IsLocked) return;
-        else if(doorLocked.IsLocked && doorLocked.Puzzle2Trigger) 
-        {
-            //trigger AI and Relic spawn!!!
-            return;
-        }
+        if (doorLocked.IsLocked && !doorLocked.Puzzle2Trigger) return;
         playerInput();
         whichSide();
         doorMove();
@@ -67,14 +62,16 @@ public class DoorOpen : MonoBehaviour
     private void playerInput()
     {
         //eDown = Input.GetKeyDown("e");
-        if (Input.GetKeyDown("e") && seeDoorScript.lookingAtName == gameObject.name)
+        if (Input.GetKeyDown("e") && seeDoorScript.lookingAtName == gameObject.name && !doorLocked.Puzzle2Trigger) //this opens the door through input
         {
             //eDown = true;
             doOnce = true;
         }
-        if (Input.GetKeyUp("e"))
+        else if (Input.GetKeyUp("e") && seeDoorScript.lookingAtName == gameObject.name && doorLocked.Puzzle2Trigger) //this is to trigger puzzle 2
         {
-            //eDown = false;
+            GameObject thisOBJ = GameObject.Find("NoDestroyOBJ");
+            thisOBJ.GetComponent<NoDestroy>().huntScript.enabled = true;
+            doorLocked.Puzzle2Trigger = false;
         } 
     }
 

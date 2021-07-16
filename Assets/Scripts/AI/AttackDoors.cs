@@ -8,11 +8,11 @@ using UnityEngine.SceneManagement;
 public class AttackDoors : MonoBehaviour
 {
     private string[] tag_list = { "DoorX", "DoorZ"};
-    RipperAIMain mainScript;
+    AIMain mainScript;
 
     private void Start()
     {
-        mainScript = GetComponentInParent<RipperAIMain>();
+        mainScript = GetComponentInParent<AIMain>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,6 +26,9 @@ public class AttackDoors : MonoBehaviour
                     mainScript.doorTarget = other.gameObject;
                     mainScript.destroyObj = true;
 
+                    //checks which point on either side of door, the AI is closer to
+                    //this is here so the AI will attack the door from the side he is coming from
+                    //was a big error when you slammed the door on AI and he would clip through then turn around and attack door
                     Vector3 point1 = other.gameObject.transform.GetChild(2).position;
                     Vector3 point2 = other.gameObject.transform.GetChild(3).position;
                     Vector3 doorPoint = other.gameObject.transform.GetChild(4).position;

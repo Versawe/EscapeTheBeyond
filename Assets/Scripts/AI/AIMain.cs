@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
 
-public class RipperAIMain : MonoBehaviour
+public class AIMain : MonoBehaviour
 {
     //nav mesh agent variable
     NavMeshAgent nm;
@@ -22,6 +22,7 @@ public class RipperAIMain : MonoBehaviour
     Transform farthestSpawn;
     private bool isScaring = false;
     private float scareTimer = 2.5f;
+    private string AIName;
 
     PlayerHealth pHealth;
 
@@ -77,9 +78,33 @@ public class RipperAIMain : MonoBehaviour
     private float wasScreamingTimer = 0.5f;
     private float chasePlusTimer = 10;
 
+    void Awake()
+    {
+        List<GameObject> temp = new List<GameObject>();
+        foreach (GameObject spawn in GameObject.FindGameObjectsWithTag("aiSpawn"))
+        {
+            temp.Add(spawn);
+        }
+        SpawnPoint1 = temp[0].transform;
+        SpawnPoint2 = temp[1].transform;
+        temp.Clear();
+        foreach (GameObject patrol in GameObject.FindGameObjectsWithTag("patrolPoint"))
+        {
+            temp.Add(patrol);
+        }
+        if (gameObject.name.Substring(0, 1) == "r")
+        {
+            patrolPoint1 = temp[0].transform;
+            patrolPoint2 = temp[1].transform;
+            patrolPoint3 = temp[2].transform;
+            patrolPoint4 = temp[3].transform;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
+        AIName = gameObject.name;
+
         nm = GetComponent<NavMeshAgent>();
         player = GameObject.Find("FPSController");
         pHealth = player.GetComponent<PlayerHealth>();
@@ -386,6 +411,7 @@ public class RipperAIMain : MonoBehaviour
         float dist2 = Vector3.Distance(player.transform.position, SpawnPoint2.position);
         if (dist <= scareDis && !hideScript.isHiding)
         {
+            player.GetComponent<ScareCam>().nameOfAI = AIName;
             player.GetComponent<ScareCam>().enabled = true;
             isScaring = true;
             if (wasScreaming) aiState = State[1];

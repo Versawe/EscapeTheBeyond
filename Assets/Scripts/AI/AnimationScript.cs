@@ -5,7 +5,7 @@ using UnityEngine;
 public class AnimationScript : MonoBehaviour
 {
     //animation trigger vars
-    RipperAIMain MonsterScript;
+    AIMain MonsterScript;
     FindPoints searchScript;
 
     private Animator ripAnimate;
@@ -17,10 +17,12 @@ public class AnimationScript : MonoBehaviour
     private bool jump = false;
     private bool run = false;
 
+    //NOTE: This is for the RIPPER, might need seperate aniation scripts for AI!!
+
     // Start is called before the first frame update
     void Start()
     {
-        MonsterScript = GetComponent<RipperAIMain>();
+        MonsterScript = GetComponent<AIMain>();
         searchScript = GetComponent<FindPoints>();
         ripAnimate = GetComponent<Animator>();
     }

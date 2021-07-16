@@ -6,7 +6,8 @@ public class ScareCam : MonoBehaviour
 {
 
     public Camera FPSCamera;
-    public GameObject scareScene;
+    public GameObject ripperScene;
+    public string nameOfAI;
 
     PlayerHealth pHealth;
     CameraRotationFirstPerson camScript;
@@ -21,7 +22,7 @@ public class ScareCam : MonoBehaviour
 
     private void OnEnable()
     {
-        scareScene.gameObject.SetActive(true);
+        if(nameOfAI.Substring(0,1) == "r") ripperScene.gameObject.SetActive(true);
         FPSCamera.enabled = false;
         pMoveScript.enabled = false;
         camScript.enabled = false;
@@ -31,11 +32,11 @@ public class ScareCam : MonoBehaviour
     {
         if (pHealth.health > 0) 
         {
-            scareScene.gameObject.SetActive(false);
+            if (nameOfAI.Substring(0, 1) == "r") ripperScene.gameObject.SetActive(false);
             FPSCamera.enabled = true;
             pMoveScript.enabled = true;
             camScript.enabled = true;
+            nameOfAI = "";
         }
-        
     }
 }

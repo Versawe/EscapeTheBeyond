@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334e5bbd2de05aa43b50b369718abc0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  huntScript: {fileID: 0}
 --- !u!114 &6611751175576856607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,3 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41fecad2f8f43f469eac01759f1e3c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AISpawnPoint: {fileID: 0}
+  RipperAIPrefab: {fileID: 4007829957398783266, guid: b1ded21bd63df754a806e7dbf68a57d9,
+    type: 3}
+  IsHuntStart: 0

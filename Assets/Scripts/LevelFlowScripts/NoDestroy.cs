@@ -27,7 +27,7 @@ public class NoDestroy : MonoBehaviour
 
     string persistantPath;
 
-    RelicHuntScript huntScript;
+    public RelicHuntScript huntScript;
 
     // Start is called before the first frame update
     void Awake()
@@ -59,10 +59,10 @@ public class NoDestroy : MonoBehaviour
             ResetVarsWhenMainMenu();
             Cursor.lockState = CursorLockMode.None;
         }
-        else if (actualScene.name == "RelicHunt") 
+        /*else if (actualScene.name == "RelicHunt") 
         {
             huntScript.enabled = true;
-        }
+        }*/
         else // currSceneName var always updates correctly
         {
             currSceneName = actualScene.name;

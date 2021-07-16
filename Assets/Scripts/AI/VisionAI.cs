@@ -9,7 +9,7 @@ public class VisionAI : MonoBehaviour
 
     GameObject Player;
     Transform Monster;
-    RipperAIMain mainScript;
+    AIMain mainScript;
     PlayerHiding hideScript;
 
     private Ray upperSight;
@@ -18,7 +18,7 @@ public class VisionAI : MonoBehaviour
     public bool ray1See = false;
     public bool ray2See = false;
 
-    //This script is attached to the child of the ripperAI called AISight
+    //This script is attached to the child of the AI called AISight
     //AIsight is a trigger box in the line of sigh for the AI, if the player...
     // is in the box rays will automatically go out and look directly at the player.
     //the rays will check if there are any objects inbetween the AI and the player.
@@ -30,7 +30,7 @@ public class VisionAI : MonoBehaviour
         hideScript = Player.GetComponentInChildren<PlayerHiding>();
 
         Monster = GetComponentInParent<Transform>();
-        mainScript = GetComponentInParent<RipperAIMain>();
+        mainScript = GetComponentInParent<AIMain>();
     }
     // Update is called once per frame
     void Update()
