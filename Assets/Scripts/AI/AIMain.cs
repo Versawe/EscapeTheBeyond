@@ -80,30 +80,37 @@ public class AIMain : MonoBehaviour
 
     void Awake()
     {
-        List<GameObject> temp = new List<GameObject>();
-        foreach (GameObject spawn in GameObject.FindGameObjectsWithTag("aiSpawn"))
+        List<GameObject> temp = new List<GameObject>(); //temp list for finding objects on scene start
+        foreach (GameObject spawn in GameObject.FindGameObjectsWithTag("aiSpawn")) //grabs all spawn points in the scene
         {
             temp.Add(spawn);
         }
         SpawnPoint1 = temp[0].transform;
         SpawnPoint2 = temp[1].transform;
         temp.Clear();
-        foreach (GameObject patrol in GameObject.FindGameObjectsWithTag("patrolPoint"))
+        foreach (GameObject patrol in GameObject.FindGameObjectsWithTag("patrolPoint")) //grabs all patrol poiints in the scene
         {
             temp.Add(patrol);
         }
-        if (gameObject.name.Substring(0, 1) == "r")
+        if (gameObject.name.Substring(0, 1) == "r") //if the AI is the Ripper
         {
             patrolPoint1 = temp[0].transform;
             patrolPoint2 = temp[1].transform;
             patrolPoint3 = temp[2].transform;
             patrolPoint4 = temp[3].transform;
         }
+        else //if it's not the ripper it is given a different patrol path a have a variety
+        {
+            patrolPoint1 = temp[1].transform;
+            patrolPoint2 = temp[4].transform;
+            patrolPoint3 = temp[5].transform;
+            patrolPoint4 = temp[6].transform;
+        }
     }
     // Start is called before the first frame update
     void Start()
     {
-        AIName = gameObject.name;
+        AIName = gameObject.name; // gets the name of the AI
 
         nm = GetComponent<NavMeshAgent>();
         player = GameObject.Find("FPSController");
@@ -361,7 +368,6 @@ public class AIMain : MonoBehaviour
         {
             nm.SetDestination(patrolPoint4.position);
         }
-
     }
 
     //losing visual on player function
