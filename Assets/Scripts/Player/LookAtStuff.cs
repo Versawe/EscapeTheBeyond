@@ -7,7 +7,7 @@ public class LookAtStuff : MonoBehaviour
 {
     //Raycast variables
     private Ray pSight;
-    RaycastHit pSeeDoor;
+    RaycastHit pSeeOBJ;
     private float sightDistance = 2f;
     public string lookingAtName; //IMPORTANT VAR (used in other scripts)
 
@@ -23,6 +23,8 @@ public class LookAtStuff : MonoBehaviour
     Vector3 lockedOnMirror;
     Quaternion lookAtMirror;
     private bool IsInForms = false;
+
+    GameObject CurrRelic;
 
     private void Start()
     {
@@ -47,6 +49,7 @@ public class LookAtStuff : MonoBehaviour
 
         //null from start
         guiEventScript = null;
+        CurrRelic = null;
     }
     // Update is called once per frame
     void Update()
@@ -64,6 +67,10 @@ public class LookAtStuff : MonoBehaviour
             HUDScript.EnterPasscode();
         }
 
+        if(NoDestroy.gameProgression == 2 && lookingAtName != "" && lookingAtName.Substring(0,1) == "R") ActivateGUIEvent(lookingAtName);
+        else InteractText.SetActive(false);
+
+        if (NoDestroy.gameProgression == 2) return;
         //checks if the object is interactive
         if (NoDestroy.puzzleOneLoginAttempts > 2 && NoDestroy.gameProgression == 1 && lookingAtName != "") ActivateGUIEvent(lookingAtName);
         else InteractText.SetActive(false);
@@ -74,7 +81,7 @@ public class LookAtStuff : MonoBehaviour
         if (IsActivated) return;
         // statement to determine if you are in a wardrobe, or not. This helps set the lookingAtName to a wardrobe you are in
         //this was added so you do not need to look at the wardrobe to open and close it when inside it (better for gameplay)
-        if (hideScript != null) // this if & else was used for when the player is not in the RelicHunt Scene
+        if (hideScript != null) // this if & else was used for when the player is not in the RelicHunt Scene. if = RelicHunt, else = Not
         {
             if (hideScript.inBounds && hideScript.wardrobeHiding != null)
             {
@@ -82,24 +89,29 @@ public class LookAtStuff : MonoBehaviour
             }
             else // else the lookingAtName will be the name of the GameObject the player is looking at (only used for doors & wardrobes currently)
             {
-                if (Physics.Raycast(pSight, out pSeeDoor, sightDistance)) //what is the player looking at???
+                if (Physics.Raycast(pSight, out pSeeOBJ, sightDistance)) //what is the player looking at???
                 {
-                    if (pSeeDoor.collider == null)
+                    if (pSeeOBJ.collider == null)
                     {
                         lookingAtName = "";
                     }
                     //for wardrobes and door's name to get added to lookingAtName
-                    if (pSeeDoor.collider.tag == "DoorX" || pSeeDoor.collider.tag == "DoorZ")
+                    if (pSeeOBJ.collider.tag == "DoorX" || pSeeOBJ.collider.tag == "DoorZ")
                     {
-                        lookingAtName = pSeeDoor.collider.gameObject.name;
+                        lookingAtName = pSeeOBJ.collider.gameObject.name;
                     }
-                    else if (pSeeDoor.collider.tag == "mirror") //excluded from relic hunt scene for now
+                    else if (pSeeOBJ.collider.tag == "mirror") //excluded from relic hunt scene for now
                     {
-                        lookingAtName = pSeeDoor.collider.gameObject.name;
+                        lookingAtName = pSeeOBJ.collider.gameObject.name;
                     }
-                    else if (pSeeDoor.collider.tag == "warDoor")
+                    else if (pSeeOBJ.collider.tag == "warDoor")
                     {
-                        lookingAtName = pSeeDoor.collider.gameObject.transform.parent.name;
+                        lookingAtName = pSeeOBJ.collider.gameObject.transform.parent.name;
+                    }
+                    else if (pSeeOBJ.collider.tag == "relic") //for collectable relics
+                    {
+                        lookingAtName = pSeeOBJ.collider.gameObject.name;
+                        CurrRelic = pSeeOBJ.collider.gameObject;
                     }
                     else //if not looking at any interactive thing for insurance
                     {
@@ -114,20 +126,20 @@ public class LookAtStuff : MonoBehaviour
         }
         else
         {
-            if (Physics.Raycast(pSight, out pSeeDoor, sightDistance)) //what is the player looking at???
+            if (Physics.Raycast(pSight, out pSeeOBJ, sightDistance)) //what is the player looking at???
             {
-                if (pSeeDoor.collider == null)
+                if (pSeeOBJ.collider == null)
                 {
                     lookingAtName = "";
                 }
                 //for wardrobes and door's name to get added to lookingAtName
-                if (pSeeDoor.collider.tag == "DoorX" || pSeeDoor.collider.tag == "DoorZ")
+                if (pSeeOBJ.collider.tag == "DoorX" || pSeeOBJ.collider.tag == "DoorZ")
                 {
-                    lookingAtName = pSeeDoor.collider.gameObject.name;
+                    lookingAtName = pSeeOBJ.collider.gameObject.name;
                 }
-                else if (pSeeDoor.collider.tag == "warDoor")
+                else if (pSeeOBJ.collider.tag == "warDoor")
                 {
-                    lookingAtName = pSeeDoor.collider.gameObject.transform.parent.name;
+                    lookingAtName = pSeeOBJ.collider.gameObject.transform.parent.name;
                 }
                 else //if not looking at any interactive thing for insurance
                 {
@@ -154,6 +166,7 @@ public class LookAtStuff : MonoBehaviour
 
     private void ActivateGUIEvent(string GUIEventName)
     {
+        print(GUIEventName);
         if (GameObject.Find(GUIEventName) && !HUDScript.isPaused)
         {
             GameObject GUIEventOBJ = GameObject.Find(GUIEventName);
@@ -166,17 +179,22 @@ public class LookAtStuff : MonoBehaviour
             else
             {
                 guiEventScript = null;
+                CurrRelic = null;
                 InteractText.SetActive(false);
             }
 
-            lockedOnMirror = new Vector3(GUIEventOBJ.transform.position.x - 2, GUIEventOBJ.transform.position.y - 0.35f, GUIEventOBJ.transform.position.z);
-            Vector3 dir = GUIEventOBJ.transform.position - transform.position;
-            lookAtMirror = Quaternion.LookRotation(dir, Vector3.up);
+            if (GUIEventName == "Main_mirror")
+            {
+                lockedOnMirror = new Vector3(GUIEventOBJ.transform.position.x - 2, GUIEventOBJ.transform.position.y - 0.35f, GUIEventOBJ.transform.position.z);
+                Vector3 dir = GUIEventOBJ.transform.position - transform.position;
+                lookAtMirror = Quaternion.LookRotation(dir, Vector3.up);
+            }
             InteractiveInput();
         }
         else
         {
             guiEventScript = null;
+            CurrRelic = null;
             InteractText.SetActive(false);
         }
     }
@@ -185,13 +203,17 @@ public class LookAtStuff : MonoBehaviour
     {
         //toggles when e was pressed and unpressed
         bool activate = Input.GetKeyDown("e");
-        if (activate && !IsActivated)
+        if (activate && !IsActivated && lookingAtName.Substring(0, 1) != "R")
         {
             IsActivated = true;
         }
         else if (activate && IsActivated && lookingAtName != "Main_mirror")
         {
             IsActivated = false;
+        }
+        else if (activate && !IsActivated && lookingAtName.Substring(0, 1) == "R")
+        {
+            CollectRelic();
         }
 
         //what happens when successfully activated or deactivated
@@ -234,5 +256,12 @@ public class LookAtStuff : MonoBehaviour
             HUDScript.Puzzle3Script.enabled = false;
             InteractText.SetActive(true);
         }
+    }
+
+    private void CollectRelic()
+    {
+        Destroy(CurrRelic);
+        CurrRelic = null;
+        HUDScript.relicCollected++;
     }
 }

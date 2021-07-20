@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5965868080557875434}
   - component: {fileID: 8984513035921826597}
   - component: {fileID: 4849368375266317107}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: RelicSpawnPoint
   m_TagString: relicSpawn
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
