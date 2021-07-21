@@ -41,21 +41,22 @@ public class AnimationScript : MonoBehaviour
         {
             if (MonsterScript.aiState == "Still")
             {
-                AnimationTriggers("Idle");
+                AnimationTriggers("Idle"); //idle
             }
             else if (MonsterScript.aiState == "Chase" || MonsterScript.aiState == "Track")
             {
-                AnimationTriggers("Chase");
+                AnimationTriggers("Chase"); //angrywalk
             }
             else if (MonsterScript.aiState == "Patrol")
             {
                 if (MonsterScript.IsScreaming)
                 {
-                    AnimationTriggers("jump");
+                    if (MonsterScript.IsRipper) AnimationTriggers("jump");
+                    else AnimationTriggers("Chase");
                 }
                 else 
                 {
-                    AnimationTriggers("Walk");
+                    AnimationTriggers("Walk"); //walking
                 }
             }
             else if (MonsterScript.aiState == "Search")
@@ -66,7 +67,8 @@ public class AnimationScript : MonoBehaviour
                     if (distanceBetweenTarget <= 0.1f)
                     {
                         //search animation
-                        AnimationTriggers("Search");
+                        if (MonsterScript.IsRipper) AnimationTriggers("Search");
+                        else AnimationTriggers("Idle");
                     }
                     else
                     {
@@ -76,12 +78,13 @@ public class AnimationScript : MonoBehaviour
             }
             else if (MonsterScript.aiState == "ChasePlus")
             {
-                AnimationTriggers("run");
+                if(MonsterScript.IsRipper) AnimationTriggers("run");
+                else AnimationTriggers("Chase");
             }
         }
         else
         {
-            AnimationTriggers("Attack");
+            AnimationTriggers("Attack"); //attacking
         }
     }
 

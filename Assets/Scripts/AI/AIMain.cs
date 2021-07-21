@@ -23,6 +23,7 @@ public class AIMain : MonoBehaviour
     private bool isScaring = false;
     private float scareTimer = 2.5f;
     private string AIName;
+    public bool IsRipper = false;
 
     PlayerHealth pHealth;
 
@@ -59,10 +60,10 @@ public class AIMain : MonoBehaviour
     private bool speedBoost = false;
     private float checkForBoostTimer = 5;
     private float checkForBoostRandom = 11;
-    private float ripperSpeed = 2.7f;
-    private float ripperSpeedBoost = 500f;
+    private float AISpeed;
+    private float AISpeedBoost;
     private float speedBoostLength = 0.25f;
-    private float speedBoostChance = 4; // var / 10 chance to speed boost every 5 seconds while chasing
+    private float speedBoostChance = 3; // var / 10 chance to speed boost every 5 seconds while chasing
 
     //scream state vars
     public bool IsScreaming = false;
@@ -70,7 +71,7 @@ public class AIMain : MonoBehaviour
     private float checkForScreamTimer = 10;
     private float checkForScreamRandom = 11;
     private float screamLength = 5f;
-    private float screamChance = 3; // var / 10 chance to go into scream state every 10 seconds while patrolling (base is 1 or 2, switch to 9 or 10 if testing)
+    private float screamChance = 2; // var / 10 chance to go into scream state every 10 seconds while patrolling (base is 1 or 2, switch to 9 or 10 if testing)
 
     AIScream ScreamScript;
 
@@ -92,32 +93,54 @@ public class AIMain : MonoBehaviour
         {
             temp.Add(patrol);
         }
-        if (gameObject.name.Substring(0, 1) == "r") //if the AI is the Ripper
+        if(gameObject.name.Substring(0,1) == "r")
         {
             patrolPoint1 = temp[0].transform;
             patrolPoint2 = temp[1].transform;
             patrolPoint3 = temp[2].transform;
             patrolPoint4 = temp[3].transform;
         }
-        else //if it's not the ripper it is given a different patrol path a have a variety
+        temp.Clear();
+        foreach (GameObject patrol in GameObject.FindGameObjectsWithTag("patrolPoint2")) //grabs all patrol poiints in the scene
         {
-            patrolPoint1 = temp[1].transform;
-            patrolPoint2 = temp[4].transform;
-            patrolPoint3 = temp[5].transform;
-            patrolPoint4 = temp[6].transform;
+            temp.Add(patrol);
         }
+        if (gameObject.name.Substring(0, 1) != "r")
+        {
+            patrolPoint1 = temp[0].transform;
+            patrolPoint2 = temp[1].transform;
+            patrolPoint3 = temp[2].transform;
+            patrolPoint4 = temp[3].transform;
+        }
+        temp.Clear();
     }
     // Start is called before the first frame update
     void Start()
     {
+        //Physics.IgnoreLayerCollision(1, 2);
         AIName = gameObject.name; // gets the name of the AI
+        if (AIName.Substring(0, 1) == "r") //changed variables for Ripper
+        {
+            AISpeed = 2.7f;
+            AISpeedBoost = 500f;
+            IsRipper = true;
+        }
+        else //changed variables for mutant zombies
+        {
+            AISpeed = 2.5f;
+            AISpeedBoost = 700f;
+            IsRipper = false;
+            screamChance = 0; //cannot scream
+            speedBoostChance = 5; //higher chance at speed boost during chase
+        }
 
         nm = GetComponent<NavMeshAgent>();
         player = GameObject.Find("FPSController");
         pHealth = player.GetComponent<PlayerHealth>();
         if (player) hideScript = player.GetComponentInChildren<PlayerHiding>();
 
-        nm.stoppingDistance = 0.75f;
+        if (IsRipper) nm.stoppingDistance = 0.75f;
+        else nm.stoppingDistance = 0.65f;
 
         //scream script check
         ScreamScript = GetComponent<AIScream>();
@@ -171,7 +194,7 @@ public class AIMain : MonoBehaviour
             //actually just raises speed super high for short time, but will seem like he blinks forward
             if (!speedBoost)
             {
-                nm.speed = ripperSpeed;
+                nm.speed = AISpeed;
                 checkForBoostTimer -= 1 * Time.deltaTime;
                 if (checkForBoostTimer <= 0)
                 {
@@ -196,7 +219,7 @@ public class AIMain : MonoBehaviour
                 if (speedBoostLength >= 0) 
                 {
                     speedBoostLength -= 1 * Time.deltaTime;
-                    nm.speed = ripperSpeedBoost;
+                    nm.speed = AISpeedBoost;
                 } 
                 else
                 {
@@ -224,7 +247,7 @@ public class AIMain : MonoBehaviour
         {
             //blink-boost logic
             //actually just raises speed super high for short time, but will seem like he blinks forward
-            nm.speed = ripperSpeed;
+            nm.speed = AISpeed;
             if (!IsScreaming)
             {
                 nm.isStopped = false;
@@ -234,10 +257,10 @@ public class AIMain : MonoBehaviour
                 checkForScreamTimer -= 1 * Time.deltaTime;
                 if (checkForScreamTimer <= 0)
                 {
-                    checkForScreamRandom = UnityEngine.Random.Range(0, 10);
+                    checkForScreamRandom = UnityEngine.Random.Range(1, 11);
+                    if (AIName.Substring(0, 1) == "r") print(checkForScreamRandom);
                     if (checkForScreamRandom <= screamChance)
                     {
-                        //print("Scream State!!!");
                         IsScreaming = true;
                         wasScreaming = true;
                     }
@@ -293,7 +316,7 @@ public class AIMain : MonoBehaviour
         {
             nm.isStopped = false;
             nm.updateRotation = true;
-            nm.speed = ripperSpeed;
+            nm.speed = AISpeed;
             GameObject searchPointClone;
             searchPointClone = GameObject.FindGameObjectWithTag("searchPoint");
             if (GameObject.FindGameObjectWithTag("searchPoint") && aiState == "Track")
@@ -311,7 +334,7 @@ public class AIMain : MonoBehaviour
         //THIS SHOULD WORK
         if (aiState == "Search")
         {
-            nm.speed = ripperSpeed;
+            nm.speed = AISpeed;
             thisMonster.GetComponent<FindPoints>().enabled = true;
             if (thisMonster.GetComponent<FindPoints>().searchDone) 
             {
@@ -325,12 +348,12 @@ public class AIMain : MonoBehaviour
             nm.SetDestination(player.transform.position);
             nm.updateRotation = true;
             thisMonster.GetComponent<FindPoints>().enabled = false;
-            nm.speed = (ripperSpeed * 2);
+            nm.speed = (AISpeed * 2);
             chasePlusTimer -= Time.deltaTime;
 
             if (chasePlusTimer <= 0)
             {
-                nm.speed = ripperSpeed;
+                nm.speed = AISpeed;
                 wasScreaming = false;
                 if (losesPlayerTimer < 10) aiState = "Chase";
                 else aiState = "Track";
@@ -564,7 +587,7 @@ public class AIMain : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //incrementing target partrol point
-        if (other.gameObject.tag == "patrolPoint" && patrolDoOnce)
+        if (other.gameObject.tag == "patrolPoint" && patrolDoOnce && IsRipper)
         {
             if (patrolNum == 1)
             {
@@ -582,7 +605,25 @@ public class AIMain : MonoBehaviour
             {
                 patrolNum = patrolNumber[0];
             }
-            
+        }
+        if (other.gameObject.tag == "patrolPoint2" && patrolDoOnce && !IsRipper)
+        {
+            if (patrolNum == 1)
+            {
+                patrolNum = patrolNumber[1];
+            }
+            else if (patrolNum == 2)
+            {
+                patrolNum = patrolNumber[2];
+            }
+            else if (patrolNum == 3)
+            {
+                patrolNum = patrolNumber[3];
+            }
+            else if (patrolNum == 4)
+            {
+                patrolNum = patrolNumber[0];
+            }
         }
         //switches AI from tracking state to searching state
         if (other.gameObject.tag == "searchPoint" && aiState == "Track")

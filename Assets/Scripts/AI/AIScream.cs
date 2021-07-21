@@ -43,7 +43,7 @@ public class AIScream : MonoBehaviour
     {
         StopCoroutine(co);
         screamPoints.Clear();
-        nm.stoppingDistance = 0.5f;
+        nm.stoppingDistance = 0.65f;
     }
 
     private IEnumerator moveThroughPoints()
