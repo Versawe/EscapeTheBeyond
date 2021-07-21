@@ -22,7 +22,7 @@ public class AIMain : MonoBehaviour
     Transform farthestSpawn;
     private bool isScaring = false;
     private float scareTimer = 2.5f;
-    private string AIName;
+    public string AIName;
     public bool IsRipper = false;
 
     PlayerHealth pHealth;
@@ -258,7 +258,7 @@ public class AIMain : MonoBehaviour
                 if (checkForScreamTimer <= 0)
                 {
                     checkForScreamRandom = UnityEngine.Random.Range(1, 11);
-                    if (AIName.Substring(0, 1) == "r") print(checkForScreamRandom);
+                    //if (AIName.Substring(0, 1) == "r") print(checkForScreamRandom);
                     if (checkForScreamRandom <= screamChance)
                     {
                         IsScreaming = true;

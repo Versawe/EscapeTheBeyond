@@ -8,7 +8,7 @@ public class AnimationScript : MonoBehaviour
     AIMain MonsterScript;
     FindPoints searchScript;
 
-    private Animator ripAnimate;
+    private Animator AIAnimator;
     private bool idle = true;
     private bool walk = false;
     private bool angryWalk = false;
@@ -24,7 +24,7 @@ public class AnimationScript : MonoBehaviour
     {
         MonsterScript = GetComponent<AIMain>();
         searchScript = GetComponent<FindPoints>();
-        ripAnimate = GetComponent<Animator>();
+        AIAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,7 +32,6 @@ public class AnimationScript : MonoBehaviour
     {
         
         setAnimations();
-        
     }
 
     private void setAnimations()
@@ -160,12 +159,13 @@ public class AnimationScript : MonoBehaviour
             jump = false;
             run = true;
         }
-        ripAnimate.SetBool("isIdle", idle);
-        ripAnimate.SetBool("IsAngryWalking", angryWalk);
-        ripAnimate.SetBool("IsSearching", search);
-        ripAnimate.SetBool("IsAttacking", attack);
-        ripAnimate.SetBool("isWalking", walk);
-        ripAnimate.SetBool("IsJumping", jump);
-        ripAnimate.SetBool("IsRunning", run);
+
+        AIAnimator.SetBool("isIdle", idle);
+        AIAnimator.SetBool("IsAngryWalking", angryWalk);
+        AIAnimator.SetBool("IsSearching", search);
+        AIAnimator.SetBool("IsAttacking", attack);
+        AIAnimator.SetBool("isWalking", walk);
+        AIAnimator.SetBool("IsJumping", jump);
+        AIAnimator.SetBool("IsRunning", run);
     }
 }
