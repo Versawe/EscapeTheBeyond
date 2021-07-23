@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4007396202493590502}
   m_Layer: 2
   m_Name: DoorDestroyer
-  m_TagString: Monster
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1648,6 +1648,7 @@ MonoBehaviour:
   player: {fileID: 0}
   SpawnPoint1: {fileID: 0}
   SpawnPoint2: {fileID: 0}
+  AIName: 
   IsRipper: 0
   patrolPoint1: {fileID: 0}
   patrolPoint2: {fileID: 0}

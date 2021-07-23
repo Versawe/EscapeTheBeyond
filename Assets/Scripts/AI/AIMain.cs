@@ -117,7 +117,6 @@ public class AIMain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Physics.IgnoreLayerCollision(1, 2);
         AIName = gameObject.name; // gets the name of the AI
         if (AIName.Substring(0, 1) == "r") //changed variables for Ripper
         {
@@ -127,7 +126,7 @@ public class AIMain : MonoBehaviour
         }
         else //changed variables for mutant zombies
         {
-            AISpeed = 2.5f;
+            AISpeed = 2.3f;
             AISpeedBoost = 700f;
             IsRipper = false;
             screamChance = 0; //cannot scream
@@ -258,7 +257,6 @@ public class AIMain : MonoBehaviour
                 if (checkForScreamTimer <= 0)
                 {
                     checkForScreamRandom = UnityEngine.Random.Range(1, 11);
-                    //if (AIName.Substring(0, 1) == "r") print(checkForScreamRandom);
                     if (checkForScreamRandom <= screamChance)
                     {
                         IsScreaming = true;
@@ -446,6 +444,13 @@ public class AIMain : MonoBehaviour
             if (wasScreaming) aiState = State[1];
             else if(!wasScreaming) aiState = State[0];
             //print("I am near enough to player");
+            foreach (GameObject spooky in GameObject.FindGameObjectsWithTag("Monster")) //setting only the scaring monster to active to fix glitch
+            {
+                if(spooky.name != AIName) 
+                {
+                    spooky.GetComponent<AIMain>().enabled = false;
+                }
+            }
         }
         else
         {
@@ -473,9 +478,12 @@ public class AIMain : MonoBehaviour
             chasePlusTimer = 10;
             wasScreaming = false;
             pHealth.health--;
-            //print(pHealth.health);
             aiState = "Patrol";
             farthestSpawn = null;
+            foreach (GameObject spooky in GameObject.FindGameObjectsWithTag("Monster")) //setting all monsters back to active if there are more than one
+            {
+                spooky.GetComponent<AIMain>().enabled = true;
+            }
             isScaring = false;
         }
         if (!isScaring)

@@ -5,15 +5,23 @@ using UnityEngine;
 public class RelicHuntScript : MonoBehaviour
 {
     public List<GameObject> AiSpawns = new List<GameObject>();
-    public GameObject RipperAIPrefab;
-    GameObject RelicHub;
     List<GameObject> RelicList = new List<GameObject>();
     List<GameObject> ChosenList = new List<GameObject>();
+
+    public GameObject RipperAIPrefab;
+    public GameObject MutantAIPrefab;
+    GameObject RelicHub;
     GameObject RipperAI;
+
     public bool IsHuntStart = false;
+    private int spawnCount = 0;
+    GameHUDActivations hudScript;
 
     void OnEnable()
     {
+        if (GameObject.Find("GameHUD")) hudScript = GameObject.Find("GameHUD").GetComponent<GameHUDActivations>();
+        else hudScript = null;
+
         foreach (GameObject spawns in GameObject.FindGameObjectsWithTag("aiSpawn"))
         {
             AiSpawns.Add(spawns);
@@ -44,6 +52,9 @@ public class RelicHuntScript : MonoBehaviour
     {
         RelicList.Clear();
         ChosenList.Clear();
+        AiSpawns.Clear();
+        IsHuntStart = false;
+        spawnCount = 0;
     }
 
     private List<GameObject> CreateNewList(List<GameObject> thisList) 
@@ -59,5 +70,13 @@ public class RelicHuntScript : MonoBehaviour
         }
         //print(randomList.Count);
         return randomList;
+    }
+
+    public void SpawnAI() 
+    {
+        spawnCount++;
+        GameObject mutant = Instantiate(MutantAIPrefab, AiSpawns[0].transform.position, AiSpawns[0].transform.rotation);
+        if (spawnCount == 1) mutant.name = "thing1";
+        else mutant.name = "thing2";
     }
 }

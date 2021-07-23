@@ -57,7 +57,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41fecad2f8f43f469eac01759f1e3c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AISpawnPoint: {fileID: 0}
+  AiSpawns: []
   RipperAIPrefab: {fileID: 4007829957398783266, guid: b1ded21bd63df754a806e7dbf68a57d9,
+    type: 3}
+  MutantAIPrefab: {fileID: 8291598373045280962, guid: da9b3f268cabe5a48b1d04d69a33001d,
     type: 3}
   IsHuntStart: 0

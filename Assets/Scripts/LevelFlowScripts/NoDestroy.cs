@@ -34,9 +34,12 @@ public class NoDestroy : MonoBehaviour
     {
         //makes the object this script is attached to non-destroyable on load
         DontDestroyOnLoad(gameObject);
-        
         fileLoaded = "";
-
+        huntScript = GetComponent<RelicHuntScript>();
+    }
+    private void Start()
+    {
+        fileLoaded = "";
         huntScript = GetComponent<RelicHuntScript>();
     }
 

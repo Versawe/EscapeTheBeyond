@@ -25,6 +25,7 @@ public class LookAtStuff : MonoBehaviour
     private bool IsInForms = false;
 
     GameObject CurrRelic;
+    RelicHuntScript relicScript;
 
     private void Start()
     {
@@ -67,7 +68,10 @@ public class LookAtStuff : MonoBehaviour
             HUDScript.EnterPasscode();
         }
 
-        if(NoDestroy.gameProgression == 2 && lookingAtName != "" && lookingAtName.Substring(0,1) == "R") ActivateGUIEvent(lookingAtName);
+        if (NoDestroy.gameProgression == 2 && GameObject.Find("NoDestroyOBJ")) relicScript = GameObject.Find("NoDestroyOBJ").GetComponent<RelicHuntScript>();
+        else relicScript = null;
+
+        if (NoDestroy.gameProgression == 2 && lookingAtName != "" && lookingAtName.Substring(0,1) == "R") ActivateGUIEvent(lookingAtName);
         else InteractText.SetActive(false);
 
         if (NoDestroy.gameProgression == 2) return;
@@ -166,7 +170,7 @@ public class LookAtStuff : MonoBehaviour
 
     private void ActivateGUIEvent(string GUIEventName)
     {
-        print(GUIEventName);
+        //print(GUIEventName);
         if (GameObject.Find(GUIEventName) && !HUDScript.isPaused)
         {
             GameObject GUIEventOBJ = GameObject.Find(GUIEventName);
@@ -263,5 +267,6 @@ public class LookAtStuff : MonoBehaviour
         Destroy(CurrRelic);
         CurrRelic = null;
         HUDScript.relicCollected++;
+        if (HUDScript.relicCollected == 5 || HUDScript.relicCollected == 10) relicScript.SpawnAI();
     }
 }
