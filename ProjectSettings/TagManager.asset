@@ -21,6 +21,7 @@ TagManager:
   - relicSpawn
   - relic
   - patrolPoint2
+  - soundOnCollide
   layers:
   - Default
   - TransparentFX
