@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -30,13 +29,13 @@ public class PlayerHealth : MonoBehaviour
         heart1 = GameObject.Find("Heart2");
         heart2 = GameObject.Find("Heart3");
 
-        if (SceneManager.GetActiveScene().name == "GlitchyStart")
+        if (NoDestroy.currSceneName == "GlitchyStart")
         {
             flashLight.SetActive(false);
             this.enabled = false;
             return;
         }
-        if (SceneManager.GetActiveScene().name == "RelicHunt")
+        if (NoDestroy.currSceneName == "RelicHunt")
         {
             heart.SetActive(true);
             heart1.SetActive(true);
@@ -64,7 +63,7 @@ public class PlayerHealth : MonoBehaviour
             camScript.enabled = false;
             pMoveScript.enabled = false;
             pMoveScript.gameObject.GetComponent<ScareCam>().enabled = true;
-            //retryButt.gameObject.SetActive(true);
+            NoDestroy.atGameOver = true;
             Cursor.lockState = CursorLockMode.None;
         }
 
@@ -72,8 +71,4 @@ public class PlayerHealth : MonoBehaviour
         else flashLight.SetActive(true);
     }
 
-    public void RestartGame()
-    {
-        SceneManager.LoadScene("RelicHunt");
-    }
 }

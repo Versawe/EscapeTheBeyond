@@ -99,7 +99,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 9245042d3053fb448b4f270a8d1aa3bc,
+  m_LightingDataAsset: {fileID: 112000000, guid: 87168360177fc9844baab7d3a21db184,
     type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: fce88af82d0bffd40bbf3599622f04ef,
     type: 2}
@@ -23692,6 +23692,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FPSController
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857587766103082420, guid: 7fd9d33f26d6ed546b3d58994ce24655,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8857587766103082423, guid: 7fd9d33f26d6ed546b3d58994ce24655,
         type: 3}

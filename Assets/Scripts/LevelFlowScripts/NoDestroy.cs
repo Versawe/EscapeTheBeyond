@@ -28,8 +28,8 @@ public class NoDestroy : MonoBehaviour
     string persistantPath;
 
     public RelicHuntScript huntScript;
-
     public static bool collectedAllRelics = false;
+    public static bool atGameOver = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -66,14 +66,19 @@ public class NoDestroy : MonoBehaviour
         }
         else if (actualScene.name == "RelicHunt")
         {
+            huntScript.enabled = false;
             collectedAllRelics = false;
-        }else if (actualScene.name == "QandA")
+            atGameOver = false;
+        }
+        else if (actualScene.name == "QandA")
         {
             SaveToFile();
+            atGameOver = false;
         }
         else // currSceneName var always updates correctly
         {
             currSceneName = actualScene.name;
+            atGameOver = false;
         }
         
         //Below grabs persistanPath and automatically loads text rows from save data file into this script
@@ -147,7 +152,9 @@ public class NoDestroy : MonoBehaviour
         puzzleOneLoginAttempts = 0;
         dateFileCreated = "";
         dateFileModified = "";
+
         huntScript.enabled = false;
         collectedAllRelics = false;
+        atGameOver = false;
     }
 }

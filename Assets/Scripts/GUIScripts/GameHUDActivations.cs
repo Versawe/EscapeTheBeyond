@@ -13,6 +13,7 @@ public class GameHUDActivations : MonoBehaviour
     public GameObject HealthPanel;
     public GameObject OptionsPanel;
     public GameObject PasscodePanel;
+    public GameObject GameOverPanel;
     public Slider SensitivitySlider;
     public Slider VolumeSlider;
     public TextMeshProUGUI SliderDisplay1;
@@ -68,6 +69,7 @@ public class GameHUDActivations : MonoBehaviour
         PauseGame();
         GUIAppearPerScene();
         TrackingSlideBars();
+        CheckForEndGame();
 
         //when you cycle through all the questions from the Q&A.cs script (this will never be used in game due to winning or losing)
         if (pLookAtScript.IsActivated && Puzzle3Script.QuestionsList.Count <= 0 && pLookAtScript.lookingAtName == "Main_mirror")
@@ -135,7 +137,7 @@ public class GameHUDActivations : MonoBehaviour
             pausePanel.SetActive(true);
             Time.timeScale = 0;
         }
-        else if (!isPaused && !pLookAtScript.IsActivated)
+        else if (!isPaused && !pLookAtScript.IsActivated && !NoDestroy.atGameOver)
         {
             Cursor.lockState = CursorLockMode.Locked;
             pausePanel.SetActive(false);
@@ -192,5 +194,18 @@ public class GameHUDActivations : MonoBehaviour
             pLookAtScript.IsActivated = false;
         } 
         formBar.text = "";
+    }
+
+    //Game Over Functions
+    private void CheckForEndGame() 
+    {
+        if (!NoDestroy.atGameOver) return;
+        Cursor.lockState = CursorLockMode.None;
+        GameOverPanel.SetActive(true);
+    }
+
+    public void RetryCurrLevel() 
+    {
+        SceneManager.LoadScene(NoDestroy.currSceneName);
     }
 }
