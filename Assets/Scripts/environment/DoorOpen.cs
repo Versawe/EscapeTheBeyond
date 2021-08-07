@@ -53,7 +53,7 @@ public class DoorOpen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (doorLocked.IsLocked && !doorLocked.Puzzle2Trigger) return;
+        if (doorLocked.IsLocked && !doorLocked.Puzzle2Trigger && !NoDestroy.collectedAllRelics) return;
         playerInput();
         whichSide();
         doorMove();
@@ -67,12 +67,15 @@ public class DoorOpen : MonoBehaviour
             //eDown = true;
             doOnce = true;
         }
-        else if (Input.GetKeyUp("e") && seeDoorScript.lookingAtName == gameObject.name && doorLocked.Puzzle2Trigger) //this is to trigger puzzle 2
+        else if (Input.GetKeyUp("e") && seeDoorScript.lookingAtName == gameObject.name && doorLocked.Puzzle2Trigger && !NoDestroy.collectedAllRelics) //this is to trigger puzzle 2
         {
             GameObject thisOBJ = GameObject.Find("NoDestroyOBJ");
             thisOBJ.GetComponent<NoDestroy>().huntScript.enabled = true;
             doorLocked.Puzzle2Trigger = false;
-        } 
+        }else if (Input.GetKeyUp("e") && seeDoorScript.lookingAtName == gameObject.name && NoDestroy.collectedAllRelics) 
+        {
+            NoDestroy.LoadQandAScene();
+        }
     }
 
     //check which side on what door you are on when you open it

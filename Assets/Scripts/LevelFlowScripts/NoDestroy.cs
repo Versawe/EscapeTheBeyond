@@ -29,6 +29,8 @@ public class NoDestroy : MonoBehaviour
 
     public RelicHuntScript huntScript;
 
+    public static bool collectedAllRelics = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -62,15 +64,18 @@ public class NoDestroy : MonoBehaviour
             ResetVarsWhenMainMenu();
             Cursor.lockState = CursorLockMode.None;
         }
-        /*else if (actualScene.name == "RelicHunt") 
+        else if (actualScene.name == "RelicHunt")
         {
-            huntScript.enabled = true;
-        }*/
+            collectedAllRelics = false;
+        }else if (actualScene.name == "QandA")
+        {
+            SaveToFile();
+        }
         else // currSceneName var always updates correctly
         {
             currSceneName = actualScene.name;
         }
-
+        
         //Below grabs persistanPath and automatically loads text rows from save data file into this script
         persistantPath = Application.persistentDataPath + "/" + fileLoaded;
         if (fileLoaded == "") return;
@@ -124,6 +129,13 @@ public class NoDestroy : MonoBehaviour
         System.IO.File.SetLastWriteTime(persistantPath, dateModified);
     }
 
+    public static void LoadQandAScene()
+    {
+        gameProgression = 3;
+        currSceneName = "QandA";
+        SceneManager.LoadScene("QandA");
+    }
+
     public void ResetVarsWhenMainMenu()
     {
         fileName = "";
@@ -136,5 +148,6 @@ public class NoDestroy : MonoBehaviour
         dateFileCreated = "";
         dateFileModified = "";
         huntScript.enabled = false;
+        collectedAllRelics = false;
     }
 }

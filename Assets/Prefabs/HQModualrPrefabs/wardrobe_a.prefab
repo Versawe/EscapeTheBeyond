@@ -56,6 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,6 +81,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &65721246078691012
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -105,6 +107,7 @@ GameObject:
   - component: {fileID: 3727327513692006741}
   - component: {fileID: 5894398923907858445}
   - component: {fileID: 3228436037953267375}
+  - component: {fileID: 6892671554207398200}
   m_Layer: 0
   m_Name: wardrobe_a
   m_TagString: Untagged
@@ -173,9 +176,24 @@ MonoBehaviour:
   rightDoor: {fileID: 1745258511517304}
   leftDoor: {fileID: 1055694036200612}
   isOpen: 0
+  isShutting: 0
+  doOnce: 0
   Player: {fileID: 0}
   doorStartRotRight: {x: 0, y: 0, z: 0, w: 0}
   doorStartRotLeft: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6892671554207398200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390009215516628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03b8f5f9376f6b84dad001790f4f0835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignoreMe: 1
 --- !u!1 &1745258511517304
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,6 +250,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -256,6 +275,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &65106745963899356
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -325,6 +345,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -349,6 +370,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &64416529363599186
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -359,9 +381,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: 1558ff70b8310f743897b7a308645bc5, type: 3}
 --- !u!1 &6914351849474734725
 GameObject:

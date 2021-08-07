@@ -12,15 +12,31 @@ public class RelicHuntScript : MonoBehaviour
     public GameObject MutantAIPrefab;
     GameObject RelicHub;
     GameObject RipperAI;
+    GameObject HintLight;
 
     public bool IsHuntStart = false;
     private int spawnCount = 0;
     GameHUDActivations hudScript;
 
+    private GameObject Player;
+
     void OnEnable()
     {
         if (GameObject.Find("GameHUD")) hudScript = GameObject.Find("GameHUD").GetComponent<GameHUDActivations>();
         else hudScript = null;
+
+        if (GameObject.Find("HintLight")) 
+        {
+            HintLight = GameObject.Find("HintLight");
+            Destroy(HintLight);
+        } 
+        else HintLight = null;
+
+        if (GameObject.Find("FPSController"))
+        {
+            Player = GameObject.Find("FPSController");
+        }
+        else Player = null;
 
         foreach (GameObject spawns in GameObject.FindGameObjectsWithTag("aiSpawn"))
         {
@@ -28,7 +44,7 @@ public class RelicHuntScript : MonoBehaviour
         }
 
         IsHuntStart = true;
-        RipperAI = Instantiate(RipperAIPrefab, AiSpawns[0].transform.position, AiSpawns[0].transform.rotation);
+        RipperAI = Instantiate(RipperAIPrefab, AiSpawns[Random.Range(0,AiSpawns.Count-1)].transform.position, AiSpawns[Random.Range(0, AiSpawns.Count-1)].transform.rotation);
 
         foreach(GameObject HubChild in GameObject.FindGameObjectsWithTag("relicSpawn")) 
         {
@@ -74,8 +90,23 @@ public class RelicHuntScript : MonoBehaviour
 
     public void SpawnAI() 
     {
+        //find out which spawn place is farthest from player
+        float dist1 = Vector3.Distance(Player.transform.position, AiSpawns[0].transform.position);
+        float dist2 = Vector3.Distance(Player.transform.position, AiSpawns[1].transform.position);
+
+        Transform farthestSpawn;
+        if (dist1 > dist2)
+        {
+            farthestSpawn = AiSpawns[0].transform;
+        }
+        else
+        {
+            farthestSpawn = AiSpawns[1].transform;
+        }
+
+        //spawn Another AI
         spawnCount++;
-        GameObject mutant = Instantiate(MutantAIPrefab, AiSpawns[0].transform.position, AiSpawns[0].transform.rotation);
+        GameObject mutant = Instantiate(MutantAIPrefab, farthestSpawn.position, farthestSpawn.rotation);
         if (spawnCount == 1) mutant.name = "thing1";
         else mutant.name = "thing2";
     }

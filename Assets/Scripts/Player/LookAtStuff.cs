@@ -71,12 +71,12 @@ public class LookAtStuff : MonoBehaviour
         if (NoDestroy.gameProgression == 2 && GameObject.Find("NoDestroyOBJ")) relicScript = GameObject.Find("NoDestroyOBJ").GetComponent<RelicHuntScript>();
         else relicScript = null;
 
-        if (NoDestroy.gameProgression == 2 && lookingAtName != "" && lookingAtName.Substring(0,1) == "R") ActivateGUIEvent(lookingAtName);
-        else InteractText.SetActive(false);
+        /*if (NoDestroy.gameProgression == 2 && lookingAtName != "" && lookingAtName.Substring(0,1) == "R") ActivateGUIEvent(lookingAtName);
+        else InteractText.SetActive(false);*/
 
-        if (NoDestroy.gameProgression == 2) return;
+        //if (NoDestroy.gameProgression == 2) return;
         //checks if the object is interactive
-        if (NoDestroy.puzzleOneLoginAttempts > 2 && NoDestroy.gameProgression == 1 && lookingAtName != "") ActivateGUIEvent(lookingAtName);
+        if (NoDestroy.puzzleOneLoginAttempts > 2 && lookingAtName != "") ActivateGUIEvent(lookingAtName);
         else InteractText.SetActive(false);
     }
 
@@ -174,6 +174,7 @@ public class LookAtStuff : MonoBehaviour
         if (GameObject.Find(GUIEventName) && !HUDScript.isPaused)
         {
             GameObject GUIEventOBJ = GameObject.Find(GUIEventName);
+            if (GUIEventOBJ.GetComponent<GUIEvent>().ignoreMe) return;
             lookingAtName = GUIEventName;
             if (GUIEventOBJ.GetComponent<GUIEvent>())
             {
@@ -268,5 +269,6 @@ public class LookAtStuff : MonoBehaviour
         CurrRelic = null;
         HUDScript.relicCollected++;
         if (HUDScript.relicCollected == 5 || HUDScript.relicCollected == 10) relicScript.SpawnAI();
+        if (HUDScript.relicCollected >= 15) NoDestroy.collectedAllRelics = true;
     }
 }

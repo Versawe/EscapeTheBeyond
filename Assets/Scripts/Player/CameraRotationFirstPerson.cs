@@ -29,8 +29,8 @@ public class CameraRotationFirstPerson : MonoBehaviour
         yawSensitivity = NoDestroy.pSensitivity;
 
         //starting rotation per level
-        if (NoDestroy.gameProgression == 2) yaw = -90;
-        else yaw = 90;
+        if (NoDestroy.gameProgression == 1) yaw = 90;
+        else yaw = -90;
     }
 
     private void OnDisable()

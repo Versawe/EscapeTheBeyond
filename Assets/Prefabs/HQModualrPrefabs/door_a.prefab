@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3961401064180268078}
   - component: {fileID: 7538217752297407757}
   - component: {fileID: 5232037788265124069}
+  - component: {fileID: 7903780810801971726}
   m_Layer: 0
   m_Name: door_a
   m_TagString: Untagged
@@ -158,6 +159,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5ee31c6d91f9a4294eddaabc916861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsLocked: 0
+  Puzzle2Trigger: 0
+--- !u!114 &7903780810801971726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455428178319344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03b8f5f9376f6b84dad001790f4f0835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignoreMe: 1
 --- !u!1 &1564424182846518
 GameObject:
   m_ObjectHideFlags: 0

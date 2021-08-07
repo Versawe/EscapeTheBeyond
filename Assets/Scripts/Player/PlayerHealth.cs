@@ -30,17 +30,21 @@ public class PlayerHealth : MonoBehaviour
         heart1 = GameObject.Find("Heart2");
         heart2 = GameObject.Find("Heart3");
 
-        if (SceneManager.GetActiveScene().name != "RelicHunt") 
+        if (SceneManager.GetActiveScene().name == "GlitchyStart")
         {
             flashLight.SetActive(false);
             this.enabled = false;
             return;
         }
-        flashLight.SetActive(true);
+        if (SceneManager.GetActiveScene().name == "RelicHunt")
+        {
+            heart.SetActive(true);
+            heart1.SetActive(true);
+            heart2.SetActive(true);
+        }
 
-        heart.SetActive(true);
-        heart1.SetActive(true);
-        heart2.SetActive(true);
+        flashLight.SetActive(true);
+        
         //retryButt.gameObject.SetActive(false);
     }
 
@@ -63,6 +67,9 @@ public class PlayerHealth : MonoBehaviour
             //retryButt.gameObject.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
         }
+
+        if (!camScript.enabled) flashLight.SetActive(false);
+        else flashLight.SetActive(true);
     }
 
     public void RestartGame()

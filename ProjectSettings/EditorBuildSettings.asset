@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RelicHunt.unity
     guid: 98283c1e740970b4eb49c1e589c1669f
+  - enabled: 1
+    path: Assets/Scenes/QandA.unity
+    guid: ef3cd39f64c825e4f95ed64c9557fe03
   m_configObjects: {}

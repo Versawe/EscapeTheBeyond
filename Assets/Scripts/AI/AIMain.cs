@@ -479,11 +479,14 @@ public class AIMain : MonoBehaviour
             wasScreaming = false;
             pHealth.health--;
             aiState = "Patrol";
-            farthestSpawn = null;
             foreach (GameObject spooky in GameObject.FindGameObjectsWithTag("Monster")) //setting all monsters back to active if there are more than one
             {
+                spooky.GetComponent<NavMeshAgent>().Warp(farthestSpawn.position);
+                spooky.GetComponent<AIMain>().enabled = true;
+                spooky.GetComponent<AIMain>().enabled = false; //for insurance
                 spooky.GetComponent<AIMain>().enabled = true;
             }
+            farthestSpawn = null;
             isScaring = false;
         }
         if (!isScaring)
