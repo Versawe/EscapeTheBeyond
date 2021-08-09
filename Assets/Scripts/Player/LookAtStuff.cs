@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
+﻿using UnityEngine;
 
 public class LookAtStuff : MonoBehaviour
 {
@@ -76,8 +73,14 @@ public class LookAtStuff : MonoBehaviour
 
         //if (NoDestroy.gameProgression == 2) return;
         //checks if the object is interactive
-        if (NoDestroy.puzzleOneLoginAttempts > 2 && lookingAtName != "") ActivateGUIEvent(lookingAtName);
+        if (NoDestroy.puzzleOneLoginAttempts > 2 && lookingAtName != "" && !NoDestroy.completedQandA) ActivateGUIEvent(lookingAtName);
         else InteractText.SetActive(false);
+
+        if (NoDestroy.completedQandA) 
+        {
+            CharMove.enabled = true;
+            CamRotate.enabled = true;
+        }
     }
 
     private void PlayerLookingAt()
@@ -224,7 +227,7 @@ public class LookAtStuff : MonoBehaviour
         //what happens when successfully activated or deactivated
         if (IsActivated)
         {
-            if (lookingAtName == "Main_mirror") //if you are looking at the mirror for puzzle 3
+            if (lookingAtName == "Main_mirror" && !NoDestroy.completedQandA) //if you are looking at the mirror for puzzle 3
             {
                 Cursor.lockState = CursorLockMode.None;
                 CharMove.enabled = false;

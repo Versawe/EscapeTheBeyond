@@ -30,6 +30,7 @@ public class NoDestroy : MonoBehaviour
     public RelicHuntScript huntScript;
     public static bool collectedAllRelics = false;
     public static bool atGameOver = false;
+    public static bool completedQandA = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -74,11 +75,13 @@ public class NoDestroy : MonoBehaviour
         {
             SaveToFile();
             atGameOver = false;
+            completedQandA = false;
         }
         else // currSceneName var always updates correctly
         {
             currSceneName = actualScene.name;
             atGameOver = false;
+            completedQandA = false;
         }
         
         //Below grabs persistanPath and automatically loads text rows from save data file into this script
@@ -156,5 +159,6 @@ public class NoDestroy : MonoBehaviour
         huntScript.enabled = false;
         collectedAllRelics = false;
         atGameOver = false;
+        completedQandA = false;
     }
 }

@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine.Rendering;
-using System.Linq;
 
 public class QandA : MonoBehaviour
 {
@@ -25,6 +23,7 @@ public class QandA : MonoBehaviour
     public GameObject StrikesPanel;
     public TextMeshProUGUI StrikesText;
     private float strikeCount = 0;
+    private float correctAnswers = 0;
 
     public Button EnterButt;
     public Button ButtA;
@@ -36,7 +35,6 @@ public class QandA : MonoBehaviour
     public TextMeshProUGUI textC;
     public TextMeshProUGUI textD;
     public TMP_InputField formInput;
-    GameObject myEventSystem;
     private bool IsInForms = false;
 
     private string currentQ;
@@ -45,8 +43,13 @@ public class QandA : MonoBehaviour
     private string otherOptions; 
     private string playerA;
 
-    private float wrongTimer = 2;
+    private float wrongTimer = 1.5f;
     private bool WasWrongGuess = false;
+    private float rightTimer = 1.5f;
+    private bool WasRightGuess = false;
+
+    LookAtStuff lookScript;
+    public GameObject PPVOff;
 
     private void Awake()
     {
@@ -54,10 +57,12 @@ public class QandA : MonoBehaviour
         DataBaseSplit = DatabaseTextFile.text.Split('\n');    
         MCChoices.Clear();
 
-        myEventSystem = GameObject.Find("EventSystem");
+        if (GameObject.Find("FPSController")) lookScript = GameObject.Find("FPSController").GetComponentInChildren<LookAtStuff>();
+        else lookScript = null;
     }
     void OnEnable()
     {
+        if (NoDestroy.currSceneName != "QandA") PPVOff = null;
         //each enable script will resplit the databasesplit array by the '@' delimeter and put the texts in their respective Lists
         for (int i = 0; i < DataBaseSplit.Length - 1; i++)
         {
@@ -102,8 +107,24 @@ public class QandA : MonoBehaviour
             print("Wrong answer");
             strikeCount++;
             WasWrongGuess = false;
+            if (CheckEndGUISession()) return;
             RandomQuestion(QuestionsList);
-            wrongTimer = 2;
+            wrongTimer = 1.5f;
+        }
+
+        //delay timer after right guess (used for suspense build)
+        if (WasRightGuess)
+        {
+            rightTimer -= 1 * Time.deltaTime;
+        }
+        if (rightTimer <= 0)
+        {
+            print("Correct answer");
+            correctAnswers++;
+            WasRightGuess = false;
+            if(CheckEndGUISession()) return;
+            RandomQuestion(QuestionsList);
+            rightTimer = 1.5f;
         }
 
         //sets the number of strikes to the gui display for players
@@ -199,9 +220,8 @@ public class QandA : MonoBehaviour
             playerA = buttonClicked.GetComponentInChildren<TextMeshProUGUI>().text;
             if (playerA == currentA)
             {
-                print("correct answer");
                 MCPanel.SetActive(false);
-                RandomQuestion(QuestionsList);
+                WasRightGuess = true;
             }
             else
             {
@@ -215,9 +235,8 @@ public class QandA : MonoBehaviour
             playerA = formInput.text;
             if (DoesRegexMatch(currentA, playerA))
             {
-                print("correct answer");
                 TEPanel.SetActive(false);
-                RandomQuestion(QuestionsList);
+                WasRightGuess = true;
             }
             else
             {
@@ -230,6 +249,37 @@ public class QandA : MonoBehaviour
         {
             print("Error line 176 of QandA.cs");
         }
-        //myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
+    }
+    
+    public bool CheckEndGUISession() 
+    {
+        if (strikeCount >= 3) 
+        {
+            wrongTimer = 1.5f;
+            WasWrongGuess = false;
+            NoDestroy.atGameOver = true;
+            TEPanel.SetActive(false);
+            MCPanel.SetActive(false);
+            StrikesPanel.SetActive(false);
+            QuestionText.enabled = false;
+            return true;
+        }
+        else if (correctAnswers >= 2) //15 for real # correct for now, keep at 2 for testing purposes
+        {
+            rightTimer = 1.5f;
+            WasRightGuess = false;
+            TEPanel.SetActive(false);
+            MCPanel.SetActive(false);
+            StrikesPanel.SetActive(false);
+            QuestionText.enabled = false;
+            lookScript.IsActivated = false;
+            NoDestroy.completedQandA = true;
+            PPVOff.SetActive(false);
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
     }
 }
