@@ -76,6 +76,7 @@ public class NoDestroy : MonoBehaviour
             SaveToFile();
             atGameOver = false;
             completedQandA = false;
+            if(GameObject.Find("HintLight")) GameObject.Find("HintLight").GetComponent<Light>().enabled = false;
         }
         else // currSceneName var always updates correctly
         {

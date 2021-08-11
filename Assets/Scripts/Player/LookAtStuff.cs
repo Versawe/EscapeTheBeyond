@@ -211,11 +211,12 @@ public class LookAtStuff : MonoBehaviour
     {
         //toggles when e was pressed and unpressed
         bool activate = Input.GetKeyDown("e");
+        bool deactivate = Input.GetKeyDown("escape");
         if (activate && !IsActivated && lookingAtName.Substring(0, 1) != "R")
         {
             IsActivated = true;
         }
-        else if (activate && IsActivated && lookingAtName != "Main_mirror")
+        else if (deactivate && IsActivated && lookingAtName != "Main_mirror")
         {
             IsActivated = false;
         }

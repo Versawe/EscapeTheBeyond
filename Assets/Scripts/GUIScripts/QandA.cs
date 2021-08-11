@@ -275,6 +275,8 @@ public class QandA : MonoBehaviour
             lookScript.IsActivated = false;
             NoDestroy.completedQandA = true;
             PPVOff.SetActive(false);
+            GameObject.Find("door_a (14)").GetComponent<LockedDoor>().IsLocked = false;
+            GameObject.Find("HintLight").GetComponent<Light>().enabled = true;
             return true;
         }
         else 
