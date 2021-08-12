@@ -22,6 +22,7 @@ TagManager:
   - relic
   - patrolPoint2
   - soundOnCollide
+  - StaircaseTag
   layers:
   - Default
   - TransparentFX

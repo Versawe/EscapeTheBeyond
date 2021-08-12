@@ -27896,6 +27896,10 @@ PrefabInstance:
       value: door_a (14)
       objectReference: {fileID: 0}
     - target: {fileID: 1455428178319344, guid: 8b79a308c9f5c5445b4e65b86a25de29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455428178319344, guid: 8b79a308c9f5c5445b4e65b86a25de29, type: 3}
       propertyPath: m_TagString
       value: DoorZ
       objectReference: {fileID: 0}
@@ -47174,75 +47178,6 @@ Transform:
   m_Father: {fileID: 4812066121147928}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &3771845742458954083
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3771845741894559880, guid: b22ff090abd6b3d4399f08fd40783216,
-        type: 3}
-      propertyPath: m_Name
-      value: BasementStairs
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771845741894559887, guid: b22ff090abd6b3d4399f08fd40783216,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771845741894559887, guid: b22ff090abd6b3d4399f08fd40783216,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -8.076
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771845741894559887, guid: b22ff090abd6b3d4399f08fd40783216,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.037
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771845741894559887, guid: b22ff090abd6b3d4399f08fd40783216,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 35.16
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771845741894559887, guid: b22ff090abd6b3d4399f08fd40783216,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771845741894559887, guid: b22ff090abd6b3d4399f08fd40783216,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771845741894559887, guid: b22ff090abd6b3d4399f08fd40783216,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771845741894559887, guid: b22ff090abd6b3d4399f08fd40783216,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771845741894559887, guid: b22ff090abd6b3d4399f08fd40783216,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771845741894559887, guid: b22ff090abd6b3d4399f08fd40783216,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771845741894559887, guid: b22ff090abd6b3d4399f08fd40783216,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b22ff090abd6b3d4399f08fd40783216, type: 3}
 --- !u!65 &3961401064683479978
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -47256,6 +47191,75 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.87232524, y: 2.0365448, z: 0.05677395}
   m_Center: {x: -0.43616262, y: 1.0182724, z: 0.019944439}
+--- !u!1001 &4132014408859525660
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4132014408295132144, guid: b22ff090abd6b3d4399f08fd40783216,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132014408295132144, guid: b22ff090abd6b3d4399f08fd40783216,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.076
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132014408295132144, guid: b22ff090abd6b3d4399f08fd40783216,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.037
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132014408295132144, guid: b22ff090abd6b3d4399f08fd40783216,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 35.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132014408295132144, guid: b22ff090abd6b3d4399f08fd40783216,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132014408295132144, guid: b22ff090abd6b3d4399f08fd40783216,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132014408295132144, guid: b22ff090abd6b3d4399f08fd40783216,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132014408295132144, guid: b22ff090abd6b3d4399f08fd40783216,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132014408295132144, guid: b22ff090abd6b3d4399f08fd40783216,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132014408295132144, guid: b22ff090abd6b3d4399f08fd40783216,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132014408295132144, guid: b22ff090abd6b3d4399f08fd40783216,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132014408295132151, guid: b22ff090abd6b3d4399f08fd40783216,
+        type: 3}
+      propertyPath: m_Name
+      value: BasementStairs
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b22ff090abd6b3d4399f08fd40783216, type: 3}
 --- !u!4 &4991206855795403548
 Transform:
   m_ObjectHideFlags: 0

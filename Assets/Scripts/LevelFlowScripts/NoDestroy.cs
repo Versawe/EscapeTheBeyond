@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 //this script is attached to the DontDestroyOnBuild GameObject
@@ -31,6 +32,8 @@ public class NoDestroy : MonoBehaviour
     public static bool collectedAllRelics = false;
     public static bool atGameOver = false;
     public static bool completedQandA = false;
+
+    public static List<GameObject> stairs  = new List<GameObject>();
 
     // Start is called before the first frame update
     void Awake()
@@ -76,6 +79,7 @@ public class NoDestroy : MonoBehaviour
             SaveToFile();
             atGameOver = false;
             completedQandA = false;
+            stairs.Clear();
             if(GameObject.Find("HintLight")) GameObject.Find("HintLight").GetComponent<Light>().enabled = false;
         }
         else // currSceneName var always updates correctly
@@ -157,9 +161,20 @@ public class NoDestroy : MonoBehaviour
         dateFileCreated = "";
         dateFileModified = "";
 
+        stairs.Clear();
         huntScript.enabled = false;
         collectedAllRelics = false;
         atGameOver = false;
         completedQandA = false;
+    }
+
+    public static void CheckStairCount() 
+    {
+        if (stairs.Count >= 3) 
+        {
+            GameObject removeThisStairs = stairs[0];
+            stairs.RemoveAt(0);
+            Destroy(removeThisStairs);
+        }
     }
 }
