@@ -27,11 +27,13 @@ public class NoDestroy : MonoBehaviour
     Scene actualScene;
 
     string persistantPath;
+    private float endGameTimer = 15;
 
     public RelicHuntScript huntScript;
     public static bool collectedAllRelics = false;
     public static bool atGameOver = false;
     public static bool completedQandA = false;
+    public static bool atGameComplete = false;
 
     public static List<GameObject> stairs  = new List<GameObject>();
     public static int stairSpawnCount = 0;
@@ -74,11 +76,13 @@ public class NoDestroy : MonoBehaviour
             huntScript.enabled = false;
             collectedAllRelics = false;
             atGameOver = false;
+            atGameComplete = false;
         }
         else if (actualScene.name == "QandA")
         {
             SaveToFile();
             atGameOver = false;
+            atGameComplete = false;
             completedQandA = false; //change to false
             stairs.Clear();
             stairSpawnCount = 0;
@@ -88,6 +92,7 @@ public class NoDestroy : MonoBehaviour
         {
             currSceneName = actualScene.name;
             atGameOver = false;
+            atGameComplete = false;
             completedQandA = false;
         }
         
@@ -103,11 +108,15 @@ public class NoDestroy : MonoBehaviour
 
     void Update()
     {
-        if (actualScene.name != "QandA") return;
-        if(stairSpawnCount >= 15) 
+        if (actualScene.name != "QandA" && stairSpawnCount < 15) return;
+        if(stairSpawnCount >= 15)
         {
-            print("End Game Here");
+            endGameTimer -= 1 * Time.deltaTime;
             //black out screen play final audio to game then load credit scene HERE
+        }
+        if (endGameTimer <= 0) 
+        {
+            atGameComplete = true;
         }
     }
 
@@ -173,6 +182,7 @@ public class NoDestroy : MonoBehaviour
         huntScript.enabled = false;
         collectedAllRelics = false;
         atGameOver = false;
+        atGameComplete = false;
         completedQandA = false;
     }
 

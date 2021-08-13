@@ -29,7 +29,7 @@ public class CharacterMovementFirstPerson : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.timeScale == 0) return;
+        if (Time.timeScale == 0 || NoDestroy.atGameComplete) return;
         MovePlayer();
         JumpPlayer();
 

@@ -12,6 +12,7 @@ public class GameHUDActivations : MonoBehaviour
     public GameObject OptionsPanel;
     public GameObject PasscodePanel;
     public GameObject GameOverPanel;
+    public GameObject CreditsPanel;
     public Slider SensitivitySlider;
     public Slider VolumeSlider;
     public TextMeshProUGUI SliderDisplay1;
@@ -64,6 +65,12 @@ public class GameHUDActivations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (NoDestroy.atGameComplete) //at game complete
+        {
+            CreditsPanel.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            return;   
+        }
         PauseGame();
         GUIAppearPerScene();
         TrackingSlideBars();

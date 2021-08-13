@@ -55,7 +55,7 @@ public class CameraRotationFirstPerson : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (Time.timeScale == 0) return;
+        if (Time.timeScale == 0 || NoDestroy.atGameComplete) return;
         RotateCamera();
     }
 

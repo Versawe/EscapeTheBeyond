@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.PlayerLoop;
 
 public class QandA : MonoBehaviour
 {
@@ -50,6 +51,7 @@ public class QandA : MonoBehaviour
 
     LookAtStuff lookScript;
     public GameObject PPVOff;
+    public GameObject PPVStatic;
 
     private void Awake()
     {
@@ -60,9 +62,14 @@ public class QandA : MonoBehaviour
         if (GameObject.Find("FPSController")) lookScript = GameObject.Find("FPSController").GetComponentInChildren<LookAtStuff>();
         else lookScript = null;
     }
+
     void OnEnable()
     {
-        if (NoDestroy.currSceneName != "QandA") PPVOff = null;
+        if (NoDestroy.currSceneName != "QandA")
+        {
+            PPVOff = null;
+            PPVStatic = null;
+        } 
         //each enable script will resplit the databasesplit array by the '@' delimeter and put the texts in their respective Lists
         for (int i = 0; i < DataBaseSplit.Length - 1; i++)
         {
@@ -129,6 +136,14 @@ public class QandA : MonoBehaviour
 
         //sets the number of strikes to the gui display for players
         StrikesText.text = strikeCount.ToString();
+
+        //for final plunge down stairs and activating gui and PPV
+        if (NoDestroy.stairSpawnCount < 15) return;
+        if (!NoDestroy.atGameComplete) PPVStatic.SetActive(true);
+        else 
+        {
+            PPVStatic.SetActive(false);
+        }
     }
 
     public void RandomQuestion(List<string> list) //made to call for when a random Q&A needs to be generated
