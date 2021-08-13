@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EndlessStaircase : MonoBehaviour
@@ -7,10 +5,9 @@ public class EndlessStaircase : MonoBehaviour
     public GameObject NoReturnBox;
     public Transform NextSpawnLocation;
     public GameObject StaircaseChunk;
-
     private bool SpawnOnce = false;
 
-    private void SpawnStairs() 
+    private void SpawnStairs()
     {
         GameObject newStairs = Instantiate(StaircaseChunk, NextSpawnLocation.position, NextSpawnLocation.rotation);
         NoReturnBox.SetActive(true);
@@ -23,6 +20,7 @@ public class EndlessStaircase : MonoBehaviour
             SpawnStairs();
             NoDestroy.stairs.Add(gameObject);
             NoDestroy.CheckStairCount();
+            NoDestroy.stairSpawnCount++;
             SpawnOnce = true;
         }
     }

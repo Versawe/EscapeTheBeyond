@@ -34,6 +34,7 @@ public class NoDestroy : MonoBehaviour
     public static bool completedQandA = false;
 
     public static List<GameObject> stairs  = new List<GameObject>();
+    public static int stairSpawnCount = 0;
 
     // Start is called before the first frame update
     void Awake()
@@ -78,8 +79,9 @@ public class NoDestroy : MonoBehaviour
         {
             SaveToFile();
             atGameOver = false;
-            completedQandA = false;
+            completedQandA = false; //change to false
             stairs.Clear();
+            stairSpawnCount = 0;
             if(GameObject.Find("HintLight")) GameObject.Find("HintLight").GetComponent<Light>().enabled = false;
         }
         else // currSceneName var always updates correctly
@@ -101,7 +103,12 @@ public class NoDestroy : MonoBehaviour
 
     void Update()
     {
-        if (actualScene.name == "Preload" || actualScene.name == "MainMenu") return;
+        if (actualScene.name != "QandA") return;
+        if(stairSpawnCount >= 15) 
+        {
+            print("End Game Here");
+            //black out screen play final audio to game then load credit scene HERE
+        }
     }
 
     public void LoadFromFile()
@@ -162,6 +169,7 @@ public class NoDestroy : MonoBehaviour
         dateFileModified = "";
 
         stairs.Clear();
+        stairSpawnCount = 0;
         huntScript.enabled = false;
         collectedAllRelics = false;
         atGameOver = false;

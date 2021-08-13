@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,6 +46,7 @@ public class QandA : MonoBehaviour
     private bool WasWrongGuess = false;
     private float rightTimer = 1.5f;
     private bool WasRightGuess = false;
+    private float numRightAnswers = 15;
 
     LookAtStuff lookScript;
     public GameObject PPVOff;
@@ -264,7 +264,7 @@ public class QandA : MonoBehaviour
             QuestionText.enabled = false;
             return true;
         }
-        else if (correctAnswers >= 2) //15 for real # correct for now, keep at 2 for testing purposes
+        else if (correctAnswers >= numRightAnswers) //15 for real # correct for now, keep at 2 for testing purposes
         {
             rightTimer = 1.5f;
             WasRightGuess = false;
