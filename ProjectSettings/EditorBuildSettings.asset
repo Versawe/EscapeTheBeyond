@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/QandA.unity
     guid: ef3cd39f64c825e4f95ed64c9557fe03
+  - enabled: 1
+    path: Assets/Scenes/HellScene.unity
+    guid: 5c55c4e9cf486d34495aad99d7c03542
   m_configObjects: {}

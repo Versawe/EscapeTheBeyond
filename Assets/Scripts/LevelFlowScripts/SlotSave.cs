@@ -353,6 +353,7 @@ public class SlotSave : MonoBehaviour
             {
                 print("file was tampered with");
                 print("error 1");
+                SceneManager.LoadScene("HellScene");
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
@@ -360,6 +361,7 @@ public class SlotSave : MonoBehaviour
             {
                 print("file was tampered with");
                 print("error 2");
+                SceneManager.LoadScene("HellScene");
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
@@ -370,6 +372,7 @@ public class SlotSave : MonoBehaviour
                 print("error 3");
                 //print(modified);
                 //print(System.IO.File.ReadAllLines(grabFilePath)[System.IO.File.ReadAllLines(grabFilePath).Length - 1].Substring(0, 18));
+                SceneManager.LoadScene("HellScene");
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
@@ -435,6 +438,7 @@ public class SlotSave : MonoBehaviour
             {
                 print("file was tampered with");
                 print("error 1");
+                SceneManager.LoadScene("HellScene");
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
@@ -442,6 +446,7 @@ public class SlotSave : MonoBehaviour
             {
                 print("file was tampered with");
                 print("error 2");
+                SceneManager.LoadScene("HellScene");
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
@@ -450,6 +455,7 @@ public class SlotSave : MonoBehaviour
 
                 print("file was tampered with");
                 print("error 3");
+                SceneManager.LoadScene("HellScene");
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
@@ -514,6 +520,7 @@ public class SlotSave : MonoBehaviour
             {
                 print("file was tampered with");
                 print("error 1");
+                SceneManager.LoadScene("HellScene");
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
@@ -521,6 +528,7 @@ public class SlotSave : MonoBehaviour
             {
                 print("file was tampered with");
                 print("error 2");
+                SceneManager.LoadScene("HellScene");
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
@@ -529,6 +537,7 @@ public class SlotSave : MonoBehaviour
 
                 print("file was tampered with");
                 print("error 3");
+                SceneManager.LoadScene("HellScene");
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }

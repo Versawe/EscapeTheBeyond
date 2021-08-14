@@ -88,6 +88,10 @@ public class NoDestroy : MonoBehaviour
             stairSpawnCount = 0;
             if(GameObject.Find("HintLight")) GameObject.Find("HintLight").GetComponent<Light>().enabled = false;
         }
+        else if (actualScene.name == "HellScene")
+        {
+            pSensitivity = 1;
+        }
         else // currSceneName var always updates correctly
         {
             currSceneName = actualScene.name;
@@ -177,6 +181,7 @@ public class NoDestroy : MonoBehaviour
         dateFileCreated = "";
         dateFileModified = "";
 
+        HasBeenTamperedWith = false;
         stairs.Clear();
         stairSpawnCount = 0;
         huntScript.enabled = false;

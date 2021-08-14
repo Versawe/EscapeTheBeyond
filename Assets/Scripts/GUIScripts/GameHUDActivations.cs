@@ -109,7 +109,7 @@ public class GameHUDActivations : MonoBehaviour
 
     private void GUIAppearPerScene()
     {
-        if (currScene.name == "RelicHunt")
+        if (currScene.name == "RelicHunt" || currScene.name == "HellScene")
         {
             RelicPanel.SetActive(true);
             HealthPanel.SetActive(true);
@@ -211,6 +211,8 @@ public class GameHUDActivations : MonoBehaviour
 
     public void RetryCurrLevel() 
     {
-        SceneManager.LoadScene(NoDestroy.currSceneName);
+        GameOverPanel.SetActive(false);
+        if (NoDestroy.HasBeenTamperedWith) SceneManager.LoadScene("HellScene");
+        else SceneManager.LoadScene(NoDestroy.currSceneName);
     }
 }

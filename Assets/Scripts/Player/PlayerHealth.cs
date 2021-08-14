@@ -35,11 +35,15 @@ public class PlayerHealth : MonoBehaviour
             this.enabled = false;
             return;
         }
-        if (NoDestroy.currSceneName == "RelicHunt")
+        else if (NoDestroy.currSceneName == "RelicHunt")
         {
             heart.SetActive(true);
             heart1.SetActive(true);
             heart2.SetActive(true);
+        }
+        else if(NoDestroy.HasBeenTamperedWith) 
+        {
+            health = 1;
         }
 
         flashLight.SetActive(true);

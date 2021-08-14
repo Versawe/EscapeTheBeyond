@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
+
 
 public class AIMain : MonoBehaviour
 {
@@ -132,6 +131,10 @@ public class AIMain : MonoBehaviour
             screamChance = 0; //cannot scream
             speedBoostChance = 5; //higher chance at speed boost during chase
         }
+        if (NoDestroy.HasBeenTamperedWith) 
+        {
+            AISpeed = 24f;
+        }
 
         nm = GetComponent<NavMeshAgent>();
         player = GameObject.Find("FPSController");
@@ -156,25 +159,41 @@ public class AIMain : MonoBehaviour
 
     private void Update()
     {
-        // functions called every frame
-        if (!destroyObj)
+        if (NoDestroy.HasBeenTamperedWith) //Are You A Cheater??
         {
-            movementAndRotation();
+            aiState = "Chase";
+            visualAI = true;
+            losesPlayerTimer = 10;
+            AISpeed = 24f;
+            nm.isStopped = false;
+            nm.SetDestination(player.transform.position);
+            nm.updateRotation = true;
+            thisMonster.GetComponent<FindPoints>().enabled = false;
             distanceFromPlayer();
-
-            if(!isScaring) losePlayer();
         }
-        else
+        else //You are playing the game correctly!!
         {
-            if(!IsScreaming) attackDoor();
-            IsScreaming = false;
-            checkForScreamTimer = 10f;
-            screamLength = 5f;
-            checkForScreamRandom = 11;
-            ScreamScript.enabled = false;
-            wasScreamingTimer = 1;
-            IsScreaming = false;
+            // functions called every frame
+            if (!destroyObj)
+            {
+                movementAndRotation();
+                distanceFromPlayer();
+
+                if (!isScaring) losePlayer();
+            }
+            else
+            {
+                if (!IsScreaming) attackDoor();
+                IsScreaming = false;
+                checkForScreamTimer = 10f;
+                screamLength = 5f;
+                checkForScreamRandom = 11;
+                ScreamScript.enabled = false;
+                wasScreamingTimer = 1;
+                IsScreaming = false;
+            }
         }
+
 
     }
 
