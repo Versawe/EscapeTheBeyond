@@ -71,7 +71,7 @@ public class GameHUDActivations : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             return;   
         }
-        PauseGame();
+        if(NoDestroy.stairSpawnCount < 15) PauseGame();
         GUIAppearPerScene();
         TrackingSlideBars();
         CheckForEndGame();
@@ -211,7 +211,6 @@ public class GameHUDActivations : MonoBehaviour
 
     public void RetryCurrLevel() 
     {
-        GameOverPanel.SetActive(false);
         if (NoDestroy.HasBeenTamperedWith) SceneManager.LoadScene("HellScene");
         else SceneManager.LoadScene(NoDestroy.currSceneName);
     }

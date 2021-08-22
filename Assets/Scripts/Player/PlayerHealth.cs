@@ -59,6 +59,7 @@ public class PlayerHealth : MonoBehaviour
         }
         if (health == 1)
         {
+            heart2.SetActive(false);
             heart1.SetActive(false);
         }
         if(health < 1)

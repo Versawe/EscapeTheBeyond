@@ -165,6 +165,7 @@ public class AIMain : MonoBehaviour
             visualAI = true;
             losesPlayerTimer = 10;
             AISpeed = 24f;
+            nm.speed = AISpeed;
             nm.isStopped = false;
             nm.SetDestination(player.transform.position);
             nm.updateRotation = true;

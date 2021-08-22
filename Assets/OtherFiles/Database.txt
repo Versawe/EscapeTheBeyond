@@ -8,7 +8,7 @@ You must keep it after giving it.@^(your|my)( )(word)$|^(word)$@Form@none
 I cover cities and destroy mountains, I make men blind, yet help them see.@^(sand)$@Form@none
 Of no use to one, yet absolute bliss to two. The small boy gets it for nothing. The young man has to lie for it. The old man has to buy it.@^(a)( )(kiss)$|^(kiss)$@Form@none
 I weaken all men for hours each day. I show you strange visions while you are away. I take you by night, by day take you back, None suffer to have me, but do from my lack.@^(sleep)$@Form@none
-What’s the name of the entity that can be summoned by saying their name three times while looking in a mirror?@Bloody Mary@MC@Beetlejuice,Madman,Candyman
+What’s the name of the entity that can be summoned by saying their name three times while looking in a mirror?@Bloody Mary@MC@Beetlejuice,Madman,Freddy Krueger
 What entity was seen near the Silver Bridge a few weeks before it’s collapse?@The Mothman@MC@The Rake,Slender Man,Bunny Man
 Which name do you not want a ouija board to spell out 12 times?@Zozo@MC@Satan,Satanas,Hela
 What takes the children away during the night in the Russian lullaby Bayu Bayushki Bayu?@Wolves@MC@Werewolves,Bears,Baba Yaga

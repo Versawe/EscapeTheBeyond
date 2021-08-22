@@ -86,11 +86,15 @@ public class NoDestroy : MonoBehaviour
             completedQandA = false; //change to false
             stairs.Clear();
             stairSpawnCount = 0;
+            endGameTimer = 15;
             if(GameObject.Find("HintLight")) GameObject.Find("HintLight").GetComponent<Light>().enabled = false;
         }
         else if (actualScene.name == "HellScene")
         {
             pSensitivity = 1;
+            atGameOver = false;
+            atGameComplete = false;
+            completedQandA = false;
         }
         else // currSceneName var always updates correctly
         {
@@ -122,6 +126,7 @@ public class NoDestroy : MonoBehaviour
         {
             atGameComplete = true;
         }
+
     }
 
     public void LoadFromFile()

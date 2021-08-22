@@ -593,4 +593,10 @@ public class SlotSave : MonoBehaviour
         if (File.Exists(persistentPath + "/Slot2Data.txt")) Slot2Butt.gameObject.SetActive(true);
         if (File.Exists(persistentPath + "/Slot3Data.txt")) Slot3Butt.gameObject.SetActive(true);
     }
+
+    public void ExitGame() 
+    {
+        print("Exits Game on Build");
+        Application.Quit();
+    }
 }

@@ -111,7 +111,7 @@ public class QandA : MonoBehaviour
         }
         if (wrongTimer <= 0)
         {
-            print("Wrong answer");
+            //print("Wrong answer");
             strikeCount++;
             WasWrongGuess = false;
             if (CheckEndGUISession()) return;
@@ -126,7 +126,7 @@ public class QandA : MonoBehaviour
         }
         if (rightTimer <= 0)
         {
-            print("Correct answer");
+            //print("Correct answer");
             correctAnswers++;
             WasRightGuess = false;
             if(CheckEndGUISession()) return;
@@ -198,7 +198,7 @@ public class QandA : MonoBehaviour
         MCChoices.Clear();
     }
 
-    //this function reorders the multiple choice options and answer to randomly display options
+    //this function reorders the multiple choice options and answer to randomly display the order
     private List<string> AddReorderLists(string answer, List<string> List2)
     {
         List<string> aList = new List<string>();
