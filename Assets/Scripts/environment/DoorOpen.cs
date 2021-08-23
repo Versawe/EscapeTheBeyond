@@ -27,11 +27,18 @@ public class DoorOpen : MonoBehaviour
 
     LockedDoor doorLocked;
 
+    AudioSource DoorAudioSource;
+    public AudioClip doorOpenClip;
+    public AudioClip doorOpenClip2;
+    public AudioClip doorCloseClip;
+    bool playOnce = false;
+
     // Start is called before the first frame update
     void Awake()
     {
         Player = GameObject.Find("FPSController");
 
+        DoorAudioSource = GetComponent<AudioSource>();
         seeDoorScript = Player.GetComponentInChildren<LookAtStuff>();
 
         doorLocked = GetComponent<LockedDoor>();
@@ -55,6 +62,7 @@ public class DoorOpen : MonoBehaviour
         if (doorLocked.Puzzle2Trigger && !NoDestroy.collectedAllRelics) return;
         whichSide();
         doorMove();
+
     }
 
     private void playerInput()
@@ -112,27 +120,24 @@ public class DoorOpen : MonoBehaviour
         if (thisDoor.gameObject.tag == "DoorX" && isOpen && doOnce)
         {
             isShutting = true;
+            if (!playOnce) PlayAudioOnce(doorCloseClip);
             transform.rotation = Slide(transform.rotation, doorStartRot, swingSpeed);
             doOnceTimer -= Time.deltaTime;
-            if (doOnceTimer <= 0) 
+            if (doOnceTimer <= 0)
             {
-                isOpen = false;
-                isShutting = false;
-                doOnce = false;
-                doOnceTimer = 0.5f;
-            } 
+                JustShut();
+            }
         }
         if (thisDoor.gameObject.tag == "DoorX" && !isOpen && doOnce)
         {
+            if (!playOnce) PlayAudioOnce(doorOpenClip);
             if (side == "x2")
             {
                 transform.rotation = Slide(transform.rotation, doorXOpen2, swingSpeed);
                 doOnceTimer -= Time.deltaTime;
                 if (doOnceTimer <= 0)
                 {
-                    isOpen = true;
-                    doOnce = false;
-                    doOnceTimer = 0.5f;
+                    JustOpened();
                 }
             }
             else if(side == "x1")
@@ -141,9 +146,7 @@ public class DoorOpen : MonoBehaviour
                 doOnceTimer -= Time.deltaTime;
                 if (doOnceTimer <= 0)
                 {
-                    isOpen = true;
-                    doOnce = false;
-                    doOnceTimer = 0.5f;
+                    JustOpened();
                 }
             }
         }
@@ -151,27 +154,24 @@ public class DoorOpen : MonoBehaviour
         if (thisDoor.gameObject.tag == "DoorZ" && isOpen && doOnce) // rotate to close position
         {
             isShutting = true;
+            if (!playOnce) PlayAudioOnce(doorCloseClip);
             transform.rotation = Slide(transform.rotation, doorStartRot, swingSpeed);
             doOnceTimer -= Time.deltaTime;
             if (doOnceTimer <= 0)
             {
-                isShutting = false;
-                isOpen = false;
-                doOnce = false;
-                doOnceTimer = 0.5f;
+                JustShut();
             }
         }
         if (thisDoor.gameObject.tag == "DoorZ" && !isOpen && doOnce) //Opening door
         {
+            if (!playOnce) PlayAudioOnce(doorOpenClip2);
             if (side == "z1") //open if one sideA of door
             {
                 transform.rotation = Slide(transform.rotation, doorZOpen1, swingSpeed);
                 doOnceTimer -= Time.deltaTime;
                 if (doOnceTimer <= 0)
                 {
-                    isOpen = true;
-                    doOnce = false;
-                    doOnceTimer = 0.5f;
+                    JustOpened();
                 }
             }
             else if(side == "z2") //open if one sideB of door
@@ -180,17 +180,39 @@ public class DoorOpen : MonoBehaviour
                 doOnceTimer -= Time.deltaTime;
                 if (doOnceTimer <= 0)
                 {
-                    isOpen = true;
-                    doOnce = false;
-                    doOnceTimer = 0.5f;
+                    JustOpened();
                 }
             }
         }
+    }
+
+    private void JustOpened() //vars to adjust when door was just opened
+    {
+        isOpen = true;
+        doOnce = false;
+        playOnce = false;
+        doOnceTimer = 0.5f;
+    }
+
+    private void JustShut() //vars to adjust when door was just shut
+    {
+        isOpen = false;
+        isShutting = false;
+        doOnce = false;
+        playOnce = false;
+        doOnceTimer = 0.5f;
     }
 
     public Quaternion Slide(Quaternion current, Quaternion target, float percentLeft = 0.5f)
     {
         float p = 1 - Mathf.Pow(percentLeft, Time.deltaTime);
         return Quaternion.Lerp(current, target, p);
+    }
+
+    private void PlayAudioOnce(AudioClip thisClip)
+    {
+        DoorAudioSource.clip = thisClip;
+        DoorAudioSource.Play();
+        playOnce = true;
     }
 }
