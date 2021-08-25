@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4329775734759508}
   - component: {fileID: 33053730161080550}
   - component: {fileID: 23491723612362152}
-  - component: {fileID: 65880482260221740}
   m_Layer: 0
   m_Name: door1
   m_TagString: Untagged
@@ -57,6 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,19 +81,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &65880482260221740
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1319920947293708}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.33785433, y: 0.57195157, z: 0.014158324}
-  m_Center: {x: -0.16892734, y: 0.28597578, z: 0.007079153}
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1417706814353424
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +93,7 @@ GameObject:
   - component: {fileID: 4867532829972476}
   - component: {fileID: 33093105826483134}
   - component: {fileID: 23443549171438014}
-  - component: {fileID: 64487389939781190}
+  - component: {fileID: 5593415389205613118}
   m_Layer: 0
   m_Name: frame1
   m_TagString: Untagged
@@ -150,6 +138,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -174,8 +163,9 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64487389939781190
-MeshCollider:
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5593415389205613118
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -184,10 +174,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300006, guid: 0254ce708b814e94f9e6da081a0be167, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.39859325, y: 0.8474111, z: 0.57290214}
+  m_Center: {x: -0.19929665, y: 0.42370555, z: -0.28645107}
 --- !u!1 &1537638358802582
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +188,6 @@ GameObject:
   - component: {fileID: 4365810593994562}
   - component: {fileID: 33958880826901228}
   - component: {fileID: 23181759689895422}
-  - component: {fileID: 65431284657288022}
   m_Layer: 0
   m_Name: drawer1
   m_TagString: Untagged
@@ -245,6 +233,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -269,19 +258,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &65431284657288022
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1537638358802582}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.33785427, y: 0.16459754, z: 0.35000944}
-  m_Center: {x: 0.1689272, y: -0.08229877, z: -0.16084641}
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1548436127458560
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,6 +314,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -361,6 +339,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1602205479311998
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +395,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -440,6 +420,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1607275720248690
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,6 +476,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -519,6 +501,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1806796120011046
 GameObject:
   m_ObjectHideFlags: 0
