@@ -53,6 +53,10 @@ public class QandA : MonoBehaviour
     public GameObject PPVOff;
     public GameObject PPVStatic;
 
+    //no destroy object
+    GameObject controller;
+    NoDestroy destroyScript;
+
     private void Awake()
     {
         //Creates an array from the text file
@@ -61,6 +65,10 @@ public class QandA : MonoBehaviour
 
         if (GameObject.Find("FPSController")) lookScript = GameObject.Find("FPSController").GetComponentInChildren<LookAtStuff>();
         else lookScript = null;
+
+        //grab no destroy object
+        controller = GameObject.Find("NoDestroyOBJ");
+        destroyScript = controller.GetComponent<NoDestroy>();
     }
 
     void OnEnable()
@@ -139,10 +147,16 @@ public class QandA : MonoBehaviour
 
         //for final plunge down stairs and activating gui and PPV
         if (NoDestroy.stairSpawnCount < 15) return;
-        if (!NoDestroy.atGameComplete) PPVStatic.SetActive(true);
+        if (!NoDestroy.atGameComplete) 
+        {
+            PPVStatic.SetActive(true);
+            if (!NoDestroy.playOnce) destroyScript.RunNoDestroyAudio(destroyScript.StaticNoiseClip);
+        } 
         else 
         {
             PPVStatic.SetActive(false);
+            destroyScript.EventAS.Stop();
+            NoDestroy.playOnce = false;
         }
     }
 
