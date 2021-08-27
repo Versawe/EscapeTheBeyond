@@ -78,8 +78,14 @@ public class AIMain : MonoBehaviour
     private float wasScreamingTimer = 0.5f;
     private float chasePlusTimer = 10;
 
+    private bool IsCheaterAI = false;
+
     void Awake()
     {
+        Scene currScene = SceneManager.GetActiveScene();
+        if (currScene.name != "RelicHunt") IsCheaterAI = true;
+        if (currScene.name != "RelicHunt") return;
+
         List<GameObject> temp = new List<GameObject>(); //temp list for finding objects on scene start
         foreach (GameObject spawn in GameObject.FindGameObjectsWithTag("aiSpawn")) //grabs all spawn points in the scene
         {
@@ -454,8 +460,19 @@ public class AIMain : MonoBehaviour
     private void distanceFromPlayer()
     {
         float dist = Vector3.Distance(player.transform.position, thisMonster.position);
-        float dist1 = Vector3.Distance(player.transform.position, SpawnPoint1.position);
-        float dist2 = Vector3.Distance(player.transform.position, SpawnPoint2.position);
+        float dist1;
+        float dist2;
+        if (!IsCheaterAI) 
+        {
+            dist1 = Vector3.Distance(player.transform.position, SpawnPoint1.position);
+            dist2 = Vector3.Distance(player.transform.position, SpawnPoint2.position);
+        }
+        else 
+        {
+            dist1 = 0;
+            dist2 = 0;
+        }
+        
         if (dist <= scareDis && !hideScript.isHiding)
         {
             player.GetComponent<ScareCam>().nameOfAI = AIName;
@@ -482,16 +499,16 @@ public class AIMain : MonoBehaviour
             scareTimer -= 1 * Time.deltaTime;
             if (dist1 > dist2) 
             {
-                farthestSpawn = SpawnPoint1;
+                if(!IsCheaterAI) farthestSpawn = SpawnPoint1;
             }
             else
             {
-                farthestSpawn = SpawnPoint2;
+                if(!IsCheaterAI) farthestSpawn = SpawnPoint2;
             }
         }
         if (isScaring && scareTimer <= 0) 
         {
-            nm.Warp(farthestSpawn.position);
+            if(!IsCheaterAI) nm.Warp(farthestSpawn.position);
             visualAI = false;
             hasBeenSeen = false;
             losesPlayerTimer = 10;
@@ -501,7 +518,7 @@ public class AIMain : MonoBehaviour
             aiState = "Patrol";
             foreach (GameObject spooky in GameObject.FindGameObjectsWithTag("Monster")) //setting all monsters back to active if there are more than one
             {
-                spooky.GetComponent<NavMeshAgent>().Warp(farthestSpawn.position);
+                if (!IsCheaterAI) spooky.GetComponent<NavMeshAgent>().Warp(farthestSpawn.position);
                 spooky.GetComponent<AIMain>().enabled = true;
                 spooky.GetComponent<AIMain>().enabled = false; //for insurance
                 spooky.GetComponent<AIMain>().enabled = true;
