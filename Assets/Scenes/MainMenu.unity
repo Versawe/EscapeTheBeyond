@@ -2496,6 +2496,7 @@ GameObject:
   - component: {fileID: 583180184}
   - component: {fileID: 981184492}
   - component: {fileID: 584949179}
+  - component: {fileID: 584949180}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -2519,6 +2520,14 @@ MonoBehaviour:
   MMUI: {fileID: 1662936769}
   slotScript: {fileID: 0}
   target: {fileID: 817326389}
+--- !u!81 &584949180
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584949178}
+  m_Enabled: 1
 --- !u!1 &586599884
 GameObject:
   m_ObjectHideFlags: 0

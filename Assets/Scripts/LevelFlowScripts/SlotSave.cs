@@ -48,6 +48,7 @@ public class SlotSave : MonoBehaviour
 
     //no destroy object
     GameObject controller;
+    NoDestroy destroyScript;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +60,7 @@ public class SlotSave : MonoBehaviour
 
         //grab no destroy object
         controller = GameObject.Find("NoDestroyOBJ");
+        destroyScript = controller.GetComponent<NoDestroy>();
         //gets persistant path
         persistentPath = Application.persistentDataPath;
 
@@ -157,9 +159,17 @@ public class SlotSave : MonoBehaviour
             //changes Postprocessing to glithy one
             skyAndFog.SetActive(false);
             staticScreen.SetActive(true);
+
+            //plays audio
+            if (!NoDestroy.playOnce)
+            {
+                destroyScript.RunNoDestroyAudio(destroyScript.StaticNoiseClip);
+            }
         }
         if (staticTimer <= 0)
         {
+            NoDestroy.playOnce = false;
+            destroyScript.EventAS.Stop(); //stops audio
             IsJustStarted = false;
             NoNewButtonSpawn = true;
             skyAndFogCrazy.SetActive(true);

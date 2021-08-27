@@ -38,12 +38,19 @@ public class NoDestroy : MonoBehaviour
     public static List<GameObject> stairs  = new List<GameObject>();
     public static int stairSpawnCount = 0;
 
+    public static bool playOnce = false;
+
+    //Audio Vars
+    public AudioSource EventAS;
+    public AudioClip StaticNoiseClip;
+
     // Start is called before the first frame update
     void Awake()
     {
         //makes the object this script is attached to non-destroyable on load
         DontDestroyOnLoad(gameObject);
         fileLoaded = "";
+        EventAS = GetComponent<AudioSource>();
         huntScript = GetComponent<RelicHuntScript>();
     }
     private void Start()
@@ -61,6 +68,11 @@ public class NoDestroy : MonoBehaviour
     {
         //get current scene
         actualScene = SceneManager.GetActiveScene();
+        currSceneName = actualScene.name;
+        atGameOver = false;
+        atGameComplete = false;
+        completedQandA = false;
+        playOnce = false;
 
         if (actualScene.name == "Preload") // instanlty preloads to Main menu
         {
@@ -92,13 +104,6 @@ public class NoDestroy : MonoBehaviour
         else if (actualScene.name == "HellScene")
         {
             pSensitivity = 1;
-            atGameOver = false;
-            atGameComplete = false;
-            completedQandA = false;
-        }
-        else // currSceneName var always updates correctly
-        {
-            currSceneName = actualScene.name;
             atGameOver = false;
             atGameComplete = false;
             completedQandA = false;
@@ -186,6 +191,7 @@ public class NoDestroy : MonoBehaviour
         dateFileCreated = "";
         dateFileModified = "";
 
+        playOnce = false;
         HasBeenTamperedWith = false;
         stairs.Clear();
         stairSpawnCount = 0;
@@ -204,5 +210,12 @@ public class NoDestroy : MonoBehaviour
             stairs.RemoveAt(0);
             Destroy(removeThisStairs);
         }
+    }
+
+    public void RunNoDestroyAudio(AudioClip thisClip)
+    {
+        EventAS.clip = thisClip;
+        EventAS.Play();
+        playOnce = true;
     }
 }
