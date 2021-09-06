@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CharacterMovementFirstPerson : MonoBehaviour
 {
@@ -62,10 +60,12 @@ public class CharacterMovementFirstPerson : MonoBehaviour
         //CHANGED FOR FPS   
         Quaternion camRot = Quaternion.Euler(0, cam.eulerAngles.y, 0);
         transform.rotation = camRot;
+
         if (h != 0 || v != 0)
         {
             isMoving = true;
         }
+        else isMoving = false;
     }
 
     //player jump ability

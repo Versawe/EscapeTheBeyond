@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraRotationFirstPerson : MonoBehaviour
 {
@@ -14,15 +11,18 @@ public class CameraRotationFirstPerson : MonoBehaviour
 
     private float yaw = 0.0f;
     private float pitch = 0.0f;
+    private float pitch_clamped;
 
-    //public Transform target;
+    Quaternion CameraRotation;
+    Vector3 StartLocalPosition;
+    private float bobPace = 8f;
+    private float bobOffest = 0.03f;
 
-    private GameObject player;
+    CharacterMovementFirstPerson charMoveScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
         lookScript = GetComponent<LookAtStuff>();
 
         //at start set the player's sensitivity
@@ -31,6 +31,10 @@ public class CameraRotationFirstPerson : MonoBehaviour
         //starting rotation per level
         if (NoDestroy.gameProgression == 1) yaw = 90;
         else yaw = -90;
+
+        charMoveScript = GetComponentInParent<CharacterMovementFirstPerson>();
+        StartLocalPosition = transform.localPosition;
+        
     }
 
     private void OnDisable()
@@ -43,6 +47,11 @@ public class CameraRotationFirstPerson : MonoBehaviour
     void Update()
     {
         SensitivityChanges(); //update in game
+        if (charMoveScript.isMoving) CameraLocalSway(); //this may need to be in LateUpdate
+        else 
+        {
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, StartLocalPosition, 0.1f);
+        }
     }
 
     private void SensitivityChanges()
@@ -72,9 +81,16 @@ public class CameraRotationFirstPerson : MonoBehaviour
         pitch -= my * pitchSensitivity;
 
         //clamp pitch, so camera doesn't rotate too far low or high to seem weird
-        float pitch_clamped = Mathf.Clamp(pitch, -89f, 45f);
+        pitch_clamped = Mathf.Clamp(pitch, -89f, 45f);
 
-        // use the clamped pitch and yaw to rotate camera rig, entered in as euler angles through Quaternion class 
-        if(Time.timeScale > 0) transform.rotation = Quaternion.Euler(pitch_clamped, yaw, 0);
+        CameraRotation = transform.rotation = Quaternion.Euler(pitch_clamped, yaw, 0);
+        // use the clamped pitch and yaw to rotate camera rig, entered in as euler angles through Quaternion class
+        if (Time.timeScale > 0) transform.rotation = CameraRotation;
+    }
+    private void CameraLocalSway()
+    {
+        float moveSway = Mathf.Sin(Time.time * bobPace) * bobOffest;
+        Vector3 swayVec = new Vector3(StartLocalPosition.x, StartLocalPosition.y + moveSway, StartLocalPosition.z);
+        transform.localPosition = Vector3.MoveTowards(transform.localPosition, swayVec, 0.1f);
     }
 }
