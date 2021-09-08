@@ -43,9 +43,9 @@ public class QandA : MonoBehaviour
     private string otherOptions; 
     private string playerA;
 
-    private float wrongTimer = 1.5f;
+    private float wrongTimer = 3f;
     private bool WasWrongGuess = false;
-    private float rightTimer = 1.5f;
+    private float rightTimer = 2f;
     private bool WasRightGuess = false;
     private float numRightAnswers = 15;
 
@@ -56,6 +56,10 @@ public class QandA : MonoBehaviour
     //no destroy object
     GameObject controller;
     NoDestroy destroyScript;
+
+    //Scare Objects
+    public GameObject MirrorSurfaceObj;
+    public GameObject ScareScene; 
 
     private void Awake()
     {
@@ -73,10 +77,12 @@ public class QandA : MonoBehaviour
 
     void OnEnable()
     {
-        if (NoDestroy.currSceneName != "QandA")
+        if (NoDestroy.currSceneName != "QandA") //objects not needed in script if in any other scene
         {
             PPVOff = null;
             PPVStatic = null;
+            MirrorSurfaceObj = null;
+            ScareScene = null;
         } 
         //each enable script will resplit the databasesplit array by the '@' delimeter and put the texts in their respective Lists
         for (int i = 0; i < DataBaseSplit.Length - 1; i++)
@@ -117,14 +123,19 @@ public class QandA : MonoBehaviour
         {
             wrongTimer -= 1 * Time.deltaTime;
         }
-        if (wrongTimer <= 0)
+        if (wrongTimer <= 2 && wrongTimer > 0) 
+        {
+            ScareScene.SetActive(true);
+        }
+        else if (wrongTimer <= 0)
         {
             //print("Wrong answer");
             strikeCount++;
             WasWrongGuess = false;
+            ScareScene.SetActive(false);
             if (CheckEndGUISession()) return;
             RandomQuestion(QuestionsList);
-            wrongTimer = 1.5f;
+            wrongTimer = 3f;
         }
 
         //delay timer after right guess (used for suspense build)
@@ -139,7 +150,7 @@ public class QandA : MonoBehaviour
             WasRightGuess = false;
             if(CheckEndGUISession()) return;
             RandomQuestion(QuestionsList);
-            rightTimer = 1.5f;
+            rightTimer = 2f;
         }
 
         //sets the number of strikes to the gui display for players
