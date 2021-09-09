@@ -39,7 +39,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6723739346374987393}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 8857587765023446979}
   - component: {fileID: 8857587765023447005}
   - component: {fileID: 8857587765023447004}
+  - component: {fileID: 7807778258401989500}
   m_Layer: 0
   m_Name: HidingCheck
   m_TagString: Player
@@ -277,6 +278,18 @@ MonoBehaviour:
   isHiding: 0
   inBounds: 0
   wardrobeHiding: {fileID: 0}
+--- !u!114 &7807778258401989500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8857587765023446978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e38882a404a73404c9d2bf2bc2cc3069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8857587766103082420
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,7 +415,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8857587766103082420}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2ed8651b08d7184b9a5a0f2c9c5c941, type: 3}
   m_Name: 
@@ -411,7 +424,6 @@ MonoBehaviour:
   heart: {fileID: 0}
   heart1: {fileID: 0}
   heart2: {fileID: 0}
-  flashLight: {fileID: 0}
 --- !u!1 &8857587766103082422
 GameObject:
   m_ObjectHideFlags: 0

@@ -61,6 +61,7 @@ public class RelicHuntScript : MonoBehaviour
         {
             if (!point.GetComponent<RelicSpawnLocation>().isActiveAndEnabled) point.GetComponent<DestroyOBJ>().enabled = true;
         }
+
     }
 
     private void OnDisable()

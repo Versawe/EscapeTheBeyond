@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.PlayerLoop;
+using UnityEngine.Rendering;
 
 public class QandA : MonoBehaviour
 {
@@ -126,14 +127,16 @@ public class QandA : MonoBehaviour
         if (wrongTimer <= 2 && wrongTimer > 0) 
         {
             ScareScene.SetActive(true);
+            HideUI();
         }
         else if (wrongTimer <= 0)
         {
             //print("Wrong answer");
             strikeCount++;
             WasWrongGuess = false;
-            ScareScene.SetActive(false);
             if (CheckEndGUISession()) return;
+            ShowUI();
+            ScareScene.SetActive(false);
             RandomQuestion(QuestionsList);
             wrongTimer = 3f;
         }
@@ -314,7 +317,8 @@ public class QandA : MonoBehaviour
             QuestionText.enabled = false;
             lookScript.IsActivated = false;
             NoDestroy.completedQandA = true;
-            PPVOff.SetActive(false);
+            PPVOff.GetComponent<Volume>().enabled = false;
+            MirrorSurfaceObj.SetActive(false);
             GameObject.Find("door_a (14)").GetComponent<LockedDoor>().IsLocked = false;
             GameObject.Find("HintLight").GetComponent<Light>().enabled = true;
             return true;
@@ -323,5 +327,22 @@ public class QandA : MonoBehaviour
         {
             return false;
         }
+    }
+
+    private void HideUI() //quick hide all UI 
+    {
+        QuestionText.enabled = false;
+        MCPanel.SetActive(false);
+        TEPanel.SetActive(false);
+        StrikesPanel.SetActive(false);
+        StrikesText.enabled = false;
+    }
+    private void ShowUI() //quick show all UI 
+    {
+        QuestionText.enabled = true;
+        MCPanel.SetActive(true);
+        TEPanel.SetActive(true);
+        StrikesPanel.SetActive(true);
+        StrikesText.enabled = true;
     }
 }

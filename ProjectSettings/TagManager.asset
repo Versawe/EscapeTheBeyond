@@ -23,6 +23,7 @@ TagManager:
   - patrolPoint2
   - soundOnCollide
   - StaircaseTag
+  - Zone
   layers:
   - Default
   - TransparentFX

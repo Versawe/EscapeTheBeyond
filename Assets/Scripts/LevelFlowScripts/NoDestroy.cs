@@ -29,6 +29,7 @@ public class NoDestroy : MonoBehaviour
     string persistantPath;
     private float endGameTimer = 15;
 
+    private PlayerHealth pHealth;
     public RelicHuntScript huntScript;
     public static bool collectedAllRelics = false;
     public static bool atGameOver = false;
@@ -39,6 +40,8 @@ public class NoDestroy : MonoBehaviour
     public static int stairSpawnCount = 0;
 
     public static bool playOnce = false;
+
+    Light flashLight;
 
     //Audio Vars
     public AudioSource EventAS;
@@ -89,6 +92,10 @@ public class NoDestroy : MonoBehaviour
             collectedAllRelics = false;
             atGameOver = false;
             atGameComplete = false;
+            pHealth = GameObject.Find("FPSController").GetComponent<PlayerHealth>();
+            pHealth.enabled = true;
+            flashLight = GameObject.Find("Flashlight").GetComponent<Light>();
+            flashLight.enabled = true;
         }
         else if (actualScene.name == "QandA")
         {
@@ -100,6 +107,8 @@ public class NoDestroy : MonoBehaviour
             stairSpawnCount = 0;
             endGameTimer = 15;
             if(GameObject.Find("HintLight")) GameObject.Find("HintLight").GetComponent<Light>().enabled = false;
+            flashLight = GameObject.Find("Flashlight").GetComponent<Light>();
+            flashLight.enabled = true;
         }
         else if (actualScene.name == "HellScene")
         {

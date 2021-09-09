@@ -10,8 +10,6 @@ public class PlayerHealth : MonoBehaviour
     public GameObject heart;
     public GameObject heart1;
     public GameObject heart2;
-    //public Button retryButt; // Replace with a Game Over Screen
-    public GameObject flashLight;
 
     CameraRotationFirstPerson camScript;
     CharacterMovementFirstPerson pMoveScript;
@@ -24,18 +22,11 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        flashLight = GameObject.Find("Flashlight");
         heart = GameObject.Find("Heart1");
         heart1 = GameObject.Find("Heart2");
         heart2 = GameObject.Find("Heart3");
 
-        if (NoDestroy.currSceneName == "GlitchyStart")
-        {
-            flashLight.SetActive(false);
-            this.enabled = false;
-            return;
-        }
-        else if (NoDestroy.currSceneName == "RelicHunt")
+        if (NoDestroy.currSceneName == "RelicHunt")
         {
             heart.SetActive(true);
             heart1.SetActive(true);
@@ -46,9 +37,6 @@ public class PlayerHealth : MonoBehaviour
             health = 1;
         }
 
-        flashLight.SetActive(true);
-        
-        //retryButt.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -72,8 +60,6 @@ public class PlayerHealth : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
-        if (!camScript.enabled) flashLight.SetActive(false);
-        else flashLight.SetActive(true);
     }
 
 }
