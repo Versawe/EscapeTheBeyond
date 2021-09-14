@@ -7,6 +7,7 @@ public class GameHUDActivations : MonoBehaviour
 {
     //UI Object references
     public GameObject pausePanel;
+    public TextMeshProUGUI objectiveTextDisplay;
     public GameObject RelicPanel;
     public GameObject HealthPanel;
     public GameObject OptionsPanel;
@@ -90,8 +91,13 @@ public class GameHUDActivations : MonoBehaviour
             if (NoDestroy.puzzleOneLoginAttempts != 2 && TextHint != null)
             {
                 TextHint.SetActive(false);
+                NoDestroy.currObjective = "Current Objective:\nEnter the passcode and unlock the door";
             }
-            else TextHint.SetActive(true);
+            else
+            {
+                TextHint.SetActive(true);
+                NoDestroy.currObjective = "Current Objective:\nEXIT the room";
+            }
         }
 
     }
@@ -140,6 +146,7 @@ public class GameHUDActivations : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
             pausePanel.SetActive(true);
+            objectiveTextDisplay.text = NoDestroy.currObjective;
             Time.timeScale = 0;
         }
         else if (!isPaused && !pLookAtScript.IsActivated && !NoDestroy.atGameOver)

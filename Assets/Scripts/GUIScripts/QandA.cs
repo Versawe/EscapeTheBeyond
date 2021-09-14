@@ -97,6 +97,8 @@ public class QandA : MonoBehaviour
         }
         //Starts off Questions
         RandomQuestion(QuestionsList);
+
+        NoDestroy.currObjective = "Current Objective:\nPlay Questions and Answers with the Demon to enchant the relic Key"; //useless because you cannot pause
     }
 
     private void OnDisable()
@@ -110,6 +112,7 @@ public class QandA : MonoBehaviour
         MCPanel.SetActive(false);
         TEPanel.SetActive(false);
         StrikesPanel.SetActive(false);
+
     }
 
     private void Update()
@@ -294,9 +297,9 @@ public class QandA : MonoBehaviour
         }
     }
     
-    public bool CheckEndGUISession() 
+    public bool CheckEndGUISession() //checks if the Q&A session is over, whether win or lose
     {
-        if (strikeCount >= 3) 
+        if (strikeCount >= 3) //if you lose the game
         {
             wrongTimer = 1.5f;
             WasWrongGuess = false;
@@ -321,6 +324,7 @@ public class QandA : MonoBehaviour
             MirrorSurfaceObj.SetActive(false);
             GameObject.Find("door_a (14)").GetComponent<LockedDoor>().IsLocked = false;
             GameObject.Find("HintLight").GetComponent<Light>().enabled = true;
+            NoDestroy.currObjective = "Current Objective:\nUse the relic key to unlock the basement door";
             return true;
         }
         else 

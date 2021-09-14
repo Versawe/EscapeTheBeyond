@@ -36,6 +36,8 @@ public class NoDestroy : MonoBehaviour
     public static bool completedQandA = false;
     public static bool atGameComplete = false;
 
+    public static string currObjective = "";
+
     public static List<GameObject> stairs  = new List<GameObject>();
     public static int stairSpawnCount = 0;
 
@@ -96,6 +98,7 @@ public class NoDestroy : MonoBehaviour
             pHealth.enabled = true;
             flashLight = GameObject.Find("Flashlight").GetComponent<Light>();
             flashLight.enabled = true;
+            currObjective = "Current Objective:\nFind a way out";
         }
         else if (actualScene.name == "QandA")
         {
@@ -109,6 +112,7 @@ public class NoDestroy : MonoBehaviour
             if(GameObject.Find("HintLight")) GameObject.Find("HintLight").GetComponent<Light>().enabled = false;
             flashLight = GameObject.Find("Flashlight").GetComponent<Light>();
             flashLight.enabled = true;
+            currObjective = "Current Objective:\nGo back to the start";
         }
         else if (actualScene.name == "HellScene")
         {
@@ -116,6 +120,7 @@ public class NoDestroy : MonoBehaviour
             atGameOver = false;
             atGameComplete = false;
             completedQandA = false;
+            currObjective = "Current Objective:/nDie, Cheater";
         }
         
         //Below grabs persistanPath and automatically loads text rows from save data file into this script
@@ -199,6 +204,7 @@ public class NoDestroy : MonoBehaviour
         puzzleOneLoginAttempts = 0;
         dateFileCreated = "";
         dateFileModified = "";
+        currObjective = "";
 
         playOnce = false;
         HasBeenTamperedWith = false;
