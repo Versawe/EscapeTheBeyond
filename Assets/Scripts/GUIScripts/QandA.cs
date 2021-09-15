@@ -18,7 +18,8 @@ public class QandA : MonoBehaviour
     private List<string> OtherOptionsList = new List<string>();
     private List<string> MCChoices = new List<string>();
 
-    public TextMeshProUGUI QuestionText;
+    public GameObject QuestionText;
+    public TextMeshProUGUI QuestionTextText;
     public GameObject MCPanel;
     public GameObject TEPanel;
     public GameObject StrikesPanel;
@@ -98,7 +99,7 @@ public class QandA : MonoBehaviour
         //Starts off Questions
         RandomQuestion(QuestionsList);
 
-        NoDestroy.currObjective = "Current Objective:\nPlay Questions and Answers with the Demon to enchant the relic Key"; //useless because you cannot pause
+        NoDestroy.currObjective = "Current Objective:\nPlay Questions and Answers with the Demon to enchant the Key"; //useless because you cannot pause
     }
 
     private void OnDisable()
@@ -217,8 +218,8 @@ public class QandA : MonoBehaviour
             formInput.ActivateInputField();
         }
         //display correct question
-        QuestionText.gameObject.SetActive(true);
-        QuestionText.text = currentQ;
+        QuestionText.SetActive(true);
+        QuestionTextText.text = currentQ;
         StrikesPanel.SetActive(true);
 
         //at end remove i from each list so no repeats and lists will sync back up, and clear mcChoices
@@ -307,7 +308,7 @@ public class QandA : MonoBehaviour
             TEPanel.SetActive(false);
             MCPanel.SetActive(false);
             StrikesPanel.SetActive(false);
-            QuestionText.enabled = false;
+            QuestionText.SetActive(false);
             return true;
         }
         else if (correctAnswers >= numRightAnswers) //15 for real # correct for now, keep at 2 for testing purposes
@@ -317,14 +318,14 @@ public class QandA : MonoBehaviour
             TEPanel.SetActive(false);
             MCPanel.SetActive(false);
             StrikesPanel.SetActive(false);
-            QuestionText.enabled = false;
+            QuestionText.SetActive(false);
             lookScript.IsActivated = false;
             NoDestroy.completedQandA = true;
             PPVOff.GetComponent<Volume>().enabled = false;
             MirrorSurfaceObj.SetActive(false);
             GameObject.Find("door_a (14)").GetComponent<LockedDoor>().IsLocked = false;
             GameObject.Find("HintLight").GetComponent<Light>().enabled = true;
-            NoDestroy.currObjective = "Current Objective:\nUse the relic key to unlock the basement door";
+            NoDestroy.currObjective = "Current Objective:\nEscape the Beyond";
             return true;
         }
         else 
@@ -335,7 +336,7 @@ public class QandA : MonoBehaviour
 
     private void HideUI() //quick hide all UI 
     {
-        QuestionText.enabled = false;
+        QuestionText.SetActive(false);
         MCPanel.SetActive(false);
         TEPanel.SetActive(false);
         StrikesPanel.SetActive(false);
@@ -343,7 +344,7 @@ public class QandA : MonoBehaviour
     }
     private void ShowUI() //quick show all UI 
     {
-        QuestionText.enabled = true;
+        QuestionText.SetActive(true);
         MCPanel.SetActive(true);
         TEPanel.SetActive(true);
         StrikesPanel.SetActive(true);

@@ -273,6 +273,10 @@ public class LookAtStuff : MonoBehaviour
         CurrRelic = null;
         HUDScript.relicCollected++;
         if (HUDScript.relicCollected == 5 || HUDScript.relicCollected == 10) relicScript.SpawnAI();
-        if (HUDScript.relicCollected >= 15) NoDestroy.collectedAllRelics = true;
+        if (HUDScript.relicCollected >= 15)
+        {
+            NoDestroy.collectedAllRelics = true;
+            NoDestroy.currObjective = "Current Objective:\nGo back to the basement door to use the relics to craft a key";
+        } 
     }
 }

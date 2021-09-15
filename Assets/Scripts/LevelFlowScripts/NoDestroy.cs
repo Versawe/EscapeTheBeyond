@@ -120,7 +120,7 @@ public class NoDestroy : MonoBehaviour
             atGameOver = false;
             atGameComplete = false;
             completedQandA = false;
-            currObjective = "Current Objective:/nDie, Cheater";
+            currObjective = "Current Objective:\nDie, Cheater";
         }
         
         //Below grabs persistanPath and automatically loads text rows from save data file into this script
