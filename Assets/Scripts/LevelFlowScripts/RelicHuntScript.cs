@@ -62,7 +62,7 @@ public class RelicHuntScript : MonoBehaviour
             if (!point.GetComponent<RelicSpawnLocation>().isActiveAndEnabled) point.GetComponent<DestroyOBJ>().enabled = true;
         }
 
-        NoDestroy.currObjective = "Current Objective:\nCollect all 15 relics to craft a key for the locked door.";
+        NoDestroy.currObjective = "Current Objective:\nCollect all 15 relics to craft a key for the locked door";
     }
 
     private void OnDisable()

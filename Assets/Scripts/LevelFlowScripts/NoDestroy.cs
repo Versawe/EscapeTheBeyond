@@ -98,7 +98,7 @@ public class NoDestroy : MonoBehaviour
             pHealth.enabled = true;
             flashLight = GameObject.Find("Flashlight").GetComponent<Light>();
             flashLight.enabled = true;
-            currObjective = "Current Objective:\nFind a way out";
+            currObjective = "Current Objective:\nFind a way out of the house";
         }
         else if (actualScene.name == "QandA")
         {
@@ -112,7 +112,7 @@ public class NoDestroy : MonoBehaviour
             if(GameObject.Find("HintLight")) GameObject.Find("HintLight").GetComponent<Light>().enabled = false;
             flashLight = GameObject.Find("Flashlight").GetComponent<Light>();
             flashLight.enabled = true;
-            currObjective = "Current Objective:\nGo back to the start";
+            currObjective = "Current Objective:\nGo back to the first room";
         }
         else if (actualScene.name == "HellScene")
         {

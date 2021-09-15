@@ -276,7 +276,7 @@ public class LookAtStuff : MonoBehaviour
         if (HUDScript.relicCollected >= 15)
         {
             NoDestroy.collectedAllRelics = true;
-            NoDestroy.currObjective = "Current Objective:\nGo back to the basement door to use the relics to craft a key";
+            NoDestroy.currObjective = "Current Objective:\nGo back to the locked door to use the relics and craft a key";
         } 
     }
 }

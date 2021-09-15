@@ -72,10 +72,13 @@ public class GameHUDActivations : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             return;   
         }
+
+        CheckForEndGame();
+        if (NoDestroy.atGameOver) return;
+
         if(NoDestroy.stairSpawnCount < 15) PauseGame();
         GUIAppearPerScene();
         TrackingSlideBars();
-        CheckForEndGame();
 
         //when you cycle through all the questions from the Q&A.cs script (this will never be used in game due to winning or losing)
         if (pLookAtScript.IsActivated && Puzzle3Script.QuestionsList.Count <= 0 && pLookAtScript.lookingAtName == "Main_mirror")
