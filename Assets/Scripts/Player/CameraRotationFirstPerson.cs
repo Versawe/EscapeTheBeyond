@@ -18,6 +18,11 @@ public class CameraRotationFirstPerson : MonoBehaviour
     private float bobPace = 8f;
     private float bobOffest = 0.03f;
 
+    private float tiltPace = 8f; //3.5f
+    private float tiltOffest = 1.75f; //1.75f
+
+    Quaternion StartLocalRotation;
+    Quaternion rotateQuat;
     CharacterMovementFirstPerson charMoveScript;
 
     // Start is called before the first frame update
@@ -34,6 +39,7 @@ public class CameraRotationFirstPerson : MonoBehaviour
 
         charMoveScript = GetComponentInParent<CharacterMovementFirstPerson>();
         StartLocalPosition = transform.localPosition;
+        StartLocalRotation = transform.localRotation;
         
     }
 
@@ -47,11 +53,6 @@ public class CameraRotationFirstPerson : MonoBehaviour
     void Update()
     {
         SensitivityChanges(); //update in game
-        if (charMoveScript.isMoving) CameraLocalSway(); //this may need to be in LateUpdate
-        else 
-        {
-            transform.localPosition = Vector3.MoveTowards(transform.localPosition, StartLocalPosition, 0.1f);
-        }
     }
 
     private void SensitivityChanges()
@@ -66,6 +67,12 @@ public class CameraRotationFirstPerson : MonoBehaviour
     {
         if (Time.timeScale == 0 || NoDestroy.atGameComplete) return;
         RotateCamera();
+
+        if (!charMoveScript.isMoving) //this may need to be in LateUpdate
+        {
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, StartLocalPosition, 0.01f);
+            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, StartLocalRotation, 0.01f);
+        }
     }
 
     private void RotateCamera()
@@ -85,12 +92,20 @@ public class CameraRotationFirstPerson : MonoBehaviour
 
         CameraRotation = transform.rotation = Quaternion.Euler(pitch_clamped, yaw, 0);
         // use the clamped pitch and yaw to rotate camera rig, entered in as euler angles through Quaternion class
-        if (Time.timeScale > 0) transform.rotation = CameraRotation;
+        if (Time.timeScale > 0 && !charMoveScript.isMoving) transform.rotation = Quaternion.RotateTowards(transform.rotation, CameraRotation, 0.01f);
+        else if (Time.timeScale > 0 && charMoveScript.isMoving) 
+        {
+            CameraLocalSway();
+        } 
     }
     private void CameraLocalSway()
     {
         float moveSway = Mathf.Sin(Time.time * bobPace) * bobOffest;
         Vector3 swayVec = new Vector3(StartLocalPosition.x, StartLocalPosition.y + moveSway, StartLocalPosition.z);
         transform.localPosition = Vector3.MoveTowards(transform.localPosition, swayVec, 0.1f);
+
+        float rotateSway = Mathf.Sin(Time.time * tiltPace) * tiltOffest;
+        rotateQuat = Quaternion.Euler(StartLocalRotation.x, StartLocalRotation.y, StartLocalRotation.z + rotateSway);
+        transform.rotation = CameraRotation * rotateQuat;
     }
 }
