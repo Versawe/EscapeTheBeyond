@@ -11,28 +11,15 @@ I weaken all men for hours each day. I show you strange visions while you are aw
 What’s the name of the entity that can be summoned by saying their name three times while looking in a mirror?@Bloody Mary@MC@Beetlejuice,Madman,Freddy Krueger
 What entity was seen near the Silver Bridge a few weeks before it’s collapse?@The Mothman@MC@The Rake,Slender Man,Bunny Man
 Which name do you not want a ouija board to spell out 12 times?@Zozo@MC@Satan,Satanas,Hela
-What takes the children away during the night in the Russian lullaby Bayu Bayushki Bayu?@Wolves@MC@Werewolves,Bears,Baba Yaga
 “That is not dead which can eternal lie, And with strange aeons, even death may die.”@H.P. Lovecraft@MC@Stephen King,Edgar Allen Poe,Dean Koontz
 Which entity is not an Outer God?@Cthulhu@MC@Azathoth,Nyarlathotep,Yog-Sothoth
 Which of the Outer Gods walks among us in disguise?@Nyarlathotep@MC@Ghroth,Ubbo-Sathla,Azathoth
 What is the name of the Book of the Dead?@Necronomicon@MC@Vishanti,Grimoire,The Occido Lumen
-Who among the Cenobites is the Hell Priest?@Pinhead@MC@Chatterer,Butterball,Angelique
-What is the name of the character, whose soul is inside Chucky, the killer doll?@Charles Lee Ray@MC@John Wayne Gacy,Jeffery Dahmer,Eddie Caputo
-What is the name of the antagonist in Friday the 13th?@Pamela Voorhees@MC@Jason Voorhees,Freddy Krueger,Deadite
-What is the vampire’s name from the German film Nosferatu?@Count Orlok@MC@Count Dracula,Kurt Barlow,Viago
 Would you like to die?@No@MC@Yes,Maybe,Do not answer
 Is this real?@No@MC@Yes,Maybe,Do not answer
-What have you done that you regret?@Homicide@MC@Killing Spree,Adultery,Suicide
+What have you done that you regret?@Hit-and-Run@MC@Killing Spree,Adultery,Suicide
 Who have you killed?@A boy@MC@Wife,Father,A girl
 Where are we?@Simulation@MC@Hell,Purgatory,IKEA
 Tell me a truth, I’ll bite off your head, or Tell me a lie, and your guts I will shred.@^(you)( )(are)( )(going)( )(to)( )(shred)( )(my)( )(guts)$|^(you're)( )(going)( )(to)( )(shred)( )(my)( )(guts)$|^(you'll)( )(shred)( )(my)( )(guts)$|^(you)( )(will)( )(shred)( )(my)( )(guts)$@Form@none
 A curse born of a strong grudge held by someone who died. The place of his death gathers his grudge. Anyone who comes in contact with this curse shall lose his life and a new curse is born.@Ju-on@MC@Hex,Jinx,Voodoo
-What is the name of the cursed raggedy doll examined by Ed and Lorraine Warren?@Annabelle@MC@Abigail,Annabella,Isabella
-What is the current address for the Amityville horror house?@108 Ocean Ave@MC@112 Ocean Ave,29 Grace Ct,36 Riverside Ave
 What is the name of the type of Demon that seduces men in their dreams?@Succubus@MC@Incubus,Cambions,Familiars
-All work no play makes ____ a dull boy.@^(jack)$@Form@none
-“Hell is empty and all the devils are here.”@William Shakespeare@MC@H.P. Lovecraft,Edgar Allen Poe,Bret Easton Ellis
-What's the name of the jigsaw killer from the first Saw film?@John Kramer@MC@The Pig,Amanda Young,Billy
-What film was meant to be the prequel to the movie Saw, but was declined and made into it's own franchise?@The Collector@MC@Jigsaw,Texas Chainsaw Massacre,The Collection
-Who is the writer and director of two films: Halloween(2007) & Halloween 2(2009)?@Rob Zombie@MC@David Gordon Green,John Carpenter,Rick Rosenthal
-Who is the main antagonist in the Scream franchise?@Ghostface@MC@Michael Myers,Jason Voorhees,Freddy Krueger

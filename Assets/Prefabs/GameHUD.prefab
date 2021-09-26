@@ -4234,8 +4234,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -18.1893, y: -133.61185}
-  m_SizeDelta: {x: 1757.775, y: 205.8879}
+  m_AnchoredPosition: {x: 82.36174, y: -178.45929}
+  m_SizeDelta: {x: 1424.1827, y: 235.0544}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5906471212166219833
 CanvasRenderer:
@@ -4270,8 +4270,8 @@ MonoBehaviour:
     fresh. Pellentesque yo tortizzle. Dope erizzle. Pizzle at check out this dapibizzle
     turpizzle gangsta '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 290168ddc96b29d45a69cb900da9a256, type: 2}
-  m_sharedMaterial: {fileID: 7802653186821281745, guid: 290168ddc96b29d45a69cb900da9a256,
+  m_fontAsset: {fileID: 11400000, guid: f61efde532fefdf40b49cdddf7f21038, type: 2}
+  m_sharedMaterial: {fileID: -3919489838974178465, guid: f61efde532fefdf40b49cdddf7f21038,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4296,14 +4296,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 8
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -5046,8 +5046,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 89.048, y: -110.97308}
-  m_SizeDelta: {x: 1866.9, y: 178.0044}
+  m_AnchoredPosition: {x: -45.054787, y: -124.2872}
+  m_SizeDelta: {x: 1588.9037, y: 314.331}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4934800167244602149
 CanvasRenderer:
@@ -5070,14 +5070,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.19607843}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6ed6b09ed9954774782c629e2ba0328a, type: 3}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7932,8 +7932,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press 'E' to Interact
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4fb561f27bb010c47b74ee1fb6998d83, type: 2}
-  m_sharedMaterial: {fileID: 7802653186821281745, guid: 4fb561f27bb010c47b74ee1fb6998d83,
+  m_fontAsset: {fileID: 11400000, guid: f61efde532fefdf40b49cdddf7f21038, type: 2}
+  m_sharedMaterial: {fileID: -3919489838974178465, guid: f61efde532fefdf40b49cdddf7f21038,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -7958,8 +7958,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55
-  m_fontSizeBase: 55
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
