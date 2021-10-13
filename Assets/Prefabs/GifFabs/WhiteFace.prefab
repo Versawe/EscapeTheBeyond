@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 6530982244061798491}
   - component: {fileID: 7856521656744642223}
   - component: {fileID: 8623763610317637830}
-  m_Layer: 0
+  - component: {fileID: 6025428045807699237}
+  - component: {fileID: 2565116413621904500}
+  m_Layer: 2
   m_Name: WhiteFace
-  m_TagString: Untagged
+  m_TagString: GIF
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,3 +104,29 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6025428045807699237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7256245269222376593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2271bddce37fce4691c4d7666c6ee11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackOut: {fileID: 21300000, guid: d94ad673610225a459290efc796b8834, type: 3}
+--- !u!65 &2565116413621904500
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7256245269222376593}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 17.588745, y: 8.207865, z: 6.1181445}
+  m_Center: {x: 1.2046204, y: 0.1775341, z: -2.9590716}

@@ -24,6 +24,7 @@ TagManager:
   - soundOnCollide
   - StaircaseTag
   - Zone
+  - GIF
   layers:
   - Default
   - TransparentFX

@@ -18,8 +18,8 @@ public class CameraRotationFirstPerson : MonoBehaviour
     private float bobPace = 8f;
     private float bobOffest = 0.03f;
 
-    private float tiltPace = 6f; //8f
-    private float tiltOffest = 1f; //1.75f
+    private float tiltPace = 5.5f; //8f
+    private float tiltOffest = 0.65f; //1.75f
 
     Quaternion StartLocalRotation;
     Quaternion rotateQuat;

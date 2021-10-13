@@ -45,17 +45,17 @@ public class NoDestroy : MonoBehaviour
 
     Light flashLight;
 
-    //Audio Vars
-    public AudioSource EventAS;
-    public AudioClip StaticNoiseClip;
+    //Audio Vars AUDIO WILL BE HANDLED THROUGH ITS OWN SCRIPT
+    //public AudioSource EventAS;
+    //public AudioClip StaticNoiseClip;
 
     // Start is called before the first frame update
     void Awake()
     {
         //makes the object this script is attached to non-destroyable on load
         DontDestroyOnLoad(gameObject);
-        fileLoaded = "";
-        EventAS = GetComponent<AudioSource>();
+        fileLoaded = ""; //
+        //EventAS = GetComponent<AudioSource>(); //AUDIO WILL BE HANDLED THROUGH ITS OWN SCRIPT
         huntScript = GetComponent<RelicHuntScript>();
     }
     private void Start()
@@ -227,10 +227,11 @@ public class NoDestroy : MonoBehaviour
         }
     }
 
-    public void RunNoDestroyAudio(AudioClip thisClip)
+    // AUDIO WILL BE HANDLED THROUGH ITS OWN SCRIPT
+    /*public void RunNoDestroyAudio(AudioClip thisClip)
     {
         EventAS.clip = thisClip;
         EventAS.Play();
         playOnce = true;
-    }
+    }*/
 }

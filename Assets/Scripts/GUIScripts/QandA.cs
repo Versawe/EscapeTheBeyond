@@ -49,7 +49,7 @@ public class QandA : MonoBehaviour
     private bool WasWrongGuess = false;
     private float rightTimer = 2f;
     private bool WasRightGuess = false;
-    private float numRightAnswers = 15;
+    private float numRightAnswers = 1; //15 for real # correct for now, keep at 2 for testing purposes
 
     LookAtStuff lookScript;
     public GameObject PPVOff;
@@ -168,12 +168,12 @@ public class QandA : MonoBehaviour
         if (!NoDestroy.atGameComplete) 
         {
             PPVStatic.SetActive(true);
-            if (!NoDestroy.playOnce) destroyScript.RunNoDestroyAudio(destroyScript.StaticNoiseClip);
-        } 
+            //if (!NoDestroy.playOnce) destroyScript.RunNoDestroyAudio(destroyScript.StaticNoiseClip); //AUDIO WILL BE HANDLED THROUGH ITS OWN SCRIPT
+        }
         else 
         {
             PPVStatic.SetActive(false);
-            destroyScript.EventAS.Stop();
+            //destroyScript.EventAS.Stop(); //AUDIO WILL BE HANDLED THROUGH ITS OWN SCRIPT
             NoDestroy.playOnce = false;
         }
     }
@@ -311,7 +311,7 @@ public class QandA : MonoBehaviour
             QuestionText.SetActive(false);
             return true;
         }
-        else if (correctAnswers >= numRightAnswers) //15 for real # correct for now, keep at 2 for testing purposes
+        else if (correctAnswers >= numRightAnswers)
         {
             rightTimer = 1.5f;
             WasRightGuess = false;

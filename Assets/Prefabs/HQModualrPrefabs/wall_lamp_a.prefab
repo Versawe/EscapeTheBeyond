@@ -77,7 +77,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9339623, g: 0.3190464, b: 0.013216423, a: 1}
-  m_Intensity: 0.5570423
+  m_Intensity: 55.70423
   m_Range: 12
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -118,7 +118,7 @@ Light:
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 2
-  m_AreaSize: {x: 1, y: 1}
+  m_AreaSize: {x: 0.01, y: 1}
   m_BounceIntensity: 0.5
   m_ColorTemperature: 3424
   m_UseColorTemperature: 0
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_AffectDiffuse: 1
   m_AffectSpecular: 1
   m_NonLightmappedOnly: 0
-  m_ShapeWidth: 1
+  m_ShapeWidth: 0.01
   m_ShapeHeight: 1
   m_AspectRatio: 1
   m_ShapeRadius: 0.025
@@ -471,7 +471,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1eb18214bf356f249a1cc02ae906e204, type: 2}
+  - {fileID: 2100000, guid: 92a6c209788381a4c8026c970bcbe358, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
