@@ -168,13 +168,12 @@ public class QandA : MonoBehaviour
         if (!NoDestroy.atGameComplete) 
         {
             PPVStatic.SetActive(true);
-            //if (!NoDestroy.playOnce) destroyScript.RunNoDestroyAudio(destroyScript.StaticNoiseClip); //AUDIO WILL BE HANDLED THROUGH ITS OWN SCRIPT
+            AudioController.PlaySound("BG_static_loop");
         }
         else 
         {
             PPVStatic.SetActive(false);
-            //destroyScript.EventAS.Stop(); //AUDIO WILL BE HANDLED THROUGH ITS OWN SCRIPT
-            NoDestroy.playOnce = false;
+            AudioController.StopSound();
         }
     }
 

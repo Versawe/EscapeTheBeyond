@@ -160,16 +160,12 @@ public class SlotSave : MonoBehaviour
             skyAndFog.SetActive(false);
             staticScreen.SetActive(true);
 
-            //plays audio
-            if (!NoDestroy.playOnce)
-            {
-                //destroyScript.RunNoDestroyAudio(destroyScript.StaticNoiseClip); //AUDIO WILL BE HANDLED THROUGH ITS OWN SCRIPT
-            }
+            AudioController.PlaySound("BG_static_loop");
+            //AudioController.PlaySound("Dan_clip_05");
         }
         if (staticTimer <= 0)
         {
-            NoDestroy.playOnce = false;
-            //destroyScript.EventAS.Stop(); //stops audio AUDIO WILL BE HANDLED THROUGH ITS OWN SCRIPT
+            AudioController.StopSound();
             IsJustStarted = false;
             NoNewButtonSpawn = true;
             skyAndFogCrazy.SetActive(true);

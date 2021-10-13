@@ -41,27 +41,24 @@ public class NoDestroy : MonoBehaviour
     public static List<GameObject> stairs  = new List<GameObject>();
     public static int stairSpawnCount = 0;
 
-    public static bool playOnce = false;
-
     Light flashLight;
 
-    //Audio Vars AUDIO WILL BE HANDLED THROUGH ITS OWN SCRIPT
-    //public AudioSource EventAS;
-    //public AudioClip StaticNoiseClip;
+    AudioController audioScript;
 
     // Start is called before the first frame update
     void Awake()
     {
         //makes the object this script is attached to non-destroyable on load
         DontDestroyOnLoad(gameObject);
-        fileLoaded = ""; //
-        //EventAS = GetComponent<AudioSource>(); //AUDIO WILL BE HANDLED THROUGH ITS OWN SCRIPT
+        fileLoaded = "";
+
         huntScript = GetComponent<RelicHuntScript>();
     }
     private void Start()
     {
         fileLoaded = "";
         huntScript = GetComponent<RelicHuntScript>();
+        audioScript = GetComponent<AudioController>();
     }
 
     void OnEnable()
@@ -77,7 +74,6 @@ public class NoDestroy : MonoBehaviour
         atGameOver = false;
         atGameComplete = false;
         completedQandA = false;
-        playOnce = false;
 
         if (actualScene.name == "Preload") // instanlty preloads to Main menu
         {
@@ -206,7 +202,6 @@ public class NoDestroy : MonoBehaviour
         dateFileModified = "";
         currObjective = "";
 
-        playOnce = false;
         HasBeenTamperedWith = false;
         stairs.Clear();
         stairSpawnCount = 0;
@@ -226,12 +221,4 @@ public class NoDestroy : MonoBehaviour
             Destroy(removeThisStairs);
         }
     }
-
-    // AUDIO WILL BE HANDLED THROUGH ITS OWN SCRIPT
-    /*public void RunNoDestroyAudio(AudioClip thisClip)
-    {
-        EventAS.clip = thisClip;
-        EventAS.Play();
-        playOnce = true;
-    }*/
 }
