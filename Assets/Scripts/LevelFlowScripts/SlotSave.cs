@@ -160,8 +160,7 @@ public class SlotSave : MonoBehaviour
             skyAndFog.SetActive(false);
             staticScreen.SetActive(true);
 
-            AudioController.PlaySound("BG_static_loop");
-            //AudioController.PlaySound("Dan_clip_05");
+            AudioController.PlayFlashBackSound();
         }
         if (staticTimer <= 0)
         {
@@ -360,6 +359,7 @@ public class SlotSave : MonoBehaviour
                 print("file was tampered with");
                 print("error 1");
                 SceneManager.LoadScene("HellScene");
+                AudioController.StopSound();
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
@@ -368,6 +368,7 @@ public class SlotSave : MonoBehaviour
                 print("file was tampered with");
                 print("error 2");
                 SceneManager.LoadScene("HellScene");
+                AudioController.StopSound();
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
@@ -379,6 +380,7 @@ public class SlotSave : MonoBehaviour
                 //print(modified);
                 //print(System.IO.File.ReadAllLines(grabFilePath)[System.IO.File.ReadAllLines(grabFilePath).Length - 1].Substring(0, 18));
                 SceneManager.LoadScene("HellScene");
+                AudioController.StopSound();
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
@@ -387,6 +389,7 @@ public class SlotSave : MonoBehaviour
                 //load scene if good
                 NoDestroy.fileLoaded = "Slot1Data.txt";
                 string loadGameHere = System.IO.File.ReadAllLines(grabFilePath)[4];
+                AudioController.StopSound();
                 SceneManager.LoadScene(loadGameHere);
             }
         }
@@ -445,6 +448,7 @@ public class SlotSave : MonoBehaviour
                 print("file was tampered with");
                 print("error 1");
                 SceneManager.LoadScene("HellScene");
+                AudioController.StopSound();
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
@@ -453,6 +457,7 @@ public class SlotSave : MonoBehaviour
                 print("file was tampered with");
                 print("error 2");
                 SceneManager.LoadScene("HellScene");
+                AudioController.StopSound();
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
@@ -462,6 +467,7 @@ public class SlotSave : MonoBehaviour
                 print("file was tampered with");
                 print("error 3");
                 SceneManager.LoadScene("HellScene");
+                AudioController.StopSound();
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
@@ -470,6 +476,7 @@ public class SlotSave : MonoBehaviour
                 //load scene if good
                 NoDestroy.fileLoaded = "Slot2Data.txt";
                 string loadGameHere = System.IO.File.ReadAllLines(grabFilePath)[4];
+                AudioController.StopSound();
                 SceneManager.LoadScene(loadGameHere);
             }
         }
@@ -527,6 +534,7 @@ public class SlotSave : MonoBehaviour
                 print("file was tampered with");
                 print("error 1");
                 SceneManager.LoadScene("HellScene");
+                AudioController.StopSound();
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
@@ -535,6 +543,7 @@ public class SlotSave : MonoBehaviour
                 print("file was tampered with");
                 print("error 2");
                 SceneManager.LoadScene("HellScene");
+                AudioController.StopSound();
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
@@ -544,6 +553,7 @@ public class SlotSave : MonoBehaviour
                 print("file was tampered with");
                 print("error 3");
                 SceneManager.LoadScene("HellScene");
+                AudioController.StopSound();
                 NoDestroy.HasBeenTamperedWith = true;
                 return;
             }
@@ -552,6 +562,7 @@ public class SlotSave : MonoBehaviour
                 //load scene if good
                 NoDestroy.fileLoaded = "Slot3Data.txt";
                 string loadGameHere = System.IO.File.ReadAllLines(grabFilePath)[4];
+                AudioController.StopSound();
                 SceneManager.LoadScene(loadGameHere);
             }
         }

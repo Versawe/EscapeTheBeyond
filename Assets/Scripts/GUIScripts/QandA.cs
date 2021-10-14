@@ -168,7 +168,7 @@ public class QandA : MonoBehaviour
         if (!NoDestroy.atGameComplete) 
         {
             PPVStatic.SetActive(true);
-            AudioController.PlaySound("BG_static_loop");
+            AudioController.PlayFlashBackSound();
         }
         else 
         {
