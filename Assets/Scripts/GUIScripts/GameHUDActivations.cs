@@ -113,6 +113,7 @@ public class GameHUDActivations : MonoBehaviour
             NoDestroy.gameVolume = VolumeSlider.value;
             SliderDisplay2.text = NoDestroy.pSensitivity.ToString();
             SliderDisplay1.text = NoDestroy.gameVolume.ToString();
+            //AudioListener.volume = NoDestroy.gameVolume;
         }
     }
 

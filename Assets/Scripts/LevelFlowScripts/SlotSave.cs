@@ -331,6 +331,7 @@ public class SlotSave : MonoBehaviour
     {
         SliderDisplay2.text = SensitivitySlider.value.ToString();
         SliderDisplay1.text = VolumeSlider.value.ToString();
+        //AudioListener.volume = NoDestroy.gameVolume;
     }
 
     //function for clicking slot 1
@@ -409,7 +410,7 @@ public class SlotSave : MonoBehaviour
             string modified = dateModified.ToString("O").Substring(0, 18);
 
             //write file
-            System.IO.File.WriteAllText(persistentPath + "/Slot1Data.txt", "Slot1Data\n1\n5\n5\nGlitchyStart\nBLOOD\n2\n" + created + "\n" + modified);
+            System.IO.File.WriteAllText(persistentPath + "/Slot1Data.txt", "Slot1Data\n1\n5\n1\nGlitchyStart\nBLOOD\n2\n" + created + "\n" + modified);
 
             //This creates Txt file and updates datetimes to match
             System.IO.File.SetCreationTime(persistentPath, dateCreated);
@@ -495,7 +496,7 @@ public class SlotSave : MonoBehaviour
             string modified = dateModified.ToString("O").Substring(0, 18);
 
             //write file
-            System.IO.File.WriteAllText(persistentPath + "/Slot2Data.txt", "Slot2Data\n1\n5\n5\nGlitchyStart\nStill time to leave.\n2\n" + created + "\n" + modified);
+            System.IO.File.WriteAllText(persistentPath + "/Slot2Data.txt", "Slot2Data\n1\n5\n1\nGlitchyStart\nStill time to leave.\n2\n" + created + "\n" + modified);
 
             //This creates Txt file and updates datetimes to match
             System.IO.File.SetCreationTime(persistentPath, dateCreated);
@@ -581,7 +582,7 @@ public class SlotSave : MonoBehaviour
             string modified = dateModified.ToString("O").Substring(0, 18);
 
             //write file
-            System.IO.File.WriteAllText(persistentPath + "/Slot3Data.txt", "Slot3Data\n1\n5\n5\nGlitchyStart\nLeave or Pay\n2\n" + created + "\n" + modified);
+            System.IO.File.WriteAllText(persistentPath + "/Slot3Data.txt", "Slot3Data\n1\n5\n1\nGlitchyStart\nLeave or Pay\n2\n" + created + "\n" + modified);
 
             //This creates Txt file and updates datetimes to match
             System.IO.File.SetCreationTime(persistentPath, dateCreated);

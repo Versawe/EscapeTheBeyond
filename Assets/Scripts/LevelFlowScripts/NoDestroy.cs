@@ -53,6 +53,8 @@ public class NoDestroy : MonoBehaviour
         fileLoaded = "";
 
         huntScript = GetComponent<RelicHuntScript>();
+
+        print("Volume" + AudioListener.volume);
     }
     private void Start()
     {
@@ -74,6 +76,7 @@ public class NoDestroy : MonoBehaviour
         atGameOver = false;
         atGameComplete = false;
         completedQandA = false;
+        //AudioListener.volume = gameVolume;
 
         if (actualScene.name == "Preload") // instanlty preloads to Main menu
         {
