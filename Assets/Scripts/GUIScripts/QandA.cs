@@ -312,6 +312,7 @@ public class QandA : MonoBehaviour
         }
         else if (correctAnswers >= numRightAnswers)
         {
+            AudioController.PlayDialogueSound(7);
             rightTimer = 1.5f;
             WasRightGuess = false;
             TEPanel.SetActive(false);

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class DoorOpen : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class DoorOpen : MonoBehaviour
     public AudioClip doorCloseClip;
     bool playOnce = false;
 
+    private bool triggerD = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -58,6 +61,7 @@ public class DoorOpen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (doorLocked.TriggerDialogue) TriggerDialogue();
         if (doorLocked.IsLocked) return;
         playerInput();
         if (doorLocked.Puzzle2Trigger && !NoDestroy.collectedAllRelics) return;
@@ -68,6 +72,16 @@ public class DoorOpen : MonoBehaviour
 
         if (!DoorAudioSource.isPlaying && thisDoorWasNoise && Time.timeScale == 1) UnPauseAudio();
 
+    }
+
+    private void TriggerDialogue()
+    {
+        if (!triggerD && Input.GetKeyDown("e") && seeDoorScript.lookingAtName == gameObject.name)
+        {
+            // triggers audio clip for beginning of QandA scene
+            AudioController.PlayDialogueSound(6);
+            triggerD = true;
+        }
     }
 
     private void playerInput()
@@ -219,14 +233,12 @@ public class DoorOpen : MonoBehaviour
         DoorAudioSource.clip = thisClip;
         DoorAudioSource.Play();
         playOnce = true;
-        print("Played sound");
     }
 
     private void PauseAudio() 
     {
         if (DoorAudioSource.isPlaying) DoorAudioSource.Pause();
         thisDoorWasNoise = true;
-        print("IsPaused");
     }
 
     private void UnPauseAudio()
@@ -236,6 +248,5 @@ public class DoorOpen : MonoBehaviour
             DoorAudioSource.Play();
         }
         thisDoorWasNoise = false;
-        print("Should resume");
     }
 }

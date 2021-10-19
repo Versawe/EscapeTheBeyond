@@ -14,6 +14,9 @@ public class AudioController : MonoBehaviour
     public List<AudioClip> clipListRef = new List<AudioClip>();
     public List<AudioClip> clipList = new List<AudioClip>();
     public static AudioController script;
+    
+
+    public List<AudioClip> voiceList = new List<AudioClip>();
 
     private bool hintReset = false;
 
@@ -60,6 +63,16 @@ public class AudioController : MonoBehaviour
         if (BGGone <= 0 && BGLoopSource.isPlaying)
         {
             BGLoopSource.Stop();
+        }
+    }
+
+    public static void PlayDialogueSound(int num)
+    {
+
+        if(!BGLoopSource.isPlaying && !DialogueSource.isPlaying) 
+        {
+            DialogueSource.clip = script.voiceList[num];
+            DialogueSource.Play();
         }
     }
 

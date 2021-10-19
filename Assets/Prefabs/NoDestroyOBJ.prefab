@@ -314,6 +314,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ce09eb38309877e4caa80084cf7b5860, type: 3}
   - {fileID: 8300000, guid: e130e5a73cc586849bcf719c2d545974, type: 3}
   clipList: []
+  voiceList:
+  - {fileID: 8300000, guid: 42fa27208c854a048a29cdae2c8724ce, type: 3}
+  - {fileID: 8300000, guid: 69c99ef95fec67a4a9e6d59620f83741, type: 3}
+  - {fileID: 8300000, guid: e5ad8739322ff2546a8cb46d1588a5c9, type: 3}
+  - {fileID: 8300000, guid: 2f6aa1dd139c59b44b4acc2feda4a148, type: 3}
+  - {fileID: 8300000, guid: 79f170a9be2170e418188ae9ad578a87, type: 3}
+  - {fileID: 8300000, guid: a40d3d3c3335f6448b877fc31db293fe, type: 3}
+  - {fileID: 8300000, guid: 8ecaca7f10cdad244832ad4144e88e2a, type: 3}
+  - {fileID: 8300000, guid: e9b7787d112a14d4387061d4113da225, type: 3}
+  - {fileID: 8300000, guid: 57700d124bdc66b419ab8bb963f1a5d5, type: 3}
+  - {fileID: 8300000, guid: 5ccbc3cd34c971a45aa8783ad0a7bb42, type: 3}
+  - {fileID: 8300000, guid: b6bf107711ea31b4bace25809c6b7123, type: 3}
+  BGGone: 5
 --- !u!82 &905523578957883019
 AudioSource:
   m_ObjectHideFlags: 0

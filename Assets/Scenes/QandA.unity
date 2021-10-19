@@ -28718,6 +28718,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5232037788265124069, guid: 8b79a308c9f5c5445b4e65b86a25de29,
         type: 3}
+      propertyPath: TriggerDialogue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5232037788265124069, guid: 8b79a308c9f5c5445b4e65b86a25de29,
+        type: 3}
       propertyPath: FinalSceneTrigger
       value: 1
       objectReference: {fileID: 0}

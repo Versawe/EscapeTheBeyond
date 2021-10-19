@@ -38,6 +38,8 @@ public class GameHUDActivations : MonoBehaviour
 
     public QandA Puzzle3Script;
 
+    private float delayTimer = 1.5f;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -100,6 +102,10 @@ public class GameHUDActivations : MonoBehaviour
             {
                 TextHint.SetActive(true);
                 NoDestroy.currObjective = "Current Objective:\nEXIT the room";
+                delayTimer -= 1 * Time.deltaTime;
+                if (delayTimer <= 0 && delayTimer > -1) AudioController.PlayDialogueSound(0);
+                
+
             }
         }
 

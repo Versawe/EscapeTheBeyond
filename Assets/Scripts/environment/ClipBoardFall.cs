@@ -6,6 +6,10 @@ public class ClipBoardFall : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "soundOnCollide") print("sound");
+        if (collision.gameObject.tag == "soundOnCollide") 
+        {
+            print("thud!");
+            AudioController.PlayDialogueSound(2);
+        } 
     }
 }

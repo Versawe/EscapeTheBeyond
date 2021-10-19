@@ -21,6 +21,8 @@ public class RelicHuntScript : MonoBehaviour
 
     void OnEnable()
     {
+        AudioController.PlayDialogueSound(3);
+
         if (GameObject.Find("GameHUD")) hudScript = GameObject.Find("GameHUD").GetComponent<GameHUDActivations>();
         else hudScript = null;
 

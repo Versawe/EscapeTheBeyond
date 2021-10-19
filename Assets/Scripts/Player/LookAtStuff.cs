@@ -24,6 +24,8 @@ public class LookAtStuff : MonoBehaviour
     GameObject CurrRelic;
     RelicHuntScript relicScript;
 
+    private bool firstTime = false;
+
     private void Start()
     {
         if (GameObject.Find("HidingCheck") != null) hideScript = GameObject.Find("HidingCheck").GetComponent<PlayerHiding>();
@@ -244,6 +246,11 @@ public class LookAtStuff : MonoBehaviour
             }
             else //if you are looking at the door with the code
             {
+                if (!firstTime) // play dialogue audio clip for first attempt at opeing door with passcode
+                {
+                    AudioController.PlayDialogueSound(1);
+                    firstTime = true;
+                }
                 Cursor.lockState = CursorLockMode.None;
                 CharMove.enabled = false;
                 CamRotate.enabled = false;
@@ -272,11 +279,14 @@ public class LookAtStuff : MonoBehaviour
         Destroy(CurrRelic);
         CurrRelic = null;
         HUDScript.relicCollected++;
+        if (HUDScript.relicCollected == 1 && AudioController.DialogueSource.isPlaying) AudioController.StopSound();
+        if (HUDScript.relicCollected == 1 && !AudioController.DialogueSource.isPlaying) AudioController.PlayDialogueSound(4);
         if (HUDScript.relicCollected == 5 || HUDScript.relicCollected == 10) relicScript.SpawnAI();
         if (HUDScript.relicCollected >= 15)
         {
             NoDestroy.collectedAllRelics = true;
             NoDestroy.currObjective = "Current Objective:\nGo back to the locked door to use the relics and craft a key";
+            AudioController.PlayDialogueSound(5);
         } 
     }
 }
