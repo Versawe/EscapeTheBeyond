@@ -54,7 +54,6 @@ public class NoDestroy : MonoBehaviour
 
         huntScript = GetComponent<RelicHuntScript>();
 
-        print("Volume" + AudioListener.volume);
     }
     private void Start()
     {
@@ -76,7 +75,6 @@ public class NoDestroy : MonoBehaviour
         atGameOver = false;
         atGameComplete = false;
         completedQandA = false;
-        //AudioListener.volume = gameVolume;
 
         if (actualScene.name == "Preload") // instanlty preloads to Main menu
         {
@@ -86,6 +84,7 @@ public class NoDestroy : MonoBehaviour
         {
             ResetVarsWhenMainMenu();
             Cursor.lockState = CursorLockMode.None;
+            AudioListener.volume = 1;
         }
         else if (actualScene.name == "RelicHunt")
         {
@@ -112,6 +111,7 @@ public class NoDestroy : MonoBehaviour
             flashLight = GameObject.Find("Flashlight").GetComponent<Light>();
             flashLight.enabled = true;
             currObjective = "Current Objective:\nGo back to the first room";
+
         }
         else if (actualScene.name == "HellScene")
         {
@@ -120,6 +120,7 @@ public class NoDestroy : MonoBehaviour
             atGameComplete = false;
             completedQandA = false;
             currObjective = "Current Objective:\nDie, Cheater";
+            AudioListener.volume = 1;
         }
         
         //Below grabs persistanPath and automatically loads text rows from save data file into this script
@@ -127,7 +128,11 @@ public class NoDestroy : MonoBehaviour
         if (fileLoaded == "") return;
         else if (fileLoaded != "")
         {
-            if (actualScene.name != "Preload" || actualScene.name != "MainMenu") LoadFromFile();
+            if (actualScene.name != "Preload" || actualScene.name != "MainMenu") 
+            {
+                LoadFromFile();
+                AudioListener.volume = gameVolume;
+            } 
         }
 
     }
@@ -189,6 +194,7 @@ public class NoDestroy : MonoBehaviour
     {
         gameProgression = 3;
         currSceneName = "QandA";
+        AudioController.StopSound();
         SceneManager.LoadScene("QandA");
     }
 

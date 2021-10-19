@@ -28,6 +28,7 @@ public class DoorOpen : MonoBehaviour
     LockedDoor doorLocked;
 
     AudioSource DoorAudioSource;
+    private bool thisDoorWasNoise = false;
     public AudioClip doorOpenClip;
     public AudioClip doorOpenClip2;
     public AudioClip doorCloseClip;
@@ -62,6 +63,10 @@ public class DoorOpen : MonoBehaviour
         if (doorLocked.Puzzle2Trigger && !NoDestroy.collectedAllRelics) return;
         whichSide();
         doorMove();
+
+        if (DoorAudioSource.isPlaying && Time.timeScale == 0) PauseAudio();
+
+        if (!DoorAudioSource.isPlaying && thisDoorWasNoise && Time.timeScale == 1) UnPauseAudio();
 
     }
 
@@ -214,5 +219,23 @@ public class DoorOpen : MonoBehaviour
         DoorAudioSource.clip = thisClip;
         DoorAudioSource.Play();
         playOnce = true;
+        print("Played sound");
+    }
+
+    private void PauseAudio() 
+    {
+        if (DoorAudioSource.isPlaying) DoorAudioSource.Pause();
+        thisDoorWasNoise = true;
+        print("IsPaused");
+    }
+
+    private void UnPauseAudio()
+    {
+        if (!DoorAudioSource.isPlaying && thisDoorWasNoise) 
+        {
+            DoorAudioSource.Play();
+        }
+        thisDoorWasNoise = false;
+        print("Should resume");
     }
 }

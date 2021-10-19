@@ -110,10 +110,11 @@ public class GameHUDActivations : MonoBehaviour
         if (optionsOn)
         {
             NoDestroy.pSensitivity = SensitivitySlider.value;
-            NoDestroy.gameVolume = VolumeSlider.value;
+            NoDestroy.gameVolume = VolumeSlider.value/10;
+            float fullNum = NoDestroy.gameVolume * 10;
+            SliderDisplay1.text =fullNum.ToString();
             SliderDisplay2.text = NoDestroy.pSensitivity.ToString();
-            SliderDisplay1.text = NoDestroy.gameVolume.ToString();
-            //AudioListener.volume = NoDestroy.gameVolume;
+            AudioListener.volume = NoDestroy.gameVolume;
         }
     }
 
@@ -139,10 +140,12 @@ public class GameHUDActivations : MonoBehaviour
         if (escClick && !isPaused && !pLookAtScript.IsActivated)
         {
             isPaused = true;
+            AudioController.PauseSound();
         }
         else if (escClick && isPaused)
         {
             isPaused = false;
+            AudioController.UnPauseSound();
             Cursor.lockState = CursorLockMode.Locked; // Don't really need it in EDITOR esc auto unlocks cursor. Unpausing should work on build
         }
 
@@ -169,9 +172,10 @@ public class GameHUDActivations : MonoBehaviour
         pausePanel.gameObject.SetActive(false);
         OptionsPanel.gameObject.SetActive(true);
         SensitivitySlider.value = NoDestroy.pSensitivity;
-        VolumeSlider.value = NoDestroy.gameVolume;
+        VolumeSlider.value = NoDestroy.gameVolume*10;
         SliderDisplay2.text = NoDestroy.pSensitivity.ToString();
-        SliderDisplay1.text = NoDestroy.gameVolume.ToString();
+        float decNum = NoDestroy.gameVolume / 10;
+        SliderDisplay1.text = decNum.ToString();
     }
 
     public void BackButtonTrigger()
@@ -189,6 +193,7 @@ public class GameHUDActivations : MonoBehaviour
 
         GameControllerScript.SaveToFile();
         NoDestroy.fileLoaded = "";
+        AudioController.StopSound();
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -201,6 +206,7 @@ public class GameHUDActivations : MonoBehaviour
             NoDestroy.gameProgression += 1;
             NoDestroy.currSceneName = "RelicHunt";
             GameControllerScript.SaveToFile();
+            AudioController.StopSound();
 
             SceneManager.LoadScene(NoDestroy.currSceneName);
         }
@@ -216,12 +222,14 @@ public class GameHUDActivations : MonoBehaviour
     private void CheckForEndGame() 
     {
         if (!NoDestroy.atGameOver) return;
+        AudioController.StopSound();
         Cursor.lockState = CursorLockMode.None;
         GameOverPanel.SetActive(true);
     }
 
     public void RetryCurrLevel() 
     {
+        AudioController.StopSound();
         if (NoDestroy.HasBeenTamperedWith) SceneManager.LoadScene("HellScene");
         else SceneManager.LoadScene(NoDestroy.currSceneName);
     }

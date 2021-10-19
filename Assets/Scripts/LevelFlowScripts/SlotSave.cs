@@ -256,7 +256,11 @@ public class SlotSave : MonoBehaviour
             for(int i = 0; i < System.IO.File.ReadAllLines(thispath).Length; i++)
             {
                 if (i == 2) newString = newString + SensitivitySlider.value.ToString() + "\n";
-                else if (i == 3) newString = newString + VolumeSlider.value.ToString() + "\n";
+                else if (i == 3) 
+                {
+                    float decNum = VolumeSlider.value/10;
+                    newString = newString + decNum.ToString() + "\n";
+                } 
                 else newString = newString + System.IO.File.ReadAllLines(thispath)[i] + "\n";
             }
             //updates date modified and created, so saving is not considered tampering
@@ -280,7 +284,11 @@ public class SlotSave : MonoBehaviour
             for (int i = 0; i < System.IO.File.ReadAllLines(thispath).Length; i++)
             {
                 if (i == 2) newString = newString + SensitivitySlider.value.ToString() + "\n";
-                else if (i == 3) newString = newString + VolumeSlider.value.ToString() + "\n";
+                else if (i == 3)
+                {
+                    float decNum = VolumeSlider.value / 10;
+                    newString = newString + decNum.ToString() + "\n";
+                }
                 else newString = newString + System.IO.File.ReadAllLines(thispath)[i] + "\n";
             }
             //updates date modified and created, so saving is not considered tampering
@@ -304,7 +312,11 @@ public class SlotSave : MonoBehaviour
             for (int i = 0; i < System.IO.File.ReadAllLines(thispath).Length; i++)
             {
                 if (i == 2) newString = newString + SensitivitySlider.value.ToString() + "\n";
-                else if (i == 3) newString = newString + VolumeSlider.value.ToString() + "\n";
+                else if (i == 3)
+                {
+                    float decNum = VolumeSlider.value / 10;
+                    newString = newString + decNum.ToString() + "\n";
+                }
                 else newString = newString + System.IO.File.ReadAllLines(thispath)[i] + "\n";
             }
             //updates date modified and created, so saving is not considered tampering
@@ -331,7 +343,6 @@ public class SlotSave : MonoBehaviour
     {
         SliderDisplay2.text = SensitivitySlider.value.ToString();
         SliderDisplay1.text = VolumeSlider.value.ToString();
-        //AudioListener.volume = NoDestroy.gameVolume;
     }
 
     //function for clicking slot 1

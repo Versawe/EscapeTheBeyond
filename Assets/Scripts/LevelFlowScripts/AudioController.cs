@@ -16,6 +16,8 @@ public class AudioController : MonoBehaviour
     public static AudioController script;
 
     private bool hintReset = false;
+
+    public float BGGone = 5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +25,6 @@ public class AudioController : MonoBehaviour
         BGLoopSource = theChild.GetComponent<AudioSource>();
         BGLoopSource.clip = staticLoop;
         script = GetComponent<AudioController>();
-
-        print(DialogueSource.gameObject.name);
-        print(BGLoopSource.gameObject.name);
 
         foreach (AudioClip clip in clipListRef) 
         {
@@ -49,16 +48,24 @@ public class AudioController : MonoBehaviour
             hintReset = false;
         }
 
-        /*if (Input.GetKeyDown("t")) //for testing
+        if (Input.GetKeyDown("t")) //for testing
         {
             PlayFlashBackSound();
-            print(clipList.Count);
-            print(clipListRef.Count);
-        }*/
+        }
+
+        if (!DialogueSource.isPlaying && BGLoopSource.isPlaying) 
+        {
+            BGGone -= 1 * Time.deltaTime;  
+        }
+        if (BGGone <= 0 && BGLoopSource.isPlaying)
+        {
+            BGLoopSource.Stop();
+        }
     }
 
     public static void PlayFlashBackSound()
     {
+        if (!BGLoopSource.clip) BGLoopSource.clip = script.staticLoop;
         if (!BGLoopSource.isPlaying) BGLoopSource.Play();
         if (!DialogueSource.isPlaying)
         {
@@ -67,10 +74,26 @@ public class AudioController : MonoBehaviour
             DialogueSource.Play();
             script.clipList.RemoveAt(randIndex);
         }
+        script.BGGone = 5f;
     }
+
+    public static void PauseSound() 
+    {
+        if (DialogueSource.isPlaying) DialogueSource.Pause();
+        if (BGLoopSource.isPlaying) BGLoopSource.Pause();
+    }
+
+    public static void UnPauseSound()
+    {
+        if (!DialogueSource.isPlaying) DialogueSource.UnPause();
+        if (!BGLoopSource.isPlaying) BGLoopSource.UnPause();
+    }
+
     public static void StopSound()
     {
         if (DialogueSource.isPlaying) DialogueSource.Stop();
         if (BGLoopSource.isPlaying) BGLoopSource.Stop();
+        DialogueSource.clip = null;
+        BGLoopSource.clip = null;
     }
 }
