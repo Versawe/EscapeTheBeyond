@@ -23,17 +23,14 @@ public class GIFTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsZone) return;
+
         if (IsZone) randomTimer -= 1 * Time.deltaTime;
 
         if(IsZone && randomTimer <= 0)
         {
             anim.enabled = true;
             //play chosen audio too
-        }
-        else 
-        {
-            anim.enabled = false;
-            sr.sprite = blackOut;
         }
     }
 
@@ -53,6 +50,9 @@ public class GIFTrigger : MonoBehaviour
         {
             IsZone = false;
             randomTimer = 1;
+            anim.enabled = false;
+            sr.sprite = blackOut;
+
         }
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4730384675352274}
   m_Layer: 0
   m_Name: wall_lamp_a
-  m_TagString: Untagged
+  m_TagString: Lamp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4

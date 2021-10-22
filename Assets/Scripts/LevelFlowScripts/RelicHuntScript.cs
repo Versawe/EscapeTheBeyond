@@ -23,51 +23,57 @@ public class RelicHuntScript : MonoBehaviour
     {
         AudioController.PlayDialogueSound(3);
 
-        if (GameObject.Find("GameHUD")) hudScript = GameObject.Find("GameHUD").GetComponent<GameHUDActivations>();
+        foreach (GameObject light in GameObject.FindGameObjectsWithTag("Lamp")) //turns off all lights c:
+        {
+            light.SetActive(false);
+        }
+
+        if (GameObject.Find("GameHUD")) hudScript = GameObject.Find("GameHUD").GetComponent<GameHUDActivations>(); //get HUD script
         else hudScript = null;
 
-        if (GameObject.Find("HintLight")) 
+        if (GameObject.Find("HintLight")) //turns off hint light
         {
             HintLight = GameObject.Find("HintLight");
             Destroy(HintLight);
         } 
         else HintLight = null;
 
-        if (GameObject.Find("FPSController"))
+        if (GameObject.Find("FPSController")) //grab player GameObject
         {
             Player = GameObject.Find("FPSController");
         }
         else Player = null;
 
-        foreach (GameObject spawns in GameObject.FindGameObjectsWithTag("aiSpawn"))
+        foreach (GameObject spawns in GameObject.FindGameObjectsWithTag("aiSpawn")) //adds AI spawnpoints to list
         {
             AiSpawns.Add(spawns);
         }
 
-        IsHuntStart = true;
+        IsHuntStart = true; //hunt begins
+        //spawns Ripper at random ai spawn location, or maybe only the first one?
         RipperAI = Instantiate(RipperAIPrefab, AiSpawns[Random.Range(0,AiSpawns.Count-1)].transform.position, AiSpawns[Random.Range(0, AiSpawns.Count-1)].transform.rotation);
 
-        foreach(GameObject HubChild in GameObject.FindGameObjectsWithTag("relicSpawn")) 
+        foreach(GameObject HubChild in GameObject.FindGameObjectsWithTag("relicSpawn")) //gets possibly relic spawn locations added to a list
         {
             RelicList.Add(HubChild);
         }
 
-        ChosenList = CreateNewList(RelicList);
+        ChosenList = CreateNewList(RelicList); //randomly generates a randomly ordered list to switch up relic spawn locations
 
-        foreach (GameObject point in ChosenList)
+        foreach (GameObject point in ChosenList) //sets the spawn points active and activates the scripts attached so player can interact
         {
             point.SetActive(true);
             point.GetComponent<RelicSpawnLocation>().enabled = true;
         }
-        foreach (GameObject point in RelicList)
+        foreach (GameObject point in RelicList) //this deletes the other gameobjects not in use from the scene to free up memory
         {
             if (!point.GetComponent<RelicSpawnLocation>().isActiveAndEnabled) point.GetComponent<DestroyOBJ>().enabled = true;
         }
 
-        NoDestroy.currObjective = "Current Objective:\nCollect all 15 relics to craft a key for the locked door";
+        NoDestroy.currObjective = "Current Objective:\nCollect all 15 relics to craft a key for the locked door"; //sets pause menu objective text
     }
 
-    private void OnDisable()
+    private void OnDisable() //on script disabled
     {
         RelicList.Clear();
         ChosenList.Clear();
@@ -76,7 +82,8 @@ public class RelicHuntScript : MonoBehaviour
         spawnCount = 0;
     }
 
-    private List<GameObject> CreateNewList(List<GameObject> thisList) 
+    //nice function to take a list and choose 15 relic spots from the list at random and creates new list from it to use
+    private List<GameObject> CreateNewList(List<GameObject> thisList)
     {
         List<GameObject> randomList = new List<GameObject>();
 
@@ -91,6 +98,8 @@ public class RelicHuntScript : MonoBehaviour
         return randomList;
     }
 
+    //function to run when spawning a new AI monster
+    //it will check the players location and spawn them farthest from the player
     public void SpawnAI() 
     {
         //find out which spawn place is farthest from player

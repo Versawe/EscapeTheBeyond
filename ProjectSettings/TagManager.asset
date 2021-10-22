@@ -25,6 +25,7 @@ TagManager:
   - StaircaseTag
   - Zone
   - GIF
+  - Lamp
   layers:
   - Default
   - TransparentFX
