@@ -6,12 +6,14 @@ using UnityEditor.Animations;
 public class JumpScareTrigger : MonoBehaviour
 {
     public GameObject ScareObj;
+    
     //Anim Controllers
     public List<AnimatorController> scareGifs = new List<AnimatorController>();
 
     Animator currAnim;
+    SpriteRenderer sr;
 
-    private float scareChance = 8f; //actual > chance ? scare!
+    private float scareChance = 15f; //actual > chance ? scare!
     private float scareActual = 0f;
     private float scareTimer = 0f;
     private bool IsTriggered = false;
@@ -19,6 +21,9 @@ public class JumpScareTrigger : MonoBehaviour
     void Start()
     {
         currAnim = GetComponentInChildren<Animator>();
+        sr = GetComponentInChildren<SpriteRenderer>();
+        sr.sprite = null;
+
         ScareObj.SetActive(false);
     }
 
@@ -32,6 +37,7 @@ public class JumpScareTrigger : MonoBehaviour
             scareActual = 0;
             scareTimer = 0;
             currAnim.runtimeAnimatorController = null;
+            sr.sprite = null;
             ScareObj.SetActive(false);
             IsTriggered = false;
         }
@@ -39,18 +45,28 @@ public class JumpScareTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player") 
+        if (other.gameObject.tag == "Player")
         {
-            IsTriggered = true;
-            scareActual = Random.Range(1, 10);
-            scareTimer = Random.Range(0.25f, 2f);
-            if (scareActual >= scareChance)
+            if (!IsTriggered) 
             {
-                ScareObj.SetActive(true);
-                float chooseAnim = Random.Range(0, scareGifs.Count - 1);
-                currAnim.runtimeAnimatorController = scareGifs[(int)chooseAnim];
+                scareActual = Random.Range(1, scareChance+1);
+                scareTimer = Random.Range(0.25f, 2f);
+                print("Do Once!");
             }
-            print(scareActual);
+            if (scareActual >= scareChance && !IsTriggered)
+            {
+                float chooseAnim = Random.Range(0, scareGifs.Count);
+                currAnim.runtimeAnimatorController = scareGifs[(int)chooseAnim];
+                ScareObj.SetActive(true);
+                print("Triggered, do once!");
+                IsTriggered = true;
+            }
+            if (!IsTriggered) 
+            {
+                IsTriggered = false;
+                sr.sprite = null;
+                print("Not triggered, do once!");
+            }
         }
     }
 
@@ -59,6 +75,7 @@ public class JumpScareTrigger : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             IsTriggered = false;
+            sr.sprite = null;
             scareActual = 0;
             scareTimer = 0;
             currAnim.runtimeAnimatorController = null;
