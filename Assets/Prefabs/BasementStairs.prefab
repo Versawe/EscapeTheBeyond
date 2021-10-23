@@ -16957,6 +16957,7 @@ GameObject:
   - component: {fileID: 8641338436463696265}
   - component: {fileID: 5435115518356487301}
   - component: {fileID: 2486310517171229203}
+  - component: {fileID: 7271074343497579682}
   m_Layer: 0
   m_Name: NoBackPoint
   m_TagString: Untagged
@@ -16972,8 +16973,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3284424711057084420}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.35, y: 0.748, z: 0.227}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.35, y: 1.4645, z: 0.0952}
+  m_LocalScale: {x: 0.3885054, y: 0.5923743, z: 1}
   m_Children: []
   m_Father: {fileID: 4132014408295132144}
   m_RootOrder: 40
@@ -16989,8 +16990,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9010422, y: 1.7758328, z: 0.22575651}
-  m_Center: {x: 0.18293333, y: 0.029999971, z: 0.039961986}
+  m_Size: {x: 5.2653675, y: 5.100676, z: 0.22575651}
+  m_Center: {x: -0.0041997293, y: 0.079884656, z: 0.039961986}
 --- !u!212 &2486310517171229203
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17031,7 +17032,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d94ad673610225a459290efc796b8834, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aa58180f799aeee4186849b84b6ebfb4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -17042,6 +17043,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &7271074343497579682
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3284424711057084420}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7728e5c7ce0acee4fbbc324fc80b429f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3325219161030349409
 GameObject:
   m_ObjectHideFlags: 0

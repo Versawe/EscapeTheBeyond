@@ -39,7 +39,7 @@ public class GIFTrigger : MonoBehaviour
         if (other.gameObject.tag == "Player") 
         {
             IsZone = true;
-            randomTimer = Random.Range(0.25f,16);
+            randomTimer = Random.Range(0.25f,12);
             //print(randomTimer);
         }
     }
@@ -52,7 +52,6 @@ public class GIFTrigger : MonoBehaviour
             randomTimer = 1;
             anim.enabled = false;
             sr.sprite = blackOut;
-
         }
     }
 }

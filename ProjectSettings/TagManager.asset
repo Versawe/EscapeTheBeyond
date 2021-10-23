@@ -26,6 +26,7 @@ TagManager:
   - Zone
   - GIF
   - Lamp
+  - JumpScare
   layers:
   - Default
   - TransparentFX
