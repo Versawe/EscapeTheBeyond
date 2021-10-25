@@ -36,6 +36,10 @@ public class NoDestroy : MonoBehaviour
     public static bool completedQandA = false;
     public static bool atGameComplete = false;
 
+    //vars used for player PP
+    public static bool TriggerScarePP = false;
+    public static bool TriggerScarePPAI = false;
+
     public static string currObjective = "";
 
     public static List<GameObject> stairs  = new List<GameObject>();
@@ -75,6 +79,7 @@ public class NoDestroy : MonoBehaviour
         atGameOver = false;
         atGameComplete = false;
         completedQandA = false;
+        TriggerScarePP = false;
 
         if (actualScene.name == "Preload") // instanlty preloads to Main menu
         {
@@ -136,7 +141,6 @@ public class NoDestroy : MonoBehaviour
         }
 
     }
-
     void Update()
     {
         if (actualScene.name != "QandA" && stairSpawnCount < 15) return;

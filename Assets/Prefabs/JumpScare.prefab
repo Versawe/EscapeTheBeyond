@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4664218692548617738}
   - component: {fileID: 2457114947499914811}
   - component: {fileID: 1495883856082278163}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: scareOBJ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 4664218693203777256}
   - component: {fileID: 7708076649093996240}
   - component: {fileID: 4324010651876675383}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: JumpScare
   m_TagString: JumpScare
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}

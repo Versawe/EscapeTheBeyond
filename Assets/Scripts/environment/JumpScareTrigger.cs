@@ -13,7 +13,7 @@ public class JumpScareTrigger : MonoBehaviour
     Animator currAnim;
     SpriteRenderer sr;
 
-    private float scareChance = 15f; //actual > chance ? scare!
+    private float scareChance = 20f; //actual > chance ? scare!
     private float scareActual = 0f;
     private float scareTimer = 0f;
     private bool IsTriggered = false;
@@ -40,6 +40,7 @@ public class JumpScareTrigger : MonoBehaviour
             sr.sprite = null;
             ScareObj.SetActive(false);
             IsTriggered = false;
+            NoDestroy.TriggerScarePP = true;
         }
     }
 
@@ -60,6 +61,7 @@ public class JumpScareTrigger : MonoBehaviour
                 ScareObj.SetActive(true);
                 print("Triggered, do once!");
                 IsTriggered = true;
+                NoDestroy.TriggerScarePP = true;
             }
             if (!IsTriggered) 
             {
@@ -74,6 +76,7 @@ public class JumpScareTrigger : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            NoDestroy.TriggerScarePP = false;
             IsTriggered = false;
             sr.sprite = null;
             scareActual = 0;

@@ -165,6 +165,7 @@ public class AIMain : MonoBehaviour
 
     private void Update()
     {
+        print(NoDestroy.TriggerScarePP);
         if (NoDestroy.HasBeenTamperedWith) //Are You A Cheater??
         {
             aiState = "Chase";
@@ -442,6 +443,7 @@ public class AIMain : MonoBehaviour
             aiState = State[3];
             losesPlayerTimer = 10;
             hasBeenSeen = false;
+            NoDestroy.TriggerScarePPAI = false;
         }
 
         if (!visionScript.ray1See && !visionScript.ray2See)

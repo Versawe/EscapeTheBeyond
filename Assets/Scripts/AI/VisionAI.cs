@@ -61,6 +61,7 @@ public class VisionAI : MonoBehaviour
                     mainScript.hasBeenSeen = true;
                     ray1See = true;
                     //print("I see player");
+                    NoDestroy.TriggerScarePPAI = true;
                 }
                 else
                 {
@@ -77,6 +78,7 @@ public class VisionAI : MonoBehaviour
                     mainScript.hasBeenSeen = true;
                     ray2See = true;
                     //print("I see player");
+                    NoDestroy.TriggerScarePPAI = true;
                 }
                 else
                 {
