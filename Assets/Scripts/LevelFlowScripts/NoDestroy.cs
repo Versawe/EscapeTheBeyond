@@ -46,8 +46,8 @@ public class NoDestroy : MonoBehaviour
     public static int stairSpawnCount = 0;
 
     Light flashLight;
-
     AudioController audioScript;
+    JumpScareHides jumpScareScript;
 
     // Start is called before the first frame update
     void Awake()
@@ -57,6 +57,7 @@ public class NoDestroy : MonoBehaviour
         fileLoaded = "";
 
         huntScript = GetComponent<RelicHuntScript>();
+        jumpScareScript = GetComponent<JumpScareHides>();
 
     }
     private void Start()
@@ -64,6 +65,7 @@ public class NoDestroy : MonoBehaviour
         fileLoaded = "";
         huntScript = GetComponent<RelicHuntScript>();
         audioScript = GetComponent<AudioController>();
+        
     }
 
     void OnEnable()
@@ -80,6 +82,7 @@ public class NoDestroy : MonoBehaviour
         atGameComplete = false;
         completedQandA = false;
         TriggerScarePP = false;
+        jumpScareScript.enabled = false;
 
         if (actualScene.name == "Preload") // instanlty preloads to Main menu
         {
@@ -102,6 +105,7 @@ public class NoDestroy : MonoBehaviour
             flashLight = GameObject.Find("Flashlight").GetComponent<Light>();
             flashLight.enabled = true;
             currObjective = "Current Objective:\nFind a way out of the house";
+            jumpScareScript.enabled = true;
         }
         else if (actualScene.name == "QandA")
         {

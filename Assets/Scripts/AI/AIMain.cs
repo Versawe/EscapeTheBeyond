@@ -165,7 +165,6 @@ public class AIMain : MonoBehaviour
 
     private void Update()
     {
-        print(NoDestroy.TriggerScarePP);
         if (NoDestroy.HasBeenTamperedWith) //Are You A Cheater??
         {
             aiState = "Chase";

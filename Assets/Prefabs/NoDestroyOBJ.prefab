@@ -230,6 +230,7 @@ GameObject:
   - component: {fileID: 6611751175576856607}
   - component: {fileID: 6640380189196266526}
   - component: {fileID: 905523578957883019}
+  - component: {fileID: 4558565460615126515}
   m_Layer: 0
   m_Name: NoDestroyOBJ
   m_TagString: Untagged
@@ -513,3 +514,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4558565460615126515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6400407112755121744}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a309dfcb55b91a2468625dcd87feec70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
