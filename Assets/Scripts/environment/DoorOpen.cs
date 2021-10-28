@@ -96,6 +96,7 @@ public class DoorOpen : MonoBehaviour
         {
             GameObject thisOBJ = GameObject.Find("NoDestroyOBJ");
             thisOBJ.GetComponent<NoDestroy>().huntScript.enabled = true;
+            thisOBJ.GetComponent<NoDestroy>().jumpScareScript.enabled = false;
             doorLocked.WasFirstOpenedTriggered = true;
         }
         else if (Input.GetKeyUp("e") && seeDoorScript.lookingAtName == gameObject.name && doorLocked.Puzzle2Trigger && doorLocked.WasFirstOpenedTriggered && NoDestroy.collectedAllRelics) 

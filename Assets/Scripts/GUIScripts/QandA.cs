@@ -324,6 +324,7 @@ public class QandA : MonoBehaviour
             PPVOff.GetComponent<Volume>().enabled = false;
             MirrorSurfaceObj.SetActive(false);
             GameObject.Find("door_a (14)").GetComponent<LockedDoor>().IsLocked = false;
+            GameObject.Find("door_a (14)").GetComponent<LockedDoor>().TriggerDialogue = false;
             GameObject.Find("HintLight").GetComponent<Light>().enabled = true;
             NoDestroy.currObjective = "Current Objective:\nEscape the Beyond";
             return true;

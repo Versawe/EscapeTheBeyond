@@ -47,7 +47,7 @@ public class NoDestroy : MonoBehaviour
 
     Light flashLight;
     AudioController audioScript;
-    JumpScareHides jumpScareScript;
+    public JumpScareHides jumpScareScript;
 
     // Start is called before the first frame update
     void Awake()
@@ -83,6 +83,8 @@ public class NoDestroy : MonoBehaviour
         completedQandA = false;
         TriggerScarePP = false;
         jumpScareScript.enabled = false;
+        TriggerScarePP = false;
+        TriggerScarePPAI = false;
 
         if (actualScene.name == "Preload") // instanlty preloads to Main menu
         {
@@ -227,6 +229,8 @@ public class NoDestroy : MonoBehaviour
         atGameOver = false;
         atGameComplete = false;
         completedQandA = false;
+        TriggerScarePP = false;
+        TriggerScarePPAI = false;
     }
 
     public static void CheckStairCount() 

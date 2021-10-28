@@ -19,7 +19,7 @@ public class AttackDoors : MonoBehaviour
     {
         foreach(string tags in tag_list)
         {
-            if (other.gameObject.tag == tags)
+            if (other.gameObject.tag == tags && !other.gameObject.GetComponent<LockedDoor>().Puzzle2Trigger)
             {
                 if (!mainScript.IsScreaming)
                 {

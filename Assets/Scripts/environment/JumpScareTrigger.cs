@@ -40,7 +40,7 @@ public class JumpScareTrigger : MonoBehaviour
             sr.sprite = null;
             ScareObj.SetActive(false);
             IsTriggered = false;
-            NoDestroy.TriggerScarePP = true;
+            NoDestroy.TriggerScarePP = false;
         }
     }
 

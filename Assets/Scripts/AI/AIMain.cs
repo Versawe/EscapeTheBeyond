@@ -19,7 +19,7 @@ public class AIMain : MonoBehaviour
     public Transform SpawnPoint1;
     public Transform SpawnPoint2;
     Transform farthestSpawn;
-    private bool isScaring = false;
+    public bool isScaring = false;
     private float scareTimer = 2.5f;
     public string AIName;
     public bool IsRipper = false;
@@ -434,6 +434,7 @@ public class AIMain : MonoBehaviour
         if (!visualAI && losesPlayerTimer > 0 && hasBeenSeen)
         {
             losesPlayerTimer -= 1 * Time.deltaTime;
+            NoDestroy.TriggerScarePPAI = false;
         }
         if (!visualAI && losesPlayerTimer <= 0)
         {
@@ -442,7 +443,6 @@ public class AIMain : MonoBehaviour
             aiState = State[3];
             losesPlayerTimer = 10;
             hasBeenSeen = false;
-            NoDestroy.TriggerScarePPAI = false;
         }
 
         if (!visionScript.ray1See && !visionScript.ray2See)
@@ -479,6 +479,7 @@ public class AIMain : MonoBehaviour
             player.GetComponent<ScareCam>().nameOfAI = AIName;
             player.GetComponent<ScareCam>().enabled = true;
             isScaring = true;
+            NoDestroy.TriggerScarePPAI = false;
             if (wasScreaming) aiState = State[1];
             else if(!wasScreaming) aiState = State[0];
             //print("I am near enough to player");
