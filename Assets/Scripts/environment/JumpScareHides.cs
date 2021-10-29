@@ -5,6 +5,14 @@ using UnityEngine;
 public class JumpScareHides : MonoBehaviour
 {
     private List<GameObject> jumpScares = new List<GameObject>();
+
+    RelicHuntScript relicScript;
+
+    private void Awake()
+    {
+        relicScript = GetComponent<RelicHuntScript>(); 
+    }
+
     private void OnEnable()
     {
         if (jumpScares.Count > 0) jumpScares.Clear();
@@ -19,6 +27,8 @@ public class JumpScareHides : MonoBehaviour
 
     private void OnDisable()
     {
+        if (!relicScript.isActiveAndEnabled) print("skip this ish");
+        if (!relicScript.isActiveAndEnabled) return;
         if (NoDestroy.currSceneName != "RelicHunt") return;
         foreach (GameObject scare in jumpScares)
         {
