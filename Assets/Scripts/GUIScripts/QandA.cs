@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine.PlayerLoop;
 using UnityEngine.Rendering;
 
 public class QandA : MonoBehaviour

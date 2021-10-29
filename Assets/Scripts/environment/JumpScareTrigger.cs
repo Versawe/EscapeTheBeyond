@@ -1,14 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Animations;
+//using UnityEditor.Animations;
 
 public class JumpScareTrigger : MonoBehaviour
 {
     public GameObject ScareObj;
     
     //Anim Controllers
-    public List<AnimatorController> scareGifs = new List<AnimatorController>();
+    public List<RuntimeAnimatorController> scareGifs = new List<RuntimeAnimatorController>();
 
     Animator currAnim;
     SpriteRenderer sr;
