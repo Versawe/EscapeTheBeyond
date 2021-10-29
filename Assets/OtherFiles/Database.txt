@@ -23,9 +23,9 @@ Where are we?@Simulation@MC@Hell,Purgatory,IKEA
 Tell me a truth, I’ll bite off your head, or Tell me a lie, and your guts I will shred.@^(you)( )(are)( )(going)( )(to)( )(shred)( )(my)( )(guts)$|^(you're)( )(going)( )(to)( )(shred)( )(my)( )(guts)$|^(you'll)( )(shred)( )(my)( )(guts)$|^(you)( )(will)( )(shred)( )(my)( )(guts)$@Form@none
 A curse born of a strong grudge held by someone who died. The place of his death gathers his grudge. Anyone who comes in contact with this curse shall lose his life and a new curse is born.@Ju-on@MC@Hex,Jinx,Voodoo
 What is the name of the type of Demon that seduces men in their dreams?@Succubus@MC@Incubus,Cambions,Familiars
-What type of procedure was similar to what you went through?@Biopsy@MC@Craniotomy@DBS@Neuroendoscopy
-What has been injected into your head?@M-block nanobots@MC@Remote trojans@Rare virus
-What is the name of the Head Surgeon?@Dr. Charles Stephen@MC@Dr. Leana Wen@Dr. Ken Ye@Dr. Oliver Garcia
-Do you remember your name?Brian Deever@MC@Henry Deever@Adam Seever@Adam Francis
-What part of your body was 3D scanned?Head@MC@Shoulder@Knees@Arms
-Why did you agree to do this?@Money@MC@Family@Friends@Volunteer
+What type of procedure was similar to what you went through?@Biopsy@MC@Craniotomy,DBS,Neuroendoscopy
+What has been injected into your head?@M-block nanobots@MC@Remote trojans,Rare virus,Worms
+What is the name of the Head Surgeon?@Dr. Charles Stephen@MC@Dr. Leana Wen,Dr. Ken Ye,Dr. Oliver Garcia
+Do you remember your name?Brian Deever@MC@Henry Deever,Adam Seever,Adam Francis
+What part of your body was 3D scanned?Head@MC@Shoulder,Knees,Arms
+Why did you agree to do this?@Money@MC@Family,Friends,Volunteer
