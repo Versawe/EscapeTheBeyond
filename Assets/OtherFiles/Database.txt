@@ -26,6 +26,6 @@ What is the name of the type of Demon that seduces men in their dreams?@Succubus
 What type of procedure was similar to what you went through?@Biopsy@MC@Craniotomy,DBS,Neuroendoscopy
 What has been injected into your head?@M-block nanobots@MC@Remote trojans,Rare virus,Worms
 What is the name of the Head Surgeon?@Dr. Charles Stephen@MC@Dr. Leana Wen,Dr. Ken Ye,Dr. Oliver Garcia
-Do you remember your name?Brian Deever@MC@Henry Deever,Adam Seever,Adam Francis
-What part of your body was 3D scanned?Head@MC@Shoulder,Knees,Arms
+Do you remember your name?@Brian Deever@MC@Henry Deever,Adam Seever,Adam Francis
+What part of your body was 3D scanned?@Head@MC@Shoulder,Knees,Arms
 Why did you agree to do this?@Money@MC@Family,Friends,Volunteer
