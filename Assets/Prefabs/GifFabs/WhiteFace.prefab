@@ -118,6 +118,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackOut: {fileID: 21300000, guid: d94ad673610225a459290efc796b8834, type: 3}
+  clipList:
+  - {fileID: 8300000, guid: 99782f4ada893414e9a43398501f5ce5, type: 3}
+  - {fileID: 8300000, guid: ab0274b82300c4a4e8ad20130bd577b1, type: 3}
+  - {fileID: 8300000, guid: 8daf90cea0cb81249939f9e82f12c5c0, type: 3}
 --- !u!65 &2565116413621904500
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -142,10 +146,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

@@ -16,9 +16,19 @@ public class JumpScareTrigger : MonoBehaviour
     private float scareActual = 0f;
     private float scareTimer = 0f;
     private bool IsTriggered = false;
+
+    //audio vars
+    public List<AudioClip> clipList = new List<AudioClip>();
+    private AudioSource gifSource;
+    private bool playOnce = false;
+
+    GameHUDActivations gameHudScript;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameHudScript = GameObject.Find("GameHUD").GetComponent<GameHUDActivations>();
+        gifSource = GetComponent<AudioSource>();
         currAnim = GetComponentInChildren<Animator>();
         sr = GetComponentInChildren<SpriteRenderer>();
         sr.sprite = null;
@@ -37,10 +47,14 @@ public class JumpScareTrigger : MonoBehaviour
             scareTimer = 0;
             currAnim.runtimeAnimatorController = null;
             sr.sprite = null;
+            StopSound();
             ScareObj.SetActive(false);
             IsTriggered = false;
             NoDestroy.TriggerScarePP = false;
         }
+
+        if (gameHudScript.isPaused) PauseSound();
+        else UnPauseSound();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -60,6 +74,7 @@ public class JumpScareTrigger : MonoBehaviour
                 ScareObj.SetActive(true);
                 print("Triggered, do once!");
                 IsTriggered = true;
+                PlaySound();
                 NoDestroy.TriggerScarePP = true;
             }
             if (!IsTriggered) 
@@ -81,8 +96,37 @@ public class JumpScareTrigger : MonoBehaviour
             scareActual = 0;
             scareTimer = 0;
             currAnim.runtimeAnimatorController = null;
+            StopSound();
             ScareObj.SetActive(false);
         }
         
+    }
+
+    private void PlaySound()
+    {
+        if (!gifSource.isPlaying)
+        {
+            int randIndex = Random.Range(0, clipList.Count);
+            gifSource.clip = clipList[randIndex];
+            playOnce = true;
+            gifSource.Play();
+        }
+    }
+
+    private void PauseSound()
+    {
+        if (gifSource.isPlaying) gifSource.Pause();
+    }
+
+    private void UnPauseSound()
+    {
+        if (!gifSource.isPlaying) gifSource.UnPause();
+    }
+
+    private void StopSound()
+    {
+        if (gifSource.isPlaying) gifSource.Stop();
+        playOnce = false;
+        gifSource.clip = null;
     }
 }

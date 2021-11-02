@@ -10,9 +10,19 @@ public class GIFTrigger : MonoBehaviour
     SpriteRenderer sr;
     public Sprite blackOut;
     Animator anim;
+
+    GameHUDActivations gameHudScript;
+
+    public List<AudioClip> clipList = new List<AudioClip>();
+
+    private AudioSource gifSource;
+    private bool playOnce = false;
     // Start is called before the first frame update
     void Start()
     {
+        gameHudScript = GameObject.Find("GameHUD").GetComponent<GameHUDActivations>();
+
+        gifSource = GetComponent<AudioSource>();
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = blackOut;
 
@@ -30,8 +40,11 @@ public class GIFTrigger : MonoBehaviour
         if(IsZone && randomTimer <= 0)
         {
             anim.enabled = true;
-            //play chosen audio too
+            if(!playOnce) PlaySound();
+            if(playOnce) UnPauseSound();
         }
+
+        if (gameHudScript.isPaused) PauseSound();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,7 +53,6 @@ public class GIFTrigger : MonoBehaviour
         {
             IsZone = true;
             randomTimer = Random.Range(0.25f,12);
-            //print(randomTimer);
         }
     }
 
@@ -52,6 +64,35 @@ public class GIFTrigger : MonoBehaviour
             randomTimer = 1;
             anim.enabled = false;
             sr.sprite = blackOut;
+            StopSound();
         }
+    }
+
+    private void PlaySound()
+    {
+        if (!gifSource.isPlaying)
+        {
+            int randIndex = Random.Range(0, clipList.Count);
+            gifSource.clip = clipList[randIndex];
+            playOnce = true;
+            gifSource.Play();
+        }
+    }
+
+    private void PauseSound()
+    {
+        if (gifSource.isPlaying) gifSource.Pause();
+    }
+
+    private void UnPauseSound()
+    {
+        if (!gifSource.isPlaying) gifSource.UnPause();
+    }
+
+    private void StopSound()
+    {
+        if (gifSource.isPlaying) gifSource.Stop();
+        playOnce = false;
+        gifSource.clip = null;
     }
 }

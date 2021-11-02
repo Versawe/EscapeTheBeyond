@@ -68,7 +68,6 @@ public class AudioController : MonoBehaviour
 
     public static void PlayDialogueSound(int num)
     {
-
         if(!BGLoopSource.isPlaying && !DialogueSource.isPlaying) 
         {
             DialogueSource.clip = script.voiceList[num];

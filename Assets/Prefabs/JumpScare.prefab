@@ -168,6 +168,10 @@ MonoBehaviour:
   - {fileID: 9100000, guid: bcd62ab4baec77f49bf52182116512fa, type: 2}
   - {fileID: 9100000, guid: ed479fb555e81234da1b9779cf3c185c, type: 2}
   - {fileID: 9100000, guid: cfce4112fc669714c829895d7a55c0bd, type: 2}
+  clipList:
+  - {fileID: 8300000, guid: e9cf410917ed98940ba950ce88679a09, type: 3}
+  - {fileID: 8300000, guid: 99782f4ada893414e9a43398501f5ce5, type: 3}
+  - {fileID: 8300000, guid: 8a9fbfca57b4c9949bbd0d5667b3a672, type: 3}
 --- !u!65 &4324010651876675383
 BoxCollider:
   m_ObjectHideFlags: 0
