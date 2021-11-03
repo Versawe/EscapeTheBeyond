@@ -613,14 +613,15 @@ public class AIMain : MonoBehaviour
 
                 if (attackTimer <= 0) //Below is when a wardrobe is destroyed
                 {
-                    if(doorTarget && hideScript.wardrobeHiding && doorTarget.name == hideScript.wardrobeHiding.name) hideScript.HidingFalse(); //THIS may fix a glitch where the wardrobe is destroyed but vars say you are still hiding
+                    //THIS may fix a glitch where the wardrobe is destroyed but vars say you are still hiding
+                    if (doorTarget && hideScript.wardrobeHiding && doorTarget.name == hideScript.wardrobeHiding.name) hideScript.HidingFalse();
                     doorTarget.SetActive(false);
                     //code below fixes glitch of ontriggerexit not working if wardrobe,that the player is hiding in, is destroyed
                     float dist = Vector3.Distance(player.transform.position, thisMonster.position);
                     if (dist <= scareDis)
                     {
                         hideScript.HidingFalse();
-                        print("hiding wardrobe destroyed");
+                        //print("hiding wardrobe destroyed");
                     }
                     doorTarget = null;
                     destroyObj = false;

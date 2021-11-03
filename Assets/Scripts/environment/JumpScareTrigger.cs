@@ -65,14 +65,14 @@ public class JumpScareTrigger : MonoBehaviour
             {
                 scareActual = Random.Range(1, scareChance+1);
                 scareTimer = Random.Range(0.25f, 2f);
-                print("Do Once!");
+                //print("Do Once!");
             }
             if (scareActual >= scareChance && !IsTriggered)
             {
                 float chooseAnim = Random.Range(0, scareGifs.Count);
                 currAnim.runtimeAnimatorController = scareGifs[(int)chooseAnim];
                 ScareObj.SetActive(true);
-                print("Triggered, do once!");
+                //print("Triggered, do once!");
                 IsTriggered = true;
                 PlaySound();
                 NoDestroy.TriggerScarePP = true;
@@ -81,7 +81,7 @@ public class JumpScareTrigger : MonoBehaviour
             {
                 IsTriggered = false;
                 sr.sprite = null;
-                print("Not triggered, do once!");
+                //print("Not triggered, do once!");
             }
         }
     }

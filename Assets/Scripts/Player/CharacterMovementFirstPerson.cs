@@ -17,17 +17,22 @@ public class CharacterMovementFirstPerson : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
 
     public Transform cam;
+
+    PlayerHiding hideScript;
     // Start is called before the first frame update
     void Start()
     {
         cc = GetComponent<CharacterController>();
 
+        hideScript = GetComponentInChildren<PlayerHiding>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Time.timeScale == 0 || NoDestroy.atGameComplete) return;
+        if (hideScript.isHiding) LockHidingPlayer();
+        if (hideScript.isHiding) return;
         MovePlayer();
         JumpPlayer();
 
@@ -84,6 +89,15 @@ public class CharacterMovementFirstPerson : MonoBehaviour
         {
             moveDirection.y = jumpSpeed;
             gravityWeight = 0;
+        }
+    }
+
+    private void LockHidingPlayer() 
+    {
+        if (hideScript.lockedLocation) 
+        {
+            //transform.position = hideScript.lockedLocation.position;
+            transform.position = Vector3.MoveTowards(transform.position, hideScript.lockedLocation.position, 0.1f);
         }
     }
 }

@@ -28,6 +28,8 @@ public class GIFTrigger : MonoBehaviour
 
         anim = GetComponent<Animator>();
         anim.enabled = false;
+
+        enabled = false;
     }
 
     // Update is called once per frame
@@ -52,7 +54,7 @@ public class GIFTrigger : MonoBehaviour
         if (other.gameObject.tag == "Player") 
         {
             IsZone = true;
-            randomTimer = Random.Range(0.25f,12);
+            randomTimer = Random.Range(0.25f,20);
         }
     }
 

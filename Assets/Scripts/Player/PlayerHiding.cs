@@ -10,11 +10,13 @@ public class PlayerHiding : MonoBehaviour
     public bool inBounds = false;
 
     public GameObject wardrobeHiding;
+    public Transform lockedLocation;
 
     private void Start()
     {
         //null at start
         wardrobeHiding = null;
+        lockedLocation = null;
     }
 
     private void Update()
@@ -46,6 +48,7 @@ public class PlayerHiding : MonoBehaviour
     {
         isHiding = false;
         wardrobeHiding = null;
+        lockedLocation = null;
     }
     
     //trigger colliders changing variables on entering and exiting inside zone of wardrobes
@@ -55,6 +58,7 @@ public class PlayerHiding : MonoBehaviour
         {
             inBounds = true;
             wardrobeHiding = other.gameObject.transform.parent.gameObject;
+            lockedLocation = wardrobeHiding.transform.GetChild(4);
         }
     }
     private void OnTriggerExit(Collider other)

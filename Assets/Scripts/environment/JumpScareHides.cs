@@ -26,7 +26,7 @@ public class JumpScareHides : MonoBehaviour
 
     private void OnDisable()
     {
-        if (!relicScript.isActiveAndEnabled) print("skip this ish");
+        //if (!relicScript.isActiveAndEnabled) print("skip this ish");
         if (!relicScript.isActiveAndEnabled) return;
         if (NoDestroy.currSceneName != "RelicHunt") return;
         foreach (GameObject scare in jumpScares)

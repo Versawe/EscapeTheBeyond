@@ -19,9 +19,17 @@ public class RelicHuntScript : MonoBehaviour
 
     private GameObject Player;
 
+    private bool doOnce = false;
+
+    private void Update()
+    {
+        FailRelicHunt();    
+    }
+
     void OnEnable()
     {
         AudioController.PlayDialogueSound(3);
+        doOnce = false;
 
         foreach (GameObject light in GameObject.FindGameObjectsWithTag("Lamp")) //turns off all lights c:
         {
@@ -70,6 +78,11 @@ public class RelicHuntScript : MonoBehaviour
             if (!point.GetComponent<RelicSpawnLocation>().isActiveAndEnabled) point.GetComponent<DestroyOBJ>().enabled = true;
         }
 
+        foreach(GameObject gif in GameObject.FindGameObjectsWithTag("GIF")) 
+        {
+            gif.GetComponent<GIFTrigger>().enabled = true;
+        }
+
         NoDestroy.currObjective = "Current Objective:\nCollect all 15 relics to craft a key for the locked door"; //sets pause menu objective text
     }
 
@@ -79,6 +92,7 @@ public class RelicHuntScript : MonoBehaviour
         ChosenList.Clear();
         AiSpawns.Clear();
         IsHuntStart = false;
+        doOnce = false;
         spawnCount = 0;
     }
 
@@ -122,4 +136,25 @@ public class RelicHuntScript : MonoBehaviour
         if (spawnCount == 1) mutant.name = "thing1";
         else mutant.name = "thing2";
     }
+
+    public void FailRelicHunt() 
+    {
+
+        if (!NoDestroy.atGameOver) return;
+        
+        if(doOnce == false) 
+        {
+            foreach (GameObject gif in GameObject.FindGameObjectsWithTag("GIF"))
+            {
+                gif.SetActive(false);
+            }
+            foreach (GameObject js in GameObject.FindGameObjectsWithTag("JumpScare"))
+            {
+                js.SetActive(false);
+            }
+
+            doOnce = true;
+        }
+    }
+
 }
