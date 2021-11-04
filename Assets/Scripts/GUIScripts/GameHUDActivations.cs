@@ -40,6 +40,8 @@ public class GameHUDActivations : MonoBehaviour
 
     private float delayTimer = 1.5f;
 
+    SceneAudioPlayer storyPlayer;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -47,6 +49,7 @@ public class GameHUDActivations : MonoBehaviour
         genPWD = GetComponent<GeneratePWD>();
 
         Puzzle3Script = GetComponent<QandA>();
+        storyPlayer = GetComponent<SceneAudioPlayer>();
 
         GUIAppearPerScene();
 
@@ -63,6 +66,7 @@ public class GameHUDActivations : MonoBehaviour
     private void Start()
     {
         if (NoDestroy.puzzleOneLoginAttempts == 3 && NoDestroy.gameProgression == 1) doorPwd = genPWD.GeneratePWDFunction(15);
+        if (NoDestroy.gameProgression == 4) storyPlayer.enabled = true;
     }
 
     // Update is called once per frame
@@ -71,7 +75,10 @@ public class GameHUDActivations : MonoBehaviour
         if (NoDestroy.atGameComplete) //at game complete
         {
             CreditsPanel.SetActive(true);
+            NoDestroy.gameProgression = 4;
+            NoDestroy.currSceneName = "EndGame";
             Cursor.lockState = CursorLockMode.None;
+            
             return;   
         }
 
@@ -104,8 +111,6 @@ public class GameHUDActivations : MonoBehaviour
                 NoDestroy.currObjective = "Current Objective:\nEXIT the room";
                 delayTimer -= 1 * Time.deltaTime;
                 if (delayTimer <= 0 && delayTimer > -1) AudioController.PlayDialogueSound(0);
-                
-
             }
         }
 
@@ -230,6 +235,7 @@ public class GameHUDActivations : MonoBehaviour
         if (!NoDestroy.atGameOver) return;
         AudioController.StopSound();
         Cursor.lockState = CursorLockMode.None;
+        GameControllerScript.SaveToFile();
         GameOverPanel.SetActive(true);
     }
 

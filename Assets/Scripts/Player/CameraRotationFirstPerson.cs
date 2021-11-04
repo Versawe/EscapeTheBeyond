@@ -40,7 +40,13 @@ public class CameraRotationFirstPerson : MonoBehaviour
         charMoveScript = GetComponentInParent<CharacterMovementFirstPerson>();
         StartLocalPosition = transform.localPosition;
         StartLocalRotation = transform.localRotation;
-        
+
+        if (NoDestroy.currSceneName == "EndScene") 
+        {
+            charMoveScript.enabled = false;
+            enabled = false;
+        } 
+
     }
 
     private void OnDisable()
