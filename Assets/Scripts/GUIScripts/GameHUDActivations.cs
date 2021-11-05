@@ -169,7 +169,7 @@ public class GameHUDActivations : MonoBehaviour
         }
         else if (!isPaused && !pLookAtScript.IsActivated && !NoDestroy.atGameOver)
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            if(NoDestroy.gameProgression != 4) Cursor.lockState = CursorLockMode.Locked;
             pausePanel.SetActive(false);
             optionsOn = false;
             OptionsPanel.SetActive(false);

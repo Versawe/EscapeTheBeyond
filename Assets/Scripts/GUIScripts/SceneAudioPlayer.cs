@@ -9,7 +9,7 @@ public class SceneAudioPlayer : MonoBehaviour
     public GameObject StoryScenePanel;
 
     AudioSource source;
-    List<AudioClip> storyClips = new List<AudioClip>();
+    public List<AudioClip> storyClips = new List<AudioClip>();
 
     public string selectedClip = "";
     public string clipName = "";
@@ -27,9 +27,30 @@ public class SceneAudioPlayer : MonoBehaviour
     public void SelectClip(Button clicked) 
     {
         clipName = clicked.GetComponentInChildren<TextMeshProUGUI>().text;
+        if(clipName == "Scene 1") 
+        {
+            source.clip = storyClips[0];
+        }
+        else if (clipName == "Scene 2") 
+        {
+            source.clip = storyClips[1];
+        }
+        else if (clipName == "Scene 3") 
+        {
+            source.clip = storyClips[2];
+        }
+        else if (clipName == "Scene 4") 
+        {
+            source.clip = storyClips[3];
+        }
+        else 
+        {
+            return;
+        }
+        PlaySound();
     }
 
-    private void PlaySound()
+    public void PlaySound()
     {
         if (!source.isPlaying)
         {
@@ -37,12 +58,12 @@ public class SceneAudioPlayer : MonoBehaviour
         }
     }
 
-    private void PauseSound()
+    public void PauseSound()
     {
         if (source.isPlaying) source.Pause();
     }
 
-    private void StopSound()
+    public void StopSound()
     {
         if (source.isPlaying) source.Stop();
     }

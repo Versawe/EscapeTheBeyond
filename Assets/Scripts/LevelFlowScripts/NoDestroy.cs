@@ -149,6 +149,8 @@ public class NoDestroy : MonoBehaviour
     }
     void Update()
     {
+        if (gameProgression == 4) Cursor.lockState = CursorLockMode.None;
+
         if (actualScene.name != "QandA" && stairSpawnCount < 15) return;
         if(stairSpawnCount >= 15)
         {

@@ -32,7 +32,7 @@ public class SlotSave : MonoBehaviour
     public GameObject staticScreen;
     public GameObject skyAndFogCrazy;
 
-    private float staticTimer = 4;
+    private float staticTimer = 10;
     public GameObject MainUI;
 
     private bool isOptions = false;
@@ -171,7 +171,7 @@ public class SlotSave : MonoBehaviour
             staticScreen.SetActive(false);
             MainUI.SetActive(true);
             NewButt.gameObject.SetActive(false);
-            staticTimer = 4;
+            staticTimer = 10;
         }
     }
 

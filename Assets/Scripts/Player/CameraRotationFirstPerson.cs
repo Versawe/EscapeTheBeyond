@@ -34,18 +34,12 @@ public class CameraRotationFirstPerson : MonoBehaviour
         yawSensitivity = NoDestroy.pSensitivity;
 
         //starting rotation per level
-        if (NoDestroy.gameProgression == 1) yaw = 90;
+        if (NoDestroy.gameProgression == 1 || NoDestroy.gameProgression == 4) yaw = 90;
         else yaw = -90;
 
         charMoveScript = GetComponentInParent<CharacterMovementFirstPerson>();
         StartLocalPosition = transform.localPosition;
         StartLocalRotation = transform.localRotation;
-
-        if (NoDestroy.currSceneName == "EndScene") 
-        {
-            charMoveScript.enabled = false;
-            enabled = false;
-        } 
 
     }
 
@@ -58,6 +52,13 @@ public class CameraRotationFirstPerson : MonoBehaviour
 
     void Update()
     {
+        if (NoDestroy.gameProgression == 4)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            charMoveScript.enabled = false;
+            enabled = false;
+        }
+
         SensitivityChanges(); //update in game
     }
 
