@@ -4,7 +4,11 @@ public class CharacterMovementFirstPerson : MonoBehaviour
 {
     private CharacterController cc;
 
-    private float playerSpeed = 5f;
+    private float playerSpeedConst = 3.5f;
+    private float playerSpeed;
+    
+    private float playerSprintSpeedConst = 4.5f; //4.5f
+    private float playerSprintSpeed;
 
     Vector3 inputDir;
     Vector3 copyInputVec;
@@ -15,16 +19,27 @@ public class CharacterMovementFirstPerson : MonoBehaviour
     Vector3 gravityDirection;
 
     private Vector3 moveDirection = Vector3.zero;
+    private Vector3 allMovementVectors;
 
     public Transform cam;
-
     PlayerHiding hideScript;
+
+    public bool IsSprinting = false;
+    public float staminaActual;
+    private float staminaMax = 3.5f;
+
+    public bool IsExhausted = false;
+    private float exhaustedTimer = 3f;
+   
     // Start is called before the first frame update
     void Start()
     {
         cc = GetComponent<CharacterController>();
-
         hideScript = GetComponentInChildren<PlayerHiding>();
+
+        playerSpeed = playerSpeedConst;
+        playerSprintSpeed = playerSprintSpeedConst;
+        staminaActual = staminaMax;
     }
 
     // Update is called once per frame
@@ -33,13 +48,20 @@ public class CharacterMovementFirstPerson : MonoBehaviour
         if (Time.timeScale == 0 || NoDestroy.atGameComplete) return;
         if (hideScript.isHiding) LockHidingPlayer();
         if (hideScript.isHiding) return;
+        StaminaManagement();
         MovePlayer();
         JumpPlayer();
 
         //applies input vector to apply to char controller
-        Vector3 allMovementVectors = inputDir * playerSpeed + gravityDirection * gravityWeight + moveDirection;
+        if(!IsSprinting) allMovementVectors = inputDir * playerSpeed + gravityDirection * gravityWeight + moveDirection;
+        if(IsSprinting && ! IsExhausted) allMovementVectors = inputDir * playerSprintSpeed + gravityDirection * gravityWeight + moveDirection;
 
         cc.Move(allMovementVectors * Time.deltaTime);
+
+        print("Issprinting " + IsSprinting);
+        //print("Isexhauted " + IsExhausted);
+        //print("Issprinting " + staminaActual);
+        //print("Isexhauted " + exhaustedTimer);
     }
 
     //movement for player
@@ -50,8 +72,16 @@ public class CharacterMovementFirstPerson : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");
         float h = Input.GetAxisRaw("Horizontal");
 
-        if (Mathf.Abs(h) > 0 && Mathf.Abs(v) > 0) playerSpeed = 3.5f;
-        else playerSpeed = 5;
+        if (Mathf.Abs(h) > 0 && Mathf.Abs(v) > 0) 
+        {
+            playerSpeed = playerSpeedConst / 1.5f;
+            playerSprintSpeed = playerSprintSpeedConst / 1.5f;
+        } 
+        else 
+        {
+            playerSpeed = playerSpeedConst;
+            playerSprintSpeed = playerSprintSpeedConst;
+        } 
 
         //applies this gameobjects forward and right vector to a vector 3 depending on the axis's numbers
         // Example: w = 1, s = -1, a = -1, d = 1
@@ -98,6 +128,44 @@ public class CharacterMovementFirstPerson : MonoBehaviour
         {
             //transform.position = hideScript.lockedLocation.position;
             transform.position = Vector3.MoveTowards(transform.position, hideScript.lockedLocation.position, 0.1f);
+        }
+    }
+
+    private void StaminaManagement() 
+    {
+        //is holding down shift
+        bool IsHolding = Input.GetKey("left shift");
+
+        //controlling stamina meter
+        if (IsHolding) 
+        {
+            staminaActual -= 1 * Time.deltaTime;
+            IsSprinting = true;
+        }
+        else //letting go of shift helps regain stamina and switches to not sprinting
+        {
+            if(!IsExhausted) staminaActual += 0.5f * Time.deltaTime;
+            IsSprinting = false;
+        }
+
+        //not letting stam go above and below a certain amt
+        if (staminaActual >= staminaMax) staminaActual = staminaMax;
+        if (staminaActual <= 0) //no stam = not sprinting
+        {
+            IsSprinting = false;
+            IsExhausted = true;
+            staminaActual = 0;
+        } 
+
+        //is sprinting
+        if (staminaActual > 0 && IsHolding) IsSprinting = true;
+
+        if (IsExhausted) exhaustedTimer -= 1 * Time.deltaTime;
+
+        if(exhaustedTimer <= 0) 
+        {
+            IsExhausted = false;
+            exhaustedTimer = 3f;
         }
     }
 }

@@ -15,6 +15,10 @@ public class SlotSave : MonoBehaviour
     public Button Slot3Butt;
     public Button DeleteButton;
 
+    public TextMeshProUGUI slot1Text;
+    public TextMeshProUGUI slot2Text;
+    public TextMeshProUGUI slot3Text;
+
     public Button ContinueButt;
     public Button NewButt;
     public Button BackButt;
@@ -71,9 +75,34 @@ public class SlotSave : MonoBehaviour
         DeleteButton.gameObject.SetActive(false);
 
         //if the files exist change the bool
-        if (File.Exists(persistentPath + "/Slot1Data.txt")) slot1Exists = true;
-        if (File.Exists(persistentPath + "/Slot2Data.txt")) slot2Exists = true;
-        if (File.Exists(persistentPath + "/Slot3Data.txt")) slot3Exists = true;
+        //also updated so it shows date of last write to file and the name of scene they are on
+        if (File.Exists(persistentPath + "/Slot1Data.txt")) 
+        {
+            slot1Exists = true;
+            if (System.IO.File.ReadAllLines(persistentPath + "/Slot1Data.txt")[1] == "1") slot1Text.text = "Slot 1-Intro\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot1Data.txt").ToString();
+            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot1Data.txt")[1] == "2") slot1Text.text = "Slot 1-Hunt\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot1Data.txt").ToString();
+            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot1Data.txt")[1] == "3") slot1Text.text = "Slot 1-Q&A\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot1Data.txt").ToString();
+            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot1Data.txt")[1] == "4") slot1Text.text = "Slot 1-End\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot1Data.txt").ToString();
+            else slot1Text.text = "Slot 1\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot1Data.txt").ToString();
+        }
+        if (File.Exists(persistentPath + "/Slot2Data.txt")) 
+        {
+            slot2Exists = true;
+            if (System.IO.File.ReadAllLines(persistentPath + "/Slot2Data.txt")[1] == "1") slot2Text.text = "Slot 2-Intro\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot2Data.txt").ToString();
+            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot2Data.txt")[1] == "2") slot2Text.text = "Slot 2-Hunt\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot2Data.txt").ToString();
+            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot2Data.txt")[1] == "3") slot2Text.text = "Slot 2-Q&A\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot2Data.txt").ToString();
+            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot2Data.txt")[1] == "4") slot2Text.text = "Slot 2-End\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot2Data.txt").ToString();
+            else slot2Text.text = "Slot 2\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot2Data.txt").ToString();
+        } 
+        if (File.Exists(persistentPath + "/Slot3Data.txt")) 
+        {
+            slot3Exists = true;
+            if (System.IO.File.ReadAllLines(persistentPath + "/Slot3Data.txt")[1] == "1") slot3Text.text = "Slot 3-Intro\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot3Data.txt").ToString();
+            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot3Data.txt")[1] == "2") slot3Text.text = "Slot 3-Hunt\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot3Data.txt").ToString();
+            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot3Data.txt")[1] == "3") slot3Text.text = "Slot 3-Q&A\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot3Data.txt").ToString();
+            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot3Data.txt")[1] == "4") slot3Text.text = "Slot 3-End\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot3Data.txt").ToString();
+            else slot3Text.text = "Slot 3\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot3Data.txt").ToString();
+        } 
 
         //makes continue button visable if there is an existing data file to continue game on
         if (slot1Exists || slot2Exists || slot3Exists) ContinueButt.gameObject.SetActive(true);
@@ -179,8 +208,9 @@ public class SlotSave : MonoBehaviour
     //it makes sure only empty slot buttons show up
     public void SelectEmptySlot()
     {
+        AudioController.ClickSound();
         //returns out if all files exist
-        if(File.Exists(persistentPath + "/Slot1Data.txt") && File.Exists(persistentPath + "/Slot2Data.txt") && File.Exists(persistentPath + "/Slot3Data.txt")) return;
+        if (File.Exists(persistentPath + "/Slot1Data.txt") && File.Exists(persistentPath + "/Slot2Data.txt") && File.Exists(persistentPath + "/Slot3Data.txt")) return;
 
         //updates gui's accordingly
         BackButt.gameObject.SetActive(true);
@@ -196,6 +226,7 @@ public class SlotSave : MonoBehaviour
     //triggers if you click the back button
     public void BackTrigger()
     {
+        AudioController.ClickSound();
         if (!isOptions)
         {
             //updates gui
@@ -226,6 +257,7 @@ public class SlotSave : MonoBehaviour
 
     public void DeleteSelected()
     {
+        AudioController.ClickSound();
         DeleteButtonText.text = "Delete File";
         if (!IsDeleting)
         {
@@ -242,6 +274,7 @@ public class SlotSave : MonoBehaviour
     //triggers when you select the options button
     public void SelectOptions()
     {
+        AudioController.ClickSound();
         isOptions = true;
         OptionsPanel.SetActive(true);
         MainPanel.SetActive(false);
@@ -249,6 +282,7 @@ public class SlotSave : MonoBehaviour
 
     public void ApplyOptionChanges() // applys changes to files through main menu
     {
+        AudioController.ClickSound();
         if (File.Exists(persistentPath + "/Slot1Data.txt"))
         {
             string thispath = persistentPath + "/Slot1Data.txt";
@@ -348,6 +382,7 @@ public class SlotSave : MonoBehaviour
     //function for clicking slot 1
     public void CreateSlot1()
     {
+        AudioController.ClickSound();
         //if the file exists changes the static variable and loads the scene
         if (File.Exists(persistentPath + "/Slot1Data.txt"))
         {
@@ -358,6 +393,7 @@ public class SlotSave : MonoBehaviour
                 File.Delete(grabFilePath);
                 slot1Exists = false;
                 Slot1Butt.gameObject.SetActive(false);
+                slot1Text.text = "Slot 1";
                 DeleteButtonText.text = "Delete File";
                 IsDeleting = false;
                 return;
@@ -438,6 +474,7 @@ public class SlotSave : MonoBehaviour
     //function for clicking slot 2
     public void CreateSlot2()
     {
+        AudioController.ClickSound();
         if (File.Exists(persistentPath + "/Slot2Data.txt"))
         {
             string grabFilePath = persistentPath + "/Slot2Data.txt";
@@ -446,6 +483,7 @@ public class SlotSave : MonoBehaviour
             {
                 File.Delete(grabFilePath);
                 slot2Exists = false;
+                slot2Text.text = "Slot 2";
                 Slot2Butt.gameObject.SetActive(false);
                 DeleteButtonText.text = "Delete File";
                 IsDeleting = false;
@@ -524,6 +562,7 @@ public class SlotSave : MonoBehaviour
     //function for clicking slot 3
     public void CreateSlot3()
     {
+        AudioController.ClickSound();
         if (File.Exists(persistentPath + "/Slot3Data.txt"))
         {
             string grabFilePath = persistentPath + "/Slot3Data.txt";
@@ -531,6 +570,7 @@ public class SlotSave : MonoBehaviour
             if (IsDeleting) // if user is trying to delete
             {
                 File.Delete(grabFilePath);
+                slot3Text.text = "Slot 3";
                 slot3Exists = false;
                 Slot3Butt.gameObject.SetActive(false);
                 DeleteButtonText.text = "Delete File";
@@ -610,6 +650,7 @@ public class SlotSave : MonoBehaviour
     //when user clicks continue (same logic as SelectEmptySlot() function)
     public void ContinueTrigger()
     {
+        AudioController.ClickSound();
         if (!File.Exists(persistentPath + "/Slot1Data.txt") && !File.Exists(persistentPath + "/Slot2Data.txt") && !File.Exists(persistentPath + "/Slot3Data.txt")) return;
 
         BackButt.gameObject.SetActive(true);
@@ -625,6 +666,7 @@ public class SlotSave : MonoBehaviour
 
     public void ExitGame() 
     {
+        AudioController.ClickSound();
         print("Exits Game on Build");
         Application.Quit();
     }

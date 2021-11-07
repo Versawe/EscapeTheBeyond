@@ -20,6 +20,8 @@ public class GameHUDActivations : MonoBehaviour
     public TextMeshProUGUI SliderDisplay2;
     public TextMeshProUGUI relicsCollectedDisplay;
 
+    public GameObject StaminaBar;
+
     public GameObject TextHint; //the 2/3 text display in game during puzzle 1 
 
     //variables for UI to interact with
@@ -35,6 +37,7 @@ public class GameHUDActivations : MonoBehaviour
     private string doorPwd;
     public TMP_InputField formBar;
     LookAtStuff pLookAtScript;
+    CharacterMovementFirstPerson moveScript;
 
     public QandA Puzzle3Script;
 
@@ -59,8 +62,16 @@ public class GameHUDActivations : MonoBehaviour
         if (GameObject.Find("Hint")) TextHint = GameObject.Find("Hint");
         else TextHint = null;
 
-        if (GameObject.Find("FPSController")) pLookAtScript = GameObject.Find("FPSController").GetComponentInChildren<LookAtStuff>();
-        else pLookAtScript = null;
+        if (GameObject.Find("FPSController"))
+        {
+            pLookAtScript = GameObject.Find("FPSController").GetComponentInChildren<LookAtStuff>();
+            moveScript = GameObject.Find("FPSController").GetComponent<CharacterMovementFirstPerson>();
+        }
+        else 
+        {
+            pLookAtScript = null;
+            moveScript = null;
+        } 
     }
 
     private void Start()
@@ -127,6 +138,16 @@ public class GameHUDActivations : MonoBehaviour
             SliderDisplay2.text = NoDestroy.pSensitivity.ToString();
             AudioListener.volume = NoDestroy.gameVolume;
         }
+        if(moveScript.staminaActual < 3.5f && !moveScript.IsExhausted) 
+        {
+            StaminaBar.SetActive(true);
+            StaminaBar.GetComponent<Slider>().value = moveScript.staminaActual;
+        }
+        else 
+        {
+            StaminaBar.SetActive(false);
+        }
+        
     }
 
     private void GUIAppearPerScene()
@@ -147,6 +168,7 @@ public class GameHUDActivations : MonoBehaviour
     private void PauseGame()
     {
         bool escClick = Input.GetKeyDown("escape");
+        if (Input.GetKeyDown("escape")) AudioController.ClickSound();
 
         if (escClick && !isPaused && !pLookAtScript.IsActivated)
         {
@@ -179,6 +201,7 @@ public class GameHUDActivations : MonoBehaviour
 
     public void GameOptionsTrigger()
     {
+        AudioController.ClickSound();
         optionsOn = true;
         pausePanel.gameObject.SetActive(false);
         OptionsPanel.gameObject.SetActive(true);
@@ -191,12 +214,14 @@ public class GameHUDActivations : MonoBehaviour
 
     public void BackButtonTrigger()
     {
+        AudioController.ClickSound();
         pausePanel.gameObject.SetActive(true);
         OptionsPanel.gameObject.SetActive(false);
     }
 
     public void ExitToMenu()
     {
+        AudioController.ClickSound();
         isPaused = false;
         Time.timeScale = 1f;
 
@@ -210,6 +235,7 @@ public class GameHUDActivations : MonoBehaviour
 
     public void EnterPasscode()
     {
+        AudioController.ClickSound();
         string formGuess = formBar.text;
 
         if(formGuess == doorPwd) // passcode correct
@@ -241,6 +267,7 @@ public class GameHUDActivations : MonoBehaviour
 
     public void RetryCurrLevel() 
     {
+        AudioController.ClickSound();
         AudioController.StopSound();
         if (NoDestroy.HasBeenTamperedWith) SceneManager.LoadScene("HellScene");
         else SceneManager.LoadScene(NoDestroy.currSceneName);

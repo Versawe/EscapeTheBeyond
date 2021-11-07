@@ -8,24 +8,29 @@ public class AudioController : MonoBehaviour
     //in-game dialogue
     public static AudioSource DialogueSource;
     public static AudioSource BGLoopSource;
+    public static AudioSource UISource;
     public GameObject theChild;
+    public GameObject theChild2;
 
     public AudioClip staticLoop;
     public List<AudioClip> clipListRef = new List<AudioClip>();
     public List<AudioClip> clipList = new List<AudioClip>();
     public static AudioController script;
-    
+
+    public AudioClip clickSound;
 
     public List<AudioClip> voiceList = new List<AudioClip>();
 
     private bool hintReset = false;
 
     public float BGGone = 5f;
+
     // Start is called before the first frame update
     void Start()
     {
         DialogueSource = GetComponent<AudioSource>();
         BGLoopSource = theChild.GetComponent<AudioSource>();
+        UISource = theChild2.GetComponent<AudioSource>();
         BGLoopSource.clip = staticLoop;
         script = GetComponent<AudioController>();
 
@@ -51,10 +56,10 @@ public class AudioController : MonoBehaviour
             hintReset = false;
         }
 
-        if (Input.GetKeyDown("t")) //for testing
+        /*if (Input.GetKeyDown("t")) //for testing
         {
             PlayFlashBackSound();
-        }
+        }*/
 
         if (!DialogueSource.isPlaying && BGLoopSource.isPlaying) 
         {
@@ -107,5 +112,11 @@ public class AudioController : MonoBehaviour
         if (BGLoopSource.isPlaying) BGLoopSource.Stop();
         DialogueSource.clip = null;
         BGLoopSource.clip = null;
+    }
+
+    public static void ClickSound() 
+    {
+        UISource.clip = script.clickSound;
+        UISource.Play();
     }
 }

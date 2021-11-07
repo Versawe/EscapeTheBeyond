@@ -46,7 +46,6 @@ public class NoDestroy : MonoBehaviour
     public static int stairSpawnCount = 0;
 
     Light flashLight;
-    AudioController audioScript;
     public JumpScareHides jumpScareScript;
 
     // Start is called before the first frame update
@@ -64,7 +63,6 @@ public class NoDestroy : MonoBehaviour
     {
         fileLoaded = "";
         huntScript = GetComponent<RelicHuntScript>();
-        audioScript = GetComponent<AudioController>();
         
     }
 

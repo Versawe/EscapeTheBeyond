@@ -6308,6 +6308,9 @@ MonoBehaviour:
   Slot2Butt: {fileID: 557996907}
   Slot3Butt: {fileID: 1272232268}
   DeleteButton: {fileID: 134188531}
+  slot1Text: {fileID: 1430365870}
+  slot2Text: {fileID: 1573443990}
+  slot3Text: {fileID: 2033922597}
   ContinueButt: {fileID: 1191945929}
   NewButt: {fileID: 1759534876}
   BackButt: {fileID: 1253120506}

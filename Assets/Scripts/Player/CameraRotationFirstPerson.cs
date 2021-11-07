@@ -18,7 +18,7 @@ public class CameraRotationFirstPerson : MonoBehaviour
     private float bobPace = 8f;
     private float bobOffest = 0.03f;
 
-    private float tiltPace = 5.5f; //8f
+    private float tiltPace = 4.5f; //8f
     private float tiltOffest = 0.65f; //1.75f
 
     Quaternion StartLocalRotation;
@@ -58,6 +58,18 @@ public class CameraRotationFirstPerson : MonoBehaviour
             charMoveScript.enabled = false;
             enabled = false;
         }
+
+        //up the tilting on running
+        if (charMoveScript.IsSprinting)
+        {
+            tiltPace = 5.75f;
+            tiltOffest = 0.90f;
+        }
+        else 
+        {
+            tiltPace = 4.5f;
+            tiltOffest = 0.65f;
+        } 
 
         SensitivityChanges(); //update in game
     }

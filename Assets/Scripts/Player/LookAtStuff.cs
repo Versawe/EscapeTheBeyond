@@ -26,6 +26,8 @@ public class LookAtStuff : MonoBehaviour
 
     private bool firstTime = false;
 
+    private bool doOnce = false;
+
     private void Start()
     {
         if (GameObject.Find("HidingCheck") != null) hideScript = GameObject.Find("HidingCheck").GetComponent<PlayerHiding>();
@@ -83,6 +85,8 @@ public class LookAtStuff : MonoBehaviour
             CharMove.enabled = true;
             CamRotate.enabled = true;
         }
+
+        if (Input.GetKeyDown("escape")) doOnce = false;
     }
 
     private void PlayerLookingAt()
@@ -250,6 +254,11 @@ public class LookAtStuff : MonoBehaviour
                 {
                     AudioController.PlayDialogueSound(1);
                     firstTime = true;
+                }
+                if (!doOnce) 
+                {
+                    AudioController.ClickSound();
+                    doOnce = true;
                 }
                 Cursor.lockState = CursorLockMode.None;
                 CharMove.enabled = false;
