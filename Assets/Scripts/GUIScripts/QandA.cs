@@ -260,6 +260,8 @@ public class QandA : MonoBehaviour
     //attached to all buttons and used to determine if player's answer is corrrect
     public void AnswerQuestion(Button buttonClicked)
     {
+        AudioController.ClickSound(); //button click plz
+
         if(questionType[0] == 'M') // check answer for multiple choice questions
         {
             playerA = buttonClicked.GetComponentInChildren<TextMeshProUGUI>().text;

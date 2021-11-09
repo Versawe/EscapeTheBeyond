@@ -47,8 +47,8 @@ public class CharacterMovementFirstPerson : MonoBehaviour
     {
         if (Time.timeScale == 0 || NoDestroy.atGameComplete) return;
         if (hideScript.isHiding) LockHidingPlayer();
-        if (hideScript.isHiding) return;
         StaminaManagement();
+        if (hideScript.isHiding) return;
         MovePlayer();
         JumpPlayer();
 
@@ -58,7 +58,7 @@ public class CharacterMovementFirstPerson : MonoBehaviour
 
         cc.Move(allMovementVectors * Time.deltaTime);
 
-        print("Issprinting " + IsSprinting);
+        //print("Issprinting " + IsSprinting);
         //print("Isexhauted " + IsExhausted);
         //print("Issprinting " + staminaActual);
         //print("Isexhauted " + exhaustedTimer);
@@ -137,7 +137,7 @@ public class CharacterMovementFirstPerson : MonoBehaviour
         bool IsHolding = Input.GetKey("left shift");
 
         //controlling stamina meter
-        if (IsHolding) 
+        if (IsHolding && !hideScript.isHiding) 
         {
             staminaActual -= 1 * Time.deltaTime;
             IsSprinting = true;

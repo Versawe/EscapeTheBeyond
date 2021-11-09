@@ -26,6 +26,7 @@ public class SceneAudioPlayer : MonoBehaviour
 
     public void SelectClip(Button clicked) 
     {
+        AudioController.ClickSound(); //ui click plz
         clipName = clicked.GetComponentInChildren<TextMeshProUGUI>().text;
         if(clipName == "Scene 1") 
         {
@@ -47,7 +48,7 @@ public class SceneAudioPlayer : MonoBehaviour
         {
             return;
         }
-        PlaySound();
+        PlaySound(); //plays audio drama clip within this class
     }
 
     public void PlaySound()

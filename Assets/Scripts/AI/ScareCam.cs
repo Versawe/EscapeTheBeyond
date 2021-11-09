@@ -15,6 +15,8 @@ public class ScareCam : MonoBehaviour
     CameraRotationFirstPerson camScript;
     CharacterMovementFirstPerson pMoveScript;
 
+    public static bool stillCreepySound = false;
+
     private void Awake()
     {
         pHealth = GetComponent<PlayerHealth>();
@@ -24,12 +26,14 @@ public class ScareCam : MonoBehaviour
 
     private void OnEnable()
     {
+        stillCreepySound = false;
         if (nameOfAI.Substring(0, 1) == "r") ripperScene.gameObject.SetActive(true);
         else mutantScene.gameObject.SetActive(true);
         ScarePostP.SetActive(true);
         FPSCamera.enabled = false;
         pMoveScript.enabled = false;
         camScript.enabled = false;
+        stillCreepySound = true;
 
     }
     private void OnDisable()
@@ -44,5 +48,6 @@ public class ScareCam : MonoBehaviour
             camScript.enabled = true;
             nameOfAI = "";
         }
+        stillCreepySound = false; //needs to be here to not glitch on game overs aka "does not change back to false"
     }
 }
