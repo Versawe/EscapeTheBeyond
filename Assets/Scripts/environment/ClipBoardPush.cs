@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class ClipBoardPush : MonoBehaviour
 {
@@ -36,7 +33,10 @@ public class ClipBoardPush : MonoBehaviour
     {
         if (IsClipboardSpawned) clipboardFallTimer -= 1 * Time.deltaTime;
         else return;
+    }
 
+    private void FixedUpdate()
+    {
         if (clipboardFallTimer <= 0 && IsClipboardSpawned) Push(ClipBoardBody);
     }
 

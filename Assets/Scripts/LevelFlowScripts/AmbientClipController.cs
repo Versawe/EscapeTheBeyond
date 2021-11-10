@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
@@ -14,6 +13,9 @@ public class AmbientClipController : MonoBehaviour
 
     public static float pitchFloat = 1f;
     public static float volumeFloat = 0.75f;
+
+    public static bool ForceUpdate = false;
+    private float splitSecond = 1f;
 
     private void Awake()
     {
@@ -31,6 +33,8 @@ public class AmbientClipController : MonoBehaviour
         actualScene = SceneManager.GetActiveScene();
         pitchFloat = 1f;
         volumeFloat = 0.75f;
+        ForceUpdate = false;
+
         if (actualScene.name != "Preload" && actualScene.name != "MainMenu") 
         {
             RandomAmbientTrack();
@@ -57,10 +61,10 @@ public class AmbientClipController : MonoBehaviour
         if (!hudScript.isPaused) UnPauseSound();
         if (NoDestroy.atGameOver) StopSound(); // or change to an end game track
 
-        if (NoDestroy.currSceneName != "QandA") 
+        if (!NoDestroy.completedQandA) 
         {
             //if you are getting scared it changes the ambient BG sound
-            if (NoDestroy.TriggerScarePP || NoDestroy.TriggerScarePPAI || ScareCam.stillCreepySound)
+            if (NoDestroy.TriggerScarePP || NoDestroy.TriggerScarePPAI || ScareCam.stillCreepySound || ForceUpdate)
             {
                 AmbientScary();
             }
@@ -68,6 +72,17 @@ public class AmbientClipController : MonoBehaviour
             {
                 AmbientNormal();
             }
+        }
+        else 
+        {
+            if (splitSecond > 0) 
+            {
+                ForceUpdate = false;
+                AmbientNormal();
+            } 
+            splitSecond -= 1f * Time.deltaTime;
+
+            if (ForceUpdate) AmbientScary();
         }
 
         ambientSource.pitch = pitchFloat;
@@ -77,14 +92,14 @@ public class AmbientClipController : MonoBehaviour
 
     public static void AmbientNormal()
     {
-        pitchFloat = 1f;
-        volumeFloat = 0.75f;
+        if (pitchFloat < 1f) pitchFloat += 0.75f * Time.deltaTime;
+        if (volumeFloat > 0.75f) volumeFloat -= 0.75f * Time.deltaTime;
     }
 
     public static void AmbientScary()
     {
-        pitchFloat = 0.5f;
-        volumeFloat = 1f;
+        if (pitchFloat > 0.5f) pitchFloat -= 0.75f * Time.deltaTime;
+        if (volumeFloat < 1f) volumeFloat += 0.75f * Time.deltaTime;
     }
 
     private void RandomAmbientTrack()

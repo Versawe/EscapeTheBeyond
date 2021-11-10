@@ -48,7 +48,7 @@ public class QandA : MonoBehaviour
     private bool WasWrongGuess = false;
     private float rightTimer = 2f;
     private bool WasRightGuess = false;
-    private float numRightAnswers = 15; //15 for real # correct for now, keep at 1or2 for testing purposes
+    private float numRightAnswers = 1; //15 for real # correct for now, keep at 1or2 for testing purposes
 
     LookAtStuff lookScript;
     public GameObject PPVOff;
