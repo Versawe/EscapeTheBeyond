@@ -4,7 +4,7 @@ public class FlashLightOff : MonoBehaviour
 {
     //this script is used in the QandA scene only and controls the post-processing and flashlight gameobject
     //thinking about using this for after beating the q&a game, spawning the demon to chase you to the basement door!
-    public bool SpawnEvil = false;
+    public GameObject Demon;
     LocalPostProcessing localPPScript;
 
     public GameObject EscapedGO;
@@ -54,7 +54,8 @@ public class FlashLightOff : MonoBehaviour
                 localPPScript.playerPP.SetActive(true);
                 EscapedGO.SetActive(true);
                 EscapedGO.GetComponent<PlayerEscaped>().enabled = true;
-                SpawnEvil = true;
+                Demon.SetActive(true);
+                gameObject.SetActive(false);
             } 
         }
     }

@@ -85,7 +85,7 @@ public class AmbientClipController : MonoBehaviour
             if (ForceUpdate) AmbientScary();
             else AmbientNormal();
         }
-
+        print(ForceUpdate);
         ambientSource.pitch = pitchFloat;
         ambientSource.volume = volumeFloat;
 

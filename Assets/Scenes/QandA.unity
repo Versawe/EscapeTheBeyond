@@ -109,7 +109,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.29
+    agentRadius: 0.2
     agentHeight: 0.5
     agentSlope: 26.1
     agentClimb: 0.25
@@ -117,7 +117,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.096666664
+    cellSize: 0.06666667
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -10516,8 +10516,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e38882a404a73404c9d2bf2bc2cc3069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnEvil: 0
-  EscapedGO: {fileID: 0}
+  Demon: {fileID: 434213341511797739}
+  EscapedGO: {fileID: 1752785136}
 --- !u!1001 &427826056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42615,6 +42615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0cedfe958cfd2348a50512ffa307880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Demon: {fileID: 434213341511797739}
 --- !u!65 &1752785138
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50873,12 +50874,12 @@ NavMeshAgent:
   m_GameObject: {fileID: 434213341511797739}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.48
-  m_Speed: 3
+  m_Radius: 0.2
+  m_Speed: 3.7
   m_Acceleration: 80
   avoidancePriority: 50
   m_AngularSpeed: 5000
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -50898,6 +50899,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73bba0b127e6e244cacfec9f955e3334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ScareScene: {fileID: 1567434884}
+  IsScaring: 0
 --- !u!1 &434213341625479967
 GameObject:
   m_ObjectHideFlags: 0

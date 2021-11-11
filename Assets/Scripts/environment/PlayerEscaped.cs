@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerEscaped : MonoBehaviour
 {
     LocalPostProcessing localPPScript;
-    //public GameObject Vendigo;
+    public GameObject Demon;
 
     private void OnEnable()
     {
@@ -25,7 +25,7 @@ public class PlayerEscaped : MonoBehaviour
         {
             AmbientClipController.ForceUpdate = false;
             localPPScript.playerPP.SetActive(false);
-            //Vendigo.SetActive(false);
+            Demon.SetActive(false);
 
         }
     }
