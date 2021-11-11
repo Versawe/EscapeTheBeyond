@@ -35,7 +35,7 @@ public class AmbientClipController : MonoBehaviour
         volumeFloat = 0.75f;
         ForceUpdate = false;
 
-        if (actualScene.name != "Preload" && actualScene.name != "MainMenu") 
+        if (actualScene.name != "Preload" && actualScene.name != "MainMenu" && actualScene.name != "EndGame") 
         {
             RandomAmbientTrack();
         }
@@ -83,6 +83,7 @@ public class AmbientClipController : MonoBehaviour
             splitSecond -= 1f * Time.deltaTime;
 
             if (ForceUpdate) AmbientScary();
+            else AmbientNormal();
         }
 
         ambientSource.pitch = pitchFloat;

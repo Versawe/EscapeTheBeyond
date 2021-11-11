@@ -11,7 +11,7 @@ public class FlashLightOff : MonoBehaviour
 
     private void Start()
     {
-        if (!GameObject.Find("FPSController")) 
+        if (GameObject.Find("FPSController")) 
         {
             localPPScript = GameObject.Find("FPSController").GetComponent<LocalPostProcessing>();
         }
@@ -20,7 +20,7 @@ public class FlashLightOff : MonoBehaviour
             localPPScript = null;
         }
         
-        if (!GameObject.Find("EscapedMonster")) 
+        if (GameObject.Find("EscapedMonster")) 
         {
             EscapedGO = GameObject.Find("EscapedMonster");
             EscapedGO.SetActive(false);
@@ -33,7 +33,7 @@ public class FlashLightOff : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Zone") 
+        if(other.gameObject.tag == "Player") 
         {
             Light FlashLight = GameObject.Find("Flashlight").GetComponent<Light>();
             FlashLight.enabled = false;
@@ -43,7 +43,7 @@ public class FlashLightOff : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Zone")
+        if (other.gameObject.tag == "Player")
         {
             Light FlashLight = GameObject.Find("Flashlight").GetComponent<Light>();
             FlashLight.enabled = true;
@@ -53,6 +53,7 @@ public class FlashLightOff : MonoBehaviour
                 AmbientClipController.ForceUpdate = true;
                 localPPScript.playerPP.SetActive(true);
                 EscapedGO.SetActive(true);
+                EscapedGO.GetComponent<PlayerEscaped>().enabled = true;
                 SpawnEvil = true;
             } 
         }

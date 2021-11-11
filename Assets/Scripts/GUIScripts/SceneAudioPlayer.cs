@@ -53,6 +53,7 @@ public class SceneAudioPlayer : MonoBehaviour
 
     public void PlaySound()
     {
+        AudioController.ClickSound(); //ui click plz
         if (!source.isPlaying)
         {
             source.Play();
@@ -61,11 +62,13 @@ public class SceneAudioPlayer : MonoBehaviour
 
     public void PauseSound()
     {
+        AudioController.ClickSound(); //ui click plz
         if (source.isPlaying) source.Pause();
     }
 
     public void StopSound()
     {
+        AudioController.ClickSound(); //ui click plz
         if (source.isPlaying) source.Stop();
     }
 }

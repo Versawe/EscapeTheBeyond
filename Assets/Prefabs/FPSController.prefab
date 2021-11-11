@@ -275,7 +275,6 @@ GameObject:
   - component: {fileID: 8857587765023446979}
   - component: {fileID: 8857587765023447005}
   - component: {fileID: 8857587765023447004}
-  - component: {fileID: 7807778258401989500}
   m_Layer: 0
   m_Name: HidingCheck
   m_TagString: Untagged
@@ -326,18 +325,7 @@ MonoBehaviour:
   isHiding: 0
   inBounds: 0
   wardrobeHiding: {fileID: 0}
---- !u!114 &7807778258401989500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8857587765023446978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e38882a404a73404c9d2bf2bc2cc3069, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  lockedLocation: {fileID: 0}
 --- !u!1 &8857587766103082420
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,6 +381,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMoving: 0
   cam: {fileID: 8857587766103120278}
+  IsSprinting: 0
+  staminaActual: 0
+  IsExhausted: 0
 --- !u!143 &8857587766107582580
 CharacterController:
   m_ObjectHideFlags: 0
