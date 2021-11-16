@@ -76,33 +76,7 @@ public class SlotSave : MonoBehaviour
 
         //if the files exist change the bool
         //also updated so it shows date of last write to file and the name of scene they are on
-        if (File.Exists(persistentPath + "/Slot1Data.txt")) 
-        {
-            slot1Exists = true;
-            if (System.IO.File.ReadAllLines(persistentPath + "/Slot1Data.txt")[1] == "1") slot1Text.text = "Slot 1-Intro\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot1Data.txt").ToString();
-            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot1Data.txt")[1] == "2") slot1Text.text = "Slot 1-Hunt\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot1Data.txt").ToString();
-            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot1Data.txt")[1] == "3") slot1Text.text = "Slot 1-Q&A\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot1Data.txt").ToString();
-            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot1Data.txt")[1] == "4") slot1Text.text = "Slot 1-End\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot1Data.txt").ToString();
-            else slot1Text.text = "Slot 1\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot1Data.txt").ToString();
-        }
-        if (File.Exists(persistentPath + "/Slot2Data.txt")) 
-        {
-            slot2Exists = true;
-            if (System.IO.File.ReadAllLines(persistentPath + "/Slot2Data.txt")[1] == "1") slot2Text.text = "Slot 2-Intro\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot2Data.txt").ToString();
-            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot2Data.txt")[1] == "2") slot2Text.text = "Slot 2-Hunt\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot2Data.txt").ToString();
-            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot2Data.txt")[1] == "3") slot2Text.text = "Slot 2-Q&A\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot2Data.txt").ToString();
-            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot2Data.txt")[1] == "4") slot2Text.text = "Slot 2-End\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot2Data.txt").ToString();
-            else slot2Text.text = "Slot 2\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot2Data.txt").ToString();
-        } 
-        if (File.Exists(persistentPath + "/Slot3Data.txt")) 
-        {
-            slot3Exists = true;
-            if (System.IO.File.ReadAllLines(persistentPath + "/Slot3Data.txt")[1] == "1") slot3Text.text = "Slot 3-Intro\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot3Data.txt").ToString();
-            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot3Data.txt")[1] == "2") slot3Text.text = "Slot 3-Hunt\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot3Data.txt").ToString();
-            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot3Data.txt")[1] == "3") slot3Text.text = "Slot 3-Q&A\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot3Data.txt").ToString();
-            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot3Data.txt")[1] == "4") slot3Text.text = "Slot 3-End\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot3Data.txt").ToString();
-            else slot3Text.text = "Slot 3\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot3Data.txt").ToString();
-        } 
+        DisplayFileInfo();
 
         //makes continue button visable if there is an existing data file to continue game on
         if (slot1Exists || slot2Exists || slot3Exists) ContinueButt.gameObject.SetActive(true);
@@ -111,6 +85,37 @@ public class SlotSave : MonoBehaviour
         //if there are no more save slots available the new game button will not appear
         if (!slot1Exists || !slot2Exists || !slot3Exists) NewButt.gameObject.SetActive(true);
         else NewButt.gameObject.SetActive(false);
+    }
+
+    private void DisplayFileInfo()
+    {
+        if (File.Exists(persistentPath + "/Slot1Data.txt"))
+        {
+            slot1Exists = true;
+            if (System.IO.File.ReadAllLines(persistentPath + "/Slot1Data.txt")[1] == "1") slot1Text.text = "Slot 1-Intro\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot1Data.txt").ToString();
+            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot1Data.txt")[1] == "2") slot1Text.text = "Slot 1-Hunt\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot1Data.txt").ToString();
+            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot1Data.txt")[1] == "3") slot1Text.text = "Slot 1-Q&A\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot1Data.txt").ToString();
+            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot1Data.txt")[1] == "4") slot1Text.text = "Slot 1-End\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot1Data.txt").ToString();
+            else slot1Text.text = "Slot 1\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot1Data.txt").ToString();
+        }
+        if (File.Exists(persistentPath + "/Slot2Data.txt"))
+        {
+            slot2Exists = true;
+            if (System.IO.File.ReadAllLines(persistentPath + "/Slot2Data.txt")[1] == "1") slot2Text.text = "Slot 2-Intro\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot2Data.txt").ToString();
+            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot2Data.txt")[1] == "2") slot2Text.text = "Slot 2-Hunt\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot2Data.txt").ToString();
+            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot2Data.txt")[1] == "3") slot2Text.text = "Slot 2-Q&A\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot2Data.txt").ToString();
+            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot2Data.txt")[1] == "4") slot2Text.text = "Slot 2-End\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot2Data.txt").ToString();
+            else slot2Text.text = "Slot 2\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot2Data.txt").ToString();
+        }
+        if (File.Exists(persistentPath + "/Slot3Data.txt"))
+        {
+            slot3Exists = true;
+            if (System.IO.File.ReadAllLines(persistentPath + "/Slot3Data.txt")[1] == "1") slot3Text.text = "Slot 3-Intro\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot3Data.txt").ToString();
+            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot3Data.txt")[1] == "2") slot3Text.text = "Slot 3-Hunt\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot3Data.txt").ToString();
+            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot3Data.txt")[1] == "3") slot3Text.text = "Slot 3-Q&A\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot3Data.txt").ToString();
+            else if (System.IO.File.ReadAllLines(persistentPath + "/Slot3Data.txt")[1] == "4") slot3Text.text = "Slot 3-End\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot3Data.txt").ToString();
+            else slot3Text.text = "Slot 3\n" + System.IO.File.GetLastWriteTime(persistentPath + "/Slot3Data.txt").ToString();
+        }
     }
 
     private void Update()
@@ -126,7 +131,6 @@ public class SlotSave : MonoBehaviour
 
         if (!IsJustStarted) return;
         StaticScreenTimer();
-
     }
 
     private void CheckForPostProcessingOBJs()
@@ -457,7 +461,7 @@ public class SlotSave : MonoBehaviour
             string modified = dateModified.ToString("O").Substring(0, 18);
 
             //write file
-            System.IO.File.WriteAllText(persistentPath + "/Slot1Data.txt", "Slot1Data\n1\n5\n1\nGlitchyStart\nBLOOD\n2\n" + created + "\n" + modified);
+            System.IO.File.WriteAllText(persistentPath + "/Slot1Data.txt", "Slot1Data\n1\n3\n1\nGlitchyStart\nBLOOD\n2\n" + created + "\n" + modified);
 
             //This creates Txt file and updates datetimes to match
             System.IO.File.SetCreationTime(persistentPath, dateCreated);
@@ -545,7 +549,7 @@ public class SlotSave : MonoBehaviour
             string modified = dateModified.ToString("O").Substring(0, 18);
 
             //write file
-            System.IO.File.WriteAllText(persistentPath + "/Slot2Data.txt", "Slot2Data\n1\n5\n1\nGlitchyStart\nStill time to leave.\n2\n" + created + "\n" + modified);
+            System.IO.File.WriteAllText(persistentPath + "/Slot2Data.txt", "Slot2Data\n1\n3\n1\nGlitchyStart\nStill time to leave.\n2\n" + created + "\n" + modified);
 
             //This creates Txt file and updates datetimes to match
             System.IO.File.SetCreationTime(persistentPath, dateCreated);
@@ -633,7 +637,7 @@ public class SlotSave : MonoBehaviour
             string modified = dateModified.ToString("O").Substring(0, 18);
 
             //write file
-            System.IO.File.WriteAllText(persistentPath + "/Slot3Data.txt", "Slot3Data\n1\n5\n1\nGlitchyStart\nLeave or Pay\n2\n" + created + "\n" + modified);
+            System.IO.File.WriteAllText(persistentPath + "/Slot3Data.txt", "Slot3Data\n1\n3\n1\nGlitchyStart\nLeave or Pay\n2\n" + created + "\n" + modified);
 
             //This creates Txt file and updates datetimes to match
             System.IO.File.SetCreationTime(persistentPath, dateCreated);

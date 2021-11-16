@@ -116,7 +116,7 @@ public class NoDestroy : MonoBehaviour
             stairs.Clear();
             stairSpawnCount = 0;
             endGameTimer = 15;
-            if(GameObject.Find("HintLight")) GameObject.Find("HintLight").GetComponent<Light>().enabled = false;
+            if (GameObject.Find("HintLight")) GameObject.Find("HintLight").GetComponent<Light>().enabled = false;
             flashLight = GameObject.Find("Flashlight").GetComponent<Light>();
             flashLight.enabled = true;
             currObjective = "Current Objective:\nGo back to the first room";
@@ -147,7 +147,11 @@ public class NoDestroy : MonoBehaviour
     }
     void Update()
     {
-        if (gameProgression == 4) Cursor.lockState = CursorLockMode.None;
+        if (gameProgression == 4) 
+        {
+            Cursor.lockState = CursorLockMode.None;
+            AudioListener.volume = 1;
+        } 
 
         if (actualScene.name != "QandA" && stairSpawnCount < 15) return;
         if(stairSpawnCount >= 15)
@@ -159,7 +163,6 @@ public class NoDestroy : MonoBehaviour
         {
             atGameComplete = true;
         }
-
     }
 
     public void LoadFromFile()

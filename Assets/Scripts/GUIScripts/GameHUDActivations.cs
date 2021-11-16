@@ -77,7 +77,11 @@ public class GameHUDActivations : MonoBehaviour
     private void Start()
     {
         if (NoDestroy.puzzleOneLoginAttempts == 3 && NoDestroy.gameProgression == 1) doorPwd = genPWD.GeneratePWDFunction(15);
-        if (NoDestroy.gameProgression == 4) storyPlayer.enabled = true;
+        if (NoDestroy.gameProgression == 4) 
+        {
+            storyPlayer.enabled = true;
+            enabled = false;
+        } 
     }
 
     // Update is called once per frame
@@ -217,6 +221,7 @@ public class GameHUDActivations : MonoBehaviour
         AudioController.ClickSound();
         pausePanel.gameObject.SetActive(true);
         OptionsPanel.gameObject.SetActive(false);
+        GameControllerScript.SaveToFile();
     }
 
     public void ExitToMenu()

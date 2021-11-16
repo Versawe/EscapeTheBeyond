@@ -5,8 +5,8 @@ public class CameraRotationFirstPerson : MonoBehaviour
     private Camera cam;
     LookAtStuff lookScript;
 
-    private float yawSensitivity = 5f;
-    private float pitchSensitivity = 3.5f;
+    private float yawSensitivity;
+    private float pitchSensitivity;
     //private float pitchSensitivity = 5f;
 
     private float yaw = 0.0f;
@@ -32,6 +32,8 @@ public class CameraRotationFirstPerson : MonoBehaviour
 
         //at start set the player's sensitivity
         yawSensitivity = NoDestroy.pSensitivity;
+        //pitchSensitivity = yawSensitivity - 1.5f;
+        pitchSensitivity = yawSensitivity; //test
 
         //starting rotation per level
         if (NoDestroy.gameProgression == 1 || NoDestroy.gameProgression == 4) yaw = 90;
@@ -77,8 +79,8 @@ public class CameraRotationFirstPerson : MonoBehaviour
     private void SensitivityChanges()
     {
         yawSensitivity = NoDestroy.pSensitivity;
-        pitchSensitivity = yawSensitivity - 1.5f;
-        //pitchSensitivity = yawSensitivity;
+        //pitchSensitivity = yawSensitivity - 1.5f;
+        pitchSensitivity = yawSensitivity;
     }
 
     // Update is called once per frame

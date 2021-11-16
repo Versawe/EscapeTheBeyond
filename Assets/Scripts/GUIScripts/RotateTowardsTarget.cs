@@ -13,15 +13,16 @@ public class RotateTowardsTarget : MonoBehaviour
     Vector3 startPos;
 
     private float SinValue;
-    private float moveSpeed = 1.5f;
-    private float moveAmount = 1f;
+    public float moveSpeed = 1.5f;
+    public float moveAmount = 1f;
 
     // Start is called before the first frame update
     private void Start()
     {
         //SinValue = transform.position.z;
         startPos = transform.position;
-        slotScript = MMUI.GetComponent<SlotSave>();
+        if (MMUI != null) slotScript = MMUI.GetComponent<SlotSave>();
+        else slotScript = null;
     }
     private void LateUpdate()
     {
@@ -34,7 +35,10 @@ public class RotateTowardsTarget : MonoBehaviour
         //will use for future "locking" camera onto mirror for puzzle 3
         //Movement should be called before rotation, or else it's kinda glitchy
         if (!IsCameraFixed) return;
-        if (slotScript.IsJustStarted) moveSpeed = 15f;
+        if (slotScript != null && MMUI != null) 
+        {
+            if (slotScript.IsJustStarted) moveSpeed = 15f;
+        }
         //make object move back and forth slightly
         SinValue = Mathf.Sin(Time.time * moveSpeed) * moveAmount;
         float ClampedSinValue = Mathf.Clamp(SinValue, 3.5f, 5f);

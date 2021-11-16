@@ -27,6 +27,8 @@ TagManager:
   - GIF
   - Lamp
   - JumpScare
+  - StateButtons
+  - SceneButtons
   layers:
   - Default
   - TransparentFX
