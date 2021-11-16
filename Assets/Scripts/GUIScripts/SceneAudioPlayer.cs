@@ -11,15 +11,15 @@ public class SceneAudioPlayer : MonoBehaviour
     AudioSource source;
     public List<AudioClip> storyClips = new List<AudioClip>();
 
-    NoDestroy GameControllerScript;
-
     List<GameObject> PlayerButtons = new List<GameObject>();
     public TextMeshProUGUI PauseButton;
 
     public string selectedClip = "";
     public string clipName = "";
 
-    public GameObject MirrorScreen;
+    public GameObject MirrorScreen; //works with surgeon 
+    public GameObject MirrorScreen2; //works with car crash & waiting room 
+    public GameObject MirrorScreen3; //works with grim reaper
     SpriteRenderer sr;
     Animator ac;
 
@@ -28,18 +28,30 @@ public class SceneAudioPlayer : MonoBehaviour
     void Awake() 
     {
         source = GetComponent<AudioSource>();
-        if (GameObject.Find("NoDestroyOBJ")) GameControllerScript = GameObject.Find("NoDestroyOBJ").GetComponent<NoDestroy>();
-        else GameControllerScript = null;
 
         if (GameObject.Find("MirrorScreenOBJ"))
         {
             MirrorScreen = GameObject.Find("MirrorScreenOBJ");
-            sr = MirrorScreen.GetComponent<SpriteRenderer>();
-            ac = MirrorScreen.GetComponent<Animator>();
         }
         else 
         {
             MirrorScreen = null;
+        } 
+        if (GameObject.Find("MirrorScreenOBJ2"))
+        {
+            MirrorScreen2 = GameObject.Find("MirrorScreenOBJ2");
+        }
+        else 
+        {
+            MirrorScreen = null;
+        } 
+        if (GameObject.Find("MirrorScreenOBJ3"))
+        {
+            MirrorScreen3 = GameObject.Find("MirrorScreenOBJ3");
+        }
+        else 
+        {
+            MirrorScreen3 = null;
         } 
     }
 
@@ -47,6 +59,7 @@ public class SceneAudioPlayer : MonoBehaviour
     {
         source.enabled = true;
         StoryScenePanel.SetActive(true);
+        if (GameObject.Find("InteractiveText")) GameObject.Find("InteractiveText").gameObject.SetActive(false);
 
         foreach (GameObject state in GameObject.FindGameObjectsWithTag("StateButtons")) 
         {
@@ -89,29 +102,47 @@ public class SceneAudioPlayer : MonoBehaviour
 
     public void SelectClip(Button clicked)
     {
+        //resets values
+        if(sr) sr.enabled = false;
+        if(ac) ac.runtimeAnimatorController = null;
+        sr = null;
+        ac = null;
+
         HighlightButtonText(clicked.name);
         clipName = clicked.GetComponentInChildren<TextMeshProUGUI>().text;
         if(clipName == "Scene 1\nAccident") 
         {
             source.clip = storyClips[0];
+
+            sr = MirrorScreen2.GetComponent<SpriteRenderer>();
+            ac = MirrorScreen2.GetComponent<Animator>();
             sr.enabled = true;
             ac.runtimeAnimatorController = animCons[0];
         }
         else if (clipName == "Scene 2\nAppointment") 
         {
             source.clip = storyClips[1];
+
+            sr = MirrorScreen2.GetComponent<SpriteRenderer>();
+            ac = MirrorScreen2.GetComponent<Animator>();
             sr.enabled = true;
             ac.runtimeAnimatorController = animCons[1];
         }
         else if (clipName == "Scene 3\nProcedure") 
         {
             source.clip = storyClips[2];
+
+            sr = MirrorScreen.GetComponent<SpriteRenderer>();
+            ac = MirrorScreen.GetComponent<Animator>();
             sr.enabled = true;
             ac.runtimeAnimatorController = animCons[2];
         }
         else if (clipName == "Scene 4\nTragedy")
         {
             source.clip = storyClips[3];
+
+            sr = MirrorScreen3.GetComponent<SpriteRenderer>();
+            ac = MirrorScreen3.GetComponent<Animator>();
             sr.enabled = true;
             ac.runtimeAnimatorController = animCons[3];
         }
@@ -119,6 +150,8 @@ public class SceneAudioPlayer : MonoBehaviour
         {
             sr.enabled = false;
             ac.runtimeAnimatorController = null;
+            sr = null;
+            ac = null;
             return;
         }
         PlaySound(); //plays audio drama clip within this class

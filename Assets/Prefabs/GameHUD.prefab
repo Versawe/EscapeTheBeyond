@@ -2588,6 +2588,8 @@ MonoBehaviour:
   selectedClip: 
   clipName: 
   MirrorScreen: {fileID: 0}
+  MirrorScreen2: {fileID: 0}
+  MirrorScreen3: {fileID: 0}
   animCons:
   - {fileID: 9100000, guid: a2ddbbfeea6f87d48b5d5ba2f412d00d, type: 2}
   - {fileID: 9100000, guid: 82b88451d72504a45a78f1c017406190, type: 2}
@@ -2875,7 +2877,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 215.40005, y: 14.264282}
+  m_AnchoredPosition: {x: 203.91006, y: 14.264282}
   m_SizeDelta: {x: 380, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7724250081647723597
@@ -5876,7 +5878,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 215.49002, y: -243.97572}
+  m_AnchoredPosition: {x: 204, y: -243.97572}
   m_SizeDelta: {x: 380, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8467556011114200964
@@ -8289,7 +8291,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 675.4, y: -243.97572}
+  m_AnchoredPosition: {x: 609, y: -243.97571}
   m_SizeDelta: {x: 380, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7868331158794328514
@@ -8778,7 +8780,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 662.73004, y: 14.264282}
+  m_AnchoredPosition: {x: 596.32996, y: 14.264282}
   m_SizeDelta: {x: 380, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8781683868267345710

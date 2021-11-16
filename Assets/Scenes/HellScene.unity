@@ -109,15 +109,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.29
+    agentRadius: 0.22
     agentHeight: 0.5
     agentSlope: 26.1
     agentClimb: 0.25
     ledgeDropHeight: 4
     maxJumpAcrossDistance: 0
     minRegionArea: 2
-    manualCellSize: 0
-    cellSize: 0.096666664
+    manualCellSize: 1
+    cellSize: 0.028
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -125,7 +125,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: e2e7458dc6ece72489ace50bdfe9979f, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 7234d9bd51ca56543b4cb5fdd08de709, type: 2}
 --- !u!1001 &892586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3534,6 +3534,7 @@ Transform:
   - {fileID: 149591922}
   - {fileID: 1201103958}
   - {fileID: 1850248588}
+  - {fileID: 6642282069331267542}
   - {fileID: 159746892}
   - {fileID: 664446069}
   - {fileID: 2108923198}
@@ -3558,7 +3559,6 @@ Transform:
   - {fileID: 2114327462}
   - {fileID: 799446921}
   - {fileID: 807185084}
-  - {fileID: 6642282069331267542}
   - {fileID: 20216196}
   - {fileID: 691011784}
   - {fileID: 2119282659}
@@ -58363,7 +58363,7 @@ Transform:
   - {fileID: 6642442644917162874}
   - {fileID: 6642669185350200560}
   m_Father: {fileID: 127481379}
-  m_RootOrder: 73
+  m_RootOrder: 49
   m_LocalEulerAnglesHint: {x: 0, y: -57.088, z: 0}
 --- !u!4 &6642442644917162874
 Transform:
