@@ -20,7 +20,10 @@ public class SceneAudioPlayer : MonoBehaviour
     public string clipName = "";
 
     public GameObject MirrorScreen;
-    List<RuntimeAnimatorController> animCons = new List<RuntimeAnimatorController>();
+    SpriteRenderer sr;
+    Animator ac;
+
+    public List<RuntimeAnimatorController> animCons = new List<RuntimeAnimatorController>();
     
     void Awake() 
     {
@@ -28,8 +31,16 @@ public class SceneAudioPlayer : MonoBehaviour
         if (GameObject.Find("NoDestroyOBJ")) GameControllerScript = GameObject.Find("NoDestroyOBJ").GetComponent<NoDestroy>();
         else GameControllerScript = null;
 
-        if (GameObject.Find("MirrorScreenOBJ")) MirrorScreen = GameObject.Find("MirrorScreenOBJ");
-        else MirrorScreen = null;
+        if (GameObject.Find("MirrorScreenOBJ"))
+        {
+            MirrorScreen = GameObject.Find("MirrorScreenOBJ");
+            sr = MirrorScreen.GetComponent<SpriteRenderer>();
+            ac = MirrorScreen.GetComponent<Animator>();
+        }
+        else 
+        {
+            MirrorScreen = null;
+        } 
     }
 
     private void OnEnable()
@@ -83,21 +94,31 @@ public class SceneAudioPlayer : MonoBehaviour
         if(clipName == "Scene 1\nAccident") 
         {
             source.clip = storyClips[0];
+            sr.enabled = true;
+            ac.runtimeAnimatorController = animCons[0];
         }
         else if (clipName == "Scene 2\nAppointment") 
         {
             source.clip = storyClips[1];
+            sr.enabled = true;
+            ac.runtimeAnimatorController = animCons[1];
         }
         else if (clipName == "Scene 3\nProcedure") 
         {
             source.clip = storyClips[2];
+            sr.enabled = true;
+            ac.runtimeAnimatorController = animCons[2];
         }
         else if (clipName == "Scene 4\nTragedy")
         {
             source.clip = storyClips[3];
+            sr.enabled = true;
+            ac.runtimeAnimatorController = animCons[3];
         }
         else 
         {
+            sr.enabled = false;
+            ac.runtimeAnimatorController = null;
             return;
         }
         PlaySound(); //plays audio drama clip within this class
@@ -129,10 +150,10 @@ public class SceneAudioPlayer : MonoBehaviour
     {
         AudioController.ClickSound(); //ui click plz
         HideStateButtons();
-        if (source.clip == null) return; //return if null
-
-        if (source.isPlaying) source.Stop(); //stop clip
+        sr.enabled = false;
+        ac.runtimeAnimatorController = null;
         PauseButton.color = Color.white;
+        if (source.isPlaying) source.Stop(); //stop clip
         source.clip = null; //clear clip
         HighlightButtonText("");
     }

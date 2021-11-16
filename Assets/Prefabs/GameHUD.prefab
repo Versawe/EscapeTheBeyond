@@ -2587,6 +2587,12 @@ MonoBehaviour:
   PauseButton: {fileID: 4853169117190142181}
   selectedClip: 
   clipName: 
+  MirrorScreen: {fileID: 0}
+  animCons:
+  - {fileID: 9100000, guid: a2ddbbfeea6f87d48b5d5ba2f412d00d, type: 2}
+  - {fileID: 9100000, guid: 82b88451d72504a45a78f1c017406190, type: 2}
+  - {fileID: 9100000, guid: d012382cc16ca184da23a8968ec910aa, type: 2}
+  - {fileID: 9100000, guid: 20190fa9148a10d409464a7721665477, type: 2}
 --- !u!82 &5022362809793708857
 AudioSource:
   m_ObjectHideFlags: 0
