@@ -27,7 +27,7 @@ public class NoDestroy : MonoBehaviour
     Scene actualScene;
 
     string persistantPath;
-    private float endGameTimer = 15;
+    private float endGameTimer = 88f;
 
     private PlayerHealth pHealth;
     public RelicHuntScript huntScript;
@@ -47,6 +47,8 @@ public class NoDestroy : MonoBehaviour
 
     Light flashLight;
     public JumpScareHides jumpScareScript;
+
+    CharacterMovementFirstPerson moveScript;
 
     // Start is called before the first frame update
     void Awake()
@@ -113,12 +115,13 @@ public class NoDestroy : MonoBehaviour
         else if (actualScene.name == "QandA")
         {
             SaveToFile();
+            moveScript = GameObject.Find("FPSController").GetComponent<CharacterMovementFirstPerson>();
             atGameOver = false;
             atGameComplete = false;
             completedQandA = false; //change to false
             stairs.Clear();
             stairSpawnCount = 0;
-            endGameTimer = 15;
+            endGameTimer = 88;
             if (GameObject.Find("HintLight")) GameObject.Find("HintLight").GetComponent<Light>().enabled = false;
             flashLight = GameObject.Find("Flashlight").GetComponent<Light>();
             flashLight.enabled = true;
@@ -156,11 +159,13 @@ public class NoDestroy : MonoBehaviour
             AudioListener.volume = 1;
         } 
 
-        if (actualScene.name != "QandA" && stairSpawnCount < 15) return;
-        if(stairSpawnCount >= 15)
+        if (actualScene.name != "QandA" && stairSpawnCount < 5) return; //5
+        if(stairSpawnCount >= 5) //5
         {
             endGameTimer -= 1 * Time.deltaTime;
+            if(moveScript) moveScript.enabled = false;
             //black out screen play final audio to game then load credit scene HERE
+            // This is handled somewhere ELSE ^ in QandA.cs
         }
         if (endGameTimer <= 0) 
         {

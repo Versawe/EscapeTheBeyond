@@ -60,7 +60,9 @@ public class QandA : MonoBehaviour
 
     //Scare Objects
     public GameObject MirrorSurfaceObj;
-    public GameObject ScareScene; 
+    public GameObject ScareScene;
+
+    private bool doOnce = false;
 
     private void Awake()
     {
@@ -163,16 +165,18 @@ public class QandA : MonoBehaviour
         StrikesText.text = strikeCount.ToString();
 
         //for final plunge down stairs and activating gui and PPV
-        if (NoDestroy.stairSpawnCount < 15) return;
+        if (NoDestroy.stairSpawnCount < 5) return; //5
         if (!NoDestroy.atGameComplete) 
         {
             PPVStatic.SetActive(true);
-            AudioController.PlayFlashBackSound();
+            if(!doOnce) AudioController.PlayDialogueSound(11);
+            doOnce = true;
+            AmbientClipController.StopSound();
         }
         else 
         {
             PPVStatic.SetActive(false);
-            AudioController.StopSound();
+            //AudioController.StopSound();
         }
     }
 

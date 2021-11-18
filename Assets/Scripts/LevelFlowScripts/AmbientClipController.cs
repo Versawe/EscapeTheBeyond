@@ -5,7 +5,7 @@ using UnityEngine;
 public class AmbientClipController : MonoBehaviour
 {
     Scene actualScene;
-    AudioSource ambientSource;
+    public AudioSource ambientSource;
     public List<AudioClip> ambientClips = new List<AudioClip>();
     //public List<AudioClip> intenseClips = new List<AudioClip>();
 
@@ -17,8 +17,11 @@ public class AmbientClipController : MonoBehaviour
     public static bool ForceUpdate = false;
     private float splitSecond = 1.25f;
 
+    public static AmbientClipController thisScript;
+
     private void Awake()
     {
+        thisScript = gameObject.GetComponent<AmbientClipController>();
         DontDestroyOnLoad(gameObject);
         ambientSource = GetComponent<AudioSource>();
     }
@@ -126,9 +129,9 @@ public class AmbientClipController : MonoBehaviour
     {
         if (!ambientSource.isPlaying) ambientSource.UnPause();
     }
-    public void StopSound()
+    public static void StopSound()
     {
-        if (ambientSource.isPlaying) ambientSource.Stop();
+        if (thisScript.ambientSource.isPlaying) thisScript.ambientSource.Stop();
     }
 
 }

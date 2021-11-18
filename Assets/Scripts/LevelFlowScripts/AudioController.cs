@@ -75,6 +75,7 @@ public class AudioController : MonoBehaviour
         if(!BGLoopSource.isPlaying && !DialogueSource.isPlaying) 
         {
             DialogueSource.clip = script.voiceList[num];
+            //print(DialogueSource.clip.length);
             DialogueSource.Play();
         }
     }

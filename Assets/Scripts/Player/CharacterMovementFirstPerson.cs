@@ -4,7 +4,7 @@ public class CharacterMovementFirstPerson : MonoBehaviour
 {
     private CharacterController cc;
 
-    private float playerSpeedConst = 3.5f;
+    private float playerSpeedConst = 3.5f; //3.5f
     private float playerSpeed;
     
     private float playerSprintSpeedConst = 4.5f; //4.5f

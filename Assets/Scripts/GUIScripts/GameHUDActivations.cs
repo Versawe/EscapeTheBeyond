@@ -92,18 +92,21 @@ public class GameHUDActivations : MonoBehaviour
     {
         if (NoDestroy.atGameComplete) //at game complete
         {
-            CreditsPanel.SetActive(true);
-            NoDestroy.gameProgression = 4;
-            NoDestroy.currSceneName = "EndGame";
-            Cursor.lockState = CursorLockMode.None;
-            
-            return;   
+            if (!AudioController.DialogueSource.isPlaying) 
+            {
+                CreditsPanel.SetActive(true);
+                NoDestroy.gameProgression = 4;
+                NoDestroy.currSceneName = "EndGame";
+                Cursor.lockState = CursorLockMode.None;
+
+                return;
+            }
         }
 
         CheckForEndGame();
         if (NoDestroy.atGameOver) return;
 
-        if(NoDestroy.stairSpawnCount < 15) PauseGame();
+        if(NoDestroy.stairSpawnCount < 5) PauseGame(); //5
         GUIAppearPerScene();
         TrackingSlideBars();
 
