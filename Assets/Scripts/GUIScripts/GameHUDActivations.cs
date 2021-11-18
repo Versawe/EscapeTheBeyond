@@ -43,11 +43,14 @@ public class GameHUDActivations : MonoBehaviour
 
     private float delayTimer = 1.5f;
 
+    AudioSource source;
     SceneAudioPlayer storyPlayer;
 
     // Start is called before the first frame update
     void Awake()
     {
+        source = GetComponent<AudioSource>();
+
         currScene = SceneManager.GetActiveScene();
         genPWD = GetComponent<GeneratePWD>();
 
@@ -142,12 +145,12 @@ public class GameHUDActivations : MonoBehaviour
             SliderDisplay2.text = NoDestroy.pSensitivity.ToString();
             AudioListener.volume = NoDestroy.gameVolume;
         }
-        if(moveScript.staminaActual < 3.5f && !moveScript.IsExhausted) 
+        if (moveScript.staminaActual < 3.5f && !moveScript.IsExhausted && !isPaused && moveScript.isActiveAndEnabled)
         {
             StaminaBar.SetActive(true);
             StaminaBar.GetComponent<Slider>().value = moveScript.staminaActual;
         }
-        else 
+        else
         {
             StaminaBar.SetActive(false);
         }
@@ -156,13 +159,18 @@ public class GameHUDActivations : MonoBehaviour
 
     private void GUIAppearPerScene()
     {
-        if (currScene.name == "RelicHunt" || currScene.name == "HellScene")
+        if (currScene.name == "RelicHunt" && !isPaused) //displays relic hud in certain scenes
         {
             RelicPanel.SetActive(true);
             HealthPanel.SetActive(true);
             relicsCollectedDisplay.text = relicCollected.ToString();
         }
-        else
+        else if (currScene.name == "RelicHunt" && isPaused) //hide in-game HUD if game is paused
+        {
+            RelicPanel.SetActive(false);
+            HealthPanel.SetActive(false);
+        }
+        else if(currScene.name != "RelicHunt")
         {
             RelicPanel.SetActive(false);
             HealthPanel.SetActive(false);
@@ -268,6 +276,9 @@ public class GameHUDActivations : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         GameControllerScript.SaveToFile();
         GameOverPanel.SetActive(true);
+        StaminaBar.SetActive(false);
+        RelicPanel.SetActive(false);
+        HealthPanel.SetActive(false);
     }
 
     public void RetryCurrLevel() 

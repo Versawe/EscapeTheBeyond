@@ -15,7 +15,7 @@ public class AmbientClipController : MonoBehaviour
     public static float volumeFloat = 0.75f;
 
     public static bool ForceUpdate = false;
-    private float splitSecond = 1f;
+    private float splitSecond = 1.25f;
 
     private void Awake()
     {
@@ -33,9 +33,11 @@ public class AmbientClipController : MonoBehaviour
         actualScene = SceneManager.GetActiveScene();
         pitchFloat = 1f;
         volumeFloat = 0.75f;
+        splitSecond = 1.25f;
         ForceUpdate = false;
+        AmbientNormal();
 
-        if (actualScene.name != "Preload" && actualScene.name != "MainMenu" && actualScene.name != "EndGame") 
+        if (actualScene.name != "Preload" && actualScene.name != "EndGame")
         {
             RandomAmbientTrack();
         }
@@ -56,6 +58,9 @@ public class AmbientClipController : MonoBehaviour
 
     private void Update()
     {
+        ambientSource.pitch = pitchFloat;
+        ambientSource.volume = volumeFloat;
+
         if (!hudScript) return;
         if (hudScript.isPaused) PauseSound();
         if (!hudScript.isPaused) UnPauseSound();
@@ -85,9 +90,7 @@ public class AmbientClipController : MonoBehaviour
             if (ForceUpdate) AmbientScary();
             else AmbientNormal();
         }
-        //print(ForceUpdate);
-        ambientSource.pitch = pitchFloat;
-        ambientSource.volume = volumeFloat;
+        
 
     }
 

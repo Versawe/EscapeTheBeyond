@@ -440,9 +440,11 @@ public class SlotSave : MonoBehaviour
             {
                 //load scene if good
                 NoDestroy.fileLoaded = "Slot1Data.txt";
-                string loadGameHere = System.IO.File.ReadAllLines(grabFilePath)[4];
+                int startAttempts = int.Parse(System.IO.File.ReadAllLines(grabFilePath)[6]);
+                string sceneString = System.IO.File.ReadAllLines(grabFilePath)[4];
                 AudioController.StopSound();
-                SceneManager.LoadScene(loadGameHere);
+                if (startAttempts == 2) SceneManager.LoadScene("Between");
+                else SceneManager.LoadScene(sceneString);
             }
         }
         //if the file does not exist changes the static variable and loads the scene
@@ -529,9 +531,11 @@ public class SlotSave : MonoBehaviour
             {
                 //load scene if good
                 NoDestroy.fileLoaded = "Slot2Data.txt";
-                string loadGameHere = System.IO.File.ReadAllLines(grabFilePath)[4];
+                int startAttempts = int.Parse(System.IO.File.ReadAllLines(grabFilePath)[6]);
+                string sceneString = System.IO.File.ReadAllLines(grabFilePath)[4];
                 AudioController.StopSound();
-                SceneManager.LoadScene(loadGameHere);
+                if (startAttempts == 2) SceneManager.LoadScene("Between");
+                else SceneManager.LoadScene(sceneString);
             }
         }
         //if the file does not exist changes the static variable and loads the scene
@@ -617,9 +621,11 @@ public class SlotSave : MonoBehaviour
             {
                 //load scene if good
                 NoDestroy.fileLoaded = "Slot3Data.txt";
-                string loadGameHere = System.IO.File.ReadAllLines(grabFilePath)[4];
+                int startAttempts = int.Parse(System.IO.File.ReadAllLines(grabFilePath)[6]);
+                string sceneString = System.IO.File.ReadAllLines(grabFilePath)[4];
                 AudioController.StopSound();
-                SceneManager.LoadScene(loadGameHere);
+                if (startAttempts == 2) SceneManager.LoadScene("Between");
+                else SceneManager.LoadScene(sceneString);
             }
         }
         //if the file does not exist changes the static variable and loads the scene

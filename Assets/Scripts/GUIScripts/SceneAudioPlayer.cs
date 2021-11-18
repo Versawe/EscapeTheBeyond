@@ -87,7 +87,10 @@ public class SceneAudioPlayer : MonoBehaviour
     {
         foreach (GameObject button in PlayerButtons)
         {
-            button.SetActive(true);
+            bool value = false;
+            if (button.name == "PlayButton") value = true;
+
+            if(!value)button.SetActive(true);
         }
     }
 
@@ -162,6 +165,7 @@ public class SceneAudioPlayer : MonoBehaviour
     {
         AudioController.ClickSound(); //ui click plz
         ShowStateButtons();
+        PlayerButtons[0].SetActive(false);
         if (!source.isPlaying)
         {
             source.Play();
@@ -172,6 +176,7 @@ public class SceneAudioPlayer : MonoBehaviour
     public void PauseSound()
     {
         AudioController.ClickSound(); //ui click plz
+        PlayerButtons[0].SetActive(true);
         if (source.isPlaying) 
         {
             source.Pause();

@@ -83,6 +83,9 @@ public class NoDestroy : MonoBehaviour
         jumpScareScript.enabled = false;
         TriggerScarePP = false;
         TriggerScarePPAI = false;
+        AmbientClipController.pitchFloat = 1f;
+        AmbientClipController.volumeFloat = 0.75f;
+        AmbientClipController.AmbientNormal();
 
         if (actualScene.name == "Preload") // instanlty preloads to Main menu
         {
@@ -163,6 +166,8 @@ public class NoDestroy : MonoBehaviour
         {
             atGameComplete = true;
         }
+
+        if(actualScene.name == "Between") Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void LoadFromFile()

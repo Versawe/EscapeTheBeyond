@@ -137,7 +137,7 @@ public class CharacterMovementFirstPerson : MonoBehaviour
         bool IsHolding = Input.GetKey("left shift");
 
         //controlling stamina meter
-        if (IsHolding && !hideScript.isHiding) 
+        if (IsHolding && isMoving && !hideScript.isHiding) 
         {
             staminaActual -= 1 * Time.deltaTime;
             IsSprinting = true;
