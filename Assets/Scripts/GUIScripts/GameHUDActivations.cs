@@ -43,13 +43,11 @@ public class GameHUDActivations : MonoBehaviour
 
     private float delayTimer = 1.5f;
 
-    AudioSource source;
     SceneAudioPlayer storyPlayer;
 
     // Start is called before the first frame update
     void Awake()
     {
-        source = GetComponent<AudioSource>();
 
         currScene = SceneManager.GetActiveScene();
         genPWD = GetComponent<GeneratePWD>();
@@ -61,7 +59,7 @@ public class GameHUDActivations : MonoBehaviour
 
         if (GameObject.Find("NoDestroyOBJ")) GameControllerScript = GameObject.Find("NoDestroyOBJ").GetComponent<NoDestroy>();
         else GameControllerScript = null;
-
+                
         if (GameObject.Find("Hint")) TextHint = GameObject.Find("Hint");
         else TextHint = null;
 
@@ -162,13 +160,13 @@ public class GameHUDActivations : MonoBehaviour
 
     private void GUIAppearPerScene()
     {
-        if (currScene.name == "RelicHunt" && !isPaused) //displays relic hud in certain scenes
+        if (currScene.name == "RelicHunt" && NoDestroy.hasHuntBegan && !isPaused) //displays relic hud in certain scenes
         {
             RelicPanel.SetActive(true);
             HealthPanel.SetActive(true);
             relicsCollectedDisplay.text = relicCollected.ToString();
         }
-        else if (currScene.name == "RelicHunt" && isPaused) //hide in-game HUD if game is paused
+        else if (currScene.name == "RelicHunt" && NoDestroy.hasHuntBegan && isPaused) //hide in-game HUD if game is paused
         {
             RelicPanel.SetActive(false);
             HealthPanel.SetActive(false);

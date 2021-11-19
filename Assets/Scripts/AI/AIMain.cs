@@ -571,6 +571,7 @@ public class AIMain : MonoBehaviour
 
                 if (attackTimer <= 0) // below is when door is destroyed
                 {
+                    doorTarget.transform.GetChild(5).GetComponent<RubbleExplode>().enabled = true;
                     doorTarget.SetActive(false);
                     doorTarget = null;
                     targetMoveObj = null;
@@ -615,6 +616,7 @@ public class AIMain : MonoBehaviour
                 {
                     //THIS may fix a glitch where the wardrobe is destroyed but vars say you are still hiding
                     if (doorTarget && hideScript.wardrobeHiding && doorTarget.name == hideScript.wardrobeHiding.name) hideScript.HidingFalse();
+                    doorTarget.transform.GetChild(5).GetComponent<RubbleExplode>().enabled = true;
                     doorTarget.SetActive(false);
                     //code below fixes glitch of ontriggerexit not working if wardrobe,that the player is hiding in, is destroyed
                     float dist = Vector3.Distance(player.transform.position, thisMonster.position);

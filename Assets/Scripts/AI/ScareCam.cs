@@ -24,6 +24,7 @@ public class ScareCam : MonoBehaviour
 
     private void OnEnable()
     {
+        if (NoDestroy.currSceneName == "HellScene") pHealth.enabled = true;
         stillCreepySound = false;
         if (nameOfAI.Substring(0, 1) == "r") ripperScene.gameObject.SetActive(true);
         else mutantScene.gameObject.SetActive(true);

@@ -21,6 +21,8 @@ public class RelicHuntScript : MonoBehaviour
 
     private bool doOnce = false;
 
+    private PlayerHealth pHealth;
+
     private void Update()
     {
         FailRelicHunt();    
@@ -57,6 +59,10 @@ public class RelicHuntScript : MonoBehaviour
             AiSpawns.Add(spawns);
         }
 
+        NoDestroy.hasHuntBegan = true;
+
+        pHealth = Player.GetComponent<PlayerHealth>();
+        pHealth.enabled = true;
         IsHuntStart = true; //hunt begins
         //spawns Ripper at random ai spawn location, or maybe only the first one?
         RipperAI = Instantiate(RipperAIPrefab, AiSpawns[Random.Range(0,AiSpawns.Count-1)].transform.position, AiSpawns[Random.Range(0, AiSpawns.Count-1)].transform.rotation);

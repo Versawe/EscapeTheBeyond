@@ -3516,6 +3516,7 @@ Transform:
   - {fileID: 834097520}
   - {fileID: 534769497}
   - {fileID: 161840083}
+  - {fileID: 6642282069331267542}
   - {fileID: 733191200}
   - {fileID: 1938806011}
   - {fileID: 959248739}
@@ -3534,7 +3535,6 @@ Transform:
   - {fileID: 149591922}
   - {fileID: 1201103958}
   - {fileID: 1850248588}
-  - {fileID: 6642282069331267542}
   - {fileID: 159746892}
   - {fileID: 664446069}
   - {fileID: 2108923198}
@@ -18627,6 +18627,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a59c91d1161c584598866db4d8bdf1c, type: 3}
+--- !u!1 &723988165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1936826534936033306, guid: 7a59c91d1161c584598866db4d8bdf1c,
+    type: 3}
+  m_PrefabInstance: {fileID: 723988164}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &723988166 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1936826534065040394, guid: 7a59c91d1161c584598866db4d8bdf1c,
+    type: 3}
+  m_PrefabInstance: {fileID: 723988164}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &723988167 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1936826534080776274, guid: 7a59c91d1161c584598866db4d8bdf1c,
+    type: 3}
+  m_PrefabInstance: {fileID: 723988164}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &725397744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28143,6 +28161,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8857587766103082419, guid: 7fd9d33f26d6ed546b3d58994ce24655,
+        type: 3}
+      propertyPath: heart
+      value: 
+      objectReference: {fileID: 723988165}
+    - target: {fileID: 8857587766103082419, guid: 7fd9d33f26d6ed546b3d58994ce24655,
+        type: 3}
+      propertyPath: heart1
+      value: 
+      objectReference: {fileID: 723988166}
+    - target: {fileID: 8857587766103082419, guid: 7fd9d33f26d6ed546b3d58994ce24655,
+        type: 3}
+      propertyPath: heart2
+      value: 
+      objectReference: {fileID: 723988167}
     - target: {fileID: 8857587766103082420, guid: 7fd9d33f26d6ed546b3d58994ce24655,
         type: 3}
       propertyPath: m_Name
@@ -58363,7 +58396,7 @@ Transform:
   - {fileID: 6642442644917162874}
   - {fileID: 6642669185350200560}
   m_Father: {fileID: 127481379}
-  m_RootOrder: 49
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: -57.088, z: 0}
 --- !u!4 &6642442644917162874
 Transform:

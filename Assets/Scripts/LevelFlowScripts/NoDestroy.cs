@@ -29,12 +29,12 @@ public class NoDestroy : MonoBehaviour
     string persistantPath;
     private float endGameTimer = 88f;
 
-    private PlayerHealth pHealth;
     public RelicHuntScript huntScript;
     public static bool collectedAllRelics = false;
     public static bool atGameOver = false;
     public static bool completedQandA = false;
     public static bool atGameComplete = false;
+    public static bool hasHuntBegan = false;
 
     //vars used for player PP
     public static bool TriggerScarePP = false;
@@ -81,6 +81,7 @@ public class NoDestroy : MonoBehaviour
         atGameOver = false;
         atGameComplete = false;
         completedQandA = false;
+        hasHuntBegan = false;
         TriggerScarePP = false;
         jumpScareScript.enabled = false;
         TriggerScarePP = false;
@@ -105,8 +106,7 @@ public class NoDestroy : MonoBehaviour
             collectedAllRelics = false;
             atGameOver = false;
             atGameComplete = false;
-            pHealth = GameObject.Find("FPSController").GetComponent<PlayerHealth>();
-            pHealth.enabled = true;
+            hasHuntBegan = false;
             flashLight = GameObject.Find("Flashlight").GetComponent<Light>();
             flashLight.enabled = true;
             currObjective = "Current Objective:\nFind a way out of the house";
@@ -119,6 +119,7 @@ public class NoDestroy : MonoBehaviour
             atGameOver = false;
             atGameComplete = false;
             completedQandA = false; //change to false
+            hasHuntBegan = false;
             stairs.Clear();
             stairSpawnCount = 0;
             endGameTimer = 88;
@@ -134,6 +135,7 @@ public class NoDestroy : MonoBehaviour
             atGameOver = false;
             atGameComplete = false;
             completedQandA = false;
+            hasHuntBegan = false;
             currObjective = "Current Objective:\nDie, Cheater";
             AudioListener.volume = 1;
         }
@@ -242,6 +244,7 @@ public class NoDestroy : MonoBehaviour
         atGameOver = false;
         atGameComplete = false;
         completedQandA = false;
+        hasHuntBegan = false;
         TriggerScarePP = false;
         TriggerScarePPAI = false;
     }

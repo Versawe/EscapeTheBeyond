@@ -20,11 +20,11 @@ public class PlayerHealth : MonoBehaviour
         camScript = GetComponentInChildren<CameraRotationFirstPerson>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        heart = GameObject.Find("Heart1");
+        /*heart = GameObject.Find("Heart1");
         heart1 = GameObject.Find("Heart2");
-        heart2 = GameObject.Find("Heart3");
+        heart2 = GameObject.Find("Heart3");*/
 
         if (NoDestroy.currSceneName == "RelicHunt")
         {
