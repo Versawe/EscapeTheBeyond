@@ -80,6 +80,9 @@ public class AIMain : MonoBehaviour
 
     private bool IsCheaterAI = false;
 
+    //vars added to deal with AI getting confused when player is too close to other object
+    FindNewPath findNew;
+
     void Awake()
     {
         Scene currScene = SceneManager.GetActiveScene();
@@ -142,6 +145,8 @@ public class AIMain : MonoBehaviour
             AISpeed = 24f;
         }
 
+        findNew = GetComponent<FindNewPath>();
+
         nm = GetComponent<NavMeshAgent>();
         player = GameObject.Find("FPSController");
         pHealth = player.GetComponent<PlayerHealth>();
@@ -200,8 +205,6 @@ public class AIMain : MonoBehaviour
                 IsScreaming = false;
             }
         }
-
-
     }
 
     //movement and rotation of the AI depending on what state it's in
@@ -211,7 +214,7 @@ public class AIMain : MonoBehaviour
         {
             //main chase functionality
             nm.isStopped = false;
-            nm.SetDestination(player.transform.position);
+            nm.SetDestination(findNew.newTarget);
             nm.updateRotation = true;
             thisMonster.GetComponent<FindPoints>().enabled = false;
 

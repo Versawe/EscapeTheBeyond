@@ -1570,6 +1570,7 @@ GameObject:
   - component: {fileID: 4007829957398783267}
   - component: {fileID: 4007829957398783268}
   - component: {fileID: 4007829957398783269}
+  - component: {fileID: 3750027473058721482}
   m_Layer: 2
   m_Name: ripperAI
   m_TagString: Monster
@@ -1648,6 +1649,7 @@ MonoBehaviour:
   player: {fileID: 0}
   SpawnPoint1: {fileID: 0}
   SpawnPoint2: {fileID: 0}
+  isScaring: 0
   AIName: 
   IsRipper: 0
   patrolPoint1: {fileID: 0}
@@ -1732,6 +1734,20 @@ MonoBehaviour:
   ScreamPattern: {fileID: 4456503475802926879, guid: 714b42ac764901840afe2636d3ea3400,
     type: 3}
   screamPoints: []
+--- !u!114 &3750027473058721482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4007829957398783266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee1c07128b1ca44c95a798dcb0c1389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  newTarget: {x: 0, y: 0, z: 0}
 --- !u!1 &4007829957413034240
 GameObject:
   m_ObjectHideFlags: 0

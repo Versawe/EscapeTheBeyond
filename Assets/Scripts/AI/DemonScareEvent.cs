@@ -13,20 +13,22 @@ public class DemonScareEvent : MonoBehaviour
     private float scareDis = 1.75f;
     private float scareTimer = 2.5f;
 
+    FindNewPath newPath;
+
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.Find("FPSController");
         nm = GetComponent<NavMeshAgent>();
-
-        nm.SetDestination(Player.transform.position);
+        newPath = GetComponent<FindNewPath>();
     }
 
     // Update is called once per frame
     void Update()
     {
         TriggerScare();
-        nm.SetDestination(Player.transform.position);
+        nm.SetDestination(newPath.newTarget);
+        //nm.SetDestination(Player.transform.position);
     }
 
     private void TriggerScare()
