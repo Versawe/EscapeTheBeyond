@@ -178,7 +178,7 @@ public class AIMain : MonoBehaviour
             AISpeed = 24f;
             nm.speed = AISpeed;
             nm.isStopped = false;
-            nm.SetDestination(player.transform.position);
+            nm.SetDestination(findNew.newTarget);
             nm.updateRotation = true;
             thisMonster.GetComponent<FindPoints>().enabled = false;
             distanceFromPlayer();
@@ -372,7 +372,7 @@ public class AIMain : MonoBehaviour
         if (aiState == "ChasePlus")
         {
             nm.isStopped = false;
-            nm.SetDestination(player.transform.position);
+            nm.SetDestination(findNew.newTarget);
             nm.updateRotation = true;
             thisMonster.GetComponent<FindPoints>().enabled = false;
             nm.speed = (AISpeed * 2);

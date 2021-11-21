@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class CameraRotationFirstPerson : MonoBehaviour
 {
@@ -25,11 +26,15 @@ public class CameraRotationFirstPerson : MonoBehaviour
     Quaternion rotateQuat;
     CharacterMovementFirstPerson charMoveScript;
 
+    //footstep audio
+    public AudioSource stepSource;
+    public List<AudioClip> stepClips = new List<AudioClip>();
+
     // Start is called before the first frame update
     void Start()
     {
         lookScript = GetComponent<LookAtStuff>();
-
+        stepSource = GetComponent<AudioSource>();
         //at start set the player's sensitivity
         yawSensitivity = NoDestroy.pSensitivity;
         //pitchSensitivity = yawSensitivity - 1.5f;
@@ -128,5 +133,42 @@ public class CameraRotationFirstPerson : MonoBehaviour
         float rotateSway = Mathf.Sin(Time.time * tiltPace) * tiltOffest;
         rotateQuat = Quaternion.Euler(StartLocalRotation.x, StartLocalRotation.y, StartLocalRotation.z + rotateSway);
         transform.rotation = CameraRotation * rotateQuat;
+
+        //footstep sound audio logic below
+        if (!charMoveScript.IsSprinting) 
+        {
+            if (rotateSway >= 0.6475f)
+            {
+                PlayFootStep(0);
+                //print("FootStep 1");
+            }
+            else if (rotateSway <= -0.6475f)
+            {
+                PlayFootStep(1);
+                //print("FootStep 2");
+            }
+        }
+        else 
+        {
+            if (rotateSway >= 0.8975f)
+            {
+                PlayFootStep(2);
+                //print("sprintStep 1");
+            }
+            else if (rotateSway <= -0.8975f)
+            {
+                PlayFootStep(3);
+                //print("sprintStep 2");
+            }
+        }
+
+        if (Input.GetKeyDown("right shift")) PlayFootStep(3);
+    }
+
+    private void PlayFootStep(int clipNum) 
+    {
+        stepSource.clip = null;
+        stepSource.clip = stepClips[clipNum];
+        if (!stepSource.isPlaying) stepSource.Play();
     }
 }
