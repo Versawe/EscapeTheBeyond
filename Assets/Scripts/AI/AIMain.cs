@@ -205,6 +205,12 @@ public class AIMain : MonoBehaviour
                 IsScreaming = false;
             }
         }
+
+        if (isScaring) //stops player audio when AI is scaring
+        {
+            AudioController.DialogueSource.Stop();
+            AudioController.BGLoopSource.Stop();
+        } 
     }
 
     //movement and rotation of the AI depending on what state it's in

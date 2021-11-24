@@ -68,12 +68,22 @@ public class AudioController : MonoBehaviour
         {
             BGLoopSource.Stop();
         }
+
     }
 
     public static void PlayDialogueSound(int num)
     {
         if(!BGLoopSource.isPlaying && !DialogueSource.isPlaying) 
         {
+            DialogueSource.clip = script.voiceList[num];
+            //print(DialogueSource.clip.length);
+            DialogueSource.Play();
+        }
+        //to interupt heavy breathing sound for dialogue
+        if(CharacterMovementFirstPerson.IsBreathingHeavy && DialogueSource.isPlaying) 
+        {
+            StopSound();
+            DialogueSource.volume = 1f;
             DialogueSource.clip = script.voiceList[num];
             //print(DialogueSource.clip.length);
             DialogueSource.Play();
@@ -92,6 +102,16 @@ public class AudioController : MonoBehaviour
             script.clipList.RemoveAt(randIndex);
         }
         script.BGGone = 5f;
+        //to interupt heavy breathing sound for dialogue
+        if (CharacterMovementFirstPerson.IsBreathingHeavy && DialogueSource.isPlaying)
+        {
+            StopSound();
+            DialogueSource.volume = 1f;
+            int randIndex = Random.Range(0, script.clipList.Count);
+            DialogueSource.clip = script.clipList[randIndex];
+            DialogueSource.Play();
+            script.clipList.RemoveAt(randIndex);
+        }
     }
 
     public static void PauseSound() 

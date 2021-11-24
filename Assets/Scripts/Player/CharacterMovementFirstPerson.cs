@@ -30,10 +30,12 @@ public class CharacterMovementFirstPerson : MonoBehaviour
 
     public bool IsExhausted = false;
     private float exhaustedTimer = 3f;
+    public static bool IsBreathingHeavy = false;
    
     // Start is called before the first frame update
     void Start()
     {
+        IsBreathingHeavy = false;
         cc = GetComponent<CharacterController>();
         hideScript = GetComponentInChildren<PlayerHiding>();
 
@@ -58,10 +60,26 @@ public class CharacterMovementFirstPerson : MonoBehaviour
 
         cc.Move(allMovementVectors * Time.deltaTime);
 
-        //print("Issprinting " + IsSprinting);
-        //print("Isexhauted " + IsExhausted);
-        //print("Issprinting " + staminaActual);
-        //print("Isexhauted " + exhaustedTimer);
+        if (IsExhausted && !AudioController.DialogueSource.isPlaying && !IsBreathingHeavy) 
+        {
+            AudioController.PlayDialogueSound(12);
+            IsBreathingHeavy = true;
+            AudioController.DialogueSource.volume = 0.5f;
+        }
+        if (IsBreathingHeavy && !IsExhausted && AudioController.DialogueSource.isPlaying) 
+        {
+            if(AudioController.DialogueSource.clip.name == "breathing") 
+            {
+                AudioController.StopSound();
+                IsBreathingHeavy = false;
+                AudioController.DialogueSource.volume = 1f;
+            }
+        }
+        if (!AudioController.DialogueSource.isPlaying) 
+        {
+            AudioController.DialogueSource.volume = 1f;
+            IsBreathingHeavy = false;
+        } 
     }
 
     //movement for player
