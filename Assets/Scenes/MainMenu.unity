@@ -1519,8 +1519,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 53.2636, y: 0}
-  m_SizeDelta: {x: 322.6511, y: 100}
+  m_AnchoredPosition: {x: 20.5094, y: 0}
+  m_SizeDelta: {x: 186.8922, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &253078455
 MonoBehaviour:
@@ -1960,8 +1960,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 53.2636, y: 0}
-  m_SizeDelta: {x: 322.6511, y: 100}
+  m_AnchoredPosition: {x: 24.9758, y: 0}
+  m_SizeDelta: {x: 187.1683, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &289419095
 MonoBehaviour:
@@ -3158,7 +3158,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &472267500
 Transform:
   m_ObjectHideFlags: 0
@@ -3502,8 +3502,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 802.72, y: -1419}
-  m_SizeDelta: {x: 350, y: 100}
+  m_AnchoredPosition: {x: 2409.2068, y: -625}
+  m_SizeDelta: {x: 235.5864, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &502270521
 MonoBehaviour:
@@ -3551,7 +3551,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1662936774}
         m_TargetAssemblyTypeName: SlotSave, Assembly-CSharp
-        m_MethodName: BackTrigger
+        m_MethodName: WhatBackTriggerShouldHaveBeen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4467,8 +4467,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1847, y: 50}
-  m_SizeDelta: {x: 350, y: 100}
+  m_AnchoredPosition: {x: 2044.9539, y: 55}
+  m_SizeDelta: {x: 228.6574, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &659121599
 MonoBehaviour:
@@ -4516,7 +4516,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1662936774}
         m_TargetAssemblyTypeName: SlotSave, Assembly-CSharp
-        m_MethodName: BackTrigger
+        m_MethodName: CrontrolsTrigger
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6520,8 +6520,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 806.2698, y: -1177.7668}
-  m_SizeDelta: {x: 350, y: 100}
+  m_AnchoredPosition: {x: 2413.534, y: -504}
+  m_SizeDelta: {x: 234.9321, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1108179181
 MonoBehaviour:
@@ -6569,7 +6569,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1662936774}
         m_TargetAssemblyTypeName: SlotSave, Assembly-CSharp
-        m_MethodName: BackTrigger
+        m_MethodName: WhatBackTriggerShouldHaveBeen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9280,8 +9280,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1846.9998, y: -91.953}
-  m_SizeDelta: {x: 350, y: 100}
+  m_AnchoredPosition: {x: 2045, y: -60}
+  m_SizeDelta: {x: 228.6, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1751831274
 MonoBehaviour:
@@ -9329,7 +9329,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1662936774}
         m_TargetAssemblyTypeName: SlotSave, Assembly-CSharp
-        m_MethodName: BackTrigger
+        m_MethodName: CreditsTrigger
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

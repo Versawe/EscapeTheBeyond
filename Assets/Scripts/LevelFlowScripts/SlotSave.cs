@@ -233,8 +233,6 @@ public class SlotSave : MonoBehaviour
     public void BackTrigger()
     {
         AudioController.ClickSound();
-        CreditsPanel.SetActive(false);
-        ControlsPanel.SetActive(false);
         if (!isOptions)
         {
             //updates gui
@@ -263,14 +261,24 @@ public class SlotSave : MonoBehaviour
         IsDeleting = false;
     }
 
+    //i made this out of rage ok
+    public void WhatBackTriggerShouldHaveBeen() 
+    {
+        AudioController.ClickSound();
+        CreditsPanel.SetActive(false);
+        ControlsPanel.SetActive(false);
+        MainPanel.SetActive(true);
+    }
     public void CreditsTrigger() 
     {
+        AudioController.ClickSound();
         MainPanel.SetActive(false);
         ControlsPanel.SetActive(false);
         OptionsPanel.SetActive(false);
         CreditsPanel.SetActive(true);
     }public void CrontrolsTrigger() 
     {
+        AudioController.ClickSound();
         MainPanel.SetActive(false);
         ControlsPanel.SetActive(true);
         OptionsPanel.SetActive(false);
