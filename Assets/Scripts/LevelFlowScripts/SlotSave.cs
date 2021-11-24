@@ -41,6 +41,8 @@ public class SlotSave : MonoBehaviour
 
     private bool isOptions = false;
     public GameObject OptionsPanel;
+    public GameObject ControlsPanel;
+    public GameObject CreditsPanel;
     public GameObject MainPanel;
     public Slider SensitivitySlider;
     public Slider VolumeSlider;
@@ -231,6 +233,8 @@ public class SlotSave : MonoBehaviour
     public void BackTrigger()
     {
         AudioController.ClickSound();
+        CreditsPanel.SetActive(false);
+        ControlsPanel.SetActive(false);
         if (!isOptions)
         {
             //updates gui
@@ -259,6 +263,19 @@ public class SlotSave : MonoBehaviour
         IsDeleting = false;
     }
 
+    public void CreditsTrigger() 
+    {
+        MainPanel.SetActive(false);
+        ControlsPanel.SetActive(false);
+        OptionsPanel.SetActive(false);
+        CreditsPanel.SetActive(true);
+    }public void CrontrolsTrigger() 
+    {
+        MainPanel.SetActive(false);
+        ControlsPanel.SetActive(true);
+        OptionsPanel.SetActive(false);
+        CreditsPanel.SetActive(false);
+    }
     public void DeleteSelected()
     {
         AudioController.ClickSound();
