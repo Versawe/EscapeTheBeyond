@@ -6,7 +6,7 @@ public class AIAudio : MonoBehaviour
 {
     AIMain main;
     AudioSource FootStepSource;
-    //AudioSource AIVoice;
+    AudioSource AIVoice;
     public AudioClip stepsPatrol;
     public AudioClip stepsChase;
     public AudioClip bashDoor;
@@ -16,7 +16,9 @@ public class AIAudio : MonoBehaviour
     //to tell if pausing
     private GameHUDActivations hud;
 
-    //public List<AudioClip> voiceClips = new List<AudioClip>();
+    public List<AudioClip> patrolClips = new List<AudioClip>();
+    public List<AudioClip> chaseClips = new List<AudioClip>();
+    public AudioClip scareClips; 
 
     private void Awake()
     {
@@ -29,7 +31,7 @@ public class AIAudio : MonoBehaviour
         main = GetComponent<AIMain>();
         FootStepSource = GetComponent<AudioSource>();
         searchScript = GetComponent<FindPoints>();
-        //AIVoice = GetComponentInChildren<AudioSource>();
+        AIVoice = GetComponentInChildren<AudioSource>();
     }
 
     // Update is called once per frame
@@ -37,9 +39,14 @@ public class AIAudio : MonoBehaviour
     {
         if (hud.isPaused || main.isScaring || NoDestroy.atGameOver)
         {
-            PauseFootSteps();    
+            PauseFootSteps();
+            PauseVoice();
         }
         if (hud.isPaused) return;
+
+        PlayVoice(); //logic for voice done in function!
+
+        //logic for footsteps here
         if (!main.destroyObj)
         {
             if (main.aiState == "Chase" || main.aiState == "Track")
@@ -47,6 +54,7 @@ public class AIAudio : MonoBehaviour
                 //footstep sound logic
                 if(main.IsRipper) PlayFootSteps(stepsChase, 1.25f);
                 else PlayFootSteps(stepsChase, 1f);
+
             }
             else if (main.aiState == "ChasePlus") 
             {
@@ -116,5 +124,43 @@ public class AIAudio : MonoBehaviour
             FootStepSource.clip = null;
             FootStepSource.pitch = 1f;
         } 
+    }
+
+    public void PlayVoice()
+    {
+        if (!AIVoice.isPlaying)
+        {
+            if (main.aiState == "Patrol" || main.aiState == "Search" && !main.isScaring && !main.IsScreaming) 
+            {
+                int randomIndex = Random.Range(0, patrolClips.Count);
+                AIVoice.clip = patrolClips[randomIndex];
+            }
+            else if (main.aiState == "Chase" || main.aiState == "Track" || main.aiState == "ChasePlus" && !main.isScaring && !main.IsScreaming) 
+            {
+                int randomIndex = Random.Range(0, chaseClips.Count);
+                AIVoice.clip = chaseClips[randomIndex];
+            }else if (main.isScaring) 
+            {
+                AIVoice.clip = scareClips;
+            }
+            else if (main.IsScreaming) 
+            {
+                AIVoice.clip = scareClips;
+            }
+
+            AIVoice.Play();
+        }
+    }
+    public void PauseVoice()
+    {
+        if (AIVoice.isPlaying) AIVoice.Pause();
+    }
+    public void StopVoice()
+    {
+        if (AIVoice.isPlaying)
+        {
+            AIVoice.Stop();
+            AIVoice.clip = null;
+        }
     }
 }
