@@ -1877,10 +1877,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6f3073794ad134b8c4dc96fc6355b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SecondAudioSource: {fileID: 4007396203080915921}
   stepsPatrol: {fileID: 8300000, guid: aa9e24ef0a8d0ef40b362bcf4a093989, type: 3}
   stepsChase: {fileID: 8300000, guid: e7020c38efbbf3847822c49c5c7a0a43, type: 3}
   bashDoor: {fileID: 8300000, guid: 112abf74950426c4bb45d23144bb1bde, type: 3}
-  voiceClips: []
+  patrolClips:
+  - {fileID: 8300000, guid: 50bf0a83d041a8f44b0e58886ed43445, type: 3}
+  - {fileID: 8300000, guid: 46546822e6bb897409d3f99ff9a02ba3, type: 3}
+  - {fileID: 8300000, guid: 70185c0eb54a4cc4cb0178ffb3d20898, type: 3}
+  - {fileID: 8300000, guid: 26fd51ff77505cd42989fbc78d400107, type: 3}
+  chaseClips:
+  - {fileID: 8300000, guid: e3350f38b6d4cae4ca0046ba6f3c27dc, type: 3}
+  - {fileID: 8300000, guid: 386a020c3f2796847b200fdf8c5be4b8, type: 3}
+  - {fileID: 8300000, guid: 9ca4241357892a646ad5d05484252250, type: 3}
+  - {fileID: 8300000, guid: 87238312014334049aa11920f89a380e, type: 3}
+  scareClip: {fileID: 8300000, guid: e53efb75c8d4a2c429306bb4252c9321, type: 3}
 --- !u!82 &7396799045430764491
 AudioSource:
   m_ObjectHideFlags: 0

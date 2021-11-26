@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AIAudio : MonoBehaviour
 {
+    public GameObject SecondAudioSource;
     AIMain main;
     AudioSource FootStepSource;
     AudioSource AIVoice;
@@ -18,7 +19,11 @@ public class AIAudio : MonoBehaviour
 
     public List<AudioClip> patrolClips = new List<AudioClip>();
     public List<AudioClip> chaseClips = new List<AudioClip>();
-    public AudioClip scareClips; 
+    public AudioClip scareClip;
+
+    private bool doOnce = false;
+    private int randomIndex;
+    private int randomIndex2;
 
     private void Awake()
     {
@@ -31,20 +36,25 @@ public class AIAudio : MonoBehaviour
         main = GetComponent<AIMain>();
         FootStepSource = GetComponent<AudioSource>();
         searchScript = GetComponent<FindPoints>();
-        AIVoice = GetComponentInChildren<AudioSource>();
+        AIVoice = SecondAudioSource.GetComponent<AudioSource>();
+        randomIndex = Random.Range(0, patrolClips.Count);
+        randomIndex2 = Random.Range(0, chaseClips.Count);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (hud.isPaused || main.isScaring || NoDestroy.atGameOver)
+        if (hud.isPaused || NoDestroy.atGameOver)
         {
             PauseFootSteps();
             PauseVoice();
         }
+        if (main.isScaring) 
+        {
+            PlayVoice(scareClip);
+            PauseFootSteps();
+        } 
         if (hud.isPaused) return;
-
-        PlayVoice(); //logic for voice done in function!
 
         //logic for footsteps here
         if (!main.destroyObj)
@@ -55,24 +65,30 @@ public class AIAudio : MonoBehaviour
                 if(main.IsRipper) PlayFootSteps(stepsChase, 1.25f);
                 else PlayFootSteps(stepsChase, 1f);
 
+                if (!main.isScaring) PlayVoice(chaseClips[randomIndex2]);
+
             }
             else if (main.aiState == "ChasePlus") 
             {
                 //footstep sound logic
                 //ONLY RIPPER
                 PlayFootSteps(stepsChase, 1.5f);
+                if (!main.isScaring) PlayVoice(chaseClips[randomIndex2]);
             }
             else if (main.aiState == "Patrol")
             {
                 if (main.IsScreaming)
                 {
                     StopFootSteps();
+                    if (!main.isScaring) PlayVoice(scareClip);
                 }
                 else
                 {
                     //footstep sound logic
                     if (main.IsRipper) PlayFootSteps(stepsPatrol, 1.75f);
                     else PlayFootSteps(stepsPatrol, 1f);
+
+                    if (!main.isScaring) PlayVoice(patrolClips[randomIndex]);
                 }
             }
             else if (main.aiState == "Search")
@@ -93,6 +109,7 @@ public class AIAudio : MonoBehaviour
 
                     }
                 }
+                if(!main.isScaring) PlayVoice(patrolClips[randomIndex]);
             }
         }
         else 
@@ -126,28 +143,12 @@ public class AIAudio : MonoBehaviour
         } 
     }
 
-    public void PlayVoice()
+    public void PlayVoice(AudioClip clip)
     {
+        AIVoice.clip = clip;
+
         if (!AIVoice.isPlaying)
         {
-            if (main.aiState == "Patrol" || main.aiState == "Search" && !main.isScaring && !main.IsScreaming) 
-            {
-                int randomIndex = Random.Range(0, patrolClips.Count);
-                AIVoice.clip = patrolClips[randomIndex];
-            }
-            else if (main.aiState == "Chase" || main.aiState == "Track" || main.aiState == "ChasePlus" && !main.isScaring && !main.IsScreaming) 
-            {
-                int randomIndex = Random.Range(0, chaseClips.Count);
-                AIVoice.clip = chaseClips[randomIndex];
-            }else if (main.isScaring) 
-            {
-                AIVoice.clip = scareClips;
-            }
-            else if (main.IsScreaming) 
-            {
-                AIVoice.clip = scareClips;
-            }
-
             AIVoice.Play();
         }
     }

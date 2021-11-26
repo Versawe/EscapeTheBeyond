@@ -48,7 +48,7 @@ public class QandA : MonoBehaviour
     private bool WasWrongGuess = false;
     private float rightTimer = 2f;
     private bool WasRightGuess = false;
-    private float numRightAnswers = 1; //15 for real # correct for now, keep at 1or2 for testing purposes
+    private float numRightAnswers = 15; //15 for real # correct for now, keep at 1or2 for testing purposes
 
     LookAtStuff lookScript;
     public GameObject PPVOff;
@@ -61,6 +61,10 @@ public class QandA : MonoBehaviour
     //Scare Objects
     public GameObject MirrorSurfaceObj;
     public GameObject ScareScene;
+
+    AudioSource source;
+    public AudioClip clip;
+    private bool playOnce = false;
 
     private bool doOnce = false;
 
@@ -76,6 +80,7 @@ public class QandA : MonoBehaviour
         //grab no destroy object
         controller = GameObject.Find("NoDestroyOBJ");
         destroyScript = controller.GetComponent<NoDestroy>();
+        source = GetComponent<AudioSource>();
     }
 
     void OnEnable()
@@ -132,6 +137,14 @@ public class QandA : MonoBehaviour
         if (wrongTimer <= 2 && wrongTimer > 0) 
         {
             ScareScene.SetActive(true);
+            if (!playOnce) 
+            {
+                source.enabled = true;
+                source.loop = true;
+                source.clip = clip;
+                source.Play();
+                playOnce = true;
+            }
             HideUI();
         }
         else if (wrongTimer <= 0)
@@ -142,6 +155,11 @@ public class QandA : MonoBehaviour
             if (CheckEndGUISession()) return;
             ShowUI();
             ScareScene.SetActive(false);
+            source.Stop();
+            source.clip = null;
+            source.loop = false;
+            source.enabled = false;
+            playOnce = false;
             RandomQuestion(QuestionsList);
             wrongTimer = 3f;
         }

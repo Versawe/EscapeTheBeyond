@@ -1371,10 +1371,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6f3073794ad134b8c4dc96fc6355b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SecondAudioSource: {fileID: 8291726473868172849}
   stepsPatrol: {fileID: 8300000, guid: aa9e24ef0a8d0ef40b362bcf4a093989, type: 3}
   stepsChase: {fileID: 8300000, guid: e7020c38efbbf3847822c49c5c7a0a43, type: 3}
   bashDoor: {fileID: 8300000, guid: 112abf74950426c4bb45d23144bb1bde, type: 3}
-  voiceClips: []
+  patrolClips:
+  - {fileID: 8300000, guid: 4b67bf60a794ae54c83e084b885f1afa, type: 3}
+  - {fileID: 8300000, guid: ae88e8325e4ab544cbdde4ad2747c65e, type: 3}
+  chaseClips:
+  - {fileID: 8300000, guid: c0c1cb0e4bab6f040bcae8dfeda2971d, type: 3}
+  scareClip: {fileID: 8300000, guid: 851e0b8103357584cb4dbf3e7ac46413, type: 3}
 --- !u!82 &6146064216378798443
 AudioSource:
   m_ObjectHideFlags: 0

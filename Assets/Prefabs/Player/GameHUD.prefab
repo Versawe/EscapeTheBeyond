@@ -2566,6 +2566,7 @@ MonoBehaviour:
   PPVStatic: {fileID: 0}
   MirrorSurfaceObj: {fileID: 0}
   ScareScene: {fileID: 0}
+  clip: {fileID: 8300000, guid: e53efb75c8d4a2c429306bb4252c9321, type: 3}
 --- !u!114 &8043150121280623478
 MonoBehaviour:
   m_ObjectHideFlags: 0

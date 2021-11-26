@@ -15,12 +15,17 @@ public class DemonScareEvent : MonoBehaviour
 
     FindNewPath newPath;
 
+    AudioSource source;
+    public AudioClip clip;
+    private bool doOnce = false;
+
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.Find("FPSController");
         nm = GetComponent<NavMeshAgent>();
         newPath = GetComponent<FindNewPath>();
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -46,11 +51,18 @@ public class DemonScareEvent : MonoBehaviour
             Player.GetComponentInChildren<CameraRotationFirstPerson>().enabled = false;
             Player.GetComponent<CharacterMovementFirstPerson>().enabled = false;
             Player.transform.GetChild(3).gameObject.SetActive(false);
+            source.clip = clip;
+            if (!doOnce) 
+            { 
+                source.Play();
+                doOnce = true;
+            }
         }
 
         if (IsScaring && scareTimer <= 0)
         {
             NoDestroy.atGameOver = true;
+            source.Stop();
         }
     }
 }
