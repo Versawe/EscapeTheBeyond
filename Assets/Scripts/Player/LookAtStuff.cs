@@ -28,13 +28,27 @@ public class LookAtStuff : MonoBehaviour
 
     private bool doOnce = false;
 
+    public GameObject visualRaycastPoint;
+
+    Camera cam;
+
     private void Start()
     {
         if (GameObject.Find("HidingCheck") != null) hideScript = GameObject.Find("HidingCheck").GetComponent<PlayerHiding>();
         else hideScript = null;
 
-        if (GameObject.Find("GameHUD") != null) HUDScript = GameObject.Find("GameHUD").GetComponent<GameHUDActivations>();
-        else HUDScript = null;
+        if (GameObject.Find("GameHUD") != null)
+        {
+            HUDScript = GameObject.Find("GameHUD").GetComponent<GameHUDActivations>();
+            visualRaycastPoint = GameObject.Find("LookPoint");
+        }
+        else
+        {
+            HUDScript = null;
+            visualRaycastPoint = null;
+        }
+
+        cam = GetComponent<Camera>();
 
         if (GetComponentInParent<CharacterMovementFirstPerson>()) CharMove = GetComponentInParent<CharacterMovementFirstPerson>();
         else CharMove = null;
@@ -61,6 +75,8 @@ public class LookAtStuff : MonoBehaviour
         //sets looking at name variable depending on what player is looking at
         PlayerLookingAt();
 
+        LockVisualPoint();
+
         if (IsActivated) HUDScript.isPaused = false; //whenever you are in a gui event, you cannot pause
 
         //allow you to click enter instead of just clicking button, user's choice
@@ -80,13 +96,26 @@ public class LookAtStuff : MonoBehaviour
         if (NoDestroy.puzzleOneLoginAttempts > 2 && lookingAtName != "" && !NoDestroy.completedQandA) ActivateGUIEvent(lookingAtName);
         else InteractText.SetActive(false);
 
-        if (NoDestroy.completedQandA) 
+        if (NoDestroy.completedQandA)
         {
             CharMove.enabled = true;
             CamRotate.enabled = true;
         }
 
         if (Input.GetKeyDown("escape")) doOnce = false;
+    }
+
+    private void LockVisualPoint()
+    {
+
+        if (HUDScript.isPaused || IsActivated || NoDestroy.atGameComplete || NoDestroy.atGameOver) visualRaycastPoint.SetActive(false);
+        if (HUDScript.isPaused || IsActivated) return;
+        if (!HUDScript.isPaused || !NoDestroy.atGameOver || !NoDestroy.atGameComplete) visualRaycastPoint.SetActive(true);
+        if (visualRaycastPoint && lookingAtName != "")
+        {
+                Vector3 screenPoint = cam.WorldToScreenPoint(pSeeOBJ.point);
+                visualRaycastPoint.transform.position = screenPoint;
+        }
     }
 
     private void PlayerLookingAt()
