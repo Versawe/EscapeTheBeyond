@@ -155,6 +155,10 @@ public class LookAtStuff : MonoBehaviour
                         lookingAtName = pSeeOBJ.collider.gameObject.name;
                         CurrRelic = pSeeOBJ.collider.gameObject;
                     }
+                    else if (pSeeOBJ.collider.tag == "Hint") //for notepad
+                    {
+                        lookingAtName = pSeeOBJ.collider.gameObject.name;
+                    }
                     else //if not looking at any interactive thing for insurance
                     {
                         lookingAtName = "";
@@ -182,6 +186,10 @@ public class LookAtStuff : MonoBehaviour
                 else if (pSeeOBJ.collider.tag == "warDoor")
                 {
                     lookingAtName = pSeeOBJ.collider.gameObject.transform.parent.name;
+                }
+                else if(pSeeOBJ.collider.tag == "Hint") //for notepad
+                {
+                    lookingAtName = pSeeOBJ.collider.gameObject.name;
                 }
                 else //if not looking at any interactive thing for insurance
                 {
@@ -259,6 +267,14 @@ public class LookAtStuff : MonoBehaviour
         {
             CollectRelic();
         }
+        else if (activate && !IsActivated && lookingAtName.Substring(0,1) == "N") 
+        {
+            IsActivated = true;
+        }
+        else if (deactivate && IsActivated && lookingAtName.Substring(0, 1) == "N")
+        {
+            IsActivated = false;
+        }
 
         //what happens when successfully activated or deactivated
         if (IsActivated)
@@ -276,6 +292,12 @@ public class LookAtStuff : MonoBehaviour
                 transform.parent.position = SlideVect;
                 Quaternion EaseRotation = Quaternion.RotateTowards(transform.rotation, lookAtMirror, 180f * Time.deltaTime);
                 transform.rotation = EaseRotation;
+            }
+            else if (lookingAtName == "Notepad" && !NoDestroy.atGameOver) 
+            {
+                HUDScript.NotePadHintPanel.SetActive(true);
+                CharMove.enabled = false;
+                CamRotate.enabled = false;
             }
             else //if you are looking at the door with the code
             {
@@ -307,6 +329,7 @@ public class LookAtStuff : MonoBehaviour
             HUDScript.formBar.text = "";
             IsInForms = false;
             HUDScript.PasscodePanel.SetActive(false);
+            HUDScript.NotePadHintPanel.SetActive(false);
             HUDScript.Puzzle3Script.enabled = false;
             InteractText.SetActive(true);
         }

@@ -29,6 +29,7 @@ TagManager:
   - JumpScare
   - StateButtons
   - SceneButtons
+  - Hint
   layers:
   - Default
   - TransparentFX

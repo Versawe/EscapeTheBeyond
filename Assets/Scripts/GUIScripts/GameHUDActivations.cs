@@ -14,6 +14,8 @@ public class GameHUDActivations : MonoBehaviour
     public GameObject PasscodePanel;
     public GameObject GameOverPanel;
     public GameObject CreditsPanel;
+    public GameObject NotePadHintPanel;
+
     public Slider SensitivitySlider;
     public Slider VolumeSlider;
     public TextMeshProUGUI SliderDisplay1;
