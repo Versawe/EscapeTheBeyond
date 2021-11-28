@@ -50,6 +50,8 @@ public class NoDestroy : MonoBehaviour
 
     CharacterMovementFirstPerson moveScript;
 
+    public static bool BigScareHappening = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -86,6 +88,7 @@ public class NoDestroy : MonoBehaviour
         jumpScareScript.enabled = false;
         TriggerScarePP = false;
         TriggerScarePPAI = false;
+        BigScareHappening = false;
         AmbientClipController.pitchFloat = 1f;
         AmbientClipController.volumeFloat = 0.75f;
         AmbientClipController.AmbientNormal();
@@ -107,6 +110,7 @@ public class NoDestroy : MonoBehaviour
             atGameOver = false;
             atGameComplete = false;
             hasHuntBegan = false;
+            BigScareHappening = false;
             flashLight = GameObject.Find("Flashlight").GetComponent<Light>();
             flashLight.enabled = true;
             currObjective = "Current Objective:\nFind a way out of the house";
@@ -120,6 +124,7 @@ public class NoDestroy : MonoBehaviour
             atGameComplete = false;
             completedQandA = false; //change to false
             hasHuntBegan = false;
+            BigScareHappening = false;
             stairs.Clear();
             stairSpawnCount = 0;
             endGameTimer = 88;
@@ -136,6 +141,7 @@ public class NoDestroy : MonoBehaviour
             atGameComplete = false;
             completedQandA = false;
             hasHuntBegan = false;
+            BigScareHappening = false;
             currObjective = "Current Objective:\nDie, Cheater";
             AudioListener.volume = 1;
         }
@@ -245,6 +251,7 @@ public class NoDestroy : MonoBehaviour
         atGameComplete = false;
         completedQandA = false;
         hasHuntBegan = false;
+        BigScareHappening = false;
         TriggerScarePP = false;
         TriggerScarePPAI = false;
     }

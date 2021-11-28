@@ -29,11 +29,15 @@ public class LookAtStuff : MonoBehaviour
     private bool doOnce = false;
 
     public GameObject visualRaycastPoint;
+    public GameObject pickupOBJ;
+    AudioSource pickUpAS;
 
     Camera cam;
 
     private void Start()
     {
+        pickUpAS = pickupOBJ.GetComponent<AudioSource>();
+
         if (GameObject.Find("HidingCheck") != null) hideScript = GameObject.Find("HidingCheck").GetComponent<PlayerHiding>();
         else hideScript = null;
 
@@ -108,9 +112,9 @@ public class LookAtStuff : MonoBehaviour
     private void LockVisualPoint()
     {
 
-        if (HUDScript.isPaused || IsActivated || NoDestroy.atGameComplete || NoDestroy.atGameOver) visualRaycastPoint.SetActive(false);
-        if (HUDScript.isPaused || IsActivated) return;
-        if (!HUDScript.isPaused || !NoDestroy.atGameOver || !NoDestroy.atGameComplete) visualRaycastPoint.SetActive(true);
+        if (HUDScript.isPaused || IsActivated || NoDestroy.atGameComplete || NoDestroy.atGameOver || hideScript.isHiding || hideScript.inBounds || NoDestroy.BigScareHappening) visualRaycastPoint.SetActive(false);
+        if (HUDScript.isPaused || IsActivated || NoDestroy.atGameComplete || NoDestroy.atGameOver || hideScript.isHiding || hideScript.inBounds || NoDestroy.BigScareHappening) return;
+        else visualRaycastPoint.SetActive(true);
         if (visualRaycastPoint && lookingAtName != "")
         {
                 Vector3 screenPoint = cam.WorldToScreenPoint(pSeeOBJ.point);
@@ -337,6 +341,7 @@ public class LookAtStuff : MonoBehaviour
 
     private void CollectRelic()
     {
+        pickUpAS.Play();
         Destroy(CurrRelic);
         CurrRelic = null;
         HUDScript.relicCollected++;

@@ -33,6 +33,7 @@ public class ScareCam : MonoBehaviour
         pMoveScript.enabled = false;
         camScript.enabled = false;
         stillCreepySound = true;
+        NoDestroy.BigScareHappening = true;
 
     }
     private void OnDisable()
@@ -48,5 +49,6 @@ public class ScareCam : MonoBehaviour
             nameOfAI = "";
         }
         stillCreepySound = false; //needs to be here to not glitch on game overs aka "does not change back to false"
+        NoDestroy.BigScareHappening = false;
     }
 }

@@ -44,10 +44,15 @@ public class AIAudio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hud.isPaused || NoDestroy.atGameOver)
+        if (hud.isPaused)
         {
             PauseFootSteps();
             PauseVoice();
+        }
+        if (NoDestroy.atGameOver) 
+        {
+            StopFootSteps();
+            StopVoice();
         }
         if (main.isScaring) 
         {
@@ -122,6 +127,7 @@ public class AIAudio : MonoBehaviour
 
     public void PlayFootSteps(AudioClip clip, float pitch) 
     {
+        if (NoDestroy.atGameOver) return;
         FootStepSource.clip = clip;
         FootStepSource.pitch = pitch;
         if (!FootStepSource.isPlaying) 
@@ -145,6 +151,7 @@ public class AIAudio : MonoBehaviour
 
     public void PlayVoice(AudioClip clip)
     {
+        if (NoDestroy.atGameOver) return;
         AIVoice.clip = clip;
 
         if (!AIVoice.isPlaying)
