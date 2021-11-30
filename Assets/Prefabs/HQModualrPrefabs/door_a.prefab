@@ -152,6 +152,7 @@ MonoBehaviour:
   doorOpenClip: {fileID: 8300000, guid: 2691e524d29649340a7e8f599045ea5f, type: 3}
   doorOpenClip2: {fileID: 8300000, guid: 1b2b1e3d0f1917b4392375b4705d7302, type: 3}
   doorCloseClip: {fileID: 8300000, guid: fc64b971323e4cb45b7141379d428f01, type: 3}
+  doorLockedClip: {fileID: 8300000, guid: e4c25cee8169d5a418fb634494a65c0c, type: 3}
 --- !u!114 &5232037788265124069
 MonoBehaviour:
   m_ObjectHideFlags: 0

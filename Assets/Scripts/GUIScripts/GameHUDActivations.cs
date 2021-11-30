@@ -15,6 +15,7 @@ public class GameHUDActivations : MonoBehaviour
     public GameObject GameOverPanel;
     public GameObject CreditsPanel;
     public GameObject NotePadHintPanel;
+    public GameObject ConfirmationPanel;
 
     public Slider SensitivitySlider;
     public Slider VolumeSlider;
@@ -24,11 +25,13 @@ public class GameHUDActivations : MonoBehaviour
 
     public GameObject StaminaBar;
 
-    public GameObject TextHint; //the 2/3 text display in game during puzzle 1 
+    public GameObject TextHint; //the 2/3 text display in game during puzzle 1
+    public GameObject pauseHint;
 
     //variables for UI to interact with
     public bool isPaused = false;
     private bool optionsOn = false;
+    private bool confirmationOn = false;
     public float relicCollected = 0;
 
     //how script tracks 
@@ -118,23 +121,27 @@ public class GameHUDActivations : MonoBehaviour
         } 
 
         //if TextHint GO does or does not exist
-        if (TextHint == null) return;
+        if (!TextHint) return;
         else
         {
-            if (NoDestroy.puzzleOneLoginAttempts != 2 && TextHint != null)
+            if (NoDestroy.puzzleOneLoginAttempts == 2)
+            {
+                TextHint.SetActive(true);
+                pauseHint.SetActive(true);
+                NoDestroy.currObjective = "Current Objective:\nEXIT the game..\nI meant...\nEXIT the room...";
+                delayTimer -= 1 * Time.deltaTime;
+                if (delayTimer <= 0 && delayTimer > -1) AudioController.PlayDialogueSound(0);
+            }
+            else
             {
                 TextHint.SetActive(false);
                 NoDestroy.currObjective = "Current Objective:\nEnter the passcode and unlock the door";
             }
-            else
-            {
-                TextHint.SetActive(true);
-                NoDestroy.currObjective = "Current Objective:\nEXIT the room";
-                delayTimer -= 1 * Time.deltaTime;
-                if (delayTimer <= 0 && delayTimer > -1) AudioController.PlayDialogueSound(0);
-            }
-        }
 
+            if (isPaused && NoDestroy.puzzleOneLoginAttempts == 2) pauseHint.SetActive(false);
+            else if (!isPaused && NoDestroy.puzzleOneLoginAttempts == 2) pauseHint.SetActive(true);
+            else pauseHint.SetActive(false);
+        }
     }
 
     private void TrackingSlideBars()
@@ -194,21 +201,27 @@ public class GameHUDActivations : MonoBehaviour
         {
             isPaused = false;
             AudioController.UnPauseSound();
+            ConfirmationPanel.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked; // Don't really need it in EDITOR esc auto unlocks cursor. Unpausing should work on build
         }
 
-        if (isPaused && !optionsOn)
+        if (isPaused && !optionsOn && !confirmationOn)
         {
             Cursor.lockState = CursorLockMode.None;
             pausePanel.SetActive(true);
             objectiveTextDisplay.text = NoDestroy.currObjective;
             Time.timeScale = 0;
+        } 
+        else if (isPaused && confirmationOn) 
+        {
+            pausePanel.SetActive(false);
         }
         else if (!isPaused && !pLookAtScript.IsActivated && !NoDestroy.atGameOver)
         {
-            if(NoDestroy.gameProgression != 4) Cursor.lockState = CursorLockMode.Locked;
+            if (NoDestroy.gameProgression != 4) Cursor.lockState = CursorLockMode.Locked;
             pausePanel.SetActive(false);
             optionsOn = false;
+            confirmationOn = false;
             OptionsPanel.SetActive(false);
             Time.timeScale = 1f;
         }
@@ -233,20 +246,6 @@ public class GameHUDActivations : MonoBehaviour
         pausePanel.gameObject.SetActive(true);
         OptionsPanel.gameObject.SetActive(false);
         GameControllerScript.SaveToFile();
-    }
-
-    public void ExitToMenu()
-    {
-        AudioController.ClickSound();
-        isPaused = false;
-        Time.timeScale = 1f;
-
-        if (NoDestroy.puzzleOneLoginAttempts == 2) NoDestroy.puzzleOneLoginAttempts = 3;
-
-        GameControllerScript.SaveToFile();
-        NoDestroy.fileLoaded = "";
-        AudioController.StopSound();
-        SceneManager.LoadScene("MainMenu");
     }
 
     public void EnterPasscode()
@@ -290,5 +289,33 @@ public class GameHUDActivations : MonoBehaviour
         AudioController.StopSound();
         if (NoDestroy.HasBeenTamperedWith) SceneManager.LoadScene("HellScene");
         else SceneManager.LoadScene(NoDestroy.currSceneName);
+    }
+
+    public void ExitToMenu()
+    {
+        AudioController.ClickSound();
+        ConfirmationPanel.SetActive(true);
+        confirmationOn = true;
+        pausePanel.SetActive(false);
+    }
+    public void ExitToMenuConfirm() 
+    {
+        AudioController.ClickSound();
+        isPaused = false;
+        Time.timeScale = 1f;
+
+        if (NoDestroy.puzzleOneLoginAttempts == 2) NoDestroy.puzzleOneLoginAttempts = 3;
+
+        GameControllerScript.SaveToFile();
+        NoDestroy.fileLoaded = "";
+        AudioController.StopSound();
+        SceneManager.LoadScene("MainMenu");
+    }
+    public void CancelExitToMenu() 
+    {
+        AudioController.ClickSound();
+        ConfirmationPanel.SetActive(false);
+        confirmationOn = false;
+        pausePanel.SetActive(true);
     }
 }

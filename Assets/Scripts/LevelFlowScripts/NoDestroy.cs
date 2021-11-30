@@ -103,6 +103,10 @@ public class NoDestroy : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             AudioListener.volume = 1;
         }
+        else if(actualScene.name == "Between") 
+        {
+            AmbientClipController.volumeFloat = 0f;
+        }
         else if (actualScene.name == "RelicHunt")
         {
             huntScript.enabled = false;

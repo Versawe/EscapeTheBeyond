@@ -22,7 +22,10 @@ public class AudioController : MonoBehaviour
 
     private bool hintReset = false;
 
-    public float BGGone = 5f;
+    public float BGGone = 4f;
+
+    public bool PlayOnlyOnce = false;
+    private float attemptedPlayTimer = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -57,7 +60,7 @@ public class AudioController : MonoBehaviour
 
         /*if (Input.GetKeyDown("t")) //for testing
         {
-            PlayFlashBackSound();
+            PlayFlashBackSound(40);
         }*/
 
         if (!DialogueSource.isPlaying && BGLoopSource.isPlaying) 
@@ -69,6 +72,16 @@ public class AudioController : MonoBehaviour
             BGLoopSource.Stop();
         }
 
+        if (PlayOnlyOnce) 
+        {
+            attemptedPlayTimer -= 1 * Time.deltaTime;
+
+            if (attemptedPlayTimer <= 0)
+            {
+                attemptedPlayTimer = 10f;
+                PlayOnlyOnce = false;
+            }
+        } 
     }
 
     public static void PlayDialogueSound(int num)
@@ -90,27 +103,37 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    public static void PlayFlashBackSound()
+    public static void PlayFlashBackSound(int percentChance)
     {
-        if (!BGLoopSource.clip) BGLoopSource.clip = script.staticLoop;
-        if (!BGLoopSource.isPlaying) BGLoopSource.Play();
-        if (!DialogueSource.isPlaying)
+        if (!script.PlayOnlyOnce)
         {
-            int randIndex = Random.Range(0, script.clipList.Count);
-            DialogueSource.clip = script.clipList[randIndex];
-            DialogueSource.Play();
-            script.clipList.RemoveAt(randIndex);
-        }
-        script.BGGone = 5f;
-        //to interupt heavy breathing sound for dialogue
-        if (CharacterMovementFirstPerson.IsBreathingHeavy && DialogueSource.isPlaying)
-        {
-            StopSound();
-            DialogueSource.volume = 1f;
-            int randIndex = Random.Range(0, script.clipList.Count);
-            DialogueSource.clip = script.clipList[randIndex];
-            DialogueSource.Play();
-            script.clipList.RemoveAt(randIndex);
+            float singleNum = percentChance * .10f;
+            float randomNum = Random.Range(1, 11);
+            print(randomNum);
+            if (singleNum >= randomNum && !DialogueSource.isPlaying)
+            {
+                if (!BGLoopSource.clip) BGLoopSource.clip = script.staticLoop;
+                if (!BGLoopSource.isPlaying) BGLoopSource.Play();
+                if (!DialogueSource.isPlaying)
+                {
+                    int randIndex = Random.Range(0, script.clipList.Count);
+                    DialogueSource.clip = script.clipList[randIndex];
+                    DialogueSource.Play();
+                    script.clipList.RemoveAt(randIndex);
+                }
+                script.BGGone = 4f;
+                //to interupt heavy breathing sound for dialogue
+                if (CharacterMovementFirstPerson.IsBreathingHeavy && DialogueSource.isPlaying)
+                {
+                    StopSound();
+                    DialogueSource.volume = 1f;
+                    int randIndex = Random.Range(0, script.clipList.Count);
+                    DialogueSource.clip = script.clipList[randIndex];
+                    DialogueSource.Play();
+                    script.clipList.RemoveAt(randIndex);
+                }
+            }
+            script.PlayOnlyOnce = true;
         }
     }
 

@@ -33,6 +33,7 @@ public class DoorOpen : MonoBehaviour
     public AudioClip doorOpenClip;
     public AudioClip doorOpenClip2;
     public AudioClip doorCloseClip;
+    public AudioClip doorLockedClip;
     bool playOnce = false;
 
     private bool triggerD = false;
@@ -62,16 +63,21 @@ public class DoorOpen : MonoBehaviour
     void Update()
     {
         if (doorLocked.TriggerDialogue) TriggerDialogue();
+        if (Input.GetKeyDown("e") && seeDoorScript.lookingAtName == gameObject.name)
+        {
+            if (!DoorAudioSource.isPlaying) playOnce = false;
+            if(doorLocked.IsLocked || doorLocked.TriggerDialogue || doorLocked.Puzzle2Trigger) if(!playOnce) PlayAudioOnce(doorLockedClip);
+        }
+
+        //stops door audio on pause and resumes on unpause
+        if (DoorAudioSource.isPlaying && Time.timeScale == 0) PauseAudio();
+        if (!DoorAudioSource.isPlaying && thisDoorWasNoise && Time.timeScale == 1) UnPauseAudio();
+
         if (doorLocked.IsLocked) return;
         playerInput();
         if (doorLocked.Puzzle2Trigger && !NoDestroy.collectedAllRelics) return;
         whichSide();
         doorMove();
-
-        if (DoorAudioSource.isPlaying && Time.timeScale == 0) PauseAudio();
-
-        if (!DoorAudioSource.isPlaying && thisDoorWasNoise && Time.timeScale == 1) UnPauseAudio();
-
     }
 
     private void TriggerDialogue()

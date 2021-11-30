@@ -49,6 +49,8 @@ public class SlotSave : MonoBehaviour
     public TextMeshProUGUI SliderDisplay1;
     public TextMeshProUGUI SliderDisplay2;
 
+    public GameObject MMConfirmationPanel;
+
     public bool IsDeleting = false;
     public TextMeshProUGUI DeleteButtonText;
 
@@ -195,7 +197,7 @@ public class SlotSave : MonoBehaviour
             skyAndFog.SetActive(false);
             staticScreen.SetActive(true);
 
-            AudioController.PlayFlashBackSound();
+            AudioController.PlayFlashBackSound(100);
         }
         if (staticTimer <= 0)
         {
@@ -207,6 +209,8 @@ public class SlotSave : MonoBehaviour
             MainUI.SetActive(true);
             NewButt.gameObject.SetActive(false);
             staticTimer = 10;
+            AmbientClipController.pitchFloat = 0.5f;
+            AmbientClipController.volumeFloat = 1f;
         }
     }
 
@@ -710,7 +714,17 @@ public class SlotSave : MonoBehaviour
     public void ExitGame() 
     {
         AudioController.ClickSound();
+        MMConfirmationPanel.SetActive(true);
+    }
+    public void ExitGameConfirm() 
+    {
+        AudioController.ClickSound();
         print("Exits Game on Build");
         Application.Quit();
+    }
+    public void CancelExitGame() 
+    {
+        AudioController.ClickSound();
+        MMConfirmationPanel.SetActive(false);
     }
 }
