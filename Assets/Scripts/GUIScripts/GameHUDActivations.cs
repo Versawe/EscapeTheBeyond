@@ -7,6 +7,7 @@ public class GameHUDActivations : MonoBehaviour
 {
     //UI Object references
     public GameObject pausePanel;
+    public GameObject pausePanel2;
     public TextMeshProUGUI objectiveTextDisplay;
     public GameObject RelicPanel;
     public GameObject HealthPanel;
@@ -211,17 +212,20 @@ public class GameHUDActivations : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
             pausePanel.SetActive(true);
+            pausePanel2.SetActive(true);
             objectiveTextDisplay.text = NoDestroy.currObjective;
             Time.timeScale = 0;
         } 
         else if (isPaused && confirmationOn) 
         {
             pausePanel.SetActive(false);
+            pausePanel2.SetActive(false);
         }
         else if (!isPaused && !pLookAtScript.IsActivated && !NoDestroy.atGameOver)
         {
             if (NoDestroy.gameProgression != 4) Cursor.lockState = CursorLockMode.Locked;
             pausePanel.SetActive(false);
+            pausePanel2.SetActive(false);
             optionsOn = false;
             confirmationOn = false;
             OptionsPanel.SetActive(false);
@@ -236,6 +240,7 @@ public class GameHUDActivations : MonoBehaviour
         AudioController.ClickSound();
         optionsOn = true;
         pausePanel.gameObject.SetActive(false);
+        pausePanel2.gameObject.SetActive(false);
         OptionsPanel.gameObject.SetActive(true);
         SensitivitySlider.value = NoDestroy.pSensitivity;
         VolumeSlider.value = NoDestroy.gameVolume*10;
@@ -308,6 +313,7 @@ public class GameHUDActivations : MonoBehaviour
         if (!NoDestroy.atGameOver)
         {
             pausePanel.SetActive(false);
+            pausePanel2.SetActive(false);
         }
         else
         {
@@ -338,6 +344,7 @@ public class GameHUDActivations : MonoBehaviour
         if (!NoDestroy.atGameOver) 
         {
             pausePanel.SetActive(true);
+            pausePanel2.SetActive(true);
         }
         else 
         {
