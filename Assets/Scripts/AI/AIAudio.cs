@@ -21,7 +21,7 @@ public class AIAudio : MonoBehaviour
     public List<AudioClip> chaseClips = new List<AudioClip>();
     public AudioClip scareClip;
 
-    private bool doOnce = false;
+    //private bool doOnce = false;
     private int randomIndex;
     private int randomIndex2;
 

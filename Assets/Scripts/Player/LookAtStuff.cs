@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+//This Script controls the Player's ability to look at objects and interact with them
+//Creates a raycast from the camera's centerpoint
 public class LookAtStuff : MonoBehaviour
 {
     //Raycast variables
@@ -19,7 +21,7 @@ public class LookAtStuff : MonoBehaviour
 
     Vector3 lockedOnMirror;
     Quaternion lookAtMirror;
-    private bool IsInForms = false;
+    public bool IsInForms = false;
 
     GameObject CurrRelic;
     RelicHuntScript relicScript;
@@ -36,6 +38,7 @@ public class LookAtStuff : MonoBehaviour
 
     private void Start()
     {
+        //grabs and checks for the existance of GameObjects
         pickUpAS = pickupOBJ.GetComponent<AudioSource>();
 
         if (GameObject.Find("HidingCheck") != null) hideScript = GameObject.Find("HidingCheck").GetComponent<PlayerHiding>();
@@ -100,7 +103,7 @@ public class LookAtStuff : MonoBehaviour
         if (NoDestroy.puzzleOneLoginAttempts > 2 && lookingAtName != "" && !NoDestroy.completedQandA) ActivateGUIEvent(lookingAtName);
         else InteractText.SetActive(false);
 
-        if (NoDestroy.completedQandA)
+        if (NoDestroy.completedQandA) //unlocks player's controls after beating game of QandA
         {
             CharMove.enabled = true;
             CamRotate.enabled = true;
@@ -111,17 +114,19 @@ public class LookAtStuff : MonoBehaviour
 
     private void LockVisualPoint()
     {
-
-        if (HUDScript.isPaused || IsActivated || NoDestroy.atGameComplete || NoDestroy.atGameOver || hideScript.isHiding || hideScript.inBounds || NoDestroy.BigScareHappening) visualRaycastPoint.SetActive(false);
-        if (HUDScript.isPaused || IsActivated || NoDestroy.atGameComplete || NoDestroy.atGameOver || hideScript.isHiding || hideScript.inBounds || NoDestroy.BigScareHappening) return;
+        //Locks the visual UI point to the end of the raycast casting out of camera to show the user what the camera is aiming at
+        //next 2 lines hide the visual point in certain scenarios
+        if (HUDScript.isPaused || IsActivated || NoDestroy.atGameComplete || NoDestroy.atGameOver || NoDestroy.stairSpawnCount >= 5 || hideScript.isHiding || hideScript.inBounds || NoDestroy.BigScareHappening) visualRaycastPoint.SetActive(false);
+        if (HUDScript.isPaused || IsActivated || NoDestroy.atGameComplete || NoDestroy.atGameOver || NoDestroy.stairSpawnCount >= 5 || hideScript.isHiding || hideScript.inBounds || NoDestroy.BigScareHappening) return;
         else visualRaycastPoint.SetActive(true);
-        if (visualRaycastPoint && lookingAtName != "")
+        if (visualRaycastPoint && lookingAtName != "") //this constanlty updates the position of the circle
         {
                 Vector3 screenPoint = cam.WorldToScreenPoint(pSeeOBJ.point);
                 visualRaycastPoint.transform.position = screenPoint;
         }
     }
 
+    //script that helps set isLookingAt to the name of the Gameobject that the player is looking at
     private void PlayerLookingAt()
     {
         if (IsActivated) return;
@@ -218,6 +223,7 @@ public class LookAtStuff : MonoBehaviour
         pSight.direction = transform.forward;
     }
 
+    //This Function lookes for the raycast hitting any Gameobjects with a GUIEVENTNAME script attached to it and shows the 'e to interact' text
     private void ActivateGUIEvent(string GUIEventName)
     {
         //print(GUIEventName);
@@ -254,6 +260,7 @@ public class LookAtStuff : MonoBehaviour
         }
     }
 
+    //This Function determines what is to happen when the player is looking at something and clicks 'e'
     private void InteractiveInput()
     {
         //toggles when e was pressed and unpressed
@@ -292,12 +299,13 @@ public class LookAtStuff : MonoBehaviour
                 InteractText.SetActive(false);
                 HUDScript.Puzzle3Script.enabled = true;
 
+                //slides player into position for QandA game
                 Vector3 SlideVect = Vector3.MoveTowards(transform.parent.position, lockedOnMirror, 8f * Time.deltaTime);
                 transform.parent.position = SlideVect;
                 Quaternion EaseRotation = Quaternion.RotateTowards(transform.rotation, lookAtMirror, 180f * Time.deltaTime);
                 transform.rotation = EaseRotation;
             }
-            else if (lookingAtName == "Notepad" && !NoDestroy.atGameOver) 
+            else if (lookingAtName == "Notepad" && !NoDestroy.atGameOver) //lets player read note
             {
                 HUDScript.NotePadHintPanel.SetActive(true);
                 CharMove.enabled = false;
@@ -339,20 +347,22 @@ public class LookAtStuff : MonoBehaviour
         }
     }
 
-    private void CollectRelic()
+    private void CollectRelic() //function called when player collects a relic in the relic hunt scene
     {
         pickUpAS.Play();
         Destroy(CurrRelic);
         CurrRelic = null;
         HUDScript.relicCollected++;
+        AudioController.PlayFlashBackSound(40); //chance at giving a dialogue hint..
         if (HUDScript.relicCollected == 1 && AudioController.DialogueSource.isPlaying) AudioController.StopSound();
         if (HUDScript.relicCollected == 1 && !AudioController.DialogueSource.isPlaying) AudioController.PlayDialogueSound(4);
         if (HUDScript.relicCollected == 5 || HUDScript.relicCollected == 10) relicScript.SpawnAI();
         if (HUDScript.relicCollected >= 15)
         {
             NoDestroy.collectedAllRelics = true;
-            NoDestroy.currObjective = "Current Objective:\nGo back to the locked door to use the relics and craft a key";
-            AudioController.PlayDialogueSound(5);
+            NoDestroy.currObjective = "Current Objective:\nYou have the crafted key with the relics you collect\nGo back to locked door, quick!";
+            if (AudioController.DialogueSource.isPlaying) AudioController.StopSound(); //if an audio hint is playing it will be interuptted
+            AudioController.PlayDialogueSound(5); //protagonist tells player to get back to the door
         } 
     }
 }

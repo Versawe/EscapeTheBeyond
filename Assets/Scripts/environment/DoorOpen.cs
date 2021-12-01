@@ -41,6 +41,7 @@ public class DoorOpen : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        //get objects & components
         Player = GameObject.Find("FPSController");
 
         DoorAudioSource = GetComponent<AudioSource>();
@@ -51,6 +52,7 @@ public class DoorOpen : MonoBehaviour
 
     private void Start()
     {
+        //starting door values
         doorXOpen1 = Quaternion.Euler(0f, 90f, 0f); // player.x greater
         doorXOpen2 = Quaternion.Euler(0f, 270f, 0f);
 
@@ -62,8 +64,8 @@ public class DoorOpen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (doorLocked.TriggerDialogue) TriggerDialogue();
-        if (Input.GetKeyDown("e") && seeDoorScript.lookingAtName == gameObject.name)
+        if (doorLocked.TriggerDialogue) TriggerDialogue(); //triggers dialogue
+        if (Input.GetKeyDown("e") && seeDoorScript.lookingAtName == gameObject.name && !seeDoorScript.IsInForms) //plays locked door clip
         {
             if (!DoorAudioSource.isPlaying) playOnce = false;
             if(doorLocked.IsLocked || doorLocked.TriggerDialogue || doorLocked.Puzzle2Trigger) if(!playOnce) PlayAudioOnce(doorLockedClip);
@@ -73,7 +75,7 @@ public class DoorOpen : MonoBehaviour
         if (DoorAudioSource.isPlaying && Time.timeScale == 0) PauseAudio();
         if (!DoorAudioSource.isPlaying && thisDoorWasNoise && Time.timeScale == 1) UnPauseAudio();
 
-        if (doorLocked.IsLocked) return;
+        if (doorLocked.IsLocked) return; //functions below open a door if it is not locked
         playerInput();
         if (doorLocked.Puzzle2Trigger && !NoDestroy.collectedAllRelics) return;
         whichSide();
@@ -229,12 +231,14 @@ public class DoorOpen : MonoBehaviour
         doOnceTimer = 0.5f;
     }
 
+    //smooth rotate
     public Quaternion Slide(Quaternion current, Quaternion target, float percentLeft = 0.5f)
     {
         float p = 1 - Mathf.Pow(percentLeft, Time.deltaTime);
         return Quaternion.Lerp(current, target, p);
     }
 
+    //door audio clip code below
     private void PlayAudioOnce(AudioClip thisClip)
     {
         DoorAudioSource.clip = thisClip;

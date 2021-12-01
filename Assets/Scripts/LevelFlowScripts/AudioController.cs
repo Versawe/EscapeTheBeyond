@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Audio Controller Script for Protagonist Dialogue and FlashBack Scenes
 public class AudioController : MonoBehaviour
 {
     //Audio Vars
@@ -63,6 +64,7 @@ public class AudioController : MonoBehaviour
             PlayFlashBackSound(40);
         }*/
 
+        //ends dialogue playback once timer is done
         if (!DialogueSource.isPlaying && BGLoopSource.isPlaying) 
         {
             BGGone -= 1 * Time.deltaTime;  
@@ -72,6 +74,7 @@ public class AudioController : MonoBehaviour
             BGLoopSource.Stop();
         }
 
+        //plays only once, all the time so it does not glitch in update or interupt itself
         if (PlayOnlyOnce) 
         {
             attemptedPlayTimer -= 1 * Time.deltaTime;
@@ -84,6 +87,7 @@ public class AudioController : MonoBehaviour
         } 
     }
 
+    //playing diaglogue for voice lines of protagonist. takes in int as element value in a list of audio clips
     public static void PlayDialogueSound(int num)
     {
         if(!BGLoopSource.isPlaying && !DialogueSource.isPlaying) 
@@ -103,13 +107,15 @@ public class AudioController : MonoBehaviour
         }
     }
 
+    //plays audio file for story hints and BG audio file
+    //takes in int for a percentage chance of playing, if you want it to play for sure enter 100
     public static void PlayFlashBackSound(int percentChance)
     {
         if (!script.PlayOnlyOnce)
         {
             float singleNum = percentChance * .10f;
             float randomNum = Random.Range(1, 11);
-            print(randomNum);
+            //print(randomNum);
             if (singleNum >= randomNum && !DialogueSource.isPlaying)
             {
                 if (!BGLoopSource.clip) BGLoopSource.clip = script.staticLoop;
@@ -157,6 +163,7 @@ public class AudioController : MonoBehaviour
         BGLoopSource.clip = null;
     }
 
+    //sound of button clicks used in player here
     public static void ClickSound() 
     {
         UISource.clip = script.clickSound;

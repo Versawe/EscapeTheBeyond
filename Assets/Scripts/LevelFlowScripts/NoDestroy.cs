@@ -67,7 +67,6 @@ public class NoDestroy : MonoBehaviour
     {
         fileLoaded = "";
         huntScript = GetComponent<RelicHuntScript>();
-        
     }
 
     void OnEnable()
@@ -165,28 +164,33 @@ public class NoDestroy : MonoBehaviour
     }
     void Update()
     {
-        if (gameProgression == 4) 
+        //below if you have beaten the game and are on EndGame scene
+        if (gameProgression == 4) //locks cursor and keeps volume at full, to hear the story scene well
         {
             Cursor.lockState = CursorLockMode.None;
             AudioListener.volume = 1;
         } 
 
-        if (actualScene.name != "QandA" && stairSpawnCount < 5) return; //5
-        if(stairSpawnCount >= 5) //5
+        //before beating QandA level and not traveling down stairs max amount yet
+        //WARNING! To change the amount of stairs to go down needs to be changed twice BELOW HERE
+        //Also changed on line ~188 in QandA.cs & line ~112 in GameHUDActivations
+        if (actualScene.name != "QandA" && stairSpawnCount < 7) return; //5
+        if(stairSpawnCount >= 7) //5
         {
             endGameTimer -= 1 * Time.deltaTime;
             if(moveScript) moveScript.enabled = false;
             //black out screen play final audio to game then load credit scene HERE
             // This is handled somewhere ELSE ^ in QandA.cs
         }
-        if (endGameTimer <= 0) 
+        if (endGameTimer <= 0) //changes important value once clip is done playing 
         {
             atGameComplete = true;
         }
 
-        if(actualScene.name == "Between") Cursor.lockState = CursorLockMode.Locked;
+        if(actualScene.name == "Between") Cursor.lockState = CursorLockMode.Locked; //locks cursor on car crash scene
     }
 
+    //This function loads every line from SaveData Text file into a static variable to know where player is in this specific slot
     public void LoadFromFile()
     {
         fileName = System.IO.File.ReadAllLines(persistantPath)[0];
@@ -200,6 +204,7 @@ public class NoDestroy : MonoBehaviour
         dateFileModified = System.IO.File.ReadAllLines(persistantPath)[8];
     }
 
+    //Updates Player's progress throughout game, by rewriting the Save Data text file with the current static variables
     public void SaveToFile()
     {
         if (!System.IO.File.Exists(persistantPath)) return; //exits out if the file does not exist
@@ -225,6 +230,7 @@ public class NoDestroy : MonoBehaviour
         System.IO.File.SetLastWriteTime(persistantPath, dateModified);
     }
 
+    //made to be called in DoorOpen.cs, when player has collected all the relics and attempts to open the Basement Door
     public static void LoadQandAScene()
     {
         gameProgression = 3;
@@ -233,6 +239,7 @@ public class NoDestroy : MonoBehaviour
         SceneManager.LoadScene("QandA");
     }
 
+    //resets staic variables, so they are neutral in main menu
     public void ResetVarsWhenMainMenu()
     {
         fileName = "";
@@ -260,6 +267,7 @@ public class NoDestroy : MonoBehaviour
         TriggerScarePPAI = false;
     }
 
+    //Used to Destroy Stairs on final scene, saves Memory in scene
     public static void CheckStairCount() 
     {
         if (stairs.Count >= 3) 

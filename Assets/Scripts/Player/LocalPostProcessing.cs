@@ -1,5 +1,6 @@
 using UnityEngine;
 
+//This triggers a local Post-Processing Volume that is attached to the player when scary stuff happens
 public class LocalPostProcessing : MonoBehaviour
 {
     public GameObject playerPP;

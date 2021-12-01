@@ -53,7 +53,7 @@ public class GameHUDActivations : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-
+        //grab stuff
         currScene = SceneManager.GetActiveScene();
         genPWD = GetComponent<GeneratePWD>();
 
@@ -82,6 +82,7 @@ public class GameHUDActivations : MonoBehaviour
 
     private void Start()
     {
+        //generates password for door code
         if (NoDestroy.puzzleOneLoginAttempts == 3 && NoDestroy.gameProgression == 1) doorPwd = genPWD.GeneratePWDFunction(15);
         if (NoDestroy.gameProgression == 4) 
         {
@@ -95,7 +96,7 @@ public class GameHUDActivations : MonoBehaviour
     {
         if (NoDestroy.atGameComplete) //at game complete
         {
-            if (!AudioController.DialogueSource.isPlaying) 
+            if (!AudioController.DialogueSource.isPlaying)//after end game audio scene is done playing
             {
                 CreditsPanel.SetActive(true);
                 NoDestroy.gameProgression = 4;
@@ -109,7 +110,7 @@ public class GameHUDActivations : MonoBehaviour
         CheckForEndGame();
         if (NoDestroy.atGameOver) return;
 
-        if(NoDestroy.stairSpawnCount < 5) PauseGame(); //5
+        if(NoDestroy.stairSpawnCount < 7) PauseGame(); //5
         GUIAppearPerScene();
         TrackingSlideBars();
 
@@ -144,7 +145,7 @@ public class GameHUDActivations : MonoBehaviour
         }
     }
 
-    private void TrackingSlideBars()
+    private void TrackingSlideBars() //tracks what the in-game pause slider bars should be set at based on static vars in NoDestroy
     {
         if (optionsOn)
         {
@@ -154,7 +155,7 @@ public class GameHUDActivations : MonoBehaviour
             SliderDisplay1.text =fullNum.ToString();
             SliderDisplay2.text = NoDestroy.pSensitivity.ToString();
             AudioListener.volume = NoDestroy.gameVolume;
-        }
+        } //controls stamina slider being visual or now and locking in value
         if (moveScript.staminaActual < 3.5f && !moveScript.IsExhausted && !isPaused && moveScript.isActiveAndEnabled)
         {
             StaminaBar.SetActive(true);
@@ -167,7 +168,7 @@ public class GameHUDActivations : MonoBehaviour
         
     }
 
-    private void GUIAppearPerScene()
+    private void GUIAppearPerScene() //Makes Relic Hunt UI Elements enabled if playing relicHunt scene
     {
         if (currScene.name == "RelicHunt" && NoDestroy.hasHuntBegan && !isPaused) //displays relic hud in certain scenes
         {
@@ -187,6 +188,7 @@ public class GameHUDActivations : MonoBehaviour
         }
     }
 
+    //logic for pausing game
     private void PauseGame()
     {
         bool escClick = Input.GetKeyDown("escape");
@@ -227,6 +229,8 @@ public class GameHUDActivations : MonoBehaviour
         }
     }
 
+    //triggers game options
+    //made for button click
     public void GameOptionsTrigger()
     {
         AudioController.ClickSound();
@@ -240,6 +244,7 @@ public class GameHUDActivations : MonoBehaviour
         SliderDisplay1.text = decNum.ToString();
     }
 
+    //made for button click
     public void BackButtonTrigger()
     {
         AudioController.ClickSound();
@@ -248,6 +253,7 @@ public class GameHUDActivations : MonoBehaviour
         GameControllerScript.SaveToFile();
     }
 
+    //logic for entering passcode and UI enabling/disabling
     public void EnterPasscode()
     {
         AudioController.ClickSound();
@@ -277,12 +283,13 @@ public class GameHUDActivations : MonoBehaviour
         AudioController.StopSound();
         Cursor.lockState = CursorLockMode.None;
         GameControllerScript.SaveToFile();
-        GameOverPanel.SetActive(true);
+        if(!confirmationOn) GameOverPanel.SetActive(true);
         StaminaBar.SetActive(false);
         RelicPanel.SetActive(false);
         HealthPanel.SetActive(false);
     }
 
+    //made for button click, grabs from static var
     public void RetryCurrLevel() 
     {
         AudioController.ClickSound();
@@ -291,13 +298,24 @@ public class GameHUDActivations : MonoBehaviour
         else SceneManager.LoadScene(NoDestroy.currSceneName);
     }
 
+    //made for button click
+    //opens confirmation window first
     public void ExitToMenu()
     {
         AudioController.ClickSound();
         ConfirmationPanel.SetActive(true);
         confirmationOn = true;
-        pausePanel.SetActive(false);
+        if (!NoDestroy.atGameOver)
+        {
+            pausePanel.SetActive(false);
+        }
+        else
+        {
+            GameOverPanel.SetActive(false);
+        }
     }
+    //made for button click
+    //exits to main menu
     public void ExitToMenuConfirm() 
     {
         AudioController.ClickSound();
@@ -311,11 +329,19 @@ public class GameHUDActivations : MonoBehaviour
         AudioController.StopSound();
         SceneManager.LoadScene("MainMenu");
     }
+    //made for button click goes back to first pause panel
     public void CancelExitToMenu() 
     {
         AudioController.ClickSound();
         ConfirmationPanel.SetActive(false);
         confirmationOn = false;
-        pausePanel.SetActive(true);
+        if (!NoDestroy.atGameOver) 
+        {
+            pausePanel.SetActive(true);
+        }
+        else 
+        {
+            GameOverPanel.SetActive(true);
+        }
     }
 }

@@ -11,6 +11,7 @@ public class FlashLightOff : MonoBehaviour
 
     private void Start()
     {
+        //Gets player GO
         if (GameObject.Find("FPSController")) 
         {
             localPPScript = GameObject.Find("FPSController").GetComponent<LocalPostProcessing>();
@@ -20,10 +21,11 @@ public class FlashLightOff : MonoBehaviour
             localPPScript = null;
         }
         
+        //Gets Demon GO
         if (GameObject.Find("EscapedMonster")) 
         {
             EscapedGO = GameObject.Find("EscapedMonster");
-            EscapedGO.SetActive(false);
+            EscapedGO.SetActive(false); //hides him in front of mirror, for good spawning point
         }
         else 
         {
@@ -31,6 +33,8 @@ public class FlashLightOff : MonoBehaviour
         }
         
     }
+
+    //Once you enter room Post-Processing and Audio changes
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player") 
@@ -41,14 +45,16 @@ public class FlashLightOff : MonoBehaviour
         }
     }
 
+    //On you exit room things change back to normal
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
+            //controls flashlight being on or off during scene
             Light FlashLight = GameObject.Find("Flashlight").GetComponent<Light>();
             FlashLight.enabled = true;
             AmbientClipController.ForceUpdate = false;
-            if (NoDestroy.completedQandA) 
+            if (NoDestroy.completedQandA) //If you complete the QandA game things panic again because player will be getting chased!
             {
                 AmbientClipController.ForceUpdate = true;
                 localPPScript.playerPP.SetActive(true);
