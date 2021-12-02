@@ -282,7 +282,7 @@ public class GameHUDActivations : MonoBehaviour
     }
 
     //Game Over Functions
-    private void CheckForEndGame() 
+    private void CheckForEndGame()
     {
         if (!NoDestroy.atGameOver) return;
         AudioController.StopSound();

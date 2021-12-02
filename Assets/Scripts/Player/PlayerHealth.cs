@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Keeps track of player's health and UI icons for health
 public class PlayerHealth : MonoBehaviour
 {
     public int health = 3;
@@ -26,13 +27,13 @@ public class PlayerHealth : MonoBehaviour
         heart1 = GameObject.Find("Heart2");
         heart2 = GameObject.Find("Heart3");*/
 
-        if (NoDestroy.currSceneName == "RelicHunt")
+        if (NoDestroy.currSceneName == "RelicHunt") //if in the correct scene set the icons to show
         {
             heart.SetActive(true);
             heart1.SetActive(true);
             heart2.SetActive(true);
         }
-        else if(NoDestroy.HasBeenTamperedWith) 
+        else if(NoDestroy.HasBeenTamperedWith) //only have one life otherwise
         {
             health = 1;
         }
@@ -41,6 +42,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
+        //below will deactivate certain elements when player's life changes
         if (health == 2) 
         {
             heart2.SetActive(false);

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.IO;
 
+//This script controls main menu UI and manages the creation/deletion of saved slots
 public class SlotSave : MonoBehaviour
 {
     //variables
@@ -95,7 +96,7 @@ public class SlotSave : MonoBehaviour
         else NewButt.gameObject.SetActive(false);
     }
 
-    private void DisplayFileInfo()
+    private void DisplayFileInfo() //displays file info on buttons in main menu
     {
         if (File.Exists(persistentPath + "/Slot1Data.txt"))
         {

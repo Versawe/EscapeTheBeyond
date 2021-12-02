@@ -77,7 +77,7 @@ public class AmbientClipController : MonoBehaviour
         if (!hudScript) return; //if no hud script exists does not continue
         if (hudScript.isPaused) PauseSound(); //pauses ambient on pause screen
         if (!hudScript.isPaused) UnPauseSound(); //unpauses
-        if (NoDestroy.atGameOver) StopSound(); // THIS or change to an end game track
+        if (NoDestroy.atGameOver || NoDestroy.atGameComplete) EndGameAmbient(); // THIS or change to an end game track
 
         if (!NoDestroy.completedQandA) //before completing the question and answers game
         {
@@ -148,6 +148,13 @@ public class AmbientClipController : MonoBehaviour
         ambientSource.clip = ambientClips[randomIndex]; // sets that selected clip to the audio source
 
         PlaySound();
+    }
+
+    public static void EndGameAmbient() 
+    {
+        ForceUpdate = false;
+        ForceHell = false;
+        AmbientNormal();
     }
 
     public void PlaySound()

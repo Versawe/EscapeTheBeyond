@@ -42,6 +42,8 @@ public class FlashLightOff : MonoBehaviour
             Light FlashLight = GameObject.Find("Flashlight").GetComponent<Light>();
             FlashLight.enabled = false;
             AmbientClipController.ForceUpdate = true;
+            AudioController.DialogueSource.Stop();
+            AudioController.PlayDialogueSound(14);
         }
     }
 
@@ -54,6 +56,8 @@ public class FlashLightOff : MonoBehaviour
             Light FlashLight = GameObject.Find("Flashlight").GetComponent<Light>();
             FlashLight.enabled = true;
             AmbientClipController.ForceUpdate = false;
+            AudioController.DialogueSource.Stop();
+            AudioController.PlayDialogueSound(13);
             if (NoDestroy.completedQandA) //If you complete the QandA game things panic again because player will be getting chased!
             {
                 AmbientClipController.ForceUpdate = true;

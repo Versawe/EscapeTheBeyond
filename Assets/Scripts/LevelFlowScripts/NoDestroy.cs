@@ -185,6 +185,7 @@ public class NoDestroy : MonoBehaviour
         if (endGameTimer <= 0) //changes important value once clip is done playing 
         {
             atGameComplete = true;
+            AmbientClipController.EndGameAmbient();
         }
 
         if(actualScene.name == "Between") Cursor.lockState = CursorLockMode.Locked; //locks cursor on car crash scene
