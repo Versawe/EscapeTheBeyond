@@ -74,6 +74,7 @@ public class QandA : MonoBehaviour
         DataBaseSplit = DatabaseTextFile.text.Split('\n');    
         MCChoices.Clear();
 
+        //grabs player game object
         if (GameObject.Find("FPSController")) lookScript = GameObject.Find("FPSController").GetComponentInChildren<LookAtStuff>();
         else lookScript = null;
 
@@ -105,6 +106,7 @@ public class QandA : MonoBehaviour
         //Starts off Questions
         RandomQuestion(QuestionsList);
 
+        //changes pause text for current objective
         NoDestroy.currObjective = "Current Objective:\nPlay Questions and Answers with the Demon to enchant the Key"; //useless because you cannot pause
     }
 
@@ -183,13 +185,13 @@ public class QandA : MonoBehaviour
         StrikesText.text = strikeCount.ToString();
 
         //for final plunge down stairs and activating gui and PPV
-        if (NoDestroy.stairSpawnCount < 5) return; //5
+        if (NoDestroy.stairSpawnCount < 7) return; //5
         if (!NoDestroy.atGameComplete) 
         {
-            PPVStatic.SetActive(true);
-            if(!doOnce) AudioController.PlayDialogueSound(11);
-            doOnce = true;
-            AmbientClipController.StopSound();
+            PPVStatic.SetActive(true); //sets static Post-Processing
+            if(!doOnce) AudioController.PlayDialogueSound(11); //plays the last story scene to inform player what has happened at the end
+            doOnce = true; //does this only once because it is called in update
+            AmbientClipController.StopSound(); //stops ambient so player can hear final dialogue scene
         }
         else 
         {
@@ -333,7 +335,7 @@ public class QandA : MonoBehaviour
             QuestionText.SetActive(false);
             return true;
         }
-        else if (correctAnswers >= numRightAnswers)
+        else if (correctAnswers >= numRightAnswers) //if you win the game
         {
             AudioController.PlayDialogueSound(7);
             rightTimer = 1.5f;
@@ -352,7 +354,7 @@ public class QandA : MonoBehaviour
             NoDestroy.currObjective = "Current Objective:\nEscape the Beyond";
             return true;
         }
-        else 
+        else //weird case
         {
             return false;
         }

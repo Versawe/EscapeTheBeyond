@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WardrobeOpen : MonoBehaviour
 {
@@ -28,11 +25,19 @@ public class WardrobeOpen : MonoBehaviour
     public Quaternion doorStartRotRight;
     public Quaternion doorStartRotLeft;
 
+    //audio vars
+    AudioSource DoorAudioSource;
+    private bool thisDoorWasNoise = false;
+    public AudioClip doorOpenClip;
+    public AudioClip doorCloseClip;
+    bool playOnce = false;
+
     // Start is called before the first frame update
     void Awake()
     {
         Player = GameObject.Find("FPSController");
 
+        DoorAudioSource = GetComponent<AudioSource>();
         seeDoorScript = Player.GetComponentInChildren<LookAtStuff>();
     }
 
@@ -49,6 +54,10 @@ public class WardrobeOpen : MonoBehaviour
     {
         playerInput();
         doorMove();
+
+        //stops door audio on pause and resumes on unpause
+        if (DoorAudioSource.isPlaying && Time.timeScale == 0) PauseAudio();
+        if (!DoorAudioSource.isPlaying && thisDoorWasNoise && Time.timeScale == 1) UnPauseAudio();
 
     }
 
@@ -72,6 +81,7 @@ public class WardrobeOpen : MonoBehaviour
         if (isOpen && doOnce) // close animation and variable sets
         {
             isShutting = true;
+            if (!playOnce) PlayAudioOnce(doorCloseClip);
             leftDoor.transform.localRotation = Slide(leftDoor.transform.localRotation, doorStartRotLeft, swingSpeed);
             rightDoor.transform.localRotation = Slide(rightDoor.transform.localRotation, doorStartRotRight, swingSpeed);
             doOnceTimer -= Time.deltaTime;
@@ -81,10 +91,12 @@ public class WardrobeOpen : MonoBehaviour
                 isOpen = false;
                 doOnce = false;
                 doOnceTimer = 0.5f;
+                playOnce = false;
             }
         }
         if (!isOpen && doOnce) // open animation and variable sets
         {
+            if (!playOnce) PlayAudioOnce(doorOpenClip);
             leftDoor.transform.localRotation = Slide(leftDoor.transform.localRotation, doorLeftOpen, swingSpeed);
             rightDoor.transform.localRotation = Slide(rightDoor.transform.localRotation, doorRightOpen, swingSpeed);
             doOnceTimer -= Time.deltaTime;
@@ -93,6 +105,7 @@ public class WardrobeOpen : MonoBehaviour
                 isOpen = true;
                 doOnce = false;
                 doOnceTimer = 0.5f;
+                playOnce = false;
             }
         }
     }
@@ -102,5 +115,28 @@ public class WardrobeOpen : MonoBehaviour
     {
         float p = 1 - Mathf.Pow(percentLeft, Time.deltaTime);
         return Quaternion.Lerp(current, target, p);
+    }
+
+    //door audio clip code below
+    private void PlayAudioOnce(AudioClip thisClip)
+    {
+        DoorAudioSource.clip = thisClip;
+        DoorAudioSource.Play();
+        playOnce = true;
+    }
+
+    private void PauseAudio()
+    {
+        if (DoorAudioSource.isPlaying) DoorAudioSource.Pause();
+        thisDoorWasNoise = true;
+    }
+
+    private void UnPauseAudio()
+    {
+        if (!DoorAudioSource.isPlaying && thisDoorWasNoise)
+        {
+            DoorAudioSource.Play();
+        }
+        thisDoorWasNoise = false;
     }
 }

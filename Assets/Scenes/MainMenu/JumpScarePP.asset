@@ -270,12 +270,12 @@ MonoBehaviour:
   m_AdvancedMode: 0
   distance:
     m_OverrideState: 1
-    m_Value: 0.15
+    m_Value: 0.354
     min: 0
     max: 1
   cropToFit:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.855
     min: 0
     max: 1
 --- !u!114 &-725930026442668164
@@ -729,7 +729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1be1b6c95cd2e41b27903b9270817f, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
@@ -741,25 +741,25 @@ MonoBehaviour:
     showAlpha: 0
     showEyeDropper: 1
   center:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: {x: 0.5, y: 0.5}
   intensity:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 0.532
     min: 0
     max: 1
   smoothness:
-    m_OverrideState: 0
-    m_Value: 0.2
+    m_OverrideState: 1
+    m_Value: 0.256
     min: 0.01
     max: 1
   roundness:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
     min: 0
     max: 1
   rounded:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   mask:
     m_OverrideState: 1
@@ -907,13 +907,13 @@ MonoBehaviour:
   m_AdvancedMode: 0
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.09203732, z: 0.107467234, w: 1}
+    m_Value: {x: 1, y: 0.09203732, z: 0.107467234, w: -0.17908788}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.9435389, z: 0.8211851, w: 0}
+    m_Value: {x: 1, y: 0.9435389, z: 0.8211851, w: 0.11123471}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.9600257, z: 0.9751551, w: -0.009900898}
+    m_Value: {x: 1, y: 0.9600257, z: 0.9751551, w: 1}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0

@@ -44,10 +44,16 @@ public class SlotSave : MonoBehaviour
     public GameObject ControlsPanel;
     public GameObject CreditsPanel;
     public GameObject MainPanel;
+    public GameObject RightMainPanel;
     public Slider SensitivitySlider;
     public Slider VolumeSlider;
     public TextMeshProUGUI SliderDisplay1;
     public TextMeshProUGUI SliderDisplay2;
+
+    public TextMeshProUGUI ControlsBack;
+    public TextMeshProUGUI CreditsBack;
+
+    public GameObject MMConfirmationPanel;
 
     public bool IsDeleting = false;
     public TextMeshProUGUI DeleteButtonText;
@@ -190,12 +196,13 @@ public class SlotSave : MonoBehaviour
 
             //turns off all UI in Panel
             MainUI.SetActive(false);
+            RightMainPanel.SetActive(false);
 
             //changes Postprocessing to glithy one
             skyAndFog.SetActive(false);
             staticScreen.SetActive(true);
 
-            AudioController.PlayFlashBackSound();
+            AudioController.PlayFlashBackSound(100);
         }
         if (staticTimer <= 0)
         {
@@ -205,8 +212,11 @@ public class SlotSave : MonoBehaviour
             skyAndFogCrazy.SetActive(true);
             staticScreen.SetActive(false);
             MainUI.SetActive(true);
+            RightMainPanel.SetActive(true);
             NewButt.gameObject.SetActive(false);
             staticTimer = 10;
+            AmbientClipController.pitchFloat = 0.5f;
+            AmbientClipController.volumeFloat = 1f;
         }
     }
 
@@ -262,28 +272,40 @@ public class SlotSave : MonoBehaviour
     }
 
     //i made this out of rage ok
-    public void WhatBackTriggerShouldHaveBeen() 
+    public void ControlCreditUITriggers(Button buttonClicked)
     {
         AudioController.ClickSound();
-        CreditsPanel.SetActive(false);
-        ControlsPanel.SetActive(false);
-        MainPanel.SetActive(true);
+        if (buttonClicked.GetComponentInChildren<TextMeshProUGUI>().text == "Controls")
+        {
+            MainPanel.SetActive(false);
+            ControlsPanel.SetActive(true);
+            OptionsPanel.SetActive(false);
+            CreditsPanel.SetActive(false);
+            ControlsBack.text = "Back";
+            CreditsBack.transform.parent.gameObject.SetActive(false);
+        }
+        else if (buttonClicked.GetComponentInChildren<TextMeshProUGUI>().text == "Credits")
+        {
+            MainPanel.SetActive(false);
+            ControlsPanel.SetActive(false);
+            OptionsPanel.SetActive(false);
+            CreditsPanel.SetActive(true);
+            CreditsBack.text = "Back";
+            ControlsBack.transform.parent.gameObject.SetActive(false);
+        }
+        else if (buttonClicked.GetComponentInChildren<TextMeshProUGUI>().text == "Back") 
+        {
+
+            CreditsPanel.SetActive(false);
+            ControlsPanel.SetActive(false);
+            MainPanel.SetActive(true);
+            ControlsBack.transform.parent.gameObject.SetActive(true);
+            CreditsBack.transform.parent.gameObject.SetActive(true);
+            ControlsBack.text = "Controls";
+            CreditsBack.text = "Credits";
+        }
     }
-    public void CreditsTrigger() 
-    {
-        AudioController.ClickSound();
-        MainPanel.SetActive(false);
-        ControlsPanel.SetActive(false);
-        OptionsPanel.SetActive(false);
-        CreditsPanel.SetActive(true);
-    }public void CrontrolsTrigger() 
-    {
-        AudioController.ClickSound();
-        MainPanel.SetActive(false);
-        ControlsPanel.SetActive(true);
-        OptionsPanel.SetActive(false);
-        CreditsPanel.SetActive(false);
-    }
+    
     public void DeleteSelected()
     {
         AudioController.ClickSound();
@@ -710,7 +732,17 @@ public class SlotSave : MonoBehaviour
     public void ExitGame() 
     {
         AudioController.ClickSound();
+        MMConfirmationPanel.SetActive(true);
+    }
+    public void ExitGameConfirm() 
+    {
+        AudioController.ClickSound();
         print("Exits Game on Build");
         Application.Quit();
+    }
+    public void CancelExitGame() 
+    {
+        AudioController.ClickSound();
+        MMConfirmationPanel.SetActive(false);
     }
 }

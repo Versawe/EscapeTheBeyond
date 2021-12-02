@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Audio Controller Script for Protagonist Dialogue and FlashBack Scenes
 public class AudioController : MonoBehaviour
 {
     //Audio Vars
@@ -22,7 +23,10 @@ public class AudioController : MonoBehaviour
 
     private bool hintReset = false;
 
-    public float BGGone = 5f;
+    public float BGGone = 4f;
+
+    public bool PlayOnlyOnce = false;
+    private float attemptedPlayTimer = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -57,9 +61,10 @@ public class AudioController : MonoBehaviour
 
         /*if (Input.GetKeyDown("t")) //for testing
         {
-            PlayFlashBackSound();
+            PlayFlashBackSound(40);
         }*/
 
+        //ends dialogue playback once timer is done
         if (!DialogueSource.isPlaying && BGLoopSource.isPlaying) 
         {
             BGGone -= 1 * Time.deltaTime;  
@@ -69,8 +74,20 @@ public class AudioController : MonoBehaviour
             BGLoopSource.Stop();
         }
 
+        //plays only once, all the time so it does not glitch in update or interupt itself
+        if (PlayOnlyOnce) 
+        {
+            attemptedPlayTimer -= 1 * Time.deltaTime;
+
+            if (attemptedPlayTimer <= 0)
+            {
+                attemptedPlayTimer = 10f;
+                PlayOnlyOnce = false;
+            }
+        } 
     }
 
+    //playing diaglogue for voice lines of protagonist. takes in int as element value in a list of audio clips
     public static void PlayDialogueSound(int num)
     {
         if(!BGLoopSource.isPlaying && !DialogueSource.isPlaying) 
@@ -90,27 +107,39 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    public static void PlayFlashBackSound()
+    //plays audio file for story hints and BG audio file
+    //takes in int for a percentage chance of playing, if you want it to play for sure enter 100
+    public static void PlayFlashBackSound(int percentChance)
     {
-        if (!BGLoopSource.clip) BGLoopSource.clip = script.staticLoop;
-        if (!BGLoopSource.isPlaying) BGLoopSource.Play();
-        if (!DialogueSource.isPlaying)
+        if (!script.PlayOnlyOnce)
         {
-            int randIndex = Random.Range(0, script.clipList.Count);
-            DialogueSource.clip = script.clipList[randIndex];
-            DialogueSource.Play();
-            script.clipList.RemoveAt(randIndex);
-        }
-        script.BGGone = 5f;
-        //to interupt heavy breathing sound for dialogue
-        if (CharacterMovementFirstPerson.IsBreathingHeavy && DialogueSource.isPlaying)
-        {
-            StopSound();
-            DialogueSource.volume = 1f;
-            int randIndex = Random.Range(0, script.clipList.Count);
-            DialogueSource.clip = script.clipList[randIndex];
-            DialogueSource.Play();
-            script.clipList.RemoveAt(randIndex);
+            float singleNum = percentChance * .10f;
+            float randomNum = Random.Range(1, 11);
+            //print(randomNum);
+            if (singleNum >= randomNum && !DialogueSource.isPlaying)
+            {
+                if (!BGLoopSource.clip) BGLoopSource.clip = script.staticLoop;
+                if (!BGLoopSource.isPlaying) BGLoopSource.Play();
+                if (!DialogueSource.isPlaying)
+                {
+                    int randIndex = Random.Range(0, script.clipList.Count);
+                    DialogueSource.clip = script.clipList[randIndex];
+                    DialogueSource.Play();
+                    script.clipList.RemoveAt(randIndex);
+                }
+                script.BGGone = 4f;
+                //to interupt heavy breathing sound for dialogue
+                if (CharacterMovementFirstPerson.IsBreathingHeavy && DialogueSource.isPlaying)
+                {
+                    StopSound();
+                    DialogueSource.volume = 1f;
+                    int randIndex = Random.Range(0, script.clipList.Count);
+                    DialogueSource.clip = script.clipList[randIndex];
+                    DialogueSource.Play();
+                    script.clipList.RemoveAt(randIndex);
+                }
+            }
+            script.PlayOnlyOnce = true;
         }
     }
 
@@ -134,6 +163,7 @@ public class AudioController : MonoBehaviour
         BGLoopSource.clip = null;
     }
 
+    //sound of button clicks used in player here
     public static void ClickSound() 
     {
         UISource.clip = script.clickSound;
