@@ -353,7 +353,7 @@ public class LookAtStuff : MonoBehaviour
         Destroy(CurrRelic);
         CurrRelic = null;
         HUDScript.relicCollected++;
-        AudioController.PlayFlashBackSound(40); //chance at giving a dialogue hint..
+        AudioController.PlayFlashBackSound(50); //chance at giving a dialogue hint..
         if (HUDScript.relicCollected == 1 && AudioController.DialogueSource.isPlaying) AudioController.StopSound();
         if (HUDScript.relicCollected == 1 && !AudioController.DialogueSource.isPlaying) AudioController.PlayDialogueSound(4);
         if (HUDScript.relicCollected == 5 || HUDScript.relicCollected == 10) relicScript.SpawnAI();
