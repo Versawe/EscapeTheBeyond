@@ -24,6 +24,8 @@ public class AmbientClipController : MonoBehaviour
 
     public static AmbientClipController thisScript;
 
+    public AudioClip whisperHints;
+
     private void Awake()
     {
         thisScript = gameObject.GetComponent<AmbientClipController>();
@@ -69,6 +71,12 @@ public class AmbientClipController : MonoBehaviour
 
     private void Update()
     {
+        if (NoDestroy.gameProgression == 1 && NoDestroy.puzzleOneLoginAttempts == 1) 
+        {
+            ambientSource.clip = whisperHints;
+            if(!ambientSource.isPlaying) PlaySound();
+        }
+        
         //update constantly updating audio source values with these floats
         ambientSource.pitch = pitchFloat;
         ambientSource.volume = volumeFloat;

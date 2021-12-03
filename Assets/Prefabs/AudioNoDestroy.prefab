@@ -44,10 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e433f0d8d9afabc45a214386c3ac0fb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ambientSource: {fileID: 0}
   ambientClips:
   - {fileID: 8300000, guid: 2848539b34af744429ad393aef7d0d32, type: 3}
   - {fileID: 8300000, guid: f53eead0251f4534c9bc214eae970630, type: 3}
   - {fileID: 8300000, guid: 85107ae2748628649a6f7e50b1de249c, type: 3}
+  whisperHints: {fileID: 8300000, guid: 674ab49699a2fa841ba2d816c219c9ed, type: 3}
 --- !u!82 &5809122781218947960
 AudioSource:
   m_ObjectHideFlags: 0

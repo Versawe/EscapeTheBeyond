@@ -120,8 +120,8 @@ public class AIAudio : MonoBehaviour
         else 
         {
             //footstep sound logic
-            if(main.IsRipper) PlayFootSteps(bashDoor, 1.25f);
-            else PlayFootSteps(bashDoor, 0.75f);
+            if(main.IsRipper) PlayFootSteps(bashDoor, 1.5f);
+            else PlayFootSteps(bashDoor, 1.25f);
         }
     }
 

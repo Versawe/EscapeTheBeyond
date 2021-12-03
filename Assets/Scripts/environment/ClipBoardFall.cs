@@ -15,7 +15,6 @@ public class ClipBoardFall : MonoBehaviour
         if (collision.gameObject.tag == "soundOnCollide") 
         {
             source.Play();
-            print("thud!");
             AudioController.PlayDialogueSound(2);
         } 
     }
