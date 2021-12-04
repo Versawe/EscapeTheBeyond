@@ -186,10 +186,11 @@ public class GameHUDActivations : MonoBehaviour
     //logic for pausing game
     private void PauseGame()
     {
+        //pausing click logic
         bool escClick = Input.GetKeyDown("escape");
         if (Input.GetKeyDown("escape")) AudioController.ClickSound();
 
-        if (escClick && !isPaused) //&& !pLookAtScript.IsActivated
+        if (escClick && !isPaused && !pLookAtScript.IsActivated) //&& 
         {
             isPaused = true;
             AudioController.PauseSound();
@@ -201,7 +202,22 @@ public class GameHUDActivations : MonoBehaviour
             ConfirmationPanel.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked; // Don't really need it in EDITOR esc auto unlocks cursor. Unpausing should work on build
         }
+        else if (escClick && !isPaused && Puzzle3Script.isActiveAndEnabled && pLookAtScript.IsActivated) //work in QandA
+        {
+            isPaused = true;
+            AudioController.PauseSound();
+        }
+        else if (escClick && isPaused && Puzzle3Script.isActiveAndEnabled && pLookAtScript.IsActivated) //work in QandA
+        {
+            pausePanel.SetActive(false);
+            pausePanel2.SetActive(false);
+            optionsOn = false;
+            confirmationOn = false;
+            OptionsPanel.SetActive(false);
+            Time.timeScale = 1f;
+        }
 
+        //pause functioning logic
         if (isPaused && !optionsOn && !confirmationOn)
         {
             Cursor.lockState = CursorLockMode.None;
@@ -215,7 +231,7 @@ public class GameHUDActivations : MonoBehaviour
             pausePanel.SetActive(false);
             pausePanel2.SetActive(false);
         }
-        else if (!isPaused && !NoDestroy.atGameOver) //&& !pLookAtScript.IsActivated
+        else if (!isPaused && !NoDestroy.atGameOver) //
         {
             if (NoDestroy.gameProgression != 4) Cursor.lockState = CursorLockMode.Locked;
             pausePanel.SetActive(false);

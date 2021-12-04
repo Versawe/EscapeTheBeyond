@@ -453,7 +453,7 @@ public class SlotSave : MonoBehaviour
 
             //COMMENTED OUT FOR TESTING PURPOSES
             //check for editing file?
-            /*DateTime dateModified = System.IO.File.GetLastWriteTime(grabFilePath);
+            DateTime dateModified = System.IO.File.GetLastWriteTime(grabFilePath);
             string modified = dateModified.ToString("O").Substring(0, 18);
             if (System.IO.File.ReadAllLines(grabFilePath).Length != 9)
             {
@@ -494,14 +494,14 @@ public class SlotSave : MonoBehaviour
                 AudioController.StopSound();
                 if (startAttempts == 2) SceneManager.LoadScene("Between");
                 else SceneManager.LoadScene(sceneString);
-            }*/
+            }
             //load scene if good DELETE BELOW ONCE DONE DEVELOPING
-            NoDestroy.fileLoaded = "Slot1Data.txt";
+            /*NoDestroy.fileLoaded = "Slot1Data.txt";
             int startAttempts = int.Parse(System.IO.File.ReadAllLines(grabFilePath)[6]);
             string sceneString = System.IO.File.ReadAllLines(grabFilePath)[4];
             AudioController.StopSound();
             if (startAttempts == 2) SceneManager.LoadScene("Between");
-            else SceneManager.LoadScene(sceneString);
+            else SceneManager.LoadScene(sceneString);*/
         }
         //if the file does not exist changes the static variable and loads the scene
         //also creates and writes to the text file

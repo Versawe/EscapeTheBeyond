@@ -310,6 +310,7 @@ public class LookAtStuff : MonoBehaviour
                 HUDScript.NotePadHintPanel.SetActive(true);
                 CharMove.enabled = false;
                 CamRotate.enabled = false;
+                AudioController.PlayFlashBackSound(100);
             }
             else //if you are looking at the door with the code
             {
@@ -329,7 +330,7 @@ public class LookAtStuff : MonoBehaviour
                 HUDScript.PasscodePanel.SetActive(true);
                 IsInForms = true;
                 HUDScript.formBar.ActivateInputField();
-                //HUDScript.isPaused = false;
+                HUDScript.isPaused = false;
                 InteractText.SetActive(false);
             }
         }
@@ -353,7 +354,7 @@ public class LookAtStuff : MonoBehaviour
         Destroy(CurrRelic);
         CurrRelic = null;
         HUDScript.relicCollected++;
-        AudioController.PlayFlashBackSound(50); //chance at giving a dialogue hint..
+        AudioController.PlayFlashBackSound(70); //chance at giving a dialogue hint..
         if (HUDScript.relicCollected == 1 && AudioController.DialogueSource.isPlaying) AudioController.StopSound();
         if (HUDScript.relicCollected == 1 && !AudioController.DialogueSource.isPlaying) AudioController.PlayDialogueSound(4);
         if (HUDScript.relicCollected == 5 || HUDScript.relicCollected == 10) relicScript.SpawnAI();

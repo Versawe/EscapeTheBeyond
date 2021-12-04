@@ -8,27 +8,24 @@ You must keep it after giving it.@^(your|my)( )(word)$|^(word)$@Form@none
 I cover cities and destroy mountains, I make men blind, yet help them see.@^(sand)$@Form@none
 Of no use to one, yet absolute bliss to two. The small boy gets it for nothing. The young man has to lie for it. The old man has to buy it.@^(a)( )(kiss)$|^(kiss)$@Form@none
 I weaken all men for hours each day. I show you strange visions while you are away. I take you by night, by day take you back, None suffer to have me, but do from my lack.@^(sleep)$@Form@none
-What’s the name of the entity that can be summoned by saying their name three times while looking in a mirror?@Bloody Mary@MC@Beetlejuice,Madman,Freddy Krueger
-What entity was seen near the Silver Bridge a few weeks before it’s collapse?@The Mothman@MC@The Rake,Slender Man,Bunny Man
-Which name do you not want a ouija board to spell out 12 times?@Zozo@MC@Satan,Satanas,Hela
-“That is not dead which can eternal lie, And with strange aeons, even death may die.”@H.P. Lovecraft@MC@Stephen King,Edgar Allen Poe,Dean Koontz
-Which entity is not an Outer God?@Cthulhu@MC@Azathoth,Nyarlathotep,Yog-Sothoth
 What is the name of the Book of the Dead?@Necronomicon@MC@Vishanti,Grimoire,The Occido Lumen
 Would you like to die?@No@MC@Yes,Maybe,Do not answer
 Is this real?@No@MC@Yes,Maybe,Do not answer
-What have you done that you regret?@Hit-and-Run@MC@Killing Spree,Adultery,Suicide
-Who have you killed?@A boy@MC@Wife,Father,A girl
+What have you done that you regret?@Hit-and-Run@MC@Killing Spree,Adultery,Tax Fraud
+Who have you killed?@A boy@MC@your Wife,your Father,A girl
 Where are we?@Simulation@MC@Hell,Purgatory,IKEA
-A curse born of a strong grudge held by someone who died. The place of his death gathers his grudge. Anyone who comes in contact with this curse shall lose his life and a new curse is born.@Ju-on@MC@Hex,Jinx,Voodoo
 What is the name of the type of Demon that seduces men in their dreams?@Succubus@MC@Incubus,Cambions,Familiars
 What type of procedure was similar to what you went through?@Biopsy@MC@Craniotomy,DBS,Neuroendoscopy
 What has been injected into your head?@M-block nanobots@MC@Remote trojans,Rare virus,Worms
 What is the name of the Surgeon?@Dr. Charles Stephen@MC@Dr. Leana Wen,Dr. Ken Ye,Dr. Oliver Garcia
-Do you remember your name?@Brian Deever@MC@Henry Deever,Adam Seever,Adam Francis
+What is your name?@Brian Deever@MC@Henry Deever,Adam Seever,Adam Francis
 What part of your body was 3D scanned?@Head@MC@Shoulder,Knees,Arms
-Why did you agree to do this?@Money@MC@Family,Friends,Volunteer
+Why did you agree to do this experiment?@Money@MC@Family,Friends,Volunteer
 What is the name of the company doing this experient on you?@Social Chips@MC@Industrial Corp,Integrated Chips,Surgeon Alliance
 Who is the Lead Software Engineer?@Jorge Guerrero@MC@Donnovon Wright,Adam Francis,Gale Smith
 Who is the Lead Engineer?@Daniel Brink@MC@Jorge Guerrero,Charles Stephen,Brian Deever
 What room do Ghosts avoid?@^(the)( )(living)( )(room)$|^(living)( )(room)$@Form@none
-Each morning I appear to lie at your feet. All day I will follow no matter how fast you run, yet I nearly perish in the midday sun.@^(shadow)$|^(a)( )(shadow)$@Form@none
+Each morning I appear to lie at your feet. All day I will follow no matter how fast you run, yet I nearly perish in the midday sun.@^(shadow)$|^(a)( )(shadow)$|^(my)( )(shadow)$|^(your)( )(shadow)$@Form@none
+Which is an evil spirit or devil, especially one thought to possess a person or act as a tormentor in hell?@Demon@MC@Poltergeist,Ghost,Jinn
+Which is a spirit of someone who has passed away?@Ghost@MC@Poltergeist,Demon,Oni
+Which is a supernatural being supposedly responsible for physical disturbances such as loud noises and objects thrown around?@Poltergeist@MC@Ghost,Demon,Shade
