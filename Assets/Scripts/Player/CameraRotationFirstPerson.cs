@@ -91,6 +91,7 @@ public class CameraRotationFirstPerson : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        if (NoDestroy.atGameComplete) stepSource.Stop();
         if (Time.timeScale == 0 || NoDestroy.atGameComplete) return;
         RotateCamera();
 
