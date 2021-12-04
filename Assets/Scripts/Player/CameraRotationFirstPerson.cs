@@ -31,7 +31,7 @@ public class CameraRotationFirstPerson : MonoBehaviour
     public List<AudioClip> stepClips = new List<AudioClip>();
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         lookScript = GetComponent<LookAtStuff>();
         stepSource = GetComponent<AudioSource>();
@@ -50,8 +50,15 @@ public class CameraRotationFirstPerson : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        stepSource.enabled = true;
+    }
     private void OnDisable()
     {
+        stepSource.Stop();
+        stepSource.enabled = false;
+
         if (lookScript.lookingAtName != "Main_mirror") return;
         yaw = 90;
         pitch = 13;

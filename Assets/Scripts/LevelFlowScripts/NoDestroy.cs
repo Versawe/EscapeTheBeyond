@@ -49,6 +49,7 @@ public class NoDestroy : MonoBehaviour
     public JumpScareHides jumpScareScript;
 
     CharacterMovementFirstPerson moveScript;
+    CameraRotationFirstPerson camScript;
 
     public static bool BigScareHappening = false;
 
@@ -123,6 +124,7 @@ public class NoDestroy : MonoBehaviour
         {
             SaveToFile();
             moveScript = GameObject.Find("FPSController").GetComponent<CharacterMovementFirstPerson>();
+            camScript = GameObject.Find("FPSController").GetComponent<CameraRotationFirstPerson>();
             atGameOver = false;
             atGameComplete = false;
             completedQandA = false; //change to false
@@ -179,6 +181,7 @@ public class NoDestroy : MonoBehaviour
         {
             endGameTimer -= 1 * Time.deltaTime;
             if(moveScript) moveScript.enabled = false;
+            if (camScript) camScript.enabled = false;
             //black out screen play final audio to game then load credit scene HERE
             // This is handled somewhere ELSE ^ in QandA.cs
         }

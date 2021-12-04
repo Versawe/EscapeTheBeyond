@@ -26,7 +26,7 @@ public class GameHUDActivations : MonoBehaviour
 
     public GameObject StaminaBar;
 
-    public GameObject TextHint; //the 2/3 text display in game during puzzle 1
+    //public GameObject TextHint; //the 2/3 text display in game during puzzle 1
     public GameObject pauseHint;
 
     //variables for UI to interact with
@@ -65,9 +65,6 @@ public class GameHUDActivations : MonoBehaviour
 
         if (GameObject.Find("NoDestroyOBJ")) GameControllerScript = GameObject.Find("NoDestroyOBJ").GetComponent<NoDestroy>();
         else GameControllerScript = null;
-                
-        if (GameObject.Find("Hint")) TextHint = GameObject.Find("Hint");
-        else TextHint = null;
 
         if (GameObject.Find("FPSController"))
         {
@@ -120,15 +117,13 @@ public class GameHUDActivations : MonoBehaviour
         {
             pLookAtScript.IsActivated = false;
             Cursor.lockState = CursorLockMode.Locked;
-        } 
+        }
 
-        //if TextHint GO does or does not exist
-        if (!TextHint) return;
-        else
+        if (NoDestroy.currSceneName == "GlitchyStart") 
         {
+            //control current objective & trigger pause hint
             if (NoDestroy.puzzleOneLoginAttempts == 2)
             {
-                TextHint.SetActive(true);
                 pauseHint.SetActive(true);
                 NoDestroy.currObjective = "Current Objective:\nEXIT the game..\nI meant...\nEXIT the room...";
                 delayTimer -= 1 * Time.deltaTime;
@@ -136,7 +131,6 @@ public class GameHUDActivations : MonoBehaviour
             }
             else
             {
-                TextHint.SetActive(false);
                 NoDestroy.currObjective = "Current Objective:\nEnter the passcode and unlock the door";
             }
 
@@ -195,7 +189,7 @@ public class GameHUDActivations : MonoBehaviour
         bool escClick = Input.GetKeyDown("escape");
         if (Input.GetKeyDown("escape")) AudioController.ClickSound();
 
-        if (escClick && !isPaused && !pLookAtScript.IsActivated)
+        if (escClick && !isPaused) //&& !pLookAtScript.IsActivated
         {
             isPaused = true;
             AudioController.PauseSound();
@@ -221,7 +215,7 @@ public class GameHUDActivations : MonoBehaviour
             pausePanel.SetActive(false);
             pausePanel2.SetActive(false);
         }
-        else if (!isPaused && !pLookAtScript.IsActivated && !NoDestroy.atGameOver)
+        else if (!isPaused && !NoDestroy.atGameOver) //&& !pLookAtScript.IsActivated
         {
             if (NoDestroy.gameProgression != 4) Cursor.lockState = CursorLockMode.Locked;
             pausePanel.SetActive(false);

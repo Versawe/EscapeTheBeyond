@@ -68,6 +68,9 @@ public class QandA : MonoBehaviour
 
     private bool doOnce = false;
 
+    CameraRotationFirstPerson camScript;
+    CharacterMovementFirstPerson moveScript;
+
     private void Awake()
     {
         //Creates an array from the text file
@@ -77,6 +80,11 @@ public class QandA : MonoBehaviour
         //grabs player game object
         if (GameObject.Find("FPSController")) lookScript = GameObject.Find("FPSController").GetComponentInChildren<LookAtStuff>();
         else lookScript = null;
+        if (GameObject.Find("FPSController")) moveScript = GameObject.Find("FPSController").GetComponent<CharacterMovementFirstPerson>();
+        else moveScript = null;
+        if (GameObject.Find("FPSController")) camScript = GameObject.Find("FPSController").GetComponentInChildren<CameraRotationFirstPerson>();
+        else camScript = null;
+        
 
         //grab no destroy object
         controller = GameObject.Find("NoDestroyOBJ");
@@ -192,6 +200,8 @@ public class QandA : MonoBehaviour
             if(!doOnce) AudioController.PlayDialogueSound(11); //plays the last story scene to inform player what has happened at the end
             doOnce = true; //does this only once because it is called in update
             AmbientClipController.StopSound(); //stops ambient so player can hear final dialogue scene
+            moveScript.enabled = false;
+            camScript.enabled = false;
         }
         else 
         {

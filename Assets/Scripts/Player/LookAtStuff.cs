@@ -12,7 +12,7 @@ public class LookAtStuff : MonoBehaviour
 
     PlayerHiding hideScript; //used to check if player is hiding in wardrobe and always setting lookingAtName to that wardrobe
 
-    GUIEvent guiEventScript; //used to see if object being looked at is an interactve obeject that starts a gui event
+    GUIEvent guiEventScript; //used to see if object being looked at is an interactve object that starts a gui event
     GameObject InteractText;
     GameHUDActivations HUDScript;
     CharacterMovementFirstPerson CharMove;
@@ -84,7 +84,7 @@ public class LookAtStuff : MonoBehaviour
 
         LockVisualPoint();
 
-        if (IsActivated) HUDScript.isPaused = false; //whenever you are in a gui event, you cannot pause
+        //if (IsActivated) HUDScript.isPaused = false; //whenever you are in a gui event, you cannot pause
 
         //allow you to click enter instead of just clicking button, user's choice
         if (IsInForms && Input.GetKeyDown(KeyCode.Return) && HUDScript.formBar.text != "")
@@ -295,7 +295,7 @@ public class LookAtStuff : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 CharMove.enabled = false;
                 CamRotate.enabled = false;
-                HUDScript.isPaused = false;
+                //HUDScript.isPaused = false;
                 InteractText.SetActive(false);
                 HUDScript.Puzzle3Script.enabled = true;
 
@@ -329,7 +329,7 @@ public class LookAtStuff : MonoBehaviour
                 HUDScript.PasscodePanel.SetActive(true);
                 IsInForms = true;
                 HUDScript.formBar.ActivateInputField();
-                HUDScript.isPaused = false;
+                //HUDScript.isPaused = false;
                 InteractText.SetActive(false);
             }
         }
