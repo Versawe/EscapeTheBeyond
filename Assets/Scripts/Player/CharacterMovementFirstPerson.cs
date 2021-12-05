@@ -146,6 +146,7 @@ public class CharacterMovementFirstPerson : MonoBehaviour
         {
             //transform.position = hideScript.lockedLocation.position;
             transform.position = Vector3.MoveTowards(transform.position, hideScript.lockedLocation.position, 0.1f);
+            isMoving = false;
         }
     }
 

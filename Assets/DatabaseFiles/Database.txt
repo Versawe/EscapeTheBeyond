@@ -1,12 +1,9 @@
-The person who built it sold it. The person who bought it never used it. The person who used it never saw it. What is it?@^(a)( )(coffin)$|^(coffin)$@Form@none
-I have no feet to dance, I have no eyes to see, I have no life to live or die but yet I do all three. What am I?@^(a)( )(fire)$|^(fire)$@Form@none
-I have cities, but no houses. I have mountains, but no trees. I have water, but no fish. What am I?@^(a)( )(map)$|^(map)@Form@none
+The person who built it sold it. The person who bought it never used it. The person who used it never saw it. What is it?@^(a)( )(coffin|casket)$|^(coffin|casket)$@Form@none
+I have no feet to dance, I have no eyes to see, I have no life to live or die but yet I do all three. What am I?@^(a)( )(fire|flame)$|^(fire|flame)$@Form@none
 When you have me more, you can see only less. What Am I?@^(darkness)$|^(dark)$|^(the)( )(dark)$|^(the)( )(darkness)$@Form@none
 I don't have eyes, but once I did see. Once I had thoughts, but now I'm white and empty.@^(skull)$|^(a)( )(skull)$@Form@none
-What begins with an “e” and only contains one letter?@^(envelope)$|^(an)( )(envelope)$@Form@none
 You must keep it after giving it.@^(your|my)( )(word)$|^(word)$@Form@none
 I cover cities and destroy mountains, I make men blind, yet help them see.@^(sand)$@Form@none
-Of no use to one, yet absolute bliss to two. The small boy gets it for nothing. The young man has to lie for it. The old man has to buy it.@^(a)( )(kiss)$|^(kiss)$@Form@none
 I weaken all men for hours each day. I show you strange visions while you are away. I take you by night, by day take you back, None suffer to have me, but do from my lack.@^(sleep)$@Form@none
 What is the name of the Book of the Dead?@Necronomicon@MC@Vishanti,Grimoire,The Occido Lumen
 Would you like to die?@No@MC@Yes,Maybe,Do not answer
@@ -24,8 +21,10 @@ Why did you agree to do this experiment?@Money@MC@Family,Friends,Volunteer
 What is the name of the company doing this experient on you?@Social Chips@MC@Industrial Corp,Integrated Chips,Surgeon Alliance
 Who is the Lead Software Engineer?@Jorge Guerrero@MC@Donnovon Wright,Adam Francis,Gale Smith
 Who is the Lead Engineer?@Daniel Brink@MC@Jorge Guerrero,Charles Stephen,Brian Deever
-What room do Ghosts avoid?@^(the)( )(living)( )(room)$|^(living)( )(room)$@Form@none
-Each morning I appear to lie at your feet. All day I will follow no matter how fast you run, yet I nearly perish in the midday sun.@^(shadow)$|^(a)( )(shadow)$|^(my)( )(shadow)$|^(your)( )(shadow)$@Form@none
+What room do Ghosts avoid?@^(the|a)( )(living)( )(room)$|^(living)( )(room)$@Form@none
+Each morning I appear to lie at your feet. All day I will follow no matter how fast you run, yet I nearly perish in the midday sun.@^(shadow)$|^(a|my|your)( )(shadow)$@Form@none
 Which is an evil spirit or devil, especially one thought to possess a person or act as a tormentor in hell?@Demon@MC@Poltergeist,Ghost,Jinn
 Which is a spirit of someone who has passed away?@Ghost@MC@Poltergeist,Demon,Oni
 Which is a supernatural being supposedly responsible for physical disturbances such as loud noises and objects thrown around?@Poltergeist@MC@Ghost,Demon,Shade
+Which is an exact likeness of a living person seen usually just before death as an apparition?@Wraith@MC@Ghost,Ghoul,Demon
+Which entity's name means "beings that are concealed from the senses"?@Jinn@MC@Oni,Demon,Ghoul

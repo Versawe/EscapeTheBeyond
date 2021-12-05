@@ -18,8 +18,8 @@ public class StartingHints : MonoBehaviour
 
         if(NoDestroy.puzzleOneLoginAttempts == 3) 
         {
-            hint1.GetComponent<TextMeshPro>().text = "this is out of your CONTROL";
-            hint2.GetComponent<TextMeshPro>().text = "we adVise you to not move forward";
+            hint1.GetComponent<TextMeshPro>().text = "this is out of your CONTROL\nwe adVise you to not move forward";
+            hint2.GetComponent<TextMeshPro>().text = "we will smear your blood like PASTE";
             hint3.GetComponent<TextMeshPro>().text = "THEY cRAVE YOUR FLESH! tIME DOES NOT EXIST WHErE YOU'lL BE GOING! RUN FROM THE vOID";
         }
             
