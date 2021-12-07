@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//used to pan the camera back in forth in front of mirror. Used in main menu and story audio scene
 public class RotateTowardsTarget : MonoBehaviour
 {
     public bool IsCameraFixed = true;
@@ -24,13 +25,13 @@ public class RotateTowardsTarget : MonoBehaviour
         if (MMUI != null) slotScript = MMUI.GetComponent<SlotSave>();
         else slotScript = null;
     }
-    private void LateUpdate()
+    private void LateUpdate() //camera movement always seems smoother in late update for some reason
     {
         MoveCam();
         RotateCam();
     }
 
-    private void MoveCam()
+    private void MoveCam() //logic to move camera back and forth
     {
         //will use for future "locking" camera onto mirror for puzzle 3
         //Movement should be called before rotation, or else it's kinda glitchy
@@ -47,7 +48,7 @@ public class RotateTowardsTarget : MonoBehaviour
 
     }
 
-    private void RotateCam()
+    private void RotateCam() //lock rotation onto target (mirror for most all cases in game)
     {
         //make object look at target
         Vector3 dir = (transform.position - target.position) * -1;

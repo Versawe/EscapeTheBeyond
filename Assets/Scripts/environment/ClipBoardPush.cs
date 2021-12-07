@@ -1,5 +1,6 @@
 using UnityEngine;
 
+//this is the physics burst that pushes the clipboard over in GlitchyStart scene to help hint at a puzzle clue
 public class ClipBoardPush : MonoBehaviour
 {
     GameObject noDestroy;

@@ -71,7 +71,7 @@ public class AmbientClipController : MonoBehaviour
 
     private void Update()
     {
-        if (NoDestroy.gameProgression == 1 && NoDestroy.puzzleOneLoginAttempts == 1) 
+        if (NoDestroy.gameProgression == 1 && NoDestroy.puzzleOneLoginAttempts == 1) //this doesnt work, and i don't care
         {
             ambientSource.clip = whisperHints;
             if(!ambientSource.isPlaying) PlaySound();

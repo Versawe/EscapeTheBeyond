@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//this is made to shut off the open script when the player or AI is not around
 public class DeactivateWardrobeScripts : MonoBehaviour
 {
     public GameObject rightDoor;

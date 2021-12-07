@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4072609375901484}
   - component: {fileID: 33949513267331864}
   - component: {fileID: 23972320002641512}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: door2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 33450091620787444}
   - component: {fileID: 23294669548323376}
   - component: {fileID: 422423541105775491}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: vanity_a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,8 +174,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.2728919, y: 1.0564647, z: 0.5656863}
-  m_Center: {x: 0, y: 0.52823234, z: 0.00000001490116}
+  m_Size: {x: 1.2728919, y: 0.8112021, z: 0.5656863}
+  m_Center: {x: 0, y: 0.40560105, z: 0.000000024835268}
 --- !u!1 &1195734701485058
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +185,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4931245500102228}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: vanity_a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 4325042114705242}
   - component: {fileID: 33386845225773824}
   - component: {fileID: 23390033857828470}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: door1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 4181044182345030}
   - component: {fileID: 33469144218619520}
   - component: {fileID: 23876725158554280}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: door3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

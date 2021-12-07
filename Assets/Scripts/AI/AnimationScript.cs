@@ -18,6 +18,7 @@ public class AnimationScript : MonoBehaviour
     private bool run = false;
 
     //NOTE: This is for the RIPPER, might need seperate aniation scripts for AI!!
+    //lies above this script was edited to work for both ripper and mutant zombies!
 
     // Start is called before the first frame update
     void Start()

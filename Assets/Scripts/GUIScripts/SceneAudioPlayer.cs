@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+//made for scene audio player after game is beaten
 public class SceneAudioPlayer : MonoBehaviour
 {
     public GameObject StoryScenePanel;
@@ -27,6 +28,7 @@ public class SceneAudioPlayer : MonoBehaviour
     
     void Awake() 
     {
+        //grabs the game objectes
         source = GetComponent<AudioSource>();
 
         if (GameObject.Find("MirrorScreenOBJ"))
@@ -55,6 +57,7 @@ public class SceneAudioPlayer : MonoBehaviour
         } 
     }
 
+    //enable to happen after awake
     private void OnEnable()
     {
         source.enabled = true;
@@ -70,13 +73,13 @@ public class SceneAudioPlayer : MonoBehaviour
 
     private void Update()
     {
-        if (source.clip != null) 
+        if (source.clip != null) //controls the showing of buttons
         {
             ShowStateButtons();
         }
     }
 
-    private void HideStateButtons()
+    private void HideStateButtons() //hides buttons
     {
         foreach (GameObject button in PlayerButtons)
         {
@@ -94,7 +97,7 @@ public class SceneAudioPlayer : MonoBehaviour
         }
     }
 
-    private void HighlightButtonText(string buttonClicked)
+    private void HighlightButtonText(string buttonClicked) //highlights the pause button in red if paused & the scene button of the scene thats player
     {
         foreach (GameObject scene in GameObject.FindGameObjectsWithTag("SceneButtons"))
         {
@@ -103,7 +106,7 @@ public class SceneAudioPlayer : MonoBehaviour
         }
     }
 
-    public void SelectClip(Button clicked)
+    public void SelectClip(Button clicked) // plays on button click
     {
         //resets values
         if(sr) sr.enabled = false;

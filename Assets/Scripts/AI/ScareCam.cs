@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 
+//this is attachted to the PLayer's Camera
+//this controls the triggering of the scare scenes when the AI catches a player
 public class ScareCam : MonoBehaviour
 {
-
     public Camera FPSCamera;
     public GameObject ripperScene;
     public GameObject mutantScene;
@@ -38,10 +39,10 @@ public class ScareCam : MonoBehaviour
     }
     private void OnDisable()
     {
-        if (pHealth.health > 0) 
+        if (pHealth.health > 0) //gets caught but still alive aftewards
         {
-            if (nameOfAI.Substring(0, 1) == "r") ripperScene.gameObject.SetActive(false);
-            else mutantScene.gameObject.SetActive(false);
+            if (nameOfAI.Substring(0, 1) == "r") ripperScene.gameObject.SetActive(false); //caught by ripper
+            else mutantScene.gameObject.SetActive(false); //caught by a zombie mutant
             ScarePostP.SetActive(false);
             FPSCamera.enabled = true;
             pMoveScript.enabled = true;

@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+//this script controls all of the in-game HUD and UI in-game (excluding main menu)
+//Main menu UI is controlled in SlotSave.cs >> Not how i originally wanted, but whatever
 public class GameHUDActivations : MonoBehaviour
 {
     //UI Object references

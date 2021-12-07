@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//chooses random gifs for the jumpscares and sets them to components
+//makes it super cool and different everytime
 public class JumpScareHides : MonoBehaviour
 {
     private List<GameObject> jumpScares = new List<GameObject>();

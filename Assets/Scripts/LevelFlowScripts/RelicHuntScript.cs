@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class RelicHuntScript : MonoBehaviour
 {
+    //this script triggers when the relic hunt has begun
     public List<GameObject> AiSpawns = new List<GameObject>();
     List<GameObject> RelicList = new List<GameObject>();
     List<GameObject> ChosenList = new List<GameObject>();
@@ -25,14 +26,16 @@ public class RelicHuntScript : MonoBehaviour
 
     private void Update()
     {
-        FailRelicHunt();    
+        FailRelicHunt(); //checks for failure constantly
     }
 
     void OnEnable()
     {
+        //plays audio when attempting to open basement door
         AudioController.PlayDialogueSound(3);
         doOnce = false;
 
+        //turns off all lights in the map
         foreach (GameObject light in GameObject.FindGameObjectsWithTag("Lamp")) //turns off all lights c:
         {
             light.SetActive(false);

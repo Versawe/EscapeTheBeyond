@@ -1,5 +1,7 @@
 using UnityEngine;
 
+//this controls the spawning of the stair prefab in the endless staricase portion of the last level
+// the despawning and keeping count of the amount of staris you go down is handled in NoDestroy.cs
 public class EndlessStaircase : MonoBehaviour
 {
     public GameObject NoReturnBox;

@@ -37,7 +37,7 @@ public class AudioController : MonoBehaviour
         BGLoopSource.clip = staticLoop;
         script = GetComponent<AudioController>();
 
-        foreach (AudioClip clip in clipListRef) 
+        foreach (AudioClip clip in clipListRef) //populates list with reference list of audio clips
         {
             clipList.Add(clip);
         }
@@ -45,6 +45,7 @@ public class AudioController : MonoBehaviour
 
     void Update()
     {
+        //If you run out of clips to play it re-grabs from the ref list again, so that it will be a never-ending loop of story hints
         if(clipList.Count <= 0) 
         {
             hintReset = true;
@@ -122,10 +123,10 @@ public class AudioController : MonoBehaviour
                 if (!BGLoopSource.isPlaying) BGLoopSource.Play();
                 if (!DialogueSource.isPlaying)
                 {
-                    int randIndex = Random.Range(0, script.clipList.Count);
-                    DialogueSource.clip = script.clipList[randIndex];
-                    DialogueSource.Play();
-                    script.clipList.RemoveAt(randIndex);
+                    int randIndex = Random.Range(0, script.clipList.Count); //grabs random element from list
+                    DialogueSource.clip = script.clipList[randIndex]; //sets it as the clip
+                    DialogueSource.Play(); //plays it
+                    script.clipList.RemoveAt(randIndex); //removes the clip from the list so it won't repeat until it goes through the cycle
                 }
                 script.BGGone = 4f;
                 //to interupt heavy breathing sound for dialogue

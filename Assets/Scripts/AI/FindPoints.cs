@@ -5,6 +5,9 @@ using UnityEngine.AI;
 using UnityEngine.Subsystems;
 
 //Works Good!!! Also works good integrated with destroying doors inbetween
+//this script was made for when the AI chases the player, but then loses them,
+//instead of going back to patrolling the AI will have a radius detect nearby searchAdvancedPoints that are located in every room
+//then the AI will cycle through every room and search the nearby rooms for the player
 public class FindPoints : MonoBehaviour
 {
     public List<GameObject> pointList;

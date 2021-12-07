@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 
+//this handles the logic on the gui game and events of QandA scene
 public class QandA : MonoBehaviour
 {
     //reads the text file and puts them into public string lists with matching indexes

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//controls the audio on the AI's
+//works similar to the animation script and works on both ripper and mutant zombie
 public class AIAudio : MonoBehaviour
 {
     public GameObject SecondAudioSource;
@@ -37,6 +39,8 @@ public class AIAudio : MonoBehaviour
         FootStepSource = GetComponent<AudioSource>();
         searchScript = GetComponent<FindPoints>();
         AIVoice = SecondAudioSource.GetComponent<AudioSource>();
+        //chooses a random patrol and chase clip from list
+        //each game they will have different sounds!
         randomIndex = Random.Range(0, patrolClips.Count);
         randomIndex2 = Random.Range(0, chaseClips.Count);
     }
@@ -44,24 +48,25 @@ public class AIAudio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //handles pausing of sounds when game is paused
         if (hud.isPaused)
         {
             PauseFootSteps();
             PauseVoice();
         }
-        if (NoDestroy.atGameOver) 
+        if (NoDestroy.atGameOver) //or the game ends
         {
             StopFootSteps();
             StopVoice();
         }
-        if (main.isScaring) 
+        if (main.isScaring)  //plays scare clip when ripper is in screaming state, so there is a difference of sound indicating something scary is happening
         {
             PlayVoice(scareClip);
-            PauseFootSteps();
+            PauseFootSteps(); //no footprints
         } 
         if (hud.isPaused) return;
 
-        //logic for footsteps here
+        //logic for footsteps here & voice clips
         if (!main.destroyObj)
         {
             if (main.aiState == "Chase" || main.aiState == "Track")
@@ -104,7 +109,7 @@ public class AIAudio : MonoBehaviour
                     if (distanceBetweenTarget <= 0.1f)
                     {
                         //footstep sound logic
-                        StopFootSteps();
+                        StopFootSteps(); //no footsteps
                     }
                     else
                     {

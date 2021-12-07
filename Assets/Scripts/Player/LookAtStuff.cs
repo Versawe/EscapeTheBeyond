@@ -116,8 +116,8 @@ public class LookAtStuff : MonoBehaviour
     {
         //Locks the visual UI point to the end of the raycast casting out of camera to show the user what the camera is aiming at
         //next 2 lines hide the visual point in certain scenarios
-        if (HUDScript.isPaused || IsActivated || NoDestroy.atGameComplete || NoDestroy.atGameOver || NoDestroy.stairSpawnCount >= 5 || hideScript.isHiding || hideScript.inBounds || NoDestroy.BigScareHappening) visualRaycastPoint.SetActive(false);
-        if (HUDScript.isPaused || IsActivated || NoDestroy.atGameComplete || NoDestroy.atGameOver || NoDestroy.stairSpawnCount >= 5 || hideScript.isHiding || hideScript.inBounds || NoDestroy.BigScareHappening) return;
+        if (HUDScript.isPaused || IsActivated || NoDestroy.atGameComplete || NoDestroy.atGameOver || NoDestroy.stairSpawnCount >= 5 || hideScript.isHiding || hideScript.inBounds || NoDestroy.BigScareHappening || NoDestroy.gameProgression == 4) visualRaycastPoint.SetActive(false);
+        if (HUDScript.isPaused || IsActivated || NoDestroy.atGameComplete || NoDestroy.atGameOver || NoDestroy.stairSpawnCount >= 5 || hideScript.isHiding || hideScript.inBounds || NoDestroy.BigScareHappening || NoDestroy.gameProgression == 4) return;
         else visualRaycastPoint.SetActive(true);
         if (visualRaycastPoint && lookingAtName != "") //this constanlty updates the position of the circle
         {

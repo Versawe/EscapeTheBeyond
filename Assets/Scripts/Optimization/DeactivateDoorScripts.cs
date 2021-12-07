@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//this is made to shut off the open script when the player or AI is not around
 public class DeactivateDoorScripts : MonoBehaviour
 {
 

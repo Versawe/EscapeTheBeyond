@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //using UnityEditor.Animations;
 
+//this script triggers the jump-scares to spawn
 public class JumpScareTrigger : MonoBehaviour
 {
     public GameObject ScareObj;
@@ -27,21 +28,22 @@ public class JumpScareTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //grabs components
         gameHudScript = GameObject.Find("GameHUD").GetComponent<GameHUDActivations>();
         gifSource = GetComponent<AudioSource>();
         currAnim = GetComponentInChildren<Animator>();
         sr = GetComponentInChildren<SpriteRenderer>();
         sr.sprite = null;
 
-        ScareObj.SetActive(false);
+        ScareObj.SetActive(false); //sets it to hide
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!IsTriggered) return;
-        scareTimer -= 1 * Time.deltaTime;
-        if (scareTimer <= 0) 
+        if (!IsTriggered) return; //returns if not triggering
+        scareTimer -= 1 * Time.deltaTime; //grabs random timer
+        if (scareTimer <= 0) // resets and hides everything
         {
             scareActual = 0;
             scareTimer = 0;
@@ -53,11 +55,11 @@ public class JumpScareTrigger : MonoBehaviour
             NoDestroy.TriggerScarePP = false;
         }
 
-        if (gameHudScript.isPaused) PauseSound();
+        if (gameHudScript.isPaused) PauseSound(); //so audio doesnt play on pause
         else UnPauseSound();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) //setups a random chance to scare the player when they walk by/through
     {
         if (other.gameObject.tag == "Player")
         {
@@ -86,7 +88,7 @@ public class JumpScareTrigger : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other) //hides if triggered or just resets valuse
     {
         if (other.gameObject.tag == "Player")
         {

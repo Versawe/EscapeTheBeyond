@@ -1,6 +1,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
+//This is a script that will switch scenes after the audio scene has finished playing
 public class CarCrashAudio : MonoBehaviour
 {
     AudioSource source;

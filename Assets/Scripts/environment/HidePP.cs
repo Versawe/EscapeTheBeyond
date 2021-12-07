@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//hides mesh renderer on patrol points
+//not in use anymore
 public class HidePP : MonoBehaviour
 {
     MeshRenderer mr;

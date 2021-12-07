@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+//this spawns a scream gameobject: a star like pattern gameobject attched to the ground
+//the ai them iterates through each vector3 on this object and jumps around it.
+//this is used for the Screaming state's logic
 public class AIScream : MonoBehaviour
 {
 
@@ -16,10 +19,10 @@ public class AIScream : MonoBehaviour
     private void OnEnable()
     {
         nm = GetComponent<NavMeshAgent>();
-        nm.stoppingDistance = 0.01f;
+        nm.stoppingDistance = 0.01f; //shortens stopping distance so AI gets close to the scream points
 
-        Instantiate(ScreamPattern, transform.position, transform.rotation);
-        for (int i = 1; i <= 5; i++)
+        Instantiate(ScreamPattern, transform.position, transform.rotation); //spawns scream points
+        for (int i = 1; i <= 5; i++) //adds the points to a list with their respective clone names
         {
             screamPoints.Add(GameObject.Find("ScreamPoint" + i.ToString()));
         }
@@ -39,14 +42,14 @@ public class AIScream : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    private void OnDisable() //resets for next scream event
     {
         StopCoroutine(co);
         screamPoints.Clear();
-        nm.stoppingDistance = 0.65f;
+        nm.stoppingDistance = 0.25f;
     }
 
-    private IEnumerator moveThroughPoints()
+    private IEnumerator moveThroughPoints() //coroutine that moves the ripper through the pattern or list of gameobjects
     {
         WaitForSeconds wait = new WaitForSeconds(0.40f);
         foreach (GameObject point in screamPoints)

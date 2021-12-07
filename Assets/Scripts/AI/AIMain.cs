@@ -128,13 +128,13 @@ public class AIMain : MonoBehaviour
         AIName = gameObject.name; // gets the name of the AI
         if (AIName.Substring(0, 1) == "r") //changed variables for Ripper
         {
-            AISpeed = 2.7f;
+            AISpeed = 3f;
             AISpeedBoost = 500f;
             IsRipper = true;
         }
         else //changed variables for mutant zombies
         {
-            AISpeed = 2.3f;
+            AISpeed = 2.7f;
             AISpeedBoost = 700f;
             IsRipper = false;
             screamChance = 0; //cannot scream
@@ -152,8 +152,8 @@ public class AIMain : MonoBehaviour
         pHealth = player.GetComponent<PlayerHealth>();
         if (player) hideScript = player.GetComponentInChildren<PlayerHiding>();
 
-        if (IsRipper) nm.stoppingDistance = 0.75f;
-        else nm.stoppingDistance = 0.65f;
+        if (IsRipper) nm.stoppingDistance = 0.25f;
+        else nm.stoppingDistance = 0.25f;
 
         //scream script check
         ScreamScript = GetComponent<AIScream>();

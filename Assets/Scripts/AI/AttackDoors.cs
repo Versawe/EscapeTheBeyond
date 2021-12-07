@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+//script that speaks to ripper's main script when it's box collides with a door or wardrobe
+//this is attached to a child of the AI that has a trigger box in front of the AI itself looking for doors in it's path
 public class AttackDoors : MonoBehaviour
 {
     private string[] tag_list = { "DoorX", "DoorZ"};

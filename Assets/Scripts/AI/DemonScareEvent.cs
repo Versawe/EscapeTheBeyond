@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 //This Script controls the Demon AI that spawns from the mirror in QandA
+//A simple AI that only chases player
 public class DemonScareEvent : MonoBehaviour
 {
     NavMeshAgent nm;

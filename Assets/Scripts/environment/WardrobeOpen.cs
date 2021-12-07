@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+//controls the wardrobes function of opening and it's audio
 public class WardrobeOpen : MonoBehaviour
 {
     public GameObject thisDoor;

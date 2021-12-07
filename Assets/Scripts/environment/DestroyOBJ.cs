@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//this destroys game objects after 20 seconds
 public class DestroyOBJ : MonoBehaviour
 {
     public float despawn = 20;

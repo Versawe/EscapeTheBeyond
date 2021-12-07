@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+//This script is not used. It was used when testing AI States during my independent study
 public class TextLookAtCamera : MonoBehaviour
 {
     MeshRenderer mr;

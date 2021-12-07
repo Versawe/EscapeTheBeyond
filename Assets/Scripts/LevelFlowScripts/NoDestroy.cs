@@ -103,11 +103,11 @@ public class NoDestroy : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             AudioListener.volume = 1;
         }
-        else if(actualScene.name == "Between") 
+        else if(actualScene.name == "Between") //between scene
         {
             AmbientClipController.volumeFloat = 0f;
         }
-        else if (actualScene.name == "RelicHunt")
+        else if (actualScene.name == "RelicHunt") //RelicHunt scene
         {
             huntScript.enabled = false;
             collectedAllRelics = false;
@@ -120,7 +120,7 @@ public class NoDestroy : MonoBehaviour
             currObjective = "Current Objective:\nFind a way out of the house";
             jumpScareScript.enabled = true;
         }
-        else if (actualScene.name == "QandA")
+        else if (actualScene.name == "QandA") //QandA scene
         {
             SaveToFile();
             moveScript = GameObject.Find("FPSController").GetComponent<CharacterMovementFirstPerson>();
@@ -139,7 +139,7 @@ public class NoDestroy : MonoBehaviour
             currObjective = "Current Objective:\nGo back to the first room";
 
         }
-        else if (actualScene.name == "HellScene")
+        else if (actualScene.name == "HellScene") //for cheaters
         {
             pSensitivity = 1;
             atGameOver = false;

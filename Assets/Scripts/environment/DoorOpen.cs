@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
+//controls the functionality of opening and closing doors
 public class DoorOpen : MonoBehaviour
 {
     public GameObject thisDoor;
