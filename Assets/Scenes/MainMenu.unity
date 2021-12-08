@@ -1374,8 +1374,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -860.68, y: -960}
-  m_SizeDelta: {x: 345.0601, y: 139.1345}
+  m_AnchoredPosition: {x: -681.5952, y: -1114.2783}
+  m_SizeDelta: {x: 703.2297, y: 277.1342}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &144499722
 MonoBehaviour:
@@ -1399,12 +1399,22 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Software used:
 
-    Unity 2020.3.9f1
+    Unity 2020 3.9f1
 
-    Adobe Audition & Photoshop
 
-    FL
-    Studios'
+    Adobe Creative Cloud - Photoshop
+    & Audition
+
+
+    3Ds Max & Blender
+
+
+    Substance Painter 2019
+
+
+    FL Studios
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2022a191c6795f54486077ae044b7a0a, type: 2}
   m_sharedMaterial: {fileID: -7721617748380642488, guid: 2022a191c6795f54486077ae044b7a0a,
