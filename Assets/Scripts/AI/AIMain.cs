@@ -152,8 +152,8 @@ public class AIMain : MonoBehaviour
         pHealth = player.GetComponent<PlayerHealth>();
         if (player) hideScript = player.GetComponentInChildren<PlayerHiding>();
 
-        if (IsRipper) nm.stoppingDistance = 0.25f;
-        else nm.stoppingDistance = 0.25f;
+        if (IsRipper) nm.stoppingDistance = 0.2f;
+        else nm.stoppingDistance = 0.2f;
 
         //scream script check
         ScreamScript = GetComponent<AIScream>();

@@ -46,7 +46,7 @@ public class AIScream : MonoBehaviour
     {
         StopCoroutine(co);
         screamPoints.Clear();
-        nm.stoppingDistance = 0.25f;
+        nm.stoppingDistance = 0.2f;
     }
 
     private IEnumerator moveThroughPoints() //coroutine that moves the ripper through the pattern or list of gameobjects

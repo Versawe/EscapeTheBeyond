@@ -64,7 +64,7 @@ public class AnimationScript : MonoBehaviour
                 if (searchScript.targetCopy) 
                 {
                     float distanceBetweenTarget = Vector3.Distance(transform.position, searchScript.targetCopy.transform.position);
-                    if (distanceBetweenTarget <= 0.1f)
+                    if (distanceBetweenTarget <= 0.2f)
                     {
                         //search animation
                         if (MonsterScript.IsRipper) AnimationTriggers("Search");
